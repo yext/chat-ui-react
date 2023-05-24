@@ -3,7 +3,7 @@
   "collectCoverage": true,
   "collectCoverageFrom": ["src/**", "!src/models/**/*.ts"],
   "verbose": true,
-  "moduleFileExtensions": ["ts", "tsx"],
+  "moduleFileExtensions": ["js", "ts", "tsx"],
   "moduleDirectories": ["node_modules", "<rootDir>"],
   "testEnvironment": "jsdom",
   "testPathIgnorePatterns": ["./tests/mocks/*"],
