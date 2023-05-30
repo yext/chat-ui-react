@@ -30,8 +30,13 @@ function App() {
     <div className="App">
       <ChatHeadlessProvider config={config}>
         <ChatHeader
+<<<<<<< HEAD
             title="Clippy's Chatbot" 
             showRefreshButton={true}
+=======
+          title="Clippy's Chatbot" 
+          showRefreshButton={true}
+>>>>>>> c9c1689 (Add Header component)
         />
         <Messages />
         <ChatInput />

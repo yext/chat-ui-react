@@ -2,6 +2,10 @@ import { useChatActions } from "@yext/chat-headless-react";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
 import { useState } from 'react';
+<<<<<<< HEAD
+=======
+import { is } from "immer/dist/internal";
+>>>>>>> c9c1689 (Add Header component)
 
 
 /**
@@ -44,7 +48,11 @@ export function ChatHeader({
       setIsSpinning(false);
     }, 500); // Stop spinning after .5 seconds
   };
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> c9c1689 (Add Header component)
   return (
     <div className={cssClasses.header}>
       <h1 className={cssClasses.title}>
@@ -58,7 +66,10 @@ export function ChatHeader({
           chat.restartConversation()
           chat.getNextMessage()
         }}
+<<<<<<< HEAD
 
+=======
+>>>>>>> c9c1689 (Add Header component)
         className={isSpinning ? "animate-spin" : ""}
       >
         <ArrowPathIcon className={cssClasses.arrowPathIcon} />
