@@ -3,7 +3,7 @@ import { Button } from "@yext/chat-ui-react";
 function App() {
   return (
     <div className="App">
-      hello world
+      <p>hello world</p>
       <Button />
     </div>
   );
