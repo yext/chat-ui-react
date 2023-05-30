@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@yext/chat-ui-react": "file:..",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "@yext/chat-ui-react": "file:.."
+    "react-scripts": "5.0.1"
   },
   "devDependencies": {
-    "eslint-config-react-app": "file:../node_modules/eslint-config-react-app",
     "@types/react": "^18.2.7",
-    "@types/react-dom": "^18.2.4"
+    "@types/react-dom": "^18.2.4",
+    "eslint-config-react-app": "file:../node_modules/eslint-config-react-app",
+    "tailwindcss": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

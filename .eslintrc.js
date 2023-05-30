@@ -1,5 +1,8 @@
 module.exports = {
-  extends: ["@yext/eslint-config/typescript-react"],
+  extends: [
+    "@yext/eslint-config/typescript-react",
+    "plugin:storybook/recommended",
+  ],
   ignorePatterns: [
     "**/lib",
     "**/dist",
