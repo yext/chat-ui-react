@@ -9,7 +9,6 @@ import { TextDecoder, TextEncoder } from "util";
 global.TextDecoder = TextDecoder;
 global.TextEncoder = TextEncoder;
 
-
 beforeAll(() => mswServer.listen());
 afterEach(() => mswServer.resetHandlers());
 afterAll(() => mswServer.close());

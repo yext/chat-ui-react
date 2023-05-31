@@ -8,7 +8,7 @@ export const chatresponse = {
     message: {
       timestamp: "2023-05-31T14:22:19.376Z",
       source: "BOT",
-      text: 'Hello! This is Yext Chat!',
+      text: "Hello! This is Yext Chat!",
     },
     notes: {
       currentGoal: "CHIT_CHAT",

@@ -3,7 +3,7 @@ import { useChatActions, useChatState } from "@yext/chat-headless-react";
 import { FaArrowUp } from "react-icons/fa";
 import { useComposedCssClasses } from "../hooks";
 import classNames from "classnames";
-import Textarea from 'react-expanding-textarea'
+import Textarea from "react-expanding-textarea";
 /**
  * The CSS class interface for the {@link ChatInput} component.
  *
@@ -78,9 +78,9 @@ export function ChatInput({
     setInput("");
 
     const defaultHandleError = (e: unknown) => {
-      console.error(e)
-    }
-    res.catch((e) => handleError ? handleError(e) : defaultHandleError(e));
+      console.error(e);
+    };
+    res.catch((e) => (handleError ? handleError(e) : defaultHandleError(e)));
   }, [chat, input, handleError, stream]);
 
   const handleKeyDown = useCallback(

@@ -1,11 +1,11 @@
 import type { Preview } from "@storybook/react";
-import { initialize, mswLoader } from 'msw-storybook-addon';
+import { initialize, mswLoader } from "msw-storybook-addon";
 import "./index.css";
-import { rest } from 'msw'
+import { rest } from "msw";
 
 // Initialize MSW
 initialize({
-  onUnhandledRequest: 'bypass'
+  onUnhandledRequest: "bypass",
 });
 
 const preview: Preview = {
@@ -25,7 +25,7 @@ const preview: Preview = {
         rest.post(/chat\/.+\/message\/streaming/, (_req, res, ctx) => {
           return res(ctx.json({}));
         }),
-      ]
+      ],
     },
   },
   // Provide the MSW addon loader globally
