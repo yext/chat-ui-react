@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useChatActions, useChatState } from "@yext/chat-headless-react";
 import { FaArrowUp } from "react-icons/fa";
 import { useComposedCssClasses } from "../hooks";
-import classNames from "classnames";
+import { clsx } from "clsx";
 import Textarea from "react-expanding-textarea";
 /**
  * The CSS class interface for the {@link ChatInput} component.
@@ -67,7 +67,7 @@ export function ChatInput({
   );
 
   const cssClasses = useComposedCssClasses(builtInCssClass, customCssClasses);
-  const sendButtonClassNames = classNames(cssClasses.sendButton, {
+  const sendButtonClassNames = clsx(cssClasses.sendButton, {
     "opacity-0": input.length === 0,
   });
 
