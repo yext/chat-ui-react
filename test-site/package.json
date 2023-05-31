@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@testing-library/react": "^14.0.0",
+=======
+>>>>>>> a386ae1 (Add ChatInput component (#4))
     "@yext/chat-headless-react": "file:../node_modules/@yext/chat-headless-react",
     "@yext/chat-ui-react": "file:..",
     "react": "file:../node_modules/react",
