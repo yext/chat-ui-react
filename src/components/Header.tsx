@@ -2,7 +2,6 @@ import { useChatActions } from "@yext/chat-headless-react";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
 import { useState } from 'react';
-import { is } from "immer/dist/internal";
 
 
 /**
@@ -45,7 +44,7 @@ export function ChatHeader({
       setIsSpinning(false);
     }, 500); // Stop spinning after .5 seconds
   };
-
+  
   return (
     <div className={cssClasses.header}>
       <h1 className={cssClasses.title}>
@@ -59,6 +58,7 @@ export function ChatHeader({
           chat.restartConversation()
           chat.getNextMessage()
         }}
+
         className={isSpinning ? "animate-spin" : ""}
       >
         <ArrowPathIcon className={cssClasses.arrowPathIcon} />
