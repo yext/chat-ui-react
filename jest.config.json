@@ -10,5 +10,6 @@
   "resetMocks": true,
   "restoreMocks": true,
   "clearMocks": true,
-  "testMatch": ["<rootDir>/tests/**/*.(test).ts(x)?"]
+  "testMatch": ["<rootDir>/tests/**/*.(test).ts(x)?"],
+  "setupFilesAfterEnv": ["<rootDir>/tests/__setup__/setup.js"]
 }
