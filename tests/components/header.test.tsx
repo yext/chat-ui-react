@@ -1,20 +1,26 @@
 import { render, fireEvent} from '@testing-library/react';
 import { ChatHeader } from "../../src/components";
-import { useChatActions } from '@yext/chat-headless-react';
+import { useChatActions, ChatHeadless } from '@yext/chat-headless-react';
+import {RecursivePartial} from '../__utils__/mocks'
 
-  jest.mock('@yext/chat-headless-react', () => {
+export function mockChatActions(
+  customHeadless: RecursivePartial<ChatHeadless>
+): jest.SpyInstance<typeof useChatActions, unknown[]> {
+  return jest
+    .spyOn(require('@yext/chat-headless-react'), 'useChatActions')
+    .mockImplementation(() => customHeadless as ChatHeadless);
+}
 
-    // Mock the headless object
-    const mockedHeadless = {
-      restartConversation: jest.fn(),
-      getNextMessage: jest.fn(),
-    };
 
-   return {useChatActions: () => mockedHeadless};
-  });
-  
+// Mock the headless object
+const mockedHeadless = {
+  restartConversation: jest.fn(),
+  getNextMessage: jest.fn(),
+};
 
 describe('refresh button', () => {
+
+  beforeEach(()=>mockChatActions(mockedHeadless));
   it('should call chat headless functions', () => {
 
     const { container } = render(
@@ -23,6 +29,7 @@ describe('refresh button', () => {
         showRefreshButton={true}
       />
     )
+    expect(useChatActions).toHaveBeenCalledTimes(1);
 
     const buttonElement = container.querySelector('button');
     expect(buttonElement).not.toBeNull()
@@ -39,6 +46,8 @@ describe('refresh button', () => {
     const { container } = render(<ChatHeader
       title="Clippy's Chatbot" 
     />)
+    
+    expect(useChatActions).toHaveBeenCalledTimes(1);
 
     const buttonElement = container.querySelector('button');
     expect(buttonElement).toBeNull()
