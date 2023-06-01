@@ -62,32 +62,11 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "@heroicons/react": "^2.0.18",
-    "@testing-library/react": "^14.0.0",
-    "@yext/chat-headless-react": "^0.3.1",
-    "clsx": "^1.2.1",
-    "framer-motion": "^10.12.16",
-=======
-=======
->>>>>>> c9c1689 (Add Header component)
     "@yext/chat-headless-react": "^0.3.1",
     "clsx": "^1.2.1",
     "react-expanding-textarea": "^2.3.6",
     "react-icons": "^4.9.0",
     "react-textarea-autosize": "^8.4.1",
-<<<<<<< HEAD
->>>>>>> a386ae1 (Add ChatInput component (#4))
-=======
-=======
-    "@heroicons/react": "^2.0.18",
-    "@testing-library/react": "^14.0.0",
-    "@yext/chat-headless-react": "^0.3.1",
-    "clsx": "^1.2.1",
-    "framer-motion": "^10.12.16",
->>>>>>> 4671df0 (Add Header component)
->>>>>>> c9c1689 (Add Header component)
     "tailwind-merge": "^1.12.0"
   }
 }

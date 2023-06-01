@@ -4,6 +4,7 @@ temp/
 dist/
 lib/
 build/
+storybook-static/
 .DS_Store
 .env
 .vscode
