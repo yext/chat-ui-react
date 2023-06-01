@@ -41,7 +41,8 @@ export interface ChatInputProps {
   stream?: boolean;
   /**
    * A function which is called when an error occurs from
-   * Chat API processing user's message.
+   * Chat API while processing the user's message.
+   * By default, the error is logged to the console.
    */
   handleError?: (e: unknown) => void;
   /** CSS classes for customizing the component styling. */

@@ -11,14 +11,14 @@ import { useCallback, useState } from "react";
 export interface ChatHeaderCssClasses {
   header?: string;
   title?: string;
-  arrowPathIcon?: string;
+  refreshButtonIcon?: string;
 }
 
 const builtInCssClasses: Readonly<ChatHeaderCssClasses> = {
   header:
     "bg-gradient-to-tr from-blue-600 to-blue-800 w-full px-4 py-3 @lg:px-5 @lg:py-4 flex flex-row z-20 border-b border-white/30 justify-between",
   title: "text-white text-xl font-medium",
-  arrowPathIcon: "text-base text-white h-5 w-5",
+  refreshButtonIcon: "text-2xl text-white h-5 w-5",
 };
 
 /**
@@ -29,7 +29,6 @@ const builtInCssClasses: Readonly<ChatHeaderCssClasses> = {
 export interface ChatHeaderProps {
   /**
    * The headers's title text, essentially how the chat window identifies itself to the user.
-   * This is a required field.
    */
   title: string;
   /**
@@ -39,7 +38,8 @@ export interface ChatHeaderProps {
   showRefreshButton?: boolean;
   /**
    * A function which is called when an error occurs from
-   * Chat API gettings the next message.
+   * Chat API while getting the next message.
+   * By default, the error is logged to the console.
    */
   handleError?: (e: unknown) => void;
   /**
@@ -60,14 +60,15 @@ export function ChatHeader({
 
   const [isSpinning, setIsSpinning] = useState(false);
 
-  const defaultHandleError = (e: unknown) => {
-    console.error(e);
-  };
-
   const onRefresh = useCallback(async () => {
+    const defaultHandleError = (e: unknown) => {
+      console.error(e);
+    };
+
     setIsSpinning(true);
     chat.restartConversation();
-    chat.getNextMessage()
+    chat
+      .getNextMessage()
       .catch((e) => (handleError ? handleError(e) : defaultHandleError(e)))
       .finally(() => setIsSpinning(false));
   }, [chat, handleError]);
@@ -79,9 +80,12 @@ export function ChatHeader({
         <button
           aria-label="Restart Conversation"
           onClick={onRefresh}
-          className={isSpinning ? "animate-spin" : "hover:scale-110"}
+          className={
+            (cssClasses.refreshButtonIcon ? cssClasses.refreshButtonIcon : "") +
+            (isSpinning ? " animate-spin" : " hover:scale-110")
+          }
         >
-          <HiArrowPath className={cssClasses.arrowPathIcon} />
+          <HiArrowPath />
         </button>
       )}
     </div>
