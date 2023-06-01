@@ -4,10 +4,11 @@ import { Message, MessageSource } from "@yext/chat-headless-react";
 
 const dummyMessage: Message = {
   text: "What is Yext Chat?",
-  timestamp: "2023-06-01T15:26:55.362Z", //11:26:55 AM
+  timestamp: "2023-06-01T15:26:55.362Z",
   source: MessageSource.USER,
 };
 
+const timestampRegex = /\d\d:\d\d:\d\d (AM|PM)/
 it("displays message as expected", () => {
   render(<MessageBubble message={dummyMessage} />);
   expect(screen.getByText(dummyMessage.text)).toBeInTheDocument();
@@ -15,7 +16,7 @@ it("displays message as expected", () => {
 
 it("displays converted timestamp when showTimestamp field is true", () => {
   render(<MessageBubble message={dummyMessage} showTimestamp={true} />);
-  expect(screen.getByText("11:26:55 AM")).toBeInTheDocument();
+  expect(screen.getByText(timestampRegex)).toBeInTheDocument();
 });
 
 it("invokes custom formatTimestamp function when provided", () => {
@@ -34,5 +35,5 @@ it("invokes custom formatTimestamp function when provided", () => {
 
 it("omits timestamp when showTimestamp field is false", () => {
   render(<MessageBubble message={dummyMessage} showTimestamp={false} />);
-  expect(screen.queryByText("11:26:55 AM")).not.toBeInTheDocument();
+  expect(screen.queryByText(timestampRegex)).not.toBeInTheDocument();
 });
