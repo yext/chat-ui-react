@@ -1,4 +1,4 @@
-import { ChatInput } from "@yext/chat-ui-react";
+import { ChatInput, ChatHeader } from "@yext/chat-ui-react";
 import {
   ChatHeadlessProvider,
   HeadlessConfig,
@@ -7,7 +7,7 @@ import {
 
 const config: HeadlessConfig = {
   botId: "red-dog-bot",
-  apiKey: process.env.REACT_APP_BOT_API_KEY || "BOT_KEY_HERE",
+  apiKey: process.env.REACT_APP_BOT_API_KEY || "",
   apiDomain: "liveapi-dev.yext.com",
 };
 
@@ -29,6 +29,7 @@ function App() {
   return (
     <div className="App">
       <ChatHeadlessProvider config={config}>
+        <ChatHeader title="Clippy's Chatbot" showRefreshButton={true} />
         <Messages />
         <ChatInput />
       </ChatHeadlessProvider>
