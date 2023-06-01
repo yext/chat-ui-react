@@ -23,14 +23,16 @@ export interface MessageBubbleCssClasses {
 
 const builtInCssClasses: MessageBubbleCssClasses = {
   topContainer: "w-full animate-fade-in @container",
-  subContainer: "flex flex-col @lg:flex-row @lg:items-center @lg:gap-x-2",
+  subContainer:
+    "flex flex-col @lg:flex-row @lg:items-center @lg:gap-x-2 @lg:m-1",
   subContainer__user: "@lg:flex-row-reverse",
-  message: "peer rounded-2xl p-4 w-fit max-w-[80%] prose overflow-x-auto",
+  message:
+    "peer rounded-2xl text-[13px] @[480px]:text-base p-4 w-fit max-w-[80%] prose overflow-x-auto",
   message__bot: "text-slate-900 bg-gradient-to-tr from-slate-50 to-slate-100",
   message__user:
     "ml-auto @lg:ml-0 text-white bg-gradient-to-tr from-blue-600 to-blue-700",
   timestamp:
-    "w-fit my-1 text-slate-400 text-sm opacity-0 peer-hover:opacity-100 duration-200 whitespace-pre-wrap",
+    "w-fit my-0.5 text-slate-400 text-[13px] opacity-0 peer-hover:opacity-100 duration-200 whitespace-pre-wrap",
   timestamp__user: "ml-auto",
 };
 

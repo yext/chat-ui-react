@@ -8,16 +8,19 @@ const meta: Meta<typeof MessageBubble> = {
 };
 export default meta;
 
+const Base: StoryObj<typeof meta> = {
+  render: (args) => <MessageBubble {...args} />,
+};
+
 export const BotMessage: StoryObj<typeof meta> = {
-  render: () => (
-    <MessageBubble
-      message={{
-        text: "Hello! How can I help you?",
-        timestamp: "2023-06-01T15:26:55.362Z",
-        source: MessageSource.BOT,
-      }}
-    />
-  ),
+  ...Base,
+  args: {
+    message: {
+      text: "Hello! How can I help you?",
+      timestamp: "2023-06-01T15:26:55.362Z",
+      source: MessageSource.BOT,
+    },
+  },
 };
 
 const userMessage: Message = {
@@ -27,35 +30,33 @@ const userMessage: Message = {
 };
 
 export const UserMessage: StoryObj<typeof meta> = {
-  render: () => <MessageBubble message={userMessage} />,
+  ...Base,
+  args: {
+    message: userMessage,
+  },
 };
 
 export const MessageWithTimestamp: StoryObj<typeof meta> = {
-  render: () => (
+  render: (args) => (
     <div className="border border-gray-300 p-4 rounded-md w-96">
-      <MessageBubble
-        message={userMessage}
-        showTimestamp={true}
-        customCssClasses={{
-          //mock when timestamp appear on hover
-          timestamp: "opacity-100",
-        }}
-      />
+      <MessageBubble {...args} />
     </div>
   ),
+  args: {
+    message: userMessage,
+    showTimestamp: true,
+    customCssClasses: {
+      //mock when timestamp appear on hover
+      timestamp: "opacity-100",
+    },
+  },
 };
 
 export const MessageWithTimestampLargeScreen: StoryObj<typeof meta> = {
-  render: () => (
+  ...MessageWithTimestamp,
+  render: (args) => (
     <div className="border border-gray-300 p-4 w-full">
-      <MessageBubble
-        message={userMessage}
-        showTimestamp={true}
-        customCssClasses={{
-          //mock when timestamp appear on hover
-          timestamp: "opacity-100",
-        }}
-      />
+      <MessageBubble {...args} />
     </div>
   ),
 };
