@@ -2,8 +2,9 @@ import { useCallback, useState } from "react";
 import { useChatActions, useChatState } from "@yext/chat-headless-react";
 import { FaArrowUp } from "react-icons/fa";
 import { useComposedCssClasses } from "../hooks";
-import { clsx } from "clsx";
 import Textarea from "react-expanding-textarea";
+import { twMerge } from "tailwind-merge";
+
 /**
  * The CSS class interface for the {@link ChatInput} component.
  *
@@ -15,8 +16,8 @@ export interface ChatInputCssClasses {
   sendButton?: string;
 }
 
-const builtInCssClass: ChatInputCssClasses = {
-  container: "w-full h-fit max-w-5xl px-4 flex flex-row relative",
+const builtInCssClasses: ChatInputCssClasses = {
+  container: "w-full h-fit flex flex-row relative",
   textArea:
     "w-full p-4 pr-10 border border-slate-300 disabled:bg-slate-50 rounded-3xl resize-none",
   sendButton:
@@ -66,10 +67,11 @@ export function ChatInput({
     (state) => state.conversation.canSendMessage
   );
 
-  const cssClasses = useComposedCssClasses(builtInCssClass, customCssClasses);
-  const sendButtonClassNames = clsx(cssClasses.sendButton, {
-    "opacity-0": input.length === 0,
-  });
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
+  const sendButtonClassNames = twMerge(
+    cssClasses.sendButton,
+    input.length === 0 && "opacity-0"
+  );
 
   const sendMessage = useCallback(async () => {
     const res = stream
