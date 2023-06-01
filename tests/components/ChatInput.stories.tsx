@@ -18,9 +18,9 @@ const config: HeadlessConfig = {
 };
 
 export const Primary: StoryObj<typeof meta> = {
-  render: () => (
+  render: (args) => (
     <ChatHeadlessProvider config={config}>
-      <ChatInput />
+      <ChatInput {...args} />
     </ChatHeadlessProvider>
   ),
 };
