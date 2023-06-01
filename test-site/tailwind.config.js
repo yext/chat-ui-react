@@ -1,4 +1,4 @@
-import tailwindConfig from '../tailwind.config'
+import tailwindConfig from "../tailwind.config";
 
 module.exports = {
   content: [
@@ -6,7 +6,7 @@ module.exports = {
     "node_modules/@yext/chat-ui-react/lib/**/*.{js,jsx}",
   ],
   theme: {
-    ...tailwindConfig.theme
+    ...tailwindConfig.theme,
   },
   plugins: [...tailwindConfig.plugins],
 };

@@ -1,4 +1,8 @@
-import { ChatInput, ChatInputCssClasses, MessageBubble } from "@yext/chat-ui-react";
+import {
+  ChatInput,
+  ChatInputCssClasses,
+  MessageBubble,
+} from "@yext/chat-ui-react";
 import {
   ChatHeadlessProvider,
   HeadlessConfig,
@@ -16,13 +20,15 @@ function Messages() {
   const isLoading = useChatState((s) => s.conversation.isLoading);
   return (
     <div>
-      {messages.map((m, i) => <MessageBubble message={m} key={i} />)}
+      {messages.map((m, i) => (
+        <MessageBubble message={m} key={i} />
+      ))}
       {isLoading && <p>loading...</p>}
     </div>
   );
 }
 
-const chatInputCssClasses: ChatInputCssClasses = { container: "mt-4" }
+const chatInputCssClasses: ChatInputCssClasses = { container: "mt-4" };
 
 function App() {
   return (
@@ -30,7 +36,7 @@ function App() {
       <ChatHeadlessProvider config={config}>
         <div className="m-4">
           <Messages />
-          <ChatInput customCssClasses={chatInputCssClasses}/>
+          <ChatInput customCssClasses={chatInputCssClasses} />
         </div>
       </ChatHeadlessProvider>
     </div>
