@@ -49,6 +49,12 @@ export interface MessageBubbleProps {
    * Defaults to true.
    */
   showTimestamp?: boolean;
+  /**
+   * A function which is called to format the message's timestamp given in
+   * ISO format (e.g. "2023-05-18T19:33:34.553Z").
+   * Defaults to "HH:MM:SS A" (e.g. "7:33:34 PM").
+   */
+  formatTimestamp?: (timestamp: string) => string;
   /** CSS classes for customizing the component styling. */
   customCssClasses?: MessageBubbleCssClasses;
 }
@@ -64,6 +70,7 @@ export function MessageBubble({
   message,
   showTimestamp = true,
   customCssClasses,
+  formatTimestamp = defaultFormatTimestamp,
 }: MessageBubbleProps) {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const messageCssClasses = twMerge(
@@ -108,8 +115,8 @@ export function MessageBubble({
  * @param timestamp - the timestamp to convert from
  * @returns formatted timestamp
  */
-function formatTimestamp(timestamp: string): string {
-  return new Date(timestamp).toLocaleString("en-US", {
+function defaultFormatTimestamp(timestamp: string): string {
+  return new Date(timestamp).toLocaleString(undefined, {
     hour: "numeric",
     minute: "numeric",
     second: "numeric",
