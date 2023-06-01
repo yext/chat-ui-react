@@ -1,4 +1,8 @@
-import { ChatInput } from "@yext/chat-ui-react";
+import {
+  ChatInput,
+  ChatInputCssClasses,
+  MessageBubble,
+} from "@yext/chat-ui-react";
 import {
   ChatHeadlessProvider,
   HeadlessConfig,
@@ -11,26 +15,29 @@ const config: HeadlessConfig = {
   apiDomain: "liveapi-dev.yext.com",
 };
 
-//TODO: replace this with MessageBubble component
 function Messages() {
   const messages = useChatState((s) => s.conversation.messages);
   const isLoading = useChatState((s) => s.conversation.isLoading);
   return (
     <div>
       {messages.map((m, i) => (
-        <p key={i}>{`${m.source}: ${m.text}`}</p>
+        <MessageBubble message={m} key={i} />
       ))}
       {isLoading && <p>loading...</p>}
     </div>
   );
 }
 
+const chatInputCssClasses: ChatInputCssClasses = { container: "mt-4" };
+
 function App() {
   return (
     <div className="App">
       <ChatHeadlessProvider config={config}>
-        <Messages />
-        <ChatInput />
+        <div className="m-4">
+          <Messages />
+          <ChatInput customCssClasses={chatInputCssClasses} />
+        </div>
       </ChatHeadlessProvider>
     </div>
   );
