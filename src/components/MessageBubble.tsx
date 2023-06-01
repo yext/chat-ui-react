@@ -103,7 +103,7 @@ export function MessageBubble({
 }
 
 /**
- * Formats message's timestamp from "2023-05-18T19:33:34.553Z" to "7:33:34 pm"
+ * Formats message's timestamp from "2023-05-18T19:33:34.553Z" to "7:33:34 PM"
  *
  * @param timestamp - the timestamp to convert from
  * @returns formatted timestamp
