@@ -36,9 +36,6 @@ export const PanelWithHeader: StoryObj<typeof meta> = {
       <ChatHeader
         title="My Chatbot"
         showRefreshButton={true}
-        customCssClasses={{
-          header: "rounded-t-3xl",
-        }}
       />
     ),
     stream: false,

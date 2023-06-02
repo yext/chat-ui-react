@@ -1,7 +1,7 @@
 import {
   ChatHeader,
-  ChatHeaderCssClasses,
   ChatPanel,
+  ChatPopUp
 } from "@yext/chat-ui-react";
 import {
   ChatHeadlessProvider,
@@ -14,13 +14,9 @@ const config: HeadlessConfig = {
   apiDomain: "liveapi-dev.yext.com",
 };
 
-const chatHeaderCssClasses: ChatHeaderCssClasses = {
-  header: "rounded-t-3xl",
-};
-
 function App() {
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
+    <div className="h-screen w-screen flex justify-center items-center bg-red-300">
       <ChatHeadlessProvider config={config}>
         <div className="h-5/6 w-5/6">
           <ChatPanel
@@ -28,10 +24,10 @@ function App() {
               <ChatHeader
                 title="Clippy's Chatbot"
                 showRefreshButton={true}
-                customCssClasses={chatHeaderCssClasses}
               />
             }
           />
+          <ChatPopUp />
         </div>
       </ChatHeadlessProvider>
     </div>

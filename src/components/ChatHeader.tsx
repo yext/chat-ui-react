@@ -17,7 +17,7 @@ export interface ChatHeaderCssClasses {
 
 const builtInCssClasses: Readonly<ChatHeaderCssClasses> = {
   header:
-    "w-full px-4 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800 border-b border-white/30",
+    "w-full px-4 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800 rounded-t-3xl",
   title: "text-white text-xl font-medium",
   refreshButton: "text-2xl text-white",
 };
