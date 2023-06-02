@@ -36,7 +36,7 @@ const builtInCssClasses: ChatPopUpCssClasses = {
 export interface ChatPopUpProps {
   /**
    * The panel to display and hide when click on the pop up button.
-   * By default, the panel will be a {@link ChatPanel} component with a default header.
+   * By default, the panel will be a {@link ChatPanel} component with {@link ChatHeader}.
    */
   panel?: JSX.Element;
   /**
