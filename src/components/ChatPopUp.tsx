@@ -22,8 +22,8 @@ const builtInCssClasses: ChatPopUpCssClasses = {
   container:
     "fixed bottom-6 right-4 lg:bottom-14 lg:right-10 flex flex-col gap-y-4 items-end",
   panel: "w-80 lg:w-96 h-[75vh]",
-  panel__display: "animate-[fade-in_0.3s_forwards]",
-  panel__hidden: "animate-[fade-out_0.3s_forwards]",
+  panel__display: "transition-all duration-300",
+  panel__hidden: "transition-all duration-300 opacity-0 invisible",
   button:
     "w-12 h-12 lg:w-16 lg:h-16 flex justify-center items-center text-xl text-white shadow-xl rounded-full bg-gradient-to-br from-blue-600 to-blue-700 hover:-translate-y-2 duration-150",
 };
@@ -48,6 +48,8 @@ export interface ChatPopUpProps {
 /**
  * A component that renders a popup button that displays and hides
  * a panel for chat bot interactions.
+ * 
+ * @public
  *
  * @param props - {@link ChatPanelProps}
  */
