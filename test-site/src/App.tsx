@@ -1,13 +1,11 @@
-import { ChatInput, ChatHeader } from "@yext/chat-ui-react";
 import {
-  ChatInput,
-  ChatInputCssClasses,
-  MessageBubble,
+  ChatHeader,
+  ChatHeaderCssClasses,
+  ChatPanel,
 } from "@yext/chat-ui-react";
 import {
   ChatHeadlessProvider,
   HeadlessConfig,
-  useChatState,
 } from "@yext/chat-headless-react";
 
 const config: HeadlessConfig = {
@@ -16,29 +14,24 @@ const config: HeadlessConfig = {
   apiDomain: "liveapi-dev.yext.com",
 };
 
-function Messages() {
-  const messages = useChatState((s) => s.conversation.messages);
-  const isLoading = useChatState((s) => s.conversation.isLoading);
-  return (
-    <div>
-      {messages.map((m, i) => (
-        <MessageBubble message={m} key={i} />
-      ))}
-      {isLoading && <p>loading...</p>}
-    </div>
-  );
-}
-
-const chatInputCssClasses: ChatInputCssClasses = { container: "mt-4" };
+const chatHeaderCssClasses: ChatHeaderCssClasses = {
+  header: "rounded-t-3xl",
+};
 
 function App() {
   return (
-    <div className="App">
+    <div className="h-screen w-screen flex justify-center items-center">
       <ChatHeadlessProvider config={config}>
-        <ChatHeader title="Clippy's Chatbot" showRefreshButton={true} />
-        <div className="m-4">
-          <Messages />
-          <ChatInput customCssClasses={chatInputCssClasses} />
+        <div className="h-5/6 w-5/6">
+          <ChatPanel
+            header={
+              <ChatHeader
+                title="Clippy's Chatbot"
+                showRefreshButton={true}
+                customCssClasses={chatHeaderCssClasses}
+              />
+            }
+          />
         </div>
       </ChatHeadlessProvider>
     </div>

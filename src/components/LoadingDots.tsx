@@ -9,6 +9,7 @@ import { twMerge } from "tailwind-merge";
 export function LoadingDots({ className }: { className?: string }) {
   return (
     <div
+      aria-label="Loading Indicator"
       className={twMerge(
         "flex gap-1 p-2 text-[8px] text-slate-500 animate-fade-in",
         className
