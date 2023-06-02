@@ -1,24 +1,25 @@
 import { useChatActions } from "@yext/chat-headless-react";
 import { HiArrowPath } from "react-icons/hi2";
 import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 /**
- * The CSS class interface for the {@link ChatHeader}.
+ * The CSS class interface for the {@link ChatHeader} component.
  *
  * @public
  */
 export interface ChatHeaderCssClasses {
   header?: string;
   title?: string;
-  refreshButtonIcon?: string;
+  refreshButton?: string;
 }
 
 const builtInCssClasses: Readonly<ChatHeaderCssClasses> = {
   header:
-    "bg-gradient-to-tr from-blue-600 to-blue-800 w-full px-4 py-3 @lg:px-5 @lg:py-4 flex flex-row z-20 border-b border-white/30 justify-between",
+    "w-full px-4 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800 border-b border-white/30",
   title: "text-white text-xl font-medium",
-  refreshButtonIcon: "text-2xl text-white h-5 w-5",
+  refreshButton: "text-2xl text-white",
 };
 
 /**
@@ -37,41 +38,38 @@ export interface ChatHeaderProps {
    */
   showRefreshButton?: boolean;
   /**
-   * A function which is called when an error occurs from
-   * Chat API while getting the next message.
-   * By default, the error is logged to the console.
-   */
-  handleError?: (e: unknown) => void;
-  /**
    * CSS classes for customizing the component styling.
    */
   customCssClasses?: ChatHeaderCssClasses;
 }
 
+/**
+ * A component that renders the header of a chat bot panel,
+ * including the title and a button to reset the conversation.
+ * 
+ * @public
+ * 
+ * @param props - {@link ChatHeaderProps}
+ */
 export function ChatHeader({
   title,
   showRefreshButton,
   customCssClasses,
-  handleError,
 }: ChatHeaderProps) {
   const chat = useChatActions();
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const [isSpinning, setIsSpinning] = useState(false);
+  const refreshButtonCssClasses = twMerge(cssClasses.refreshButton, isSpinning ? "animate-[spin_0.3s_linear_infinite]" : "hover:scale-110");
 
+  const clearTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const onRefresh = useCallback(async () => {
-    const defaultHandleError = (e: unknown) => {
-      console.error(e);
-    };
-
+    clearTimeout(clearTimerRef.current)
     setIsSpinning(true);
+    clearTimerRef.current = setTimeout(() => { setIsSpinning(false) }, 1000)
     chat.restartConversation();
-    chat
-      .getNextMessage()
-      .catch((e) => (handleError ? handleError(e) : defaultHandleError(e)))
-      .finally(() => setIsSpinning(false));
-  }, [chat, handleError]);
+  }, [chat]);
 
   return (
     <div className={cssClasses.header}>
@@ -80,10 +78,7 @@ export function ChatHeader({
         <button
           aria-label="Restart Conversation"
           onClick={onRefresh}
-          className={
-            (cssClasses.refreshButtonIcon ? cssClasses.refreshButtonIcon : "") +
-            (isSpinning ? " animate-spin" : " hover:scale-110")
-          }
+          className={refreshButtonCssClasses}
         >
           <HiArrowPath />
         </button>

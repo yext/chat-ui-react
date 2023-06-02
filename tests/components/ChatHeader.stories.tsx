@@ -19,12 +19,12 @@ const config: HeadlessConfig = {
 export const Primary: StoryObj<typeof meta> = {
   render: (args) => (
     <ChatHeadlessProvider config={config}>
-      <ChatHeader {...args} />,
+      <ChatHeader {...args} />
     </ChatHeadlessProvider>
   ),
-};
-Primary.args = {
-  title: "Chat Header",
-  showRefreshButton: false,
-  customCssClasses: {},
+  args: {
+    title: "Chat Header",
+    showRefreshButton: false,
+    customCssClasses: {},
+  }
 };

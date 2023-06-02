@@ -2,6 +2,7 @@ import type { Preview } from "@storybook/react";
 import { initialize, mswLoader } from "msw-storybook-addon";
 import "./index.css";
 import { rest } from "msw";
+import { chatresponse } from "../tests/__setup__/response";
 
 // Initialize MSW
 initialize({
@@ -20,10 +21,10 @@ const preview: Preview = {
     msw: {
       handlers: [
         rest.post(/chat\/.+\/message/, (_req, res, ctx) => {
-          return res(ctx.json({}));
+          return res(ctx.json(chatresponse));
         }),
         rest.post(/chat\/.+\/message\/streaming/, (_req, res, ctx) => {
-          return res(ctx.json({}));
+          return res(ctx.json(chatresponse));
         }),
       ],
     },
