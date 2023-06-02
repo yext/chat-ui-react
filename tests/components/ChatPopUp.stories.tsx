@@ -18,9 +18,11 @@ const config: HeadlessConfig = {
 };
 
 export const Primary: StoryObj<typeof meta> = {
-  render: (args) => <ChatHeadlessProvider config={config}>
+  render: (args) => (
+    <ChatHeadlessProvider config={config}>
       <ChatPopUp {...args} />
-  </ChatHeadlessProvider>,
+    </ChatHeadlessProvider>
+  ),
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     userEvent.click(canvas.getByLabelText("Chat Popup Button"));

@@ -32,12 +32,7 @@ export const Primary: StoryObj<typeof meta> = {
 export const PanelWithHeader: StoryObj<typeof meta> = {
   ...Primary,
   args: {
-    header: (
-      <ChatHeader
-        title="My Chatbot"
-        showRefreshButton={true}
-      />
-    ),
+    header: <ChatHeader title="My Chatbot" showRefreshButton={true} />,
     stream: false,
   },
 };
