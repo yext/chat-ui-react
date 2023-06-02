@@ -52,6 +52,8 @@ export interface ChatPanelProps
  * the message bubbles for the conversation, input box with send button, and header
  * (if provided).
  *
+ * @public
+ *
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
