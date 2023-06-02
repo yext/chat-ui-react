@@ -15,13 +15,16 @@ npm install @yext/chat-ui-react
 Once the library and its peer dependencies are installed, our React Components should be nested inside the `ChatHeadlessProvider`. `ChatHeadlessProvider` requires a `HeadlessConfig` object with the appropriate credentials and configurations:
 
 ```tsx
-import { ChatHeadlessProvider, HeadlessConfig } from "@yext/chat-headless-react"
-import { ChatPanel } from '@yext/search-ui-react';
+import {
+  ChatHeadlessProvider,
+  HeadlessConfig,
+} from "@yext/chat-headless-react";
+import { ChatPanel } from "@yext/search-ui-react";
 
 const config: HeadlessConfig = {
-  apiKey: '<apiKey>',
-  botId: '<botId>',
-}
+  apiKey: "<apiKey>",
+  botId: "<botId>",
+};
 
 function App() {
   return (
@@ -34,8 +37,8 @@ function App() {
 export default App;
 ```
 
-To use the Component Library's Styling without adding Tailwind to your project, add the following import: 
+To use the Component Library's Styling without adding Tailwind to your project, add the following import:
 
 ```tsx
-import '@yext/search-ui-react/bundle.css'
+import "@yext/search-ui-react/bundle.css";
 ```

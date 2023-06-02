@@ -48,7 +48,7 @@ export interface ChatPopUpProps {
 /**
  * A component that renders a popup button that displays and hides
  * a panel for chat bot interactions.
- * 
+ *
  * @public
  *
  * @param props - {@link ChatPanelProps}

@@ -53,7 +53,7 @@ export interface ChatPanelProps
  * (if provided).
  *
  * @public
- * 
+ *
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
