@@ -8,7 +8,7 @@ const dummyMessage: Message = {
   source: MessageSource.USER,
 };
 
-const timestampRegex = /\d{1,2}:\d\d:\d\d (AM|PM)/
+const timestampRegex = /\d{1,2}:\d\d:\d\d (AM|PM)/;
 it("displays message as expected", () => {
   render(<MessageBubble message={dummyMessage} />);
   expect(screen.getByText(dummyMessage.text)).toBeInTheDocument();

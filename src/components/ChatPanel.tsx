@@ -24,7 +24,8 @@ export interface ChatPanelCssClasses {
 }
 
 const builtInCssClasses: ChatPanelCssClasses = {
-  container: "h-full w-full flex flex-col relative rounded-3xl shadow-2xl",
+  container:
+    "h-full w-full flex flex-col relative rounded-3xl shadow-2xl bg-white",
   messagesContainer:
     "flex flex-col gap-y-1 mt-auto px-4 pb-[85px] overflow-auto",
   inputContainer: "w-full absolute bottom-0 p-4 rounded-b-3xl backdrop-blur-lg",
@@ -38,7 +39,11 @@ const builtInCssClasses: ChatPanelCssClasses = {
 export interface ChatPanelProps
   extends Omit<MessageBubbleProps, "customCssClasses" | "message">,
     Omit<ChatInputProps, "customCssClasses"> {
+  /** A header to render at the top of the panel. */
   header?: JSX.Element;
+  /**
+   * CSS classes for customizing the component styling.
+   */
   customCssClasses?: ChatPanelCssClasses;
 }
 
@@ -50,7 +55,7 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses, ...otherProps } = props;
+  const { header, customCssClasses } = props;
   const chat = useChatActions();
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
@@ -81,13 +86,18 @@ export function ChatPanel(props: ChatPanelProps) {
       {header}
       <div className={cssClasses.messagesContainer}>
         {messages.map((message, index) => (
-          <MessageBubble {...otherProps} key={index} message={message} />
+          <MessageBubble
+            {...props}
+            customCssClasses={cssClasses.messageBubbleCssClasses}
+            key={index}
+            message={message}
+          />
         ))}
         {loading && <LoadingDots />}
         <div ref={bottomDivRef} />
       </div>
       <div className={cssClasses.inputContainer}>
-        <ChatInput {...otherProps} />
+        <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
       </div>
     </div>
   );

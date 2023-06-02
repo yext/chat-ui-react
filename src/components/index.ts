@@ -12,3 +12,6 @@ export type {
 
 export { ChatPanel } from "./ChatPanel";
 export type { ChatPanelCssClasses, ChatPanelProps } from "./ChatPanel";
+
+export { ChatPopUp } from "./ChatPopUp";
+export type { ChatPopUpCssClasses, ChatPopUpProps } from "./ChatPopUp";
