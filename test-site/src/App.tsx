@@ -24,7 +24,7 @@ function App() {
       <ChatHeadlessProvider config={config}>
         <div className="h-5/6 w-5/6">
           <ChatPanel
-            Header={
+            header={
               <ChatHeader
                 title="Clippy's Chatbot"
                 showRefreshButton={true}

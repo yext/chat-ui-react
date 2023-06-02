@@ -38,7 +38,7 @@ const builtInCssClasses: ChatPanelCssClasses = {
 export interface ChatPanelProps
   extends Omit<MessageBubbleProps, "customCssClasses" | "message">,
     Omit<ChatInputProps, "customCssClasses"> {
-  Header?: JSX.Element;
+  header?: JSX.Element;
   customCssClasses?: ChatPanelCssClasses;
 }
 
@@ -50,7 +50,7 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { Header, customCssClasses, ...otherProps } = props;
+  const { header, customCssClasses, ...otherProps } = props;
   const chat = useChatActions();
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
@@ -78,7 +78,7 @@ export function ChatPanel(props: ChatPanelProps) {
 
   return (
     <div className={cssClasses.container}>
-      {Header}
+      {header}
       <div className={cssClasses.messagesContainer}>
         {messages.map((message, index) => (
           <MessageBubble {...otherProps} key={index} message={message} />
