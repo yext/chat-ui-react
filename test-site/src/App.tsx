@@ -1,4 +1,8 @@
-import { ChatHeader, ChatHeaderCssClasses, ChatPanel } from "@yext/chat-ui-react";
+import {
+  ChatHeader,
+  ChatHeaderCssClasses,
+  ChatPanel,
+} from "@yext/chat-ui-react";
 import {
   ChatHeadlessProvider,
   HeadlessConfig,
@@ -12,7 +16,7 @@ const config: HeadlessConfig = {
 
 const chatHeaderCssClasses: ChatHeaderCssClasses = {
   header: "rounded-t-3xl",
-}
+};
 
 function App() {
   return (

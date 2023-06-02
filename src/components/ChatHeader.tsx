@@ -46,9 +46,9 @@ export interface ChatHeaderProps {
 /**
  * A component that renders the header of a chat bot panel,
  * including the title and a button to reset the conversation.
- * 
+ *
  * @public
- * 
+ *
  * @param props - {@link ChatHeaderProps}
  */
 export function ChatHeader({
@@ -61,13 +61,18 @@ export function ChatHeader({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const [isSpinning, setIsSpinning] = useState(false);
-  const refreshButtonCssClasses = twMerge(cssClasses.refreshButton, isSpinning ? "animate-[spin_0.3s_linear_infinite]" : "hover:scale-110");
+  const refreshButtonCssClasses = twMerge(
+    cssClasses.refreshButton,
+    isSpinning ? "animate-[spin_0.3s_linear_infinite]" : "hover:scale-110"
+  );
 
   const clearTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const onRefresh = useCallback(async () => {
-    clearTimeout(clearTimerRef.current)
+    clearTimeout(clearTimerRef.current);
     setIsSpinning(true);
-    clearTimerRef.current = setTimeout(() => { setIsSpinning(false) }, 1000)
+    clearTimerRef.current = setTimeout(() => {
+      setIsSpinning(false);
+    }, 1000);
     chat.restartConversation();
   }, [chat]);
 

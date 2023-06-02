@@ -26,5 +26,5 @@ export const Primary: StoryObj<typeof meta> = {
     title: "Chat Header",
     showRefreshButton: false,
     customCssClasses: {},
-  }
+  },
 };

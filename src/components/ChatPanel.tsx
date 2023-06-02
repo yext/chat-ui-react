@@ -46,7 +46,7 @@ export interface ChatPanelProps
  * A component that renders a full panel for chat bot interactions. This includes
  * the message bubbles for the conversation, input box with send button, and header
  * (if provided).
- * 
+ *
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
@@ -54,7 +54,9 @@ export function ChatPanel(props: ChatPanelProps) {
   const chat = useChatActions();
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
-  const canSendMessage = useChatState((state) => state.conversation.canSendMessage);
+  const canSendMessage = useChatState(
+    (state) => state.conversation.canSendMessage
+  );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   // Fetch the first message on load, if there are no existing messages or a request being processed
@@ -62,10 +64,8 @@ export function ChatPanel(props: ChatPanelProps) {
     if (messages.length !== 0 || !canSendMessage) {
       return;
     }
-    const { stream = true, handleError } = props
-    const res = stream
-      ? chat.streamNextMessage()
-      : chat.getNextMessage();
+    const { stream = true, handleError } = props;
+    const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
   }, [chat, props, messages, canSendMessage]);
 

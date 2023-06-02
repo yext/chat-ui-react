@@ -25,20 +25,22 @@ export const Primary: StoryObj<typeof meta> = {
     </ChatHeadlessProvider>
   ),
   args: {
-    stream: false
-  }
+    stream: false,
+  },
 };
 
 export const PanelWithHeader: StoryObj<typeof meta> = {
   ...Primary,
   args: {
-    Header: <ChatHeader
-    title="My Chatbot"
-    showRefreshButton={true}
-    customCssClasses={{
-      header: "rounded-t-3xl",
-    }}
-  />,
-  stream: false
-  }
+    Header: (
+      <ChatHeader
+        title="My Chatbot"
+        showRefreshButton={true}
+        customCssClasses={{
+          header: "rounded-t-3xl",
+        }}
+      />
+    ),
+    stream: false,
+  },
 };

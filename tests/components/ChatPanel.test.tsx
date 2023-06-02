@@ -12,7 +12,7 @@ const dummyMessage: Message = {
   timestamp: "2023-05-31T14:22:19.376Z",
   source: "BOT",
   text: "Hello! This is Yext Chat!",
-}
+};
 
 beforeEach(() => {
   mockChatHooks({
@@ -38,7 +38,7 @@ it("send request to get initial message on load (stream)", () => {
 
 it("send request to get initial message on load (non-stream)", () => {
   const actions = spyOnActions();
-  render(<ChatPanel stream={false}/>);
+  render(<ChatPanel stream={false} />);
   expect(actions.getNextMessage).toBeCalledTimes(1);
   expect(actions.getNextMessage).toBeCalledWith();
 });
@@ -49,7 +49,7 @@ it("logs request error by default", async () => {
   });
   const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
   render(<ChatPanel />);
-  await waitFor(() => expect(consoleErrorSpy).toBeCalledTimes(1))
+  await waitFor(() => expect(consoleErrorSpy).toBeCalledTimes(1));
   expect(consoleErrorSpy).toBeCalledWith("API Error");
 });
 
@@ -59,18 +59,17 @@ it("executes custom handleError if provided", async () => {
   });
   const customHandleError = jest.fn();
   render(<ChatPanel handleError={customHandleError} />);
-  await waitFor(() => expect(customHandleError).toBeCalledTimes(1))
+  await waitFor(() => expect(customHandleError).toBeCalledTimes(1));
   expect(customHandleError).toBeCalledWith("API Error");
 });
-
 
 it("doesn't send request to get initial message when there are existing messages on load", () => {
   mockChatState({
     conversation: {
       messages: [dummyMessage],
-      canSendMessage: true
-    }
-  })
+      canSendMessage: true,
+    },
+  });
   const actions = spyOnActions();
   render(<ChatPanel />);
   expect(actions.streamNextMessage).toBeCalledTimes(0);
@@ -81,9 +80,9 @@ it("renders loading dots when loading status is true", () => {
     conversation: {
       messages: [dummyMessage],
       isLoading: true,
-      canSendMessage: false
-    }
-  })
+      canSendMessage: false,
+    },
+  });
   render(<ChatPanel />);
   expect(screen.getByLabelText("Loading Indicator")).toBeInTheDocument();
 });
@@ -93,9 +92,9 @@ it("does not render loading dots when loading status is false", () => {
     conversation: {
       messages: [dummyMessage],
       isLoading: false,
-      canSendMessage: true
-    }
-  })
+      canSendMessage: true,
+    },
+  });
   render(<ChatPanel />);
   expect(screen.queryByLabelText("Loading Indicator")).not.toBeInTheDocument();
 });
@@ -105,9 +104,9 @@ it("display message bubbles based on messages in state", () => {
     conversation: {
       messages: [dummyMessage],
       isLoading: false,
-      canSendMessage: true
-    }
-  })
+      canSendMessage: true,
+    },
+  });
   render(<ChatPanel />);
   expect(screen.getByText(dummyMessage.text)).toBeInTheDocument();
 });

@@ -4,10 +4,7 @@
 import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ChatHeader } from "../../src/components";
-import {
-  mockChatHooks,
-  spyOnActions,
-} from "../__utils__/mocks";
+import { mockChatHooks, spyOnActions } from "../__utils__/mocks";
 
 beforeEach(() => {
   mockChatHooks({
@@ -31,4 +28,3 @@ it("does not display refresh button by default", () => {
   render(<ChatHeader title="Clippy's Chatbot" />);
   expect(screen.queryByRole("button")).toBeNull();
 });
-
