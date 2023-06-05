@@ -72,7 +72,7 @@ export function ChatInput({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const sendButtonClassNames = twMerge(
     cssClasses.sendButton,
-    input.length === 0 && "opacity-0"
+    input.length === 0 && "opacity-0 invisible"
   );
 
   const sendMessage = useCallback(async () => {
