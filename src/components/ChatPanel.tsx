@@ -76,17 +76,20 @@ export function ChatPanel(props: ChatPanelProps) {
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
   }, [chat, props, messages, canSendMessage]);
 
-  const bottomDivRef = useRef<HTMLDivElement>(null);
+  const messagesRef = useRef<HTMLDivElement>(null);
 
   // Scroll to the bottom of the chat when the messages change
   useEffect(() => {
-    bottomDivRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesRef.current?.scroll({
+      top: messagesRef.current?.scrollHeight,
+      behavior: 'smooth',
+  });
   }, [messages]);
 
   return (
     <div className={cssClasses.container}>
       {header}
-      <div className={cssClasses.messagesContainer}>
+      <div ref={messagesRef} className={cssClasses.messagesContainer}>
         {messages.map((message, index) => (
           <MessageBubble
             {...props}
@@ -96,7 +99,6 @@ export function ChatPanel(props: ChatPanelProps) {
           />
         ))}
         {loading && <LoadingDots />}
-        <div ref={bottomDivRef} />
       </div>
       <div className={cssClasses.inputContainer}>
         <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />

@@ -10,14 +10,14 @@ import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { Message } from '@yext/chat-headless-react';
 
 // @public
-export function ChatHeader({ title, showRefreshButton, customCssClasses, }: ChatHeaderProps): JSX_2.Element;
+export function ChatHeader({ title, showRestartButton, customCssClasses, }: ChatHeaderProps): JSX_2.Element;
 
 // @public
 export interface ChatHeaderCssClasses {
     // (undocumented)
     header?: string;
     // (undocumented)
-    refreshButton?: string;
+    restartButton?: string;
     // (undocumented)
     title?: string;
 }
@@ -25,12 +25,12 @@ export interface ChatHeaderCssClasses {
 // @public
 export interface ChatHeaderProps {
     customCssClasses?: ChatHeaderCssClasses;
-    showRefreshButton?: boolean;
+    showRestartButton?: boolean;
     title: string;
 }
 
 // @public
-export function ChatInput({ placeholder, stream, handleError, customCssClasses, }: ChatInputProps): JSX_2.Element;
+export function ChatInput({ placeholder, stream, inputAutoFocus, handleError, customCssClasses, }: ChatInputProps): JSX_2.Element;
 
 // @public
 export interface ChatInputCssClasses {
@@ -46,6 +46,7 @@ export interface ChatInputCssClasses {
 export interface ChatInputProps {
     customCssClasses?: ChatInputCssClasses;
     handleError?: (e: unknown) => void;
+    inputAutoFocus?: boolean;
     placeholder?: string;
     stream?: boolean;
 }

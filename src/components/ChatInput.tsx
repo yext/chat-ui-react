@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useChatActions, useChatState } from "@yext/chat-headless-react";
-import { FaArrowUp } from "react-icons/fa";
+import { ArrowIcon } from "../icons/Arrow";
 import { useComposedCssClasses } from "../hooks";
 import Textarea from "react-expanding-textarea";
 import { twMerge } from "tailwind-merge";
@@ -22,7 +22,7 @@ const builtInCssClasses: ChatInputCssClasses = {
   textArea:
     "w-full p-4 pr-10 border border-slate-300 disabled:bg-slate-50 rounded-3xl resize-none text-[13px] @[480px]:text-base",
   sendButton:
-    "rounded-full p-1.5 text-white bg-blue-600 disabled:bg-slate-100 hover:bg-blue-800 active:scale-90 transition-all absolute right-7 bottom-3 @[480px]:bottom-4",
+    "rounded-full p-1.5 w-8 stroke-2 text-white bg-blue-600 disabled:bg-slate-100 hover:bg-blue-800 active:scale-90 transition-all absolute right-7 bottom-2.5 @[480px]:bottom-3.5",
 };
 
 /**
@@ -41,6 +41,8 @@ export interface ChatInputProps {
    * Defaults to true.
    */
   stream?: boolean;
+  /** Enable auto focus for the input box. Defaults to false. */
+  inputAutoFocus?: boolean;
   /**
    * A function which is called when an error occurs from
    * Chat API while processing the user's message.
@@ -60,6 +62,7 @@ export interface ChatInputProps {
 export function ChatInput({
   placeholder = "Type a message...",
   stream = true,
+  inputAutoFocus = false,
   handleError,
   customCssClasses,
 }: ChatInputProps) {
@@ -102,7 +105,7 @@ export function ChatInput({
   return (
     <div className={cssClasses.container}>
       <Textarea
-        autoFocus
+        autoFocus={inputAutoFocus}
         disabled={!canSendMessage}
         onKeyDown={handleKeyDown}
         value={input}
@@ -116,7 +119,7 @@ export function ChatInput({
         onClick={sendMessage}
         className={sendButtonClassNames}
       >
-        <FaArrowUp />
+        <ArrowIcon />
       </button>
     </div>
   );

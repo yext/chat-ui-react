@@ -17,7 +17,7 @@ function App() {
         <div className="h-5/6 w-1/2">
           <ChatPanel
             header={
-              <ChatHeader title="Clippy's Chatbot" showRefreshButton={true} />
+              <ChatHeader title="Clippy's Chatbot" showRestartButton={true} />
             }
           />
           <ChatPopUp />
