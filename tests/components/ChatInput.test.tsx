@@ -33,6 +33,18 @@ it("updates text when type in textarea", async () => {
   expect(textbox).toHaveDisplayValue("test");
 });
 
+it("does not focus on input box by default", async () => {
+  render(<ChatInput />);
+  const textbox = screen.getByRole("textbox");
+  expect(textbox).not.toHaveFocus();
+});
+
+it("maintains focus on input box when inputAutoFocus field is set to true", async () => {
+  render(<ChatInput inputAutoFocus={true} />);
+  const textbox = screen.getByRole("textbox");
+  expect(textbox).toHaveFocus();
+});
+
 it("sends request and reset input when click on send button", async () => {
   render(<ChatInput />);
   const actions = spyOnActions();

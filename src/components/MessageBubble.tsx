@@ -1,7 +1,7 @@
 import { Message, MessageSource } from "@yext/chat-headless-react";
 import { useComposedCssClasses } from "../hooks";
 import { twMerge } from "tailwind-merge";
-import { Markdown } from "@yext/react-components";
+import { Markdown } from "./Markdown";
 
 /**
  * The CSS class interface for the {@link MessageBubble} component.

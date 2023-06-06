@@ -1,5 +1,5 @@
 import { useChatActions } from "@yext/chat-headless-react";
-import { HiArrowPath } from "react-icons/hi2";
+import { DualSyncIcon } from "../icons/DualSync"
 import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
 import { useCallback, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -12,14 +12,14 @@ import { twMerge } from "tailwind-merge";
 export interface ChatHeaderCssClasses {
   header?: string;
   title?: string;
-  refreshButton?: string;
+  restartButton?: string;
 }
 
 const builtInCssClasses: Readonly<ChatHeaderCssClasses> = {
   header:
     "w-full px-4 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800 rounded-t-3xl",
   title: "text-white text-xl font-medium",
-  refreshButton: "text-2xl text-white",
+  restartButton: "w-8 text-white stroke-[0.2]",
 };
 
 /**
@@ -33,10 +33,10 @@ export interface ChatHeaderProps {
    */
   title: string;
   /**
-   * Enable a refresh button allowing the user to restart the conversation.
+   * Enable a restart button allowing the user to restart the conversation.
    * Defaults to false.
    */
-  showRefreshButton?: boolean;
+  showRestartButton?: boolean;
   /**
    * CSS classes for customizing the component styling.
    */
@@ -53,7 +53,7 @@ export interface ChatHeaderProps {
  */
 export function ChatHeader({
   title,
-  showRefreshButton,
+  showRestartButton,
   customCssClasses,
 }: ChatHeaderProps) {
   const chat = useChatActions();
@@ -61,13 +61,13 @@ export function ChatHeader({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const [isSpinning, setIsSpinning] = useState(false);
-  const refreshButtonCssClasses = twMerge(
-    cssClasses.refreshButton,
+  const restartButtonCssClasses = twMerge(
+    cssClasses.restartButton,
     isSpinning ? "animate-[spin_0.3s_linear_infinite]" : "hover:scale-110"
   );
 
   const clearTimerRef = useRef<ReturnType<typeof setTimeout>>();
-  const onRefresh = useCallback(async () => {
+  const onRestart = useCallback(async () => {
     clearTimeout(clearTimerRef.current);
     setIsSpinning(true);
     clearTimerRef.current = setTimeout(() => {
@@ -79,13 +79,13 @@ export function ChatHeader({
   return (
     <div className={cssClasses.header}>
       <h1 className={cssClasses.title}>{title}</h1>
-      {showRefreshButton && (
+      {showRestartButton && (
         <button
           aria-label="Restart Conversation"
-          onClick={onRefresh}
-          className={refreshButtonCssClasses}
+          onClick={onRestart}
+          className={restartButtonCssClasses}
         >
-          <HiArrowPath />
+          <DualSyncIcon />
         </button>
       )}
     </div>

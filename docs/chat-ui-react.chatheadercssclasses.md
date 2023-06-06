@@ -17,6 +17,6 @@ export interface ChatHeaderCssClasses
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [header?](./chat-ui-react.chatheadercssclasses.header.md) |  | string | _(Optional)_ |
-|  [refreshButton?](./chat-ui-react.chatheadercssclasses.refreshbutton.md) |  | string | _(Optional)_ |
+|  [restartButton?](./chat-ui-react.chatheadercssclasses.restartbutton.md) |  | string | _(Optional)_ |
 |  [title?](./chat-ui-react.chatheadercssclasses.title.md) |  | string | _(Optional)_ |
 

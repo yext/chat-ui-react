@@ -34,9 +34,10 @@
     "storybook": "storybook dev -p 6006",
     "dev": "tsc --watch -p tsconfig.esm.json",
     "generate-docs": "api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
+    "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "build:js": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
     "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.js",
-    "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run generate-docs",
+    "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run generate-docs && npm run generate-notices",
     "build-storybook": "storybook build"
   },
   "devDependencies": {
@@ -64,6 +65,7 @@
     "babel-jest": "^29.5.0",
     "eslint": "^8.39.0",
     "eslint-plugin-storybook": "^0.6.12",
+    "generate-license-file": "^2.0.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "msw": "^1.2.1",
@@ -81,10 +83,13 @@
     "react-dom": "^16.14 || ^17 || || ^18"
   },
   "dependencies": {
-    "@yext/react-components": "^0.0.5",
     "react-expanding-textarea": "^2.3.6",
     "react-icons": "^4.9.0",
+    "react-markdown": "^6.0.3",
     "react-textarea-autosize": "^8.4.1",
+    "rehype-raw": "^5.0.0",
+    "rehype-sanitize": "^4.0.0",
+    "remark-gfm": "^1.0.0",
     "tailwind-merge": "^1.12.0"
   }
 }

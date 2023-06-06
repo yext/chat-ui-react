@@ -15,7 +15,7 @@ beforeEach(() => {
 });
 
 it("calls restartConversation when refresh button is clicked", async () => {
-  render(<ChatHeader title="Clippy's Chatbot" showRefreshButton={true} />);
+  render(<ChatHeader title="Clippy's Chatbot" showRestartButton={true} />);
 
   const refreshButton = screen.getByRole("button");
   await act(() => userEvent.click(refreshButton));

@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
-import { IoCaretDownOutline, IoChatbubblesSharp } from "react-icons/io5";
+import { MessageIcon } from '../icons/Message'
+import { ChevronIcon } from '../icons/Chevron'
 import { ChatPanel } from "./ChatPanel";
 import { ChatHeader } from "./ChatHeader";
 import { twMerge } from "tailwind-merge";
@@ -25,7 +26,7 @@ const builtInCssClasses: ChatPopUpCssClasses = {
   panel__display: "transition-all duration-300",
   panel__hidden: "transition-all duration-300 opacity-0 invisible",
   button:
-    "w-12 h-12 lg:w-16 lg:h-16 flex justify-center items-center text-xl text-white shadow-xl rounded-full bg-gradient-to-br from-blue-600 to-blue-700 hover:-translate-y-2 duration-150",
+    "p-2 w-12 h-12 lg:w-16 lg:h-16 flex justify-center items-center text-white shadow-xl rounded-full bg-gradient-to-br from-blue-600 to-blue-700 hover:-translate-y-2 duration-150",
 };
 
 /**
@@ -68,9 +69,7 @@ export function ChatPopUp({ panel, customCssClasses }: ChatPopUpProps) {
     <div className={cssClasses.container}>
       <div className={panelCssClasses} aria-label="Popup Panel">
         {panel ?? (
-          <ChatPanel
-            header={<ChatHeader title="Chat" showRefreshButton={true} />}
-          />
+          <ChatPanel header={<ChatHeader title="Chat" showRestartButton={true} />} />
         )}
       </div>
       <button
@@ -78,7 +77,7 @@ export function ChatPopUp({ panel, customCssClasses }: ChatPopUpProps) {
         onClick={onClick}
         className={cssClasses.button}
       >
-        {showChat ? <IoCaretDownOutline /> : <IoChatbubblesSharp />}
+        {showChat ? <ChevronIcon /> : <MessageIcon />}
       </button>
     </div>
   );

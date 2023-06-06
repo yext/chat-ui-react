@@ -12,7 +12,7 @@ global.TextDecoder = TextDecoder;
 global.TextEncoder = TextEncoder;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-global.HTMLElement.prototype.scrollIntoView = function () {};
+global.HTMLElement.prototype.scroll = function () {};
 
 beforeAll(() => mswServer.listen());
 afterEach(() => mswServer.resetHandlers());
