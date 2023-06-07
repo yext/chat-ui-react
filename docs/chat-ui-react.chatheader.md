@@ -9,14 +9,14 @@ A component that renders the header of a chat bot panel, including the title and
 **Signature:**
 
 ```typescript
-export declare function ChatHeader({ title, showRestartButton, customCssClasses, }: ChatHeaderProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatHeader({ title, showRestartButton, restartButtonIcon, customCssClasses, }: ChatHeaderProps): import("react/jsx-runtime").JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { title, showRestartButton, customCssClasses, } | [ChatHeaderProps](./chat-ui-react.chatheaderprops.md) |  |
+|  { title, showRestartButton, restartButtonIcon, customCssClasses, } | [ChatHeaderProps](./chat-ui-react.chatheaderprops.md) |  |
 
 **Returns:**
 

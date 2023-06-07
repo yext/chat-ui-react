@@ -49,6 +49,8 @@ export interface ChatInputProps {
    * By default, the error is logged to the console.
    */
   handleError?: (e: unknown) => void;
+  /** Custom icon for the send button. */
+  sendButtonIcon?: JSX.Element;
   /** CSS classes for customizing the component styling. */
   customCssClasses?: ChatInputCssClasses;
 }
@@ -64,6 +66,7 @@ export function ChatInput({
   stream = true,
   inputAutoFocus = false,
   handleError,
+  sendButtonIcon = <ArrowIcon />,
   customCssClasses,
 }: ChatInputProps) {
   const chat = useChatActions();
@@ -119,7 +122,7 @@ export function ChatInput({
         onClick={sendMessage}
         className={sendButtonClassNames}
       >
-        <ArrowIcon />
+        {sendButtonIcon}
       </button>
     </div>
   );

@@ -17,6 +17,7 @@ export interface ChatHeaderProps
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [customCssClasses?](./chat-ui-react.chatheaderprops.customcssclasses.md) |  | [ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [restartButtonIcon?](./chat-ui-react.chatheaderprops.restartbuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for for restart button. |
 |  [showRestartButton?](./chat-ui-react.chatheaderprops.showrestartbutton.md) |  | boolean | _(Optional)_ Enable a restart button allowing the user to restart the conversation. Defaults to false. |
 |  [title](./chat-ui-react.chatheaderprops.title.md) |  | string | The headers's title text, essentially how the chat window identifies itself to the user. |
 

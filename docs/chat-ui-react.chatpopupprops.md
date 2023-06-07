@@ -16,6 +16,8 @@ export interface ChatPopUpProps
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
+|  [closePanelButtonIcon?](./chat-ui-react.chatpopupprops.closepanelbuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for the popup button to close the panel. |
 |  [customCssClasses?](./chat-ui-react.chatpopupprops.customcssclasses.md) |  | [ChatPopUpCssClasses](./chat-ui-react.chatpopupcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [openPanelButtonIcon?](./chat-ui-react.chatpopupprops.openpanelbuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for the popup button to open the panel. |
 |  [panel?](./chat-ui-react.chatpopupprops.panel.md) |  | JSX.Element | _(Optional)_ The panel to display and hide when click on the pop up button. By default, the panel will be a [ChatPanel()](./chat-ui-react.chatpanel.md) component with [ChatHeader()](./chat-ui-react.chatheader.md)<!-- -->. |
 
