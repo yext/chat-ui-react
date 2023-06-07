@@ -1,8 +1,7 @@
 import { useCallback, useState } from "react";
 import { MessageIcon } from '../icons/Message'
-import { ChevronIcon } from '../icons/Chevron'
-import { ChatPanel } from "./ChatPanel";
-import { ChatHeader } from "./ChatHeader";
+import { ChatPanel, ChatPanelCssClasses, ChatPanelProps } from "./ChatPanel";
+import { ChatHeader, ChatHeaderCssClasses, ChatHeaderProps } from "./ChatHeader";
 import { twMerge } from "tailwind-merge";
 import { useComposedCssClasses } from "../hooks";
 
@@ -17,16 +16,21 @@ export interface ChatPopUpCssClasses {
   panel__display?: string;
   panel__hidden?: string;
   button?: string;
+  button__display?: string;
+  button__hidden?: string;
+  headerCssClasses?: ChatHeaderCssClasses,
+  panelCssClasses?: ChatPanelCssClasses,
 }
 
+const fixedPosition = "fixed bottom-6 right-4 lg:bottom-14 lg:right-10 "
 const builtInCssClasses: ChatPopUpCssClasses = {
-  container:
-    "fixed bottom-6 right-4 lg:bottom-14 lg:right-10 flex flex-col gap-y-4 items-end",
-  panel: "w-80 lg:w-96 h-[75vh]",
-  panel__display: "transition-all duration-300",
-  panel__hidden: "transition-all duration-300 opacity-0 invisible",
-  button:
-    "p-2 w-12 h-12 lg:w-16 lg:h-16 flex justify-center items-center text-white shadow-xl rounded-full bg-gradient-to-br from-blue-600 to-blue-700 hover:-translate-y-2 duration-150",
+  container: "transition-all",
+  panel: fixedPosition + "w-80 lg:w-96 h-[75vh]",
+  panel__display: "duration-300 translate-y-0",
+  panel__hidden: "duration-300 translate-y-[20%] opacity-0 invisible",
+  button: fixedPosition + "p-2 w-12 h-12 lg:w-16 lg:h-16 flex justify-center items-center text-white shadow-xl rounded-full bg-gradient-to-br from-blue-600 to-blue-700 hover:-translate-y-2 duration-150",
+  button__display: "duration-300 transform translate-y-0",
+  button__hidden: "duration-300 transform translate-y-[20%] opacity-0 invisible",
 };
 
 /**
@@ -34,16 +38,12 @@ const builtInCssClasses: ChatPopUpCssClasses = {
  *
  * @public
  */
-export interface ChatPopUpProps {
-  /**
-   * The panel to display and hide when click on the pop up button.
-   * By default, the panel will be a {@link ChatPanel} component with {@link ChatHeader}.
-   */
-  panel?: JSX.Element;
+export interface ChatPopUpProps extends
+  Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">,
+  Omit<ChatPanelProps, "header" | "customCssClasses">
+{
   /** Custom icon for the popup button to open the panel. */
   openPanelButtonIcon?: JSX.Element;
-  /** Custom icon for the popup button to close the panel. */
-  closePanelButtonIcon?: JSX.Element;
   /**
    * CSS classes for customizing the component styling.
    */
@@ -58,35 +58,54 @@ export interface ChatPopUpProps {
  *
  * @param props - {@link ChatPanelProps}
  */
-export function ChatPopUp({
-  panel,
-  openPanelButtonIcon = <MessageIcon />,
-  closePanelButtonIcon = <ChevronIcon />,
-  customCssClasses,
-}: ChatPopUpProps) {
+export function ChatPopUp(props: ChatPopUpProps) {
+  const {
+    openPanelButtonIcon = <MessageIcon />,
+    customCssClasses,
+    showRestartButton = true,
+    onClose:customOnClose,
+    title
+  } = props
   const [showChat, setShowChat] = useState(false);
   const onClick = useCallback(() => {
     setShowChat(!showChat);
   }, [showChat]);
+
+  const onClose = useCallback(() => {
+    setShowChat(false);
+    customOnClose?.();
+  }, [customOnClose])
+  
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const panelCssClasses = twMerge(
     cssClasses.panel,
     showChat ? cssClasses.panel__display : cssClasses.panel__hidden
   );
+  const buttonCssClasses = twMerge(
+    cssClasses.button,
+    showChat ? cssClasses.button__hidden : cssClasses.button__display
+  );
 
   return (
     <div className={cssClasses.container}>
-      <div className={panelCssClasses} aria-label="Popup Panel">
-        {panel ?? (
-          <ChatPanel header={<ChatHeader title="Chat" showRestartButton={true} />} />
-        )}
+      <div className={panelCssClasses} aria-label="Chat Popup Panel">
+        <ChatPanel
+          {...props}
+          customCssClasses={cssClasses.panelCssClasses}
+          header={<ChatHeader
+            title={title}
+            showRestartButton={showRestartButton}
+            showCloseButton={true}
+            onClose={onClose}
+            customCssClasses={cssClasses.headerCssClasses}/>
+          } />
       </div>
       <button
         aria-label="Chat Popup Button"
         onClick={onClick}
-        className={cssClasses.button}
+        className={buttonCssClasses}
       >
-        {showChat ? closePanelButtonIcon : openPanelButtonIcon}
+        {openPanelButtonIcon}
       </button>
     </div>
   );

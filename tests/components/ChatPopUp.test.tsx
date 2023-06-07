@@ -4,20 +4,31 @@
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ChatPopUp } from "../../src";
+import { ChatHeadlessProvider } from "@yext/chat-headless-react";
 
 it("toggles display and hide css classes when click on popup button", async () => {
   render(
-    <ChatPopUp
-      panel={<div>My Panel</div>}
-      customCssClasses={{
-        panel__display: "display-css",
-        panel__hidden: "hidden-css",
-      }}
-    />
+    <ChatHeadlessProvider config={{
+      apiKey: "",
+      botId: ""
+    }} >
+      <ChatPopUp
+        title="Test Popup"
+        stream={false}
+        customCssClasses={{
+          panel__display: "panel-display-css",
+          panel__hidden: "panel-hidden-css",
+          button__display: "button-display-css",
+          button__hidden: "button-hidden-css",
+        }}
+      />
+    </ ChatHeadlessProvider>
   );
-  expect(screen.getByLabelText("Popup Panel")).toHaveClass("hidden-css");
+  expect(screen.getByLabelText("Chat Popup Panel")).toHaveClass("panel-hidden-css");
+  expect(screen.getByLabelText("Chat Popup Button")).toHaveClass("button-display-css");
 
   const popupButton = screen.getByLabelText("Chat Popup Button");
   await act(() => userEvent.click(popupButton));
-  expect(screen.getByLabelText("Popup Panel")).toHaveClass("display-css");
+  expect(screen.getByLabelText("Chat Popup Panel")).toHaveClass("panel-display-css");
+  expect(screen.getByLabelText("Chat Popup Button")).toHaveClass("button-hidden-css");
 });

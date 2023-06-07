@@ -3,6 +3,7 @@ import { DualSyncIcon } from "../icons/DualSync"
 import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
 import { useCallback, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { CrossIcon } from "../icons/Cross";
 
 /**
  * The CSS class interface for the {@link ChatHeader} component.
@@ -13,13 +14,15 @@ export interface ChatHeaderCssClasses {
   header?: string;
   title?: string;
   restartButton?: string;
+  closeButton?: string;
 }
 
 const builtInCssClasses: Readonly<ChatHeaderCssClasses> = {
   header:
     "w-full px-4 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800 rounded-t-3xl",
   title: "text-white text-xl font-medium",
-  restartButton: "w-8 text-white stroke-[0.2]",
+  restartButton: "w-8 text-white stroke-[0.2] ml-auto",
+  closeButton: "w-8 text-white hover:scale-110"
 };
 
 /**
@@ -33,12 +36,21 @@ export interface ChatHeaderProps {
    */
   title: string;
   /**
-   * Enable a restart button allowing the user to restart the conversation.
+   * Displays a restart button which allows the user to restart the conversation.
    * Defaults to false.
    */
   showRestartButton?: boolean;
+  /**
+   * Displays a close button which will invoke {@link ChatHeaderProps.onClose} on click.
+   * Default to false.
+   */
+  showCloseButton?: boolean;
+  /** A function which is called when the close button is clicked.  */
+  onClose?: () => void;
   /**  Custom icon for for restart button. */
   restartButtonIcon?: JSX.Element;
+  /**  Custom icon for for close button. */
+  closeButtonIcon?: JSX.Element;
   /**  CSS classes for customizing the component styling. */
   customCssClasses?: ChatHeaderCssClasses;
 }
@@ -55,6 +67,9 @@ export function ChatHeader({
   title,
   showRestartButton,
   restartButtonIcon = <DualSyncIcon />,
+  showCloseButton,
+  closeButtonIcon = <CrossIcon />,
+  onClose,
   customCssClasses,
 }: ChatHeaderProps) {
   const chat = useChatActions();
@@ -88,6 +103,15 @@ export function ChatHeader({
         >
           {restartButtonIcon}
         </button>
+      )}
+      {showCloseButton && (
+        <button
+        aria-label="Close Chat"
+        onClick={onClose}
+        className={cssClasses.closeButton}
+      >
+        {closeButtonIcon}
+      </button>
       )}
     </div>
   );

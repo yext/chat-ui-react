@@ -20,7 +20,7 @@ function App() {
               <ChatHeader title="Clippy's Chatbot" showRestartButton={true} />
             }
           />
-          <ChatPopUp />
+          <ChatPopUp title="Clippy"/>
         </div>
       </ChatHeadlessProvider>
     </div>

@@ -14,17 +14,32 @@ beforeEach(() => {
   });
 });
 
-it("calls restartConversation when refresh button is clicked", async () => {
+it("calls restartConversation when restart button is clicked", async () => {
   render(<ChatHeader title="Clippy's Chatbot" showRestartButton={true} />);
 
-  const refreshButton = screen.getByRole("button");
-  await act(() => userEvent.click(refreshButton));
+  const restartButton = screen.getByLabelText("Restart Conversation");
+  await act(() => userEvent.click(restartButton));
 
   const actions = spyOnActions();
   expect(actions.restartConversation).toHaveBeenCalledTimes(1);
 });
 
-it("does not display refresh button by default", () => {
+it("does not display restart button by default", () => {
   render(<ChatHeader title="Clippy's Chatbot" />);
-  expect(screen.queryByRole("button")).toBeNull();
+  expect(screen.queryByLabelText("Restart Conversation")).toBeNull();
+});
+
+it("calls onClose when close button is clicked", async () => {
+  const onClose = jest.fn();
+  render(<ChatHeader title="Clippy's Chatbot" showCloseButton={true} onClose={onClose} />);
+
+  const closeButton = screen.getByLabelText("Close Chat");
+  await act(() => userEvent.click(closeButton));
+
+  expect(onClose).toHaveBeenCalledTimes(1);
+});
+
+it("does not display close button by default", () => {
+  render(<ChatHeader title="Clippy's Chatbot" />);
+  expect(screen.queryByLabelText("Close Chat")).toBeNull();
 });
