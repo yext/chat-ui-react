@@ -37,9 +37,9 @@ export interface ChatHeaderProps {
    * Defaults to false.
    */
   showRestartButton?: boolean;
-  /**
-   * CSS classes for customizing the component styling.
-   */
+  /**  Custom icon for for restart button. */
+  restartButtonIcon?: JSX.Element;
+  /**  CSS classes for customizing the component styling. */
   customCssClasses?: ChatHeaderCssClasses;
 }
 
@@ -54,6 +54,7 @@ export interface ChatHeaderProps {
 export function ChatHeader({
   title,
   showRestartButton,
+  restartButtonIcon = <DualSyncIcon />,
   customCssClasses,
 }: ChatHeaderProps) {
   const chat = useChatActions();
@@ -85,7 +86,7 @@ export function ChatHeader({
           onClick={onRestart}
           className={restartButtonCssClasses}
         >
-          <DualSyncIcon />
+          {restartButtonIcon}
         </button>
       )}
     </div>

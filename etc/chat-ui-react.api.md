@@ -10,7 +10,7 @@ import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { Message } from '@yext/chat-headless-react';
 
 // @public
-export function ChatHeader({ title, showRestartButton, customCssClasses, }: ChatHeaderProps): JSX_2.Element;
+export function ChatHeader({ title, showRestartButton, restartButtonIcon, customCssClasses, }: ChatHeaderProps): JSX_2.Element;
 
 // @public
 export interface ChatHeaderCssClasses {
@@ -25,12 +25,13 @@ export interface ChatHeaderCssClasses {
 // @public
 export interface ChatHeaderProps {
     customCssClasses?: ChatHeaderCssClasses;
+    restartButtonIcon?: JSX.Element;
     showRestartButton?: boolean;
     title: string;
 }
 
 // @public
-export function ChatInput({ placeholder, stream, inputAutoFocus, handleError, customCssClasses, }: ChatInputProps): JSX_2.Element;
+export function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, }: ChatInputProps): JSX_2.Element;
 
 // @public
 export interface ChatInputCssClasses {
@@ -48,6 +49,7 @@ export interface ChatInputProps {
     handleError?: (e: unknown) => void;
     inputAutoFocus?: boolean;
     placeholder?: string;
+    sendButtonIcon?: JSX.Element;
     stream?: boolean;
 }
 
@@ -75,7 +77,7 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
 }
 
 // @public
-export function ChatPopUp({ panel, customCssClasses }: ChatPopUpProps): JSX_2.Element;
+export function ChatPopUp({ panel, openPanelButtonIcon, closePanelButtonIcon, customCssClasses, }: ChatPopUpProps): JSX_2.Element;
 
 // @public
 export interface ChatPopUpCssClasses {
@@ -93,7 +95,9 @@ export interface ChatPopUpCssClasses {
 
 // @public
 export interface ChatPopUpProps {
+    closePanelButtonIcon?: JSX.Element;
     customCssClasses?: ChatPopUpCssClasses;
+    openPanelButtonIcon?: JSX.Element;
     panel?: JSX.Element;
 }
 

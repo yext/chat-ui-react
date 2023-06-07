@@ -40,6 +40,10 @@ export interface ChatPopUpProps {
    * By default, the panel will be a {@link ChatPanel} component with {@link ChatHeader}.
    */
   panel?: JSX.Element;
+  /** Custom icon for the popup button to open the panel. */
+  openPanelButtonIcon?: JSX.Element;
+  /** Custom icon for the popup button to close the panel. */
+  closePanelButtonIcon?: JSX.Element;
   /**
    * CSS classes for customizing the component styling.
    */
@@ -54,7 +58,12 @@ export interface ChatPopUpProps {
  *
  * @param props - {@link ChatPanelProps}
  */
-export function ChatPopUp({ panel, customCssClasses }: ChatPopUpProps) {
+export function ChatPopUp({
+  panel,
+  openPanelButtonIcon = <MessageIcon />,
+  closePanelButtonIcon = <ChevronIcon />,
+  customCssClasses,
+}: ChatPopUpProps) {
   const [showChat, setShowChat] = useState(false);
   const onClick = useCallback(() => {
     setShowChat(!showChat);
@@ -77,7 +86,7 @@ export function ChatPopUp({ panel, customCssClasses }: ChatPopUpProps) {
         onClick={onClick}
         className={cssClasses.button}
       >
-        {showChat ? <ChevronIcon /> : <MessageIcon />}
+        {showChat ? closePanelButtonIcon : openPanelButtonIcon}
       </button>
     </div>
   );
