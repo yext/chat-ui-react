@@ -17,12 +17,16 @@ const config: HeadlessConfig = {
   apiKey: "DUMMY_API_KEY",
 };
 
-export const Primary: StoryObj<typeof meta> = {
+export const PopupButton: StoryObj<typeof meta> = {
   render: (args) => (
     <ChatHeadlessProvider config={config}>
       <ChatPopUp {...args} />
     </ChatHeadlessProvider>
   ),
+};
+
+export const PopupPanel: StoryObj<typeof meta> = {
+  ...PopupButton,
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     userEvent.click(canvas.getByLabelText("Chat Popup Button"));

@@ -25,6 +25,17 @@ export const Primary: StoryObj<typeof meta> = {
   args: {
     title: "Chat Header",
     showRestartButton: false,
+    showCloseButton: false,
+    customCssClasses: {},
+  },
+};
+
+export const HeaderWithButtons: StoryObj<typeof meta> = {
+  ...Primary,
+  args: {
+    title: "Chat Header",
+    showRestartButton: true,
+    showCloseButton: true,
     customCssClasses: {},
   },
 };

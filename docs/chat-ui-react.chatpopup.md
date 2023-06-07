@@ -9,14 +9,14 @@ A component that renders a popup button that displays and hides a panel for chat
 **Signature:**
 
 ```typescript
-export declare function ChatPopUp({ panel, openPanelButtonIcon, closePanelButtonIcon, customCssClasses, }: ChatPopUpProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatPopUp(props: ChatPopUpProps): import("react/jsx-runtime").JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { panel, openPanelButtonIcon, closePanelButtonIcon, customCssClasses, } | [ChatPopUpProps](./chat-ui-react.chatpopupprops.md) |  |
+|  props | [ChatPopUpProps](./chat-ui-react.chatpopupprops.md) | [ChatPanelProps](./chat-ui-react.chatpanelprops.md) |
 
 **Returns:**
 

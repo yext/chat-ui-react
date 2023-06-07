@@ -10,10 +10,12 @@ import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { Message } from '@yext/chat-headless-react';
 
 // @public
-export function ChatHeader({ title, showRestartButton, restartButtonIcon, customCssClasses, }: ChatHeaderProps): JSX_2.Element;
+export function ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, }: ChatHeaderProps): JSX_2.Element;
 
 // @public
 export interface ChatHeaderCssClasses {
+    // (undocumented)
+    closeButton?: string;
     // (undocumented)
     header?: string;
     // (undocumented)
@@ -24,8 +26,11 @@ export interface ChatHeaderCssClasses {
 
 // @public
 export interface ChatHeaderProps {
+    closeButtonIcon?: JSX.Element;
     customCssClasses?: ChatHeaderCssClasses;
+    onClose?: () => void;
     restartButtonIcon?: JSX.Element;
+    showCloseButton?: boolean;
     showRestartButton?: boolean;
     title: string;
 }
@@ -77,28 +82,34 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
 }
 
 // @public
-export function ChatPopUp({ panel, openPanelButtonIcon, closePanelButtonIcon, customCssClasses, }: ChatPopUpProps): JSX_2.Element;
+export function ChatPopUp(props: ChatPopUpProps): JSX_2.Element;
 
 // @public
 export interface ChatPopUpCssClasses {
     // (undocumented)
     button?: string;
     // (undocumented)
+    button__display?: string;
+    // (undocumented)
+    button__hidden?: string;
+    // (undocumented)
     container?: string;
+    // (undocumented)
+    headerCssClasses?: ChatHeaderCssClasses;
     // (undocumented)
     panel?: string;
     // (undocumented)
     panel__display?: string;
     // (undocumented)
     panel__hidden?: string;
+    // (undocumented)
+    panelCssClasses?: ChatPanelCssClasses;
 }
 
 // @public
-export interface ChatPopUpProps {
-    closePanelButtonIcon?: JSX.Element;
+export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "header" | "customCssClasses"> {
     customCssClasses?: ChatPopUpCssClasses;
     openPanelButtonIcon?: JSX.Element;
-    panel?: JSX.Element;
 }
 
 // @public

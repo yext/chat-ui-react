@@ -16,8 +16,11 @@ export interface ChatHeaderProps
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
+|  [closeButtonIcon?](./chat-ui-react.chatheaderprops.closebuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for for close button. |
 |  [customCssClasses?](./chat-ui-react.chatheaderprops.customcssclasses.md) |  | [ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [onClose?](./chat-ui-react.chatheaderprops.onclose.md) |  | () =&gt; void | _(Optional)_ A function which is called when the close button is clicked. |
 |  [restartButtonIcon?](./chat-ui-react.chatheaderprops.restartbuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for for restart button. |
-|  [showRestartButton?](./chat-ui-react.chatheaderprops.showrestartbutton.md) |  | boolean | _(Optional)_ Enable a restart button allowing the user to restart the conversation. Defaults to false. |
+|  [showCloseButton?](./chat-ui-react.chatheaderprops.showclosebutton.md) |  | boolean | _(Optional)_ Displays a close button which will invoke [ChatHeaderProps.onClose](./chat-ui-react.chatheaderprops.onclose.md) on click. Default to false. |
+|  [showRestartButton?](./chat-ui-react.chatheaderprops.showrestartbutton.md) |  | boolean | _(Optional)_ Displays a restart button which allows the user to restart the conversation. Defaults to false. |
 |  [title](./chat-ui-react.chatheaderprops.title.md) |  | string | The headers's title text, essentially how the chat window identifies itself to the user. |
 

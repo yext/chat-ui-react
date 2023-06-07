@@ -4,7 +4,7 @@
 
 ## ChatHeaderProps.showRestartButton property
 
-Enable a restart button allowing the user to restart the conversation. Defaults to false.
+Displays a restart button which allows the user to restart the conversation. Defaults to false.
 
 **Signature:**
 
