@@ -44,6 +44,7 @@ import "@yext/chat-ui-react/bundle.css";
 ```
 
 To have tailwind preflight disabled, import the following css bundle instead:
+
 ```tsx
 import "@yext/chat-ui-react/bundle-no-resets.css";
 ```

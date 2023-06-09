@@ -6,7 +6,7 @@ import {
   mockChatState,
   spyOnActions,
 } from "../__utils__/mocks";
-import { Message } from "@yext/chat-headless-react";
+import { Message, MessageSource } from "@yext/chat-headless-react";
 
 const dummyMessage: Message = {
   timestamp: "2023-05-31T14:22:19.376Z",
@@ -43,14 +43,23 @@ it("send request to get initial message on load (non-stream)", () => {
   expect(actions.getNextMessage).toBeCalledWith();
 });
 
-it("logs request error by default", async () => {
+it("logs request error and add an error message to state by default", async () => {
   mockChatActions({
     streamNextMessage: jest.fn(() => Promise.reject("API Error")),
+    setMessages: jest.fn(),
   });
+  const chatActionsSpy = spyOnActions();
   const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
   render(<ChatPanel />);
   await waitFor(() => expect(consoleErrorSpy).toBeCalledTimes(1));
   expect(consoleErrorSpy).toBeCalledWith("API Error");
+  expect(chatActionsSpy.setMessages).toBeCalledWith([
+    {
+      text: "Sorry, I'm unable to respond at the moment. Please try again later!",
+      source: MessageSource.BOT,
+      timestamp: expect.any(String),
+    },
+  ]);
 });
 
 it("executes custom handleError if provided", async () => {

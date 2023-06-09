@@ -1,5 +1,5 @@
 import { useChatActions } from "@yext/chat-headless-react";
-import { DualSyncIcon } from "../icons/DualSync"
+import { DualSyncIcon } from "../icons/DualSync";
 import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
 import { useCallback, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -22,7 +22,7 @@ const builtInCssClasses: Readonly<ChatHeaderCssClasses> = {
     "w-full px-4 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800 rounded-t-3xl",
   title: "text-white text-xl font-medium",
   restartButton: "w-8 text-white stroke-[0.2] ml-auto",
-  closeButton: "w-8 text-white hover:scale-110"
+  closeButton: "w-8 text-white hover:scale-110",
 };
 
 /**
@@ -106,12 +106,12 @@ export function ChatHeader({
       )}
       {showCloseButton && (
         <button
-        aria-label="Close Chat"
-        onClick={onClose}
-        className={cssClasses.closeButton}
-      >
-        {closeButtonIcon}
-      </button>
+          aria-label="Close Chat"
+          onClick={onClose}
+          className={cssClasses.closeButton}
+        >
+          {closeButtonIcon}
+        </button>
       )}
     </div>
   );

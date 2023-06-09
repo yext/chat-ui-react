@@ -8,7 +8,7 @@ import {
 import { ChatInput, ChatInputCssClasses, ChatInputProps } from "./ChatInput";
 import { LoadingDots } from "./LoadingDots";
 import { useComposedCssClasses } from "../hooks";
-import { defaultHandleApiError } from "../utils/defaultHandleError";
+import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 
 /**
  * The CSS class interface for the {@link ChatPanel} component.
@@ -65,6 +65,7 @@ export function ChatPanel(props: ChatPanelProps) {
     (state) => state.conversation.canSendMessage
   );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
+  const defaultHandleApiError = useDefaultHandleApiError();
 
   // Fetch the first message on load, if there are no existing messages or a request being processed
   useEffect(() => {
@@ -74,7 +75,7 @@ export function ChatPanel(props: ChatPanelProps) {
     const { stream = true, handleError } = props;
     const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
-  }, [chat, props, messages, canSendMessage]);
+  }, [chat, props, messages, defaultHandleApiError, canSendMessage]);
 
   const messagesRef = useRef<HTMLDivElement>(null);
 
@@ -82,8 +83,8 @@ export function ChatPanel(props: ChatPanelProps) {
   useEffect(() => {
     messagesRef.current?.scroll({
       top: messagesRef.current?.scrollHeight,
-      behavior: 'smooth',
-  });
+      behavior: "smooth",
+    });
   }, [messages]);
 
   return (
