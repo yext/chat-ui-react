@@ -19,7 +19,7 @@ import {
   ChatHeadlessProvider,
   HeadlessConfig,
 } from "@yext/chat-headless-react";
-import { ChatPanel } from "@yext/search-ui-react";
+import { ChatPanel } from "@yext/chat-ui-react";
 
 const config: HeadlessConfig = {
   apiKey: "<apiKey>",
@@ -40,5 +40,10 @@ export default App;
 To use the Component Library's Styling without adding Tailwind to your project, add the following import:
 
 ```tsx
-import "@yext/search-ui-react/bundle.css";
+import "@yext/chat-ui-react/bundle.css";
+```
+
+To have tailwind preflight disabled, import the following css bundle instead:
+```tsx
+import "@yext/chat-ui-react/bundle-no-resets.css";
 ```
