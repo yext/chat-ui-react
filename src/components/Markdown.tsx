@@ -6,7 +6,7 @@ import rehypeSanitize from "rehype-sanitize";
 // The Remark and Rehype plugins to use in conjunction with ReactMarkdown.
 const unifiedPlugins: { remark?: PluggableList; rehype: PluggableList } = {
   remark: [
-    remarkGfm //renders Github-Flavored Markdown
+    remarkGfm, //renders Github-Flavored Markdown
   ],
   rehype: [
     rehypeRaw, //to support HTML embedded in markdown
@@ -22,7 +22,7 @@ interface MarkdownProps {
 /**
  * Renders Github-Flavored Markdown from the Knowledge Graph. This Markdown can include
  * arbitrary HTML. Any HTML will be sanitized according to Rehype's default Schema.
- * 
+ *
  * @public
  */
 export function Markdown({ content }: MarkdownProps) {

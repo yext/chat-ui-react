@@ -31,7 +31,13 @@ it("does not display restart button by default", () => {
 
 it("calls onClose when close button is clicked", async () => {
   const onClose = jest.fn();
-  render(<ChatHeader title="Clippy's Chatbot" showCloseButton={true} onClose={onClose} />);
+  render(
+    <ChatHeader
+      title="Clippy's Chatbot"
+      showCloseButton={true}
+      onClose={onClose}
+    />
+  );
 
   const closeButton = screen.getByLabelText("Close Chat");
   await act(() => userEvent.click(closeButton));

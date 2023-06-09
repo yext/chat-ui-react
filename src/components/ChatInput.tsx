@@ -73,7 +73,7 @@ export function ChatInput({
   const canSendMessage = useChatState(
     (state) => state.conversation.canSendMessage
   );
-  const defaultHandleApiError = useDefaultHandleApiError()
+  const defaultHandleApiError = useDefaultHandleApiError();
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const sendButtonClassNames = twMerge(

@@ -1,4 +1,8 @@
-import { MessageSource, useChatActions, useChatState } from "@yext/chat-headless-react";
+import {
+  MessageSource,
+  useChatActions,
+  useChatState,
+} from "@yext/chat-headless-react";
 import { useCallback } from "react";
 
 /**
@@ -8,15 +12,21 @@ import { useCallback } from "react";
  * @internal
  */
 export function useDefaultHandleApiError() {
-  const chat = useChatActions()
-  const messages = useChatState(s => s.conversation.messages)
+  const chat = useChatActions();
+  const messages = useChatState((s) => s.conversation.messages);
 
-  return useCallback((e: unknown) => {
-    console.error(e);
-    chat.setMessages([...messages, {
-      text: "Sorry, I'm unable to respond at the moment. Please try again later!",
-      source: MessageSource.BOT,
-      timestamp: new Date().toISOString()
-    }])
-  }, [chat, messages])
+  return useCallback(
+    (e: unknown) => {
+      console.error(e);
+      chat.setMessages([
+        ...messages,
+        {
+          text: "Sorry, I'm unable to respond at the moment. Please try again later!",
+          source: MessageSource.BOT,
+          timestamp: new Date().toISOString(),
+        },
+      ]);
+    },
+    [chat, messages]
+  );
 }

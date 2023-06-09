@@ -23,7 +23,7 @@ function App() {
         </div>
       </ChatHeadlessProvider>
       <ChatHeadlessProvider config={config}>
-        <ChatPopUp title="Clippy"/>
+        <ChatPopUp title="Clippy" />
       </ChatHeadlessProvider>
     </div>
   );

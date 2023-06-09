@@ -65,7 +65,7 @@ export function ChatPanel(props: ChatPanelProps) {
     (state) => state.conversation.canSendMessage
   );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const defaultHandleApiError = useDefaultHandleApiError()
+  const defaultHandleApiError = useDefaultHandleApiError();
 
   // Fetch the first message on load, if there are no existing messages or a request being processed
   useEffect(() => {
@@ -83,8 +83,8 @@ export function ChatPanel(props: ChatPanelProps) {
   useEffect(() => {
     messagesRef.current?.scroll({
       top: messagesRef.current?.scrollHeight,
-      behavior: 'smooth',
-  });
+      behavior: "smooth",
+    });
   }, [messages]);
 
   return (
