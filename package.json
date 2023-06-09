@@ -80,7 +80,7 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "@yext/chat-headless-react": "^0.3.1",
+    "@yext/chat-headless-react": "^0.3.2",
     "react": "^16.14 || ^17 || ^18",
     "react-dom": "^16.14 || ^17 || || ^18"
   },
