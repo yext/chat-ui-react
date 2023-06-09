@@ -4,7 +4,7 @@
 
 ## ChatInputProps.handleError property
 
-A function which is called when an error occurs from Chat API while processing the user's message. By default, the error is logged to the console.
+A function which is called when an error occurs from Chat API while processing the user's message. By default, the error is logged to the console and an error message is added to state.
 
 **Signature:**
 

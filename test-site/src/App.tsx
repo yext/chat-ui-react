@@ -5,7 +5,7 @@ import {
 } from "@yext/chat-headless-react";
 
 const config: HeadlessConfig = {
-  botId: "red-dog-bot",
+  botId: "tripp-bot",
   apiKey: process.env.REACT_APP_BOT_API_KEY || "",
   apiDomain: "liveapi-dev.yext.com",
 };
@@ -20,8 +20,10 @@ function App() {
               <ChatHeader title="Clippy's Chatbot" showRestartButton={true} />
             }
           />
-          <ChatPopUp title="Clippy"/>
         </div>
+      </ChatHeadlessProvider>
+      <ChatHeadlessProvider config={config}>
+        <ChatPopUp title="Clippy"/>
       </ChatHeadlessProvider>
     </div>
   );

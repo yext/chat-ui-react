@@ -4,7 +4,7 @@ import { ArrowIcon } from "../icons/Arrow";
 import { useComposedCssClasses } from "../hooks";
 import Textarea from "react-expanding-textarea";
 import { twMerge } from "tailwind-merge";
-import { defaultHandleApiError } from "../utils/defaultHandleError";
+import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 
 /**
  * The CSS class interface for the {@link ChatInput} component.
@@ -44,9 +44,8 @@ export interface ChatInputProps {
   /** Enable auto focus for the input box. Defaults to false. */
   inputAutoFocus?: boolean;
   /**
-   * A function which is called when an error occurs from
-   * Chat API while processing the user's message.
-   * By default, the error is logged to the console.
+   * A function which is called when an error occurs from Chat API while processing the user's message.
+   * By default, the error is logged to the console and an error message is added to state.
    */
   handleError?: (e: unknown) => void;
   /** Custom icon for the send button. */
@@ -74,6 +73,7 @@ export function ChatInput({
   const canSendMessage = useChatState(
     (state) => state.conversation.canSendMessage
   );
+  const defaultHandleApiError = useDefaultHandleApiError()
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const sendButtonClassNames = twMerge(
@@ -87,7 +87,7 @@ export function ChatInput({
       : chat.getNextMessage(input);
     setInput("");
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
-  }, [chat, input, handleError, stream]);
+  }, [chat, input, handleError, defaultHandleApiError, stream]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
