@@ -12,7 +12,8 @@
       "import": "./lib/esm/index.js",
       "require": "./lib/commonjs/index.js"
     },
-    "./bundle.css": "./lib/bundle.css"
+    "./bundle.css": "./lib/bundle.css",
+    "./bundle-no-resets.css": "./lib/bundle-no-resets.css"
   },
   "license": "BSD-3-Clause",
   "files": [
@@ -37,7 +38,7 @@
     "generate-docs": "api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "build:js": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
-    "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.js",
+    "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.js && tailwindcss -o ./lib/bundle-no-resets.css --minify -c tailwind-no-resets.config.js",
     "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run generate-docs && npm run generate-notices",
     "build-storybook": "storybook build"
   },
