@@ -8,6 +8,7 @@ import {
 } from "./ChatHeader";
 import { twMerge } from "tailwind-merge";
 import { useComposedCssClasses } from "../hooks";
+import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 
 /**
  * The CSS class interface for the {@link ChatPopUp} component.
@@ -26,8 +27,8 @@ export interface ChatPopUpCssClasses {
   panelCssClasses?: ChatPanelCssClasses;
 }
 
-const fixedPosition = "fixed bottom-6 right-4 lg:bottom-14 lg:right-10 ";
-const builtInCssClasses: ChatPopUpCssClasses = {
+const fixedPosition = "fixed bottom-6 right-4 lg:bottom-14 lg:right-10 z-50 ";
+const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses('PopUp', {
   container: "transition-all",
   panel: fixedPosition + "w-80 lg:w-96 h-[75vh]",
   panel__display: "duration-300 translate-y-0",
@@ -38,7 +39,7 @@ const builtInCssClasses: ChatPopUpCssClasses = {
   button__display: "duration-300 transform translate-y-0",
   button__hidden:
     "duration-300 transform translate-y-[20%] opacity-0 invisible",
-};
+});
 
 /**
  * The props for the {@link ChatPopUp} component.

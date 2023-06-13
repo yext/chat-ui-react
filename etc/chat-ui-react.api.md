@@ -17,7 +17,7 @@ export interface ChatHeaderCssClasses {
     // (undocumented)
     closeButton?: string;
     // (undocumented)
-    header?: string;
+    container?: string;
     // (undocumented)
     restartButton?: string;
     // (undocumented)
