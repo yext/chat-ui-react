@@ -27,7 +27,7 @@ export interface ChatPopUpCssClasses {
   panelCssClasses?: ChatPanelCssClasses;
 }
 
-const fixedPosition = "fixed bottom-6 right-4 lg:bottom-14 lg:right-10 ";
+const fixedPosition = "fixed bottom-6 right-4 lg:bottom-14 lg:right-10 z-50 ";
 const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses('PopUp', {
   container: "transition-all",
   panel: fixedPosition + "w-80 lg:w-96 h-[75vh]",
