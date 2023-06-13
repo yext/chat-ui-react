@@ -2,6 +2,7 @@ import { Message, MessageSource } from "@yext/chat-headless-react";
 import { useComposedCssClasses } from "../hooks";
 import { twMerge } from "tailwind-merge";
 import { Markdown } from "./Markdown";
+import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 
 /**
  * The CSS class interface for the {@link MessageBubble} component.
@@ -21,10 +22,11 @@ export interface MessageBubbleCssClasses {
   timestamp__user?: string;
 }
 
-const builtInCssClasses: MessageBubbleCssClasses = {
+const builtInCssClasses: MessageBubbleCssClasses = withStylelessCssClasses('MessageBubble', {
   topContainer: "w-full animate-fade-in @container",
   subContainer:
     "flex flex-col @lg:flex-row @lg:items-center @lg:gap-x-2 @lg:m-1",
+  subContainer__bot: "",
   subContainer__user: "@lg:flex-row-reverse",
   message:
     "peer rounded-2xl text-[13px] @[480px]:text-base p-4 w-fit max-w-[80%] prose overflow-x-auto",
@@ -33,8 +35,9 @@ const builtInCssClasses: MessageBubbleCssClasses = {
     "ml-auto @lg:ml-0 text-white bg-gradient-to-tr from-blue-600 to-blue-700",
   timestamp:
     "w-fit my-0.5 text-slate-400 text-[13px] opacity-0 peer-hover:opacity-100 duration-200 whitespace-pre-wrap",
+  timestamp__bot: "",
   timestamp__user: "ml-auto",
-};
+});
 
 /**
  * The props for the {@link MessageBubble} component.

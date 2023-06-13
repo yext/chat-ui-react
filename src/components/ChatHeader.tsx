@@ -4,6 +4,7 @@ import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
 import { useCallback, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { CrossIcon } from "../icons/Cross";
+import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 
 /**
  * The CSS class interface for the {@link ChatHeader} component.
@@ -11,19 +12,19 @@ import { CrossIcon } from "../icons/Cross";
  * @public
  */
 export interface ChatHeaderCssClasses {
-  header?: string;
+  container?: string;
   title?: string;
   restartButton?: string;
   closeButton?: string;
 }
 
-const builtInCssClasses: Readonly<ChatHeaderCssClasses> = {
-  header:
+const builtInCssClasses: Readonly<ChatHeaderCssClasses> = withStylelessCssClasses('Header', {
+  container:
     "w-full px-4 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800 rounded-t-3xl",
   title: "text-white text-xl font-medium",
   restartButton: "w-8 text-white stroke-[0.2] ml-auto",
   closeButton: "w-8 text-white hover:scale-110",
-};
+});
 
 /**
  * The props for the {@link ChatHeader} component.
@@ -93,7 +94,7 @@ export function ChatHeader({
   }, [chat]);
 
   return (
-    <div className={cssClasses.header}>
+    <div className={cssClasses.container}>
       <h1 className={cssClasses.title}>{title}</h1>
       {showRestartButton && (
         <button
