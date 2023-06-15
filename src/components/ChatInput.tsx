@@ -18,13 +18,16 @@ export interface ChatInputCssClasses {
   sendButton?: string;
 }
 
-const builtInCssClasses: ChatInputCssClasses = withStylelessCssClasses('Input', {
-  container: "w-full h-fit flex flex-row relative @container",
-  textArea:
-    "w-full p-4 pr-10 border border-slate-300 disabled:bg-slate-50 rounded-3xl resize-none text-[13px] @[480px]:text-base",
-  sendButton:
-    "rounded-full p-1.5 w-8 h-8 stroke-2 text-white bg-blue-600 disabled:bg-slate-100 hover:bg-blue-800 active:scale-90 transition-all absolute right-7 bottom-2.5 @[480px]:bottom-3.5",
-});
+const builtInCssClasses: ChatInputCssClasses = withStylelessCssClasses(
+  "Input",
+  {
+    container: "w-full h-fit flex flex-row relative @container",
+    textArea:
+      "w-full p-4 pr-10 border border-slate-300 disabled:bg-slate-50 rounded-3xl resize-none text-[13px] @[480px]:text-base",
+    sendButton:
+      "rounded-full p-1.5 w-8 h-8 stroke-2 text-white bg-blue-600 disabled:bg-slate-100 hover:bg-blue-800 active:scale-90 transition-all absolute right-7 bottom-2.5 @[480px]:bottom-3.5",
+  }
+);
 
 /**
  * The props for the {@link ChatInput} component.

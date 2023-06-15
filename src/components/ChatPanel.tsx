@@ -24,13 +24,17 @@ export interface ChatPanelCssClasses {
   messageBubbleCssClasses?: MessageBubbleCssClasses;
 }
 
-const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses('Panel', {
-  container:
-    "h-full w-full flex flex-col relative rounded-3xl shadow-2xl bg-white",
-  messagesContainer:
-    "flex flex-col gap-y-1 mt-auto px-4 pb-[85px] overflow-auto",
-  inputContainer: "w-full absolute bottom-0 p-4 rounded-b-3xl backdrop-blur-lg",
-});
+const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
+  "Panel",
+  {
+    container:
+      "h-full w-full flex flex-col relative rounded-3xl shadow-2xl bg-white",
+    messagesContainer:
+      "flex flex-col gap-y-1 mt-auto px-4 pb-[85px] overflow-auto",
+    inputContainer:
+      "w-full absolute bottom-0 p-4 rounded-b-3xl backdrop-blur-lg",
+  }
+);
 
 /**
  * The props for the {@link ChatPanel} component.
