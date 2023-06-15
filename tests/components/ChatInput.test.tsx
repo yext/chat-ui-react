@@ -117,9 +117,9 @@ it("logs request error and add an error message to state by default", async () =
   expect(consoleErrorSpy).toBeCalledWith("API Error");
   expect(chatActionsSpy.addMessage).toBeCalledTimes(1);
   expect(chatActionsSpy.addMessage).toBeCalledWith({
-      text: "Sorry, I'm unable to respond at the moment. Please try again later!",
-      source: MessageSource.BOT,
-      timestamp: expect.any(String),
+    text: "Sorry, I'm unable to respond at the moment. Please try again later!",
+    source: MessageSource.BOT,
+    timestamp: expect.any(String),
   });
 });
 

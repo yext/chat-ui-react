@@ -39,7 +39,6 @@ export default App;
 
 ## Styling
 
-
 ### default styling
 
 To use the Component Library's Styling without adding Tailwind to your project, add the following import:
@@ -57,6 +56,7 @@ import "@yext/chat-ui-react/bundle-no-resets.css";
 ### custom styling
 
 Projects that use Tailwind may pass Tailwind classnames into the Chat components using the `customCssClasses` prop:
+
 ```tsx
 const customCssClasses: ChatPanelCssClasses = {
   container: "bg-blue-300"
@@ -68,7 +68,7 @@ Projects that don't use Tailwind may target the default styleless classnames add
 
 ```css
 .yext-chat-panel__container {
-  background-color: blue
+  background-color: blue;
 }
 ```
 

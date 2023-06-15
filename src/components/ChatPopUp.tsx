@@ -28,18 +28,21 @@ export interface ChatPopUpCssClasses {
 }
 
 const fixedPosition = "fixed bottom-6 right-4 lg:bottom-14 lg:right-10 z-50 ";
-const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses('PopUp', {
-  container: "transition-all",
-  panel: fixedPosition + "w-80 lg:w-96 h-[75vh]",
-  panel__display: "duration-300 translate-y-0",
-  panel__hidden: "duration-300 translate-y-[20%] opacity-0 invisible",
-  button:
-    fixedPosition +
-    "p-2 w-12 h-12 lg:w-16 lg:h-16 flex justify-center items-center text-white shadow-xl rounded-full bg-gradient-to-br from-blue-600 to-blue-700 hover:-translate-y-2 duration-150",
-  button__display: "duration-300 transform translate-y-0",
-  button__hidden:
-    "duration-300 transform translate-y-[20%] opacity-0 invisible",
-});
+const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
+  "PopUp",
+  {
+    container: "transition-all",
+    panel: fixedPosition + "w-80 lg:w-96 h-[75vh]",
+    panel__display: "duration-300 translate-y-0",
+    panel__hidden: "duration-300 translate-y-[20%] opacity-0 invisible",
+    button:
+      fixedPosition +
+      "p-2 w-12 h-12 lg:w-16 lg:h-16 flex justify-center items-center text-white shadow-xl rounded-full bg-gradient-to-br from-blue-600 to-blue-700 hover:-translate-y-2 duration-150",
+    button__display: "duration-300 transform translate-y-0",
+    button__hidden:
+      "duration-300 transform translate-y-[20%] opacity-0 invisible",
+  }
+);
 
 /**
  * The props for the {@link ChatPopUp} component.
