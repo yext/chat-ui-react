@@ -22,7 +22,7 @@ const builtInCssClasses: Readonly<ChatHeaderCssClasses> =
   withStylelessCssClasses("Header", {
     container:
       "w-full px-4 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800 rounded-t-3xl",
-    title: "text-white text-xl font-medium truncate",
+    title: "text-white text-xl font-medium truncate pr-1",
     restartButton: "w-8 text-white stroke-[0.2] ml-auto shrink-0",
     closeButton: "w-8 text-white hover:scale-110 shrink-0",
   });
