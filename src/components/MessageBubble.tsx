@@ -36,7 +36,7 @@ const builtInCssClasses: MessageBubbleCssClasses = withStylelessCssClasses(
     message__user:
       "ml-auto @lg:ml-0 text-white bg-gradient-to-tr from-blue-600 to-blue-700",
     timestamp:
-      "w-fit my-0.5 text-slate-400 text-[13px] opacity-0 peer-hover:opacity-100 duration-200 whitespace-pre-wrap",
+      "w-fit my-0.5 ml-4 @lg:ml-0 text-slate-400 text-[10px] @[480px]:text-[13px] opacity-0 peer-hover:opacity-100 duration-200 whitespace-pre-wrap",
     timestamp__bot: "",
     timestamp__user: "ml-auto",
   }
@@ -58,7 +58,7 @@ export interface MessageBubbleProps {
   /**
    * A function which is called to format the message's timestamp given in
    * ISO format (e.g. "2023-05-18T19:33:34.553Z").
-   * Defaults to "HH:MM:SS A" (e.g. "7:33:34 PM").
+   * Defaults to "HH:MM A" (e.g. "7:33 PM").
    */
   formatTimestamp?: (timestamp: string) => string;
   /** CSS classes for customizing the component styling. */
@@ -116,7 +116,7 @@ export function MessageBubble({
 }
 
 /**
- * Formats message's timestamp from "2023-05-18T19:33:34.553Z" to "7:33:34 PM"
+ * Formats message's timestamp from "2023-05-18T19:33:34.553Z" to "7:33 PM"
  *
  * @param timestamp - the timestamp to convert from
  * @returns formatted timestamp
@@ -125,7 +125,6 @@ function defaultFormatTimestamp(timestamp: string): string {
   return new Date(timestamp).toLocaleString(undefined, {
     hour: "numeric",
     minute: "numeric",
-    second: "numeric",
     hour12: true,
   });
 }
