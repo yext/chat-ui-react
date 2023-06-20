@@ -17,9 +17,13 @@ export interface ChatHeaderCssClasses {
     // (undocumented)
     closeButton?: string;
     // (undocumented)
+    closeButtonIcon?: string;
+    // (undocumented)
     container?: string;
     // (undocumented)
     restartButton?: string;
+    // (undocumented)
+    restartButtonIcon?: string;
     // (undocumented)
     title?: string;
 }
@@ -92,6 +96,8 @@ export interface ChatPopUpCssClasses {
     button__display?: string;
     // (undocumented)
     button__hidden?: string;
+    // (undocumented)
+    buttonIcon?: string;
     // (undocumented)
     container?: string;
     // (undocumented)
