@@ -14,3 +14,16 @@ it("generates styleless css classnames as expected", () => {
       "border flex flex-col yext-chat-some-component__container__top-field__sub-field",
   });
 });
+
+it("pass through fields of type object for child components to process", () => {
+  const classes = withStylelessCssClasses("SomeComponent", {
+    headerCssClasses: {
+      container: "p-4",
+    },
+  });
+  expect(classes).toEqual({
+    headerCssClasses: {
+      container: "p-4",
+    },
+  });
+});

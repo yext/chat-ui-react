@@ -33,7 +33,9 @@ const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
   "PopUp",
   {
     container: "transition-all",
-    panel: fixedPosition + "w-80 lg:w-96 h-[75vh]",
+    panel:
+      fixedPosition +
+      "w-80 max-[480px]:right-0 max-[480px]:bottom-0 max-[480px]:w-full max-[480px]:h-full lg:w-96 h-[75vh]",
     panel__display: "duration-300 translate-y-0",
     panel__hidden: "duration-300 translate-y-[20%] opacity-0 invisible",
     button:
@@ -43,6 +45,13 @@ const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
     button__hidden:
       "duration-300 transform translate-y-[20%] opacity-0 invisible",
     buttonIcon: "text-blue-600 w-[28px] h-[28px] lg:w-[40px] lg:h-[40px]",
+    headerCssClasses: {
+      container: "max-[480px]:rounded-none rounded-t-3xl",
+    },
+    panelCssClasses: {
+      container: "max-[480px]:rounded-none rounded-b-3xl",
+      inputContainer: "max-[480px]:rounded-none rounded-b-3xl",
+    },
   }
 );
 

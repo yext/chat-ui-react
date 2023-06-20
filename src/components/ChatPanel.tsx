@@ -27,12 +27,10 @@ export interface ChatPanelCssClasses {
 const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
   "Panel",
   {
-    container:
-      "h-full w-full flex flex-col relative rounded-3xl shadow-2xl bg-white",
+    container: "h-full w-full flex flex-col relative shadow-2xl bg-white",
     messagesContainer:
       "flex flex-col gap-y-1 mt-auto px-4 pb-[85px] overflow-auto",
-    inputContainer:
-      "w-full absolute bottom-0 p-4 rounded-b-3xl backdrop-blur-lg",
+    inputContainer: "w-full absolute bottom-0 p-4 backdrop-blur-lg",
   }
 );
 

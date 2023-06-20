@@ -23,7 +23,7 @@ export interface ChatHeaderCssClasses {
 const builtInCssClasses: Readonly<ChatHeaderCssClasses> =
   withStylelessCssClasses("Header", {
     container:
-      "w-full pl-4 pr-3 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800 rounded-t-3xl",
+      "w-full pl-4 pr-3 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800",
     title: "text-white text-xl font-medium truncate pr-1",
     restartButton: "w-8 h-8 ml-auto shrink-0 flex justify-center items-center",
     restartButtonIcon: "text-white stroke-[0.2] w-[26px] h-[26px]",

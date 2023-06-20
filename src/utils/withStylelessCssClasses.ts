@@ -23,9 +23,11 @@ export function withStylelessCssClasses<
     str.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
   const classes = { ...builtInClasses };
   Object.keys(builtInClasses).forEach((key) => {
-    classes[key] = `${classes[key]} yext-chat${formatString(
-      componentName
-    )}__${formatString(key)}`;
+    if (typeof classes[key] === "string") {
+      classes[key] = `${classes[key]} yext-chat${formatString(
+        componentName
+      )}__${formatString(key)}`;
+    }
   });
   return classes;
 }
