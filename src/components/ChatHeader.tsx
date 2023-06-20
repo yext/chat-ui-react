@@ -86,7 +86,7 @@ export function ChatHeader({
   const [isSpinning, setIsSpinning] = useState(false);
   const restartButtonCssClasses = twMerge(
     cssClasses.restartButton,
-    isSpinning ? "animate-[spin_0.3s_linear_infinite]" : "hover:scale-110"
+    isSpinning ? "animate-[spin_0.3s_linear]" : "hover:scale-110"
   );
 
   const clearTimerRef = useRef<ReturnType<typeof setTimeout>>();
