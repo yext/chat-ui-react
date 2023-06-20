@@ -23,6 +23,9 @@ export const PopupButton: StoryObj<typeof meta> = {
       <ChatPopUp {...args} />
     </ChatHeadlessProvider>
   ),
+  args: {
+    title: "My Chatbot"
+  }
 };
 
 export const PopupPanel: StoryObj<typeof meta> = {

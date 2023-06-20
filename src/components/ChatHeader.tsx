@@ -15,16 +15,21 @@ export interface ChatHeaderCssClasses {
   container?: string;
   title?: string;
   restartButton?: string;
+  restartButtonIcon?: string;
   closeButton?: string;
+  closeButtonIcon?: string;
 }
 
 const builtInCssClasses: Readonly<ChatHeaderCssClasses> =
   withStylelessCssClasses("Header", {
     container:
-      "w-full px-4 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800 rounded-t-3xl",
-    title: "text-white text-xl font-medium",
-    restartButton: "w-8 text-white stroke-[0.2] ml-auto",
-    closeButton: "w-8 text-white hover:scale-110",
+      "w-full pl-4 pr-3 py-3 flex justify-between bg-gradient-to-tr from-blue-600 to-blue-800",
+    title: "text-white text-xl font-medium truncate pr-1",
+    restartButton: "w-8 h-8 ml-auto shrink-0 flex justify-center items-center",
+    restartButtonIcon: "text-white stroke-[0.2] w-[26px] h-[26px]",
+    closeButton:
+      "w-8 h-8 hover:scale-110 shrink-0 flex justify-center items-center",
+    closeButtonIcon: "text-white w-[26px] h-[26px]",
   });
 
 /**
@@ -68,9 +73,9 @@ export interface ChatHeaderProps {
 export function ChatHeader({
   title,
   showRestartButton,
-  restartButtonIcon = <DualSyncIcon />,
+  restartButtonIcon,
   showCloseButton,
-  closeButtonIcon = <CrossIcon />,
+  closeButtonIcon,
   onClose,
   customCssClasses,
 }: ChatHeaderProps) {
@@ -103,7 +108,9 @@ export function ChatHeader({
           onClick={onRestart}
           className={restartButtonCssClasses}
         >
-          {restartButtonIcon}
+          {restartButtonIcon ?? (
+            <DualSyncIcon className={cssClasses.restartButtonIcon} />
+          )}
         </button>
       )}
       {showCloseButton && (
@@ -112,7 +119,9 @@ export function ChatHeader({
           onClick={onClose}
           className={cssClasses.closeButton}
         >
-          {closeButtonIcon}
+          {closeButtonIcon ?? (
+            <CrossIcon className={cssClasses.closeButtonIcon} />
+          )}
         </button>
       )}
     </div>

@@ -1,4 +1,8 @@
-export function DualSyncIcon(): JSX.Element {
+export function DualSyncIcon({
+  className,
+}: {
+  className?: string;
+}): JSX.Element {
   return (
     <svg
       width="100%"
@@ -6,6 +10,7 @@ export function DualSyncIcon(): JSX.Element {
       viewBox="0 0 20 20"
       fill="currentColor"
       stroke="currentColor"
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d="M14.3148 6.47397C14.9074 7.36266 15.2593 8.46858 15.2593 9.63375C15.2593 12.675 12.9259 15.1634 10.0741 15.1634C9.11111 15.1634 8.2037 14.8671 7.42593 14.3734L9.05556 13.8995L8.87037 13.1293L6 13.939L6.75926 17L7.48148 16.8025L7.03704 15.0449C7.92593 15.6176 8.96296 15.9336 10.0741 15.9336C13.3519 15.9336 16 13.1095 16 9.614C16 8.2711 15.6111 7.02693 14.9259 6L14.3148 6.47397Z" />

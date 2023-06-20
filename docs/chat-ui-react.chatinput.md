@@ -22,3 +22,7 @@ export declare function ChatInput({ placeholder, stream, inputAutoFocus, handleE
 
 import("react/jsx-runtime").JSX.Element
 
+## Remarks
+
+Pressing "Enter" key will send the current message. To add a newline, press "Shift" and "Enter".
+

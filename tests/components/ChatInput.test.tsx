@@ -70,9 +70,37 @@ it("sends request when hit enter in textarea", async () => {
   await act(() => userEvent.type(textbox, "test"));
   await act(() => userEvent.keyboard("{Enter}"));
   expect(actions.streamNextMessage).toBeCalledTimes(1);
+  expect(textbox).toHaveDisplayValue("");
 });
 
-it("disables textarea and send button when canSendMessage is false", () => {
+it("does not send request when hit enter in textarea while canSendMessage is false", async () => {
+  mockChatState({
+    conversation: {
+      canSendMessage: false,
+    },
+  });
+  render(<ChatInput />);
+  const actions = spyOnActions();
+
+  const textbox = screen.getByRole("textbox");
+  await act(() => userEvent.type(textbox, "test"));
+  await act(() => userEvent.keyboard("{Enter}"));
+  expect(actions.streamNextMessage).toBeCalledTimes(0);
+  expect(textbox).toHaveDisplayValue("test");
+});
+
+it("adds new line hit shift + enter in textarea", async () => {
+  render(<ChatInput />);
+  const actions = spyOnActions();
+
+  const textbox = screen.getByRole("textbox");
+  await act(() => userEvent.type(textbox, "test"));
+  await act(() => userEvent.keyboard("{Shift>}{Enter}{/Shift}"));
+  expect(actions.streamNextMessage).toBeCalledTimes(0);
+  expect(textbox).toHaveDisplayValue("test\n");
+});
+
+it("disables send button when canSendMessage is false", () => {
   mockChatState({
     conversation: {
       canSendMessage: false,
@@ -80,7 +108,6 @@ it("disables textarea and send button when canSendMessage is false", () => {
   });
   render(<ChatInput />);
   expect(screen.getByRole("button")).toBeDisabled();
-  expect(screen.getByRole("textbox")).toBeDisabled();
 });
 
 it("enables stream behavior by default", async () => {
