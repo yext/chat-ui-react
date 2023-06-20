@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { MessageIcon } from "../icons/Message";
+import { ChatIcon } from "../icons/Chat";
 import { ChatPanel, ChatPanelCssClasses, ChatPanelProps } from "./ChatPanel";
 import {
   ChatHeader,
@@ -23,6 +23,7 @@ export interface ChatPopUpCssClasses {
   button?: string;
   button__display?: string;
   button__hidden?: string;
+  buttonIcon?: string;
   headerCssClasses?: ChatHeaderCssClasses;
   panelCssClasses?: ChatPanelCssClasses;
 }
@@ -41,6 +42,7 @@ const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
     button__display: "duration-300 transform translate-y-0",
     button__hidden:
       "duration-300 transform translate-y-[20%] opacity-0 invisible",
+    buttonIcon: "text-blue-600 w-[28px] h-[28px] lg:w-[40px] lg:h-[40px]",
   }
 );
 
@@ -70,7 +72,7 @@ export interface ChatPopUpProps
  */
 export function ChatPopUp(props: ChatPopUpProps) {
   const {
-    openPanelButtonIcon = <MessageIcon />,
+    openPanelButtonIcon,
     customCssClasses,
     showRestartButton = true,
     onClose: customOnClose,
@@ -118,7 +120,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
         onClick={onClick}
         className={buttonCssClasses}
       >
-        {openPanelButtonIcon}
+        {openPanelButtonIcon ?? <ChatIcon className={cssClasses.buttonIcon} />}
       </button>
     </div>
   );
