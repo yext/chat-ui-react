@@ -31,6 +31,9 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
     messagesContainer:
       "flex flex-col gap-y-1 mt-auto px-4 pb-[85px] overflow-auto",
     inputContainer: "w-full absolute bottom-0 p-4 backdrop-blur-lg",
+    messageBubbleCssClasses: {
+      topContainer: "first:mt-4",
+    }
   }
 );
 

@@ -110,10 +110,21 @@ it("disables send button when canSendMessage is false", () => {
   expect(screen.getByRole("button")).toBeDisabled();
 });
 
+it("disables send button when input is empty", () => {
+  mockChatState({
+    conversation: {
+      canSendMessage: true,
+    },
+  });
+  render(<ChatInput />);
+  expect(screen.getByRole("button")).toBeDisabled();
+});
+
 it("enables stream behavior by default", async () => {
   render(<ChatInput />);
   const actions = spyOnActions();
 
+  await act(() => userEvent.type(screen.getByRole("textbox"), "test"));
   const sendButton = screen.getByRole("button");
   await act(() => userEvent.click(sendButton));
   expect(actions.streamNextMessage).toBeCalledTimes(1);
@@ -124,6 +135,7 @@ it("disables stream behavior when stream prop is false", async () => {
   render(<ChatInput stream={false} />);
   const actions = spyOnActions();
 
+  await act(() => userEvent.type(screen.getByRole("textbox"), "test"));
   const sendButton = screen.getByRole("button");
   await act(() => userEvent.click(sendButton));
   expect(actions.streamNextMessage).toBeCalledTimes(0);
@@ -138,6 +150,7 @@ it("logs request error and add an error message to state by default", async () =
   const chatActionsSpy = spyOnActions();
   const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
   render(<ChatInput />);
+  await act(() => userEvent.type(screen.getByRole("textbox"), "test"));
   const sendButton = screen.getByRole("button");
   await act(() => userEvent.click(sendButton));
   expect(consoleErrorSpy).toBeCalledTimes(1);
@@ -156,6 +169,7 @@ it("executes custom handleError if provided", async () => {
   });
   const customHandleError = jest.fn();
   render(<ChatInput handleError={customHandleError} />);
+  await act(() => userEvent.type(screen.getByRole("textbox"), "test"));
   const sendButton = screen.getByRole("button");
   await act(() => userEvent.click(sendButton));
   expect(customHandleError).toBeCalledTimes(1);

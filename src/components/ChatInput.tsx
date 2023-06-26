@@ -124,7 +124,7 @@ export function ChatInput({
       />
       <button
         aria-label="Send Message"
-        disabled={!canSendMessage}
+        disabled={!canSendMessage || input.length === 0}
         onClick={sendMessage}
         className={cssClasses.sendButton}
       >
