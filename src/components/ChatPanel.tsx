@@ -33,7 +33,7 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
     inputContainer: "w-full absolute bottom-0 p-4 backdrop-blur-lg",
     messageBubbleCssClasses: {
       topContainer: "first:mt-4",
-    }
+    },
   }
 );
 
