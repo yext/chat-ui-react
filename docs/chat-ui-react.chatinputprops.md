@@ -21,5 +21,5 @@ export interface ChatInputProps
 |  [inputAutoFocus?](./chat-ui-react.chatinputprops.inputautofocus.md) |  | boolean | _(Optional)_ Enable auto focus for the input box. Defaults to false. |
 |  [placeholder?](./chat-ui-react.chatinputprops.placeholder.md) |  | string | _(Optional)_ The input's placeholder text when no text has been entered by the user. Defaults to "Type a message...". |
 |  [sendButtonIcon?](./chat-ui-react.chatinputprops.sendbuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for the send button. |
-|  [stream?](./chat-ui-react.chatinputprops.stream.md) |  | boolean | _(Optional)_ Enable streaming behavior by making a request to Chat Streaming API. Defaults to true. |
+|  [stream?](./chat-ui-react.chatinputprops.stream.md) |  | boolean | _(Optional)_ Enable streaming behavior by making a request to Chat Streaming API. This feature is experimental, and is subject to change. Defaults to false. |
 

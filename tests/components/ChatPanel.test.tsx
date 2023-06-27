@@ -31,21 +31,21 @@ beforeEach(() => {
 
 it("send request to get initial message on load (stream)", () => {
   const actions = spyOnActions();
-  render(<ChatPanel />);
+  render(<ChatPanel stream={true}/>);
   expect(actions.streamNextMessage).toBeCalledTimes(1);
   expect(actions.streamNextMessage).toBeCalledWith();
 });
 
 it("send request to get initial message on load (non-stream)", () => {
   const actions = spyOnActions();
-  render(<ChatPanel stream={false} />);
+  render(<ChatPanel />);
   expect(actions.getNextMessage).toBeCalledTimes(1);
   expect(actions.getNextMessage).toBeCalledWith();
 });
 
 it("logs request error and add an error message to state by default", async () => {
   mockChatActions({
-    streamNextMessage: jest.fn(() => Promise.reject("API Error")),
+    getNextMessage: jest.fn(() => Promise.reject("API Error")),
     addMessage: jest.fn(),
   });
   const chatActionsSpy = spyOnActions();
@@ -62,7 +62,7 @@ it("logs request error and add an error message to state by default", async () =
 
 it("executes custom handleError if provided", async () => {
   mockChatActions({
-    streamNextMessage: jest.fn(() => Promise.reject("API Error")),
+    getNextMessage: jest.fn(() => Promise.reject("API Error")),
   });
   const customHandleError = jest.fn();
   render(<ChatPanel handleError={customHandleError} />);
@@ -79,7 +79,7 @@ it("doesn't send request to get initial message when there are existing messages
   });
   const actions = spyOnActions();
   render(<ChatPanel />);
-  expect(actions.streamNextMessage).toBeCalledTimes(0);
+  expect(actions.getNextMessage).toBeCalledTimes(0);
 });
 
 it("renders loading dots when loading status is true", () => {

@@ -4,7 +4,7 @@
 
 ## ChatInputProps.stream property
 
-Enable streaming behavior by making a request to Chat Streaming API. Defaults to true.
+Enable streaming behavior by making a request to Chat Streaming API. This feature is experimental, and is subject to change. Defaults to false.
 
 **Signature:**
 
