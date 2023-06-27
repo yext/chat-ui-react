@@ -41,7 +41,8 @@ export interface ChatInputProps {
   placeholder?: string;
   /**
    * Enable streaming behavior by making a request to Chat Streaming API.
-   * Defaults to true.
+   * This feature is experimental, and is subject to change.
+   * Defaults to false.
    */
   stream?: boolean;
   /** Enable auto focus for the input box. Defaults to false. */
@@ -70,7 +71,7 @@ export interface ChatInputProps {
  */
 export function ChatInput({
   placeholder = "Type a message...",
-  stream = true,
+  stream = false,
   inputAutoFocus = false,
   handleError,
   sendButtonIcon = <ArrowIcon />,

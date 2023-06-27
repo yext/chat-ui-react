@@ -78,7 +78,7 @@ export function ChatPanel(props: ChatPanelProps) {
     if (messages.length !== 0 || !canSendMessage) {
       return;
     }
-    const { stream = true, handleError } = props;
+    const { stream = false, handleError } = props;
     const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
   }, [chat, props, messages, defaultHandleApiError, canSendMessage]);

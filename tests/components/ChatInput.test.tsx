@@ -58,7 +58,7 @@ it("sends request and reset input when click on send button", async () => {
   const sendButton = screen.getByRole("button");
   await act(() => userEvent.click(sendButton));
 
-  expect(actions.streamNextMessage).toBeCalledTimes(1);
+  expect(actions.getNextMessage).toBeCalledTimes(1);
   expect(textbox).toHaveDisplayValue("");
 });
 
@@ -69,7 +69,7 @@ it("sends request when hit enter in textarea", async () => {
   const textbox = screen.getByRole("textbox");
   await act(() => userEvent.type(textbox, "test"));
   await act(() => userEvent.keyboard("{Enter}"));
-  expect(actions.streamNextMessage).toBeCalledTimes(1);
+  expect(actions.getNextMessage).toBeCalledTimes(1);
   expect(textbox).toHaveDisplayValue("");
 });
 
@@ -85,7 +85,7 @@ it("does not send request when hit enter in textarea while canSendMessage is fal
   const textbox = screen.getByRole("textbox");
   await act(() => userEvent.type(textbox, "test"));
   await act(() => userEvent.keyboard("{Enter}"));
-  expect(actions.streamNextMessage).toBeCalledTimes(0);
+  expect(actions.getNextMessage).toBeCalledTimes(0);
   expect(textbox).toHaveDisplayValue("test");
 });
 
@@ -96,7 +96,7 @@ it("adds new line hit shift + enter in textarea", async () => {
   const textbox = screen.getByRole("textbox");
   await act(() => userEvent.type(textbox, "test"));
   await act(() => userEvent.keyboard("{Shift>}{Enter}{/Shift}"));
-  expect(actions.streamNextMessage).toBeCalledTimes(0);
+  expect(actions.getNextMessage).toBeCalledTimes(0);
   expect(textbox).toHaveDisplayValue("test\n");
 });
 
@@ -120,8 +120,8 @@ it("disables send button when input is empty", () => {
   expect(screen.getByRole("button")).toBeDisabled();
 });
 
-it("enables stream behavior by default", async () => {
-  render(<ChatInput />);
+it("enables stream behavior when stream prop is true", async () => {
+  render(<ChatInput stream={true} />);
   const actions = spyOnActions();
 
   await act(() => userEvent.type(screen.getByRole("textbox"), "test"));
@@ -131,8 +131,8 @@ it("enables stream behavior by default", async () => {
   expect(actions.getNextMessage).toBeCalledTimes(0);
 });
 
-it("disables stream behavior when stream prop is false", async () => {
-  render(<ChatInput stream={false} />);
+it("disables stream behavior by default", async () => {
+  render(<ChatInput />);
   const actions = spyOnActions();
 
   await act(() => userEvent.type(screen.getByRole("textbox"), "test"));
@@ -149,7 +149,7 @@ it("logs request error and add an error message to state by default", async () =
   });
   const chatActionsSpy = spyOnActions();
   const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
-  render(<ChatInput />);
+  render(<ChatInput stream={true}/>);
   await act(() => userEvent.type(screen.getByRole("textbox"), "test"));
   const sendButton = screen.getByRole("button");
   await act(() => userEvent.click(sendButton));
@@ -165,7 +165,7 @@ it("logs request error and add an error message to state by default", async () =
 
 it("executes custom handleError if provided", async () => {
   mockChatActions({
-    streamNextMessage: jest.fn(() => Promise.reject("API Error")),
+    getNextMessage: jest.fn(() => Promise.reject("API Error")),
   });
   const customHandleError = jest.fn();
   render(<ChatInput handleError={customHandleError} />);
