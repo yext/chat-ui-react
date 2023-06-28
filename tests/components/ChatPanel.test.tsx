@@ -14,7 +14,7 @@ const dummyMessage: Message = {
   text: "Hello! This is Yext Chat!",
 };
 
-jest.mock("@yext/analytics")
+jest.mock("@yext/analytics");
 
 beforeEach(() => {
   mockChatHooks({
@@ -27,7 +27,7 @@ beforeEach(() => {
     mockedActions: {
       streamNextMessage: jest.fn(() => Promise.resolve()),
       getNextMessage: jest.fn(() => Promise.resolve()),
-      report: jest.fn()
+      report: jest.fn(),
     },
   });
 });
