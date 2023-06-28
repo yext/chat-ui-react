@@ -56,6 +56,7 @@ export function Markdown({ content, responseId, className }: MarkdownProps) {
             {...props}
             onClick={createClickHandlerFn(props.href)}
             target="_blank"
+            rel="noopener noreferrer"
             className="cursor-pointer"
           >
             {children}
