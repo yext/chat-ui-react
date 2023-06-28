@@ -31,7 +31,7 @@ beforeEach(() => {
 
 it("send request to get initial message on load (stream)", () => {
   const actions = spyOnActions();
-  render(<ChatPanel stream={true}/>);
+  render(<ChatPanel stream={true} />);
   expect(actions.streamNextMessage).toBeCalledTimes(1);
   expect(actions.streamNextMessage).toBeCalledWith();
 });

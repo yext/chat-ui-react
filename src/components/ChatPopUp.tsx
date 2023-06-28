@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ChatIcon } from "../icons/Chat";
 import { ChatPanel, ChatPanelCssClasses, ChatPanelProps } from "./ChatPanel";
 import {
@@ -9,6 +9,7 @@ import {
 import { twMerge } from "tailwind-merge";
 import { useComposedCssClasses } from "../hooks";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
+import { useChatActions } from "@yext/chat-headless-react";
 
 /**
  * The CSS class interface for the {@link ChatPopUp} component.
@@ -87,6 +88,14 @@ export function ChatPopUp(props: ChatPopUpProps) {
     onClose: customOnClose,
     title,
   } = props;
+
+  const actions = useChatActions();
+  useEffect(() => {
+    actions.report({
+      action: "CHAT_IMPRESSION",
+    });
+  }, [actions]);
+
   const [showChat, setShowChat] = useState(false);
   const onClick = useCallback(() => {
     setShowChat(!showChat);

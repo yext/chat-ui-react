@@ -3,6 +3,7 @@ import { useComposedCssClasses } from "../hooks";
 import { twMerge } from "tailwind-merge";
 import { Markdown } from "./Markdown";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
+import { FeedbackButtons, FeedbackButtonsCssClasses } from "./FeedbackButtons";
 
 /**
  * The CSS class interface for the {@link MessageBubble} component.
@@ -14,33 +15,38 @@ export interface MessageBubbleCssClasses {
   subContainer?: string;
   subContainer__bot?: string;
   subContainer__user?: string;
-  message?: string;
-  message__bot?: string;
-  message__user?: string;
+  bubble?: string;
+  bubble__bot?: string;
+  bubble__user?: string;
+  text?: string;
+  text__bot?: string;
+  text__user?: string;
   timestamp?: string;
   timestamp__bot?: string;
   timestamp__user?: string;
+  feedbackButtonsCssClasses?: FeedbackButtonsCssClasses;
 }
 
-const builtInCssClasses: MessageBubbleCssClasses = withStylelessCssClasses(
-  "MessageBubble",
-  {
+const builtInCssClasses: MessageBubbleCssClasses =
+  withStylelessCssClasses<MessageBubbleCssClasses>("MessageBubble", {
     topContainer: "w-full animate-fade-in @container",
     subContainer:
       "flex flex-col @lg:flex-row @lg:items-center @lg:gap-x-2 @lg:m-1",
     subContainer__bot: "",
     subContainer__user: "@lg:flex-row-reverse",
-    message:
-      "peer rounded-2xl text-[13px] @[480px]:text-base p-4 w-fit max-w-[80%] prose overflow-x-auto",
-    message__bot: "text-slate-900 bg-gradient-to-tr from-slate-50 to-slate-100",
-    message__user:
-      "ml-auto @lg:ml-0 text-white bg-gradient-to-tr from-blue-600 to-blue-700",
+    bubble: "relative group peer w-fit max-w-[80%] rounded-2xl p-4",
+    bubble__bot: "bg-gradient-to-tr from-slate-50 to-slate-100",
+    bubble__user:
+      "ml-auto @lg:ml-0 bg-gradient-to-tr from-blue-600 to-blue-700 text-white",
+    text: "text-[13px] @[480px]:text-base prose overflow-x-auto",
+    text__bot: "text-slate-900",
+    text__user: "text-white",
     timestamp:
       "w-fit my-0.5 ml-4 @lg:ml-0 text-slate-400 text-[10px] @[480px]:text-[13px] opacity-0 peer-hover:opacity-100 duration-200 whitespace-pre-wrap",
     timestamp__bot: "",
     timestamp__user: "ml-auto",
-  }
-);
+    feedbackButtonsCssClasses: {},
+  });
 
 /**
  * The props for the {@link MessageBubble} component.
@@ -50,6 +56,11 @@ const builtInCssClasses: MessageBubbleCssClasses = withStylelessCssClasses(
 export interface MessageBubbleProps {
   /** The message to display. */
   message: Message;
+  /**
+   * Whether to show the feedback buttons on the message bubble.
+   * Defaults to true.
+   */
+  showFeedbackButtons?: boolean;
   /**
    * Whether to show the timestamp of the message with the message bubble.
    * Defaults to true.
@@ -74,16 +85,23 @@ export interface MessageBubbleProps {
  */
 export function MessageBubble({
   message,
+  showFeedbackButtons = true,
   showTimestamp = true,
   customCssClasses,
   formatTimestamp = defaultFormatTimestamp,
 }: MessageBubbleProps) {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const messageCssClasses = twMerge(
-    cssClasses.message,
+  const bubbleCssClasses = twMerge(
+    cssClasses.bubble,
     message.source === MessageSource.USER
-      ? cssClasses.message__user
-      : cssClasses.message__bot
+      ? cssClasses.bubble__user
+      : cssClasses.bubble__bot
+  );
+  const textCssClasses = twMerge(
+    cssClasses.text,
+    message.source === MessageSource.USER
+      ? cssClasses.text__user
+      : cssClasses.text__bot
   );
   const subContainerCssClasses = twMerge(
     cssClasses.subContainer,
@@ -101,8 +119,18 @@ export function MessageBubble({
   return (
     <div className={cssClasses.topContainer}>
       <div className={subContainerCssClasses}>
-        <div className={messageCssClasses}>
-          <Markdown content={message.text} />
+        <div className={bubbleCssClasses}>
+          {showFeedbackButtons && message.source === MessageSource.BOT && (
+            <FeedbackButtons
+              customCssClasses={cssClasses.feedbackButtonsCssClasses}
+              responseId={message.responseId}
+            />
+          )}
+          <Markdown
+            content={message.text}
+            responseId={message.responseId}
+            className={textCssClasses}
+          />
         </div>
         {/* fallback on empty space here to perserve the height for timestamp div */}
         {showTimestamp && (

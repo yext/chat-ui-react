@@ -19,5 +19,6 @@ export interface MessageBubbleProps
 |  [customCssClasses?](./chat-ui-react.messagebubbleprops.customcssclasses.md) |  | [MessageBubbleCssClasses](./chat-ui-react.messagebubblecssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 |  [formatTimestamp?](./chat-ui-react.messagebubbleprops.formattimestamp.md) |  | (timestamp: string) =&gt; string | _(Optional)_ A function which is called to format the message's timestamp given in ISO format (e.g. "2023-05-18T19:33:34.553Z"). Defaults to "HH:MM A" (e.g. "7:33 PM"). |
 |  [message](./chat-ui-react.messagebubbleprops.message.md) |  | Message | The message to display. |
+|  [showFeedbackButtons?](./chat-ui-react.messagebubbleprops.showfeedbackbuttons.md) |  | boolean | _(Optional)_ Whether to show the feedback buttons on the message bubble. Defaults to true. |
 |  [showTimestamp?](./chat-ui-react.messagebubbleprops.showtimestamp.md) |  | boolean | _(Optional)_ Whether to show the timestamp of the message with the message bubble. Defaults to true. |
 
