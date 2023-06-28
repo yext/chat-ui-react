@@ -118,8 +118,6 @@ export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" 
     openPanelButtonIcon?: JSX.Element;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: The package "@yext/chat-ui-react" does not have an export "FeedbackButtons"
-//
 // @public
 export interface FeedbackButtonsCssClasses {
     // (undocumented)

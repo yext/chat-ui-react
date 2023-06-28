@@ -4,7 +4,7 @@
 
 ## FeedbackButtonsCssClasses interface
 
-The CSS class interface for the  component.
+The CSS class interface for the FeedbackButtons component.
 
 **Signature:**
 

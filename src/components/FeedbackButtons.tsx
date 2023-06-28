@@ -8,7 +8,7 @@ import { useComposedCssClasses } from "../hooks";
 import { useChatActions } from "@yext/chat-headless-react";
 
 /**
- * The CSS class interface for the {@link FeedbackButtons} component.
+ * The CSS class interface for the FeedbackButtons component.
  *
  * @public
  */
@@ -29,11 +29,11 @@ const builtInCssClasses: FeedbackButtonsCssClasses =
     thumbsUpButton:
       "w-6 h-6 bg-gray-700 rounded-md flex justify-center items-center",
     thumbsUpIcon: "text-white w-[22px] h-[22px] stroke-[0.2]",
-    thumbsUpFillIcon: "text-gray-700 w-[22px] h-[22px] stroke-[0.2]",
+    thumbsUpFillIcon: "text-white w-[22px] h-[22px] stroke-[0.2]",
     thumbsDownButton:
       "w-6 h-6 bg-gray-700 rounded-md flex justify-center items-center",
     thumbsDownIcon: "text-white w-[22px] h-[22px] stroke-[0.2]",
-    thumbsDownFillIcon: "text-gray-700 w-[22px] h-[22px] stroke-[0.2]",
+    thumbsDownFillIcon: "text-white w-[22px] h-[22px] stroke-[0.2]",
   });
 
 /**
