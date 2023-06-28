@@ -10,6 +10,8 @@ export type {
   MessageBubbleProps,
 } from "./MessageBubble";
 
+export type { FeedbackButtonsCssClasses } from "./FeedbackButtons";
+
 export { ChatPanel } from "./ChatPanel";
 export type { ChatPanelCssClasses, ChatPanelProps } from "./ChatPanel";
 

@@ -17,7 +17,7 @@ export function withStylelessCssClasses<
   ClassInterface extends Partial<Record<keyof ClassInterface, string | object>>
 >(
   componentName: string,
-  builtInClasses: Readonly<ClassInterface>
+  builtInClasses: Readonly<Required<ClassInterface>>
 ): ClassInterface {
   const formatString = (str: string) =>
     str.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);

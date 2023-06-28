@@ -88,3 +88,41 @@ it("merges nested classes", () => {
     },
   });
 });
+
+it("takes custom classes with builtin is an empty object", () => {
+  const builtInCssClasses = {
+    container: {},
+  };
+  const customClasses = {
+    container: {
+      button: "p-0",
+    },
+  };
+  const { result } = renderHook(() =>
+    useComposedCssClasses(builtInCssClasses, customClasses)
+  );
+  expect(result.current).toEqual({
+    container: {
+      button: "p-0",
+    },
+  });
+});
+
+it("takes builtin classes with custom is an empty object", () => {
+  const customClasses = {
+    container: {},
+  };
+  const builtInCssClasses = {
+    container: {
+      button: "p-0",
+    },
+  };
+  const { result } = renderHook(() =>
+    useComposedCssClasses(builtInCssClasses, customClasses)
+  );
+  expect(result.current).toEqual({
+    container: {
+      button: "p-0",
+    },
+  });
+});

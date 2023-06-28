@@ -119,22 +119,48 @@ export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" 
 }
 
 // @public
-export function MessageBubble({ message, showTimestamp, customCssClasses, formatTimestamp, }: MessageBubbleProps): JSX_2.Element;
+export interface FeedbackButtonsCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    thumbsDownButton?: string;
+    // (undocumented)
+    thumbsDownFillIcon?: string;
+    // (undocumented)
+    thumbsDownIcon?: string;
+    // (undocumented)
+    thumbsUpButton?: string;
+    // (undocumented)
+    thumbsUpFillIcon?: string;
+    // (undocumented)
+    thumbsUpIcon?: string;
+}
+
+// @public
+export function MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, }: MessageBubbleProps): JSX_2.Element;
 
 // @public
 export interface MessageBubbleCssClasses {
     // (undocumented)
-    message?: string;
+    bubble?: string;
     // (undocumented)
-    message__bot?: string;
+    bubble__bot?: string;
     // (undocumented)
-    message__user?: string;
+    bubble__user?: string;
+    // (undocumented)
+    feedbackButtonsCssClasses?: FeedbackButtonsCssClasses;
     // (undocumented)
     subContainer?: string;
     // (undocumented)
     subContainer__bot?: string;
     // (undocumented)
     subContainer__user?: string;
+    // (undocumented)
+    text?: string;
+    // (undocumented)
+    text__bot?: string;
+    // (undocumented)
+    text__user?: string;
     // (undocumented)
     timestamp?: string;
     // (undocumented)
@@ -150,6 +176,7 @@ export interface MessageBubbleProps {
     customCssClasses?: MessageBubbleCssClasses;
     formatTimestamp?: (timestamp: string) => string;
     message: Message;
+    showFeedbackButtons?: boolean;
     showTimestamp?: boolean;
 }
 

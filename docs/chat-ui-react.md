@@ -12,7 +12,7 @@
 |  [ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, })](./chat-ui-react.chatinput.md) | A component that allows user to input message and send to Chat API. |
 |  [ChatPanel(props)](./chat-ui-react.chatpanel.md) | A component that renders a full panel for chat bot interactions. This includes the message bubbles for the conversation, input box with send button, and header (if provided). |
 |  [ChatPopUp(props)](./chat-ui-react.chatpopup.md) | A component that renders a popup button that displays and hides a panel for chat bot interactions. |
-|  [MessageBubble({ message, showTimestamp, customCssClasses, formatTimestamp, })](./chat-ui-react.messagebubble.md) | A component that displays the provided message. |
+|  [MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, })](./chat-ui-react.messagebubble.md) | A component that displays the provided message. |
 |  [useComposedCssClasses(builtInClasses, customClasses)](./chat-ui-react.usecomposedcssclasses.md) | useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes. |
 
 ## Interfaces
@@ -27,6 +27,7 @@
 |  [ChatPanelProps](./chat-ui-react.chatpanelprops.md) | The props for the [ChatPanel()](./chat-ui-react.chatpanel.md) component. |
 |  [ChatPopUpCssClasses](./chat-ui-react.chatpopupcssclasses.md) | The CSS class interface for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component. |
 |  [ChatPopUpProps](./chat-ui-react.chatpopupprops.md) | The props for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component. |
+|  [FeedbackButtonsCssClasses](./chat-ui-react.feedbackbuttonscssclasses.md) | The CSS class interface for the FeedbackButtons component. |
 |  [MessageBubbleCssClasses](./chat-ui-react.messagebubblecssclasses.md) | The CSS class interface for the [MessageBubble()](./chat-ui-react.messagebubble.md) component. |
 |  [MessageBubbleProps](./chat-ui-react.messagebubbleprops.md) | The props for the [MessageBubble()](./chat-ui-react.messagebubble.md) component. |
 

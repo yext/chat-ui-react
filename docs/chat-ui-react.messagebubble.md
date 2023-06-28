@@ -9,14 +9,14 @@ A component that displays the provided message.
 **Signature:**
 
 ```typescript
-export declare function MessageBubble({ message, showTimestamp, customCssClasses, formatTimestamp, }: MessageBubbleProps): import("react/jsx-runtime").JSX.Element;
+export declare function MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, }: MessageBubbleProps): import("react/jsx-runtime").JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { message, showTimestamp, customCssClasses, formatTimestamp, } | [MessageBubbleProps](./chat-ui-react.messagebubbleprops.md) |  |
+|  { message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, } | [MessageBubbleProps](./chat-ui-react.messagebubbleprops.md) |  |
 
 **Returns:**
 

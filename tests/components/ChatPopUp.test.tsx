@@ -5,6 +5,17 @@ import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ChatPopUp } from "../../src";
 import { ChatHeadlessProvider } from "@yext/chat-headless-react";
+import { mockChatActions } from "../__utils__/mocks";
+
+jest.mock("@yext/analytics");
+
+beforeEach(() => {
+  mockChatActions({
+    getNextMessage: jest.fn(() => Promise.resolve()),
+    streamNextMessage: jest.fn(() => Promise.resolve()),
+    report: jest.fn(),
+  });
+});
 
 it("toggles display and hide css classes when click on popup button", async () => {
   render(

@@ -149,7 +149,7 @@ it("logs request error and add an error message to state by default", async () =
   });
   const chatActionsSpy = spyOnActions();
   const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
-  render(<ChatInput stream={true}/>);
+  render(<ChatInput stream={true} />);
   await act(() => userEvent.type(screen.getByRole("textbox"), "test"));
   const sendButton = screen.getByRole("button");
   await act(() => userEvent.click(sendButton));

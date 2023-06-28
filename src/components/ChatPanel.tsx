@@ -73,6 +73,12 @@ export function ChatPanel(props: ChatPanelProps) {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const defaultHandleApiError = useDefaultHandleApiError();
 
+  useEffect(() => {
+    chat.report({
+      action: "CHAT_IMPRESSION",
+    });
+  }, [chat]);
+
   // Fetch the first message on load, if there are no existing messages or a request being processed
   useEffect(() => {
     if (messages.length !== 0 || !canSendMessage) {

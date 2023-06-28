@@ -16,12 +16,16 @@ export interface MessageBubbleCssClasses
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [message\_\_bot?](./chat-ui-react.messagebubblecssclasses.message__bot.md) |  | string | _(Optional)_ |
-|  [message\_\_user?](./chat-ui-react.messagebubblecssclasses.message__user.md) |  | string | _(Optional)_ |
-|  [message?](./chat-ui-react.messagebubblecssclasses.message.md) |  | string | _(Optional)_ |
+|  [bubble\_\_bot?](./chat-ui-react.messagebubblecssclasses.bubble__bot.md) |  | string | _(Optional)_ |
+|  [bubble\_\_user?](./chat-ui-react.messagebubblecssclasses.bubble__user.md) |  | string | _(Optional)_ |
+|  [bubble?](./chat-ui-react.messagebubblecssclasses.bubble.md) |  | string | _(Optional)_ |
+|  [feedbackButtonsCssClasses?](./chat-ui-react.messagebubblecssclasses.feedbackbuttonscssclasses.md) |  | [FeedbackButtonsCssClasses](./chat-ui-react.feedbackbuttonscssclasses.md) | _(Optional)_ |
 |  [subContainer\_\_bot?](./chat-ui-react.messagebubblecssclasses.subcontainer__bot.md) |  | string | _(Optional)_ |
 |  [subContainer\_\_user?](./chat-ui-react.messagebubblecssclasses.subcontainer__user.md) |  | string | _(Optional)_ |
 |  [subContainer?](./chat-ui-react.messagebubblecssclasses.subcontainer.md) |  | string | _(Optional)_ |
+|  [text\_\_bot?](./chat-ui-react.messagebubblecssclasses.text__bot.md) |  | string | _(Optional)_ |
+|  [text\_\_user?](./chat-ui-react.messagebubblecssclasses.text__user.md) |  | string | _(Optional)_ |
+|  [text?](./chat-ui-react.messagebubblecssclasses.text.md) |  | string | _(Optional)_ |
 |  [timestamp\_\_bot?](./chat-ui-react.messagebubblecssclasses.timestamp__bot.md) |  | string | _(Optional)_ |
 |  [timestamp\_\_user?](./chat-ui-react.messagebubblecssclasses.timestamp__user.md) |  | string | _(Optional)_ |
 |  [timestamp?](./chat-ui-react.messagebubblecssclasses.timestamp.md) |  | string | _(Optional)_ |
