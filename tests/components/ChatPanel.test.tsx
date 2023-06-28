@@ -14,6 +14,8 @@ const dummyMessage: Message = {
   text: "Hello! This is Yext Chat!",
 };
 
+jest.mock("@yext/analytics")
+
 beforeEach(() => {
   mockChatHooks({
     mockedState: {
@@ -25,6 +27,7 @@ beforeEach(() => {
     mockedActions: {
       streamNextMessage: jest.fn(() => Promise.resolve()),
       getNextMessage: jest.fn(() => Promise.resolve()),
+      report: jest.fn()
     },
   });
 });
@@ -47,6 +50,7 @@ it("logs request error and add an error message to state by default", async () =
   mockChatActions({
     getNextMessage: jest.fn(() => Promise.reject("API Error")),
     addMessage: jest.fn(),
+    report: jest.fn(),
   });
   const chatActionsSpy = spyOnActions();
   const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
@@ -63,6 +67,7 @@ it("logs request error and add an error message to state by default", async () =
 it("executes custom handleError if provided", async () => {
   mockChatActions({
     getNextMessage: jest.fn(() => Promise.reject("API Error")),
+    report: jest.fn(),
   });
   const customHandleError = jest.fn();
   render(<ChatPanel handleError={customHandleError} />);
