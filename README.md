@@ -47,11 +47,19 @@ To use the Component Library's Styling without adding Tailwind to your project, 
 import "@yext/chat-ui-react/bundle.css";
 ```
 
-To have tailwind preflight disabled, import the following css bundle instead:
+Then, add classname `yext-chat` to the HTML element that contains Chat components:
 
 ```tsx
-import "@yext/chat-ui-react/bundle-no-resets.css";
+<div className="yext-chat">
+  <ChatHeadlessProvider config={config}>
+      <ChatPanel />
+    </ChatHeadlessProvider>
+</div>
 ```
+
+The styling in the bundle is scoped to elements with classname `yext-chat` and its children.
+This is to prevent Chat component library's styling, which includes tailwind preflight, from
+affecting user's existing styling outside of Chat components.
 
 ### custom styling
 
