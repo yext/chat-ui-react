@@ -5,9 +5,15 @@ import {
 } from "@yext/chat-headless-react";
 
 const config: HeadlessConfig = {
-  botId: "tripp-bot",
-  apiKey: process.env.REACT_APP_BOT_API_KEY || "",
-  apiDomain: "liveapi-dev.yext.com",
+  botId: process.env.REACT_APP_TEST_BOT_ID || "BOT_ID_HERE",
+  apiKey: process.env.REACT_APP_BOT_API_KEY || "BOT_KEY_HERE",
+  endpoints: {
+    chat: `https://liveapi-dev.yext.com/v2/accounts/me/chat/${process.env.REACT_APP_TEST_BOT_ID}/message`,
+    chatStream: `https://liveapi-dev.yext.com/v2/accounts/me/chat/${process.env.REACT_APP_TEST_BOT_ID}/message/streaming`,
+  },
+  analyticsConfig: {
+    endpoint: "https://www.dev.us.yextevents.com/accounts/me/events",
+  },
 };
 
 function App() {
