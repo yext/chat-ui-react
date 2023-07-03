@@ -6,7 +6,8 @@ npm run tailwindcss -- -o bundle.css --minify -c tailwind.config.js
 # scope styling to class name "yext-chat"
 WRAPPER_CLASSNAME="yext-chat"
 CSS_BUNDLE=$(cat bundle.css)
-echo ".${WRAPPER_CLASSNAME} { ${CSS_BUNDLE} }" > bundle.css
+CUSTOM_CSS="width: 100%; height: 100%;"
+echo ".${WRAPPER_CLASSNAME} { ${CUSTOM_CSS} ${CSS_BUNDLE} }" > bundle.css
 
 # unwrap nesting to follow native css format
 npm run postcss -- bundle.css -o bundle.css
