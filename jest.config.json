@@ -11,5 +11,8 @@
   "restoreMocks": true,
   "clearMocks": true,
   "testMatch": ["<rootDir>/tests/**/*.(test).ts(x)?"],
+  "moduleNameMapper": {
+    "\\.(css|scss|less)$": "<rootDir>/tests/__utils__/style-mock.ts"
+  },
   "setupFilesAfterEnv": ["<rootDir>/tests/__setup__/setup.js"]
 }

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@yext/chat-headless-react": "^0.3.1",
+    "@yext/chat-headless-react": "file:../node_modules/@yext/chat-headless-react",
     "@yext/chat-ui-react": "file:..",
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
