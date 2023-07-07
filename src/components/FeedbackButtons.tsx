@@ -5,7 +5,7 @@ import { ThumbsUpFillIcon } from "../icons/ThumbsUpFill";
 import { ThumbsDownFillIcon } from "../icons/ThumbsDownFill";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 import { useComposedCssClasses } from "../hooks";
-import { useChatActions } from "@yext/chat-headless-react";
+import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 
 /**
  * The CSS class interface for the FeedbackButtons component.
@@ -58,30 +58,30 @@ export function FeedbackButtons({
   customCssClasses,
   responseId,
 }: FeedbackButtonsProps) {
-  const actions = useChatActions();
+  const reportAnalyticsEvent = useReportAnalyticsEvent();
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const [selectedThumb, setSelectedThumb] = useState<
     "UP" | "DOWN" | undefined
   >();
   const onClickThumbsUp = useCallback(() => {
     setSelectedThumb("UP");
-    actions.report({
+    reportAnalyticsEvent({
       action: "THUMBS_UP",
       chat: {
         responseId,
       },
     });
-  }, [actions, responseId]);
+  }, [reportAnalyticsEvent, responseId]);
 
   const onClickThumbsDown = useCallback(() => {
     setSelectedThumb("DOWN");
-    actions.report({
+    reportAnalyticsEvent({
       action: "THUMBS_DOWN",
       chat: {
         responseId,
       },
     });
-  }, [actions, responseId]);
+  }, [reportAnalyticsEvent, responseId]);
 
   return (
     <div className={cssClasses.container}>

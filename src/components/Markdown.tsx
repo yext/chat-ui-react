@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import { useMemo } from "react";
-import { useChatActions } from "@yext/chat-headless-react";
+import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 
 // The Remark and Rehype plugins to use in conjunction with ReactMarkdown.
 const unifiedPlugins: { remark?: PluggableList; rehype: PluggableList } = {
@@ -38,10 +38,11 @@ interface MarkdownProps {
  * @internal
  */
 export function Markdown({ content, responseId, className }: MarkdownProps) {
-  const action = useChatActions();
+  const reportAnalyticsEvent = useReportAnalyticsEvent();
+
   const components: ReactMarkdownOptions["components"] = useMemo(() => {
     const createClickHandlerFn = (href?: string) => () => {
-      action.report({
+      reportAnalyticsEvent({
         action: "CHAT_LINK_CLICK",
         destinationUrl: href,
         chat: {
@@ -64,7 +65,7 @@ export function Markdown({ content, responseId, className }: MarkdownProps) {
         );
       },
     };
-  }, [action, responseId]);
+  }, [reportAnalyticsEvent, responseId]);
 
   return (
     <ReactMarkdown

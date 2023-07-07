@@ -10,6 +10,7 @@ import { LoadingDots } from "./LoadingDots";
 import { useComposedCssClasses } from "../hooks";
 import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
+import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 
 /**
  * The CSS class interface for the {@link ChatPanel} component.
@@ -72,12 +73,13 @@ export function ChatPanel(props: ChatPanelProps) {
   );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const defaultHandleApiError = useDefaultHandleApiError();
+  const reportAnalyticsEvent = useReportAnalyticsEvent();
 
   useEffect(() => {
-    chat.report({
+    reportAnalyticsEvent({
       action: "CHAT_IMPRESSION",
     });
-  }, [chat]);
+  }, [reportAnalyticsEvent]);
 
   // Fetch the first message on load, if there are no existing messages or a request being processed
   useEffect(() => {
