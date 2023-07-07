@@ -9,7 +9,7 @@ import {
 import { twMerge } from "tailwind-merge";
 import { useComposedCssClasses } from "../hooks";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
-import { useChatActions } from "@yext/chat-headless-react";
+import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 
 /**
  * The CSS class interface for the {@link ChatPopUp} component.
@@ -88,13 +88,13 @@ export function ChatPopUp(props: ChatPopUpProps) {
     onClose: customOnClose,
     title,
   } = props;
+  const reportAnalyticsEvent = useReportAnalyticsEvent();
 
-  const actions = useChatActions();
   useEffect(() => {
-    actions.report({
+    reportAnalyticsEvent({
       action: "CHAT_IMPRESSION",
     });
-  }, [actions]);
+  }, [reportAnalyticsEvent]);
 
   const [showChat, setShowChat] = useState(false);
   const onClick = useCallback(() => {

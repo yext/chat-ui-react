@@ -33,7 +33,13 @@ export function mockChatActions(
 ): jest.SpyInstance<typeof useChatActions, unknown[]> {
   return jest
     .spyOn(require("@yext/chat-headless-react"), "useChatActions")
-    .mockImplementation(() => customActions as ChatHeadless);
+    .mockImplementation(
+      () =>
+        ({
+          addClientSdk: jest.fn(), //auto-mock internal function
+          ...customActions,
+        } as ChatHeadless)
+    );
 }
 
 export function mockChatState(
