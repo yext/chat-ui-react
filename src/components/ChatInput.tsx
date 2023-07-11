@@ -98,12 +98,12 @@ export function ChatInput({
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
       if (!e.shiftKey && e.key === "Enter") {
         e.preventDefault();
-        if (canSendMessage) {
+        if (canSendMessage && input.length !== 0) {
           sendMessage();
         }
       }
     },
-    [sendMessage, canSendMessage]
+    [sendMessage, canSendMessage, input.length]
   );
 
   const onInputChange = useCallback(
