@@ -78,6 +78,8 @@ export interface ChatPanelCssClasses {
     messageBubbleCssClasses?: MessageBubbleCssClasses;
     // (undocumented)
     messagesContainer?: string;
+    // (undocumented)
+    messagesScrollContainer?: string;
 }
 
 // @public

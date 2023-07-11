@@ -20,6 +20,7 @@ import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 export interface ChatPanelCssClasses {
   container?: string;
   messagesContainer?: string;
+  messagesScrollContainer?: string;
   inputContainer?: string;
   inputCssClasses?: ChatInputCssClasses;
   messageBubbleCssClasses?: MessageBubbleCssClasses;
@@ -29,8 +30,8 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
   "Panel",
   {
     container: "h-full w-full flex flex-col relative shadow-2xl bg-white",
-    messagesContainer:
-      "flex flex-col gap-y-1 mt-auto px-4 pb-[85px] overflow-auto",
+    messagesScrollContainer: "flex flex-col mt-auto px-4 overflow-hidden",
+    messagesContainer: "flex flex-col gap-y-1 pb-[85px] overflow-auto",
     inputContainer: "w-full absolute bottom-0 p-4 backdrop-blur-lg",
     messageBubbleCssClasses: {
       topContainer: "first:mt-4",
@@ -104,16 +105,18 @@ export function ChatPanel(props: ChatPanelProps) {
   return (
     <div className={cssClasses.container}>
       {header}
-      <div ref={messagesRef} className={cssClasses.messagesContainer}>
-        {messages.map((message, index) => (
-          <MessageBubble
-            {...props}
-            customCssClasses={cssClasses.messageBubbleCssClasses}
-            key={index}
-            message={message}
-          />
-        ))}
-        {loading && <LoadingDots />}
+      <div className={cssClasses.messagesScrollContainer}>
+        <div ref={messagesRef} className={cssClasses.messagesContainer}>
+          {messages.map((message, index) => (
+            <MessageBubble
+              {...props}
+              customCssClasses={cssClasses.messageBubbleCssClasses}
+              key={index}
+              message={message}
+            />
+          ))}
+          {loading && <LoadingDots />}
+        </div>
       </div>
       <div className={cssClasses.inputContainer}>
         <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
