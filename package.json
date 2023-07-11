@@ -89,7 +89,6 @@
     "react-dom": "^16.14 || ^17 || || ^18"
   },
   "dependencies": {
-    "@yext/chat-ui-react": "^0.5.3",
     "react-expanding-textarea": "^2.3.6",
     "react-markdown": "^6.0.3",
     "react-textarea-autosize": "^8.4.1",
