@@ -22,7 +22,7 @@ const builtInCssClasses: ChatInputCssClasses = withStylelessCssClasses(
   {
     container: "w-full h-fit flex flex-row relative @container",
     textArea:
-      "w-full p-4 pr-12 border border-slate-300 rounded-3xl resize-none text-[13px] @[480px]:text-base",
+      "w-full p-4 pr-12 border border-slate-300 rounded-3xl resize-none text-[13px] @[480px]:text-base text-slate-900",
     sendButton:
       "rounded-full p-1.5 w-8 h-8 stroke-2 text-white bg-blue-600 disabled:bg-slate-200 hover:bg-blue-800 active:scale-90 transition-all absolute right-4 bottom-2.5 @[480px]:bottom-3.5",
   }
