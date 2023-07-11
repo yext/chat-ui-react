@@ -89,6 +89,22 @@ it("does not send request when hit enter in textarea while canSendMessage is fal
   expect(textbox).toHaveDisplayValue("test");
 });
 
+it("does not send request when hit enter in textarea while input is empty", async () => {
+  mockChatState({
+    conversation: {
+      canSendMessage: true,
+    },
+  });
+  render(<ChatInput />);
+  const actions = spyOnActions();
+
+  const textbox = screen.getByRole("textbox");
+  await act(() => userEvent.keyboard("{Enter}"));
+  expect(actions.getNextMessage).toBeCalledTimes(0);
+  expect(textbox).toHaveDisplayValue("");
+});
+
+
 it("adds new line hit shift + enter in textarea", async () => {
   render(<ChatInput />);
   const actions = spyOnActions();
