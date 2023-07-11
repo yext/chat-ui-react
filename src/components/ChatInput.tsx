@@ -98,12 +98,12 @@ export function ChatInput({
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
       if (!e.shiftKey && e.key === "Enter") {
         e.preventDefault();
-        if (canSendMessage && input.length !== 0) {
+        if (canSendMessage && input.trim().length !== 0) {
           sendMessage();
         }
       }
     },
-    [sendMessage, canSendMessage, input.length]
+    [sendMessage, canSendMessage, input]
   );
 
   const onInputChange = useCallback(
@@ -125,7 +125,7 @@ export function ChatInput({
       />
       <button
         aria-label="Send Message"
-        disabled={!canSendMessage || input.length === 0}
+        disabled={!canSendMessage || input.trim().length === 0}
         onClick={sendMessage}
         className={cssClasses.sendButton}
       >
