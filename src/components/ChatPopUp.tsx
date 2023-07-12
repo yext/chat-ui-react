@@ -52,7 +52,7 @@ const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
     panelCssClasses: {
       container: "max-[480px]:rounded-none rounded-3xl",
       inputContainer: "max-[480px]:rounded-none rounded-b-3xl",
-      messagesScrollContainer: "rounded-b-3xl"
+      messagesScrollContainer: "rounded-b-3xl",
     },
   }
 );

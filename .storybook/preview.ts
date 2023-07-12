@@ -26,6 +26,9 @@ const preview: Preview = {
         rest.post(/chat\/.+\/message\/streaming/, (_req, res, ctx) => {
           return res(ctx.json(chatresponse));
         }),
+        rest.post(/accounts\/me\/events/, (_req, res, ctx) => {
+          return res(ctx.json({}));
+        }),
       ],
     },
   },

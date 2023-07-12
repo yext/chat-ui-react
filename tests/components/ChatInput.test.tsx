@@ -119,7 +119,6 @@ it("does not send request when hit enter in textarea while input is empty", asyn
   expect(textbox).toHaveDisplayValue("");
 });
 
-
 it("adds new line hit shift + enter in textarea", async () => {
   render(<ChatInput />);
   const actions = spyOnActions();
