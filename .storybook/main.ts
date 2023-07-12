@@ -16,8 +16,18 @@ const config: StorybookConfig = {
     if (!config.css) {
       config.css = {};
     }
-    //vite's postcss path default to root directory. Reconfigure to .storybook
+    // Vite's postcss path default to root directory. Reconfigure to postcss in .storybook
     config.css.postcss = "./.storybook/postcss.config.js";
+
+    if (!config.resolve) {
+      config.resolve = {};
+    }
+    // Vite failed to load css bundle @yext/chat-ui-react.
+    // Reconfigure to a mock css file since storybook directly uses tailwind anyway.
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@yext/chat-ui-react/bundle.css": "./.storybook/mocks/chat-bundle.css",
+    };
     return config;
   },
 };
