@@ -22,7 +22,7 @@ const config: StorybookConfig = {
     if (!config.resolve) {
       config.resolve = {};
     }
-    // Vite failed to load css bundle @yext/chat-ui-react (requires an initial build).
+    // Vite failed to load css bundle @yext/chat-ui-react.
     // Reconfigure to a mock css file since storybook directly uses tailwind anyway.
     config.resolve.alias = {
       ...config.resolve.alias,
