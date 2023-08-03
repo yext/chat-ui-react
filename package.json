@@ -1,6 +1,6 @@
 {
   "name": "@yext/chat-ui-react",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "A library of React Components for powering Yext Chat integrations.",
   "author": "clippy@yext.com",
   "main": "./lib/commonjs/src/index.js",
@@ -89,9 +89,8 @@
     "react-dom": "^16.14 || ^17 || || ^18"
   },
   "dependencies": {
-    "react-expanding-textarea": "^2.3.6",
     "react-markdown": "^6.0.3",
-    "react-textarea-autosize": "^8.4.1",
+    "react-textarea-autosize": "^8.5.2",
     "rehype-raw": "^5.0.0",
     "rehype-sanitize": "^4.0.0",
     "remark-gfm": "^1.0.0",

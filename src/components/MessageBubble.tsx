@@ -38,7 +38,7 @@ const builtInCssClasses: MessageBubbleCssClasses =
     bubble__bot: "bg-gradient-to-tr from-slate-50 to-slate-100",
     bubble__user:
       "ml-auto @lg:ml-0 bg-gradient-to-tr from-blue-600 to-blue-700 text-white",
-    text: "text-[13px] @[480px]:text-base prose overflow-x-auto",
+    text: "text-[13px] @[480px]:text-base prose overflow-x-auto break-words",
     text__bot: "text-slate-900",
     text__user: "text-white",
     timestamp:
