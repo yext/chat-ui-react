@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useChatActions, useChatState } from "@yext/chat-headless-react";
 import { ArrowIcon } from "../icons/Arrow";
 import { useComposedCssClasses } from "../hooks";
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from "react-textarea-autosize";
 import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 
