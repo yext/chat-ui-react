@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import "../bundle.css";
+import "@yext/chat-ui-react/bundle.css";
 
 /**
  * Adds Chat styling scoped to this component and its children.

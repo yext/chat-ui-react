@@ -18,6 +18,6 @@ sed -i '' 's/html{/{/' bundle.css
 sed -i '' 's/body{/{/' bundle.css
 
 # move bundle to lib
-cp bundle.css ./lib/esm/src/bundle.css
-cp bundle.css ./lib/commonjs/src/bundle.css
+cp bundle.css ./lib/esm/bundle.css
+cp bundle.css ./lib/commonjs/bundle.css
 mv bundle.css ./lib/bundle.css

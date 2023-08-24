@@ -12,7 +12,7 @@
       "import": "./lib/esm/src/index.js",
       "require": "./lib/commonjs/src/index.js"
     },
-    "./bundle.css": "./lib/bundle.css"
+    "./bundle.css": "./bundle.css"
   },
   "license": "BSD-3-Clause",
   "files": [
@@ -40,8 +40,8 @@
     "tailwindcss": "tailwindcss",
     "build:css": "./scoped-bundle.sh",
     "build:js": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
-    "update-package-type": "node ./update-package-type.js",
-    "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run update-package-type && npm run generate-docs && npm run generate-notices",
+    "update-lib-package": "node ./update-lib-package.js",
+    "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run update-lib-package && npm run generate-docs && npm run generate-notices",
     "build-storybook": "storybook build"
   },
   "devDependencies": {

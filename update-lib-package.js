@@ -21,6 +21,9 @@ Object.entries(packagePathToType).forEach(([packageJsonPath, type]) => {
       // Add "type: module" or "type: commonjs" to the package.json
       packageJson.type = type;
 
+      // update css bundle path to point to the css file within the esm or commonjs lib folder
+      packageJson.exports["./bundle.css"] = "./bundle.css"
+
       // Write the updated package.json back to the file
       fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8', (err) => {
         if (err) {
