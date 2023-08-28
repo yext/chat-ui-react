@@ -8,7 +8,6 @@
 
 import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { Message } from '@yext/chat-headless-react';
-import { PropsWithChildren } from 'react';
 
 // @public
 export function ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, }: ChatHeaderProps): JSX_2.Element;
@@ -120,9 +119,6 @@ export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" 
     customCssClasses?: ChatPopUpCssClasses;
     openPanelButtonIcon?: JSX.Element;
 }
-
-// @public
-export function ChatStyleProvider({ children }: PropsWithChildren): JSX_2.Element;
 
 // @public
 export interface FeedbackButtonsCssClasses {

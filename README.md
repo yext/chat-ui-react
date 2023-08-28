@@ -41,21 +41,17 @@ export default App;
 
 ### default styling
 
-By default, the component library uses Tailwind styling.
+By default, the component library uses Tailwind styling. However, for projects that
+do not use Tailwind, a css bundle is exported as part of this package. To use it, you can import
+the file `@yext/chat-ui-react/bundle.css` into your normal CSS flow.
 
-To use the Component library's styling without adding Tailwind to your project, add
-`ChatStyleProvider` as a wrapper for all Chat related components:
-
-```tsx
-<ChatStyleProvider>
-  <ChatHeadlessProvider config={config}>
-    <ChatPanel />
-  </ChatHeadlessProvider>
-</ChatStyleProvider>
+Example for Yext Pages:
+```css
+/* index.css */
+@import "@yext/chat-ui-react/bundle.css";
 ```
-
-`ChatStyleProvider` imports "@yext/chat-ui-react/bundle.css" and provides
-a parent div with classname `yext-chat`. The styling in the bundle is scoped to elements with classname `yext-chat` and its children. This is to prevent Chat component library's styling, which includes tailwind preflight, from affecting user's existing styling outside of Chat components.
+The CSS bundle is scoped to the target class `.yext-chat`, which is automatically included as a wrapper div in both
+`ChatPanel` and `ChatPopUp`.
 
 ### custom styling
 

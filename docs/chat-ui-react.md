@@ -12,7 +12,6 @@
 |  [ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, })](./chat-ui-react.chatinput.md) | A component that allows user to input message and send to Chat API. |
 |  [ChatPanel(props)](./chat-ui-react.chatpanel.md) | A component that renders a full panel for chat bot interactions. This includes the message bubbles for the conversation, input box with send button, and header (if provided). |
 |  [ChatPopUp(props)](./chat-ui-react.chatpopup.md) | A component that renders a popup button that displays and hides a panel for chat bot interactions. |
-|  [ChatStyleProvider({ children })](./chat-ui-react.chatstyleprovider.md) | Adds Chat styling scoped to this component and its children. |
 |  [MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, })](./chat-ui-react.messagebubble.md) | A component that displays the provided message. |
 |  [useComposedCssClasses(builtInClasses, customClasses)](./chat-ui-react.usecomposedcssclasses.md) | useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes. |
 

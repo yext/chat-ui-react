@@ -3,7 +3,7 @@ https://www.npmjs.com/package/generate-license-file
 
 The following npm package may be included in this product:
 
- - @babel/runtime@7.21.5
+ - @babel/runtime@7.22.11
 
 This package contains the following license and notice below:
 
@@ -64,14 +64,14 @@ SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - @types/hast@2.3.4
- - @types/mdast@3.0.11
+ - @types/hast@2.3.5
+ - @types/mdast@3.0.12
  - @types/parse5@5.0.3
  - @types/prop-types@15.7.5
- - @types/react-dom@18.2.4
- - @types/react@18.2.7
+ - @types/react-dom@18.2.7
+ - @types/react@18.2.21
  - @types/scheduler@0.16.3
- - @types/unist@2.0.6
+ - @types/unist@2.0.7
  - @types/use-sync-external-store@0.0.3
 
 These packages each contain the following license and notice below:
@@ -132,7 +132,7 @@ MIT License
 
 The following npm package may be included in this product:
 
- - @yext/analytics@0.6.2
+ - @yext/analytics@0.6.4
 
 This package contains the following license and notice below:
 
@@ -173,9 +173,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following npm packages may be included in this product:
 
- - @yext/chat-core@0.5.3
- - @yext/chat-headless-react@0.5.6
- - @yext/chat-headless@0.5.6
+ - @yext/chat-core@0.6.1
+ - @yext/chat-headless-react@0.5.10
+ - @yext/chat-headless@0.6.0
 
 These packages each contain the following license and notice below:
 
@@ -830,7 +830,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - layerr@2.0.0
+ - layerr@2.0.1
 
 This package contains the following license and notice below:
 
@@ -1115,7 +1115,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - node-fetch@2.6.12
+ - node-fetch@2.7.0
 
 This package contains the following license and notice below:
 
@@ -1299,8 +1299,8 @@ SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - react-redux@8.1.1
- - redux-thunk@2.4.2
+ - react-redux@8.1.2
+ - redux@4.2.1
 
 These packages each contain the following license and notice below:
 
@@ -1330,7 +1330,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - react-textarea-autosize@8.5.2
+ - react-textarea-autosize@8.5.3
 
 This package contains the following license and notice below:
 
@@ -1359,7 +1359,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - redux@4.2.1
+ - redux-thunk@2.4.2
 
 This package contains the following license and notice below:
 
@@ -1389,7 +1389,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - regenerator-runtime@0.13.11
+ - regenerator-runtime@0.14.0
 
 This package contains the following license and notice below:
 
@@ -1716,7 +1716,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - tailwind-merge@1.12.0
+ - tailwind-merge@1.14.0
 
 This package contains the following license and notice below:
 
@@ -1786,7 +1786,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - ulidx@2.0.0
+ - ulidx@2.1.0
 
 This package contains the following license and notice below:
 
