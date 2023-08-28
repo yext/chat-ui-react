@@ -103,23 +103,25 @@ export function ChatPanel(props: ChatPanelProps) {
   }, [messages]);
 
   return (
-    <div className={cssClasses.container}>
-      {header}
-      <div className={cssClasses.messagesScrollContainer}>
-        <div ref={messagesRef} className={cssClasses.messagesContainer}>
-          {messages.map((message, index) => (
-            <MessageBubble
-              {...props}
-              customCssClasses={cssClasses.messageBubbleCssClasses}
-              key={index}
-              message={message}
-            />
-          ))}
-          {loading && <LoadingDots />}
+    <div className="yext-chat">
+      <div className={cssClasses.container}>
+        {header}
+        <div className={cssClasses.messagesScrollContainer}>
+          <div ref={messagesRef} className={cssClasses.messagesContainer}>
+            {messages.map((message, index) => (
+              <MessageBubble
+                {...props}
+                customCssClasses={cssClasses.messageBubbleCssClasses}
+                key={index}
+                message={message}
+              />
+            ))}
+            {loading && <LoadingDots />}
+          </div>
         </div>
-      </div>
-      <div className={cssClasses.inputContainer}>
-        <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
+        <div className={cssClasses.inputContainer}>
+          <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
+        </div>
       </div>
     </div>
   );
