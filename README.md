@@ -46,10 +46,12 @@ do not use Tailwind, a css bundle is exported as part of this package. To use it
 the file `@yext/chat-ui-react/bundle.css` into your normal CSS flow.
 
 Example for Yext Pages:
+
 ```css
 /* index.css */
 @import "@yext/chat-ui-react/bundle.css";
 ```
+
 The CSS bundle is scoped to the target class `.yext-chat`, which is automatically included as a wrapper div in both
 `ChatPanel` and `ChatPopUp`.
 
