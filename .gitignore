@@ -2,8 +2,8 @@ node_modules/
 coverage/
 temp/
 dist/
-build/
 lib/
+build/
 storybook-static/
 .DS_Store
 .env

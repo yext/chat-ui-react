@@ -22,8 +22,8 @@ export default defineConfig({
       preserveModules: true,
       sourcemap: true,
       /**
-       * Follow TypeScript's esModuleInterop behavior to ensures compatibility of default,
-       * namespace, and dynamic imports from external deps (e.g. react-textarea-autosize).
+       * set to "auto" to follow TypeScript's esModuleInterop behavior to ensures compatibility
+       * of default, namespace, and dynamic imports from external deps (e.g. react-textarea-autosize).
        */
       interop: "auto"
     },
