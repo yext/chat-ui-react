@@ -21,12 +21,14 @@ export default defineConfig({
       /** preserve original module files instead of compressing all to one file */
       preserveModules: true,
       sourcemap: true,
+      interop: "auto"
     },
     {
       dir: "./lib/commonjs",
       format: "cjs",
       preserveModules: true,
       sourcemap: true,
+      interop: "auto"
     },
   ],
   plugins: [
