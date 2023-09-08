@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useChatActions, useChatState } from "@yext/chat-headless-react";
 import { ArrowIcon } from "../icons/Arrow";
 import { useComposedCssClasses } from "../hooks";
-import TextareaAutosize from "react-textarea-autosize";
+// import TextareaAutosize from "react-textarea-autosize";
 import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 
@@ -115,14 +115,14 @@ export function ChatInput({
 
   return (
     <div className={cssClasses.container}>
-      <TextareaAutosize
+      {/* <TextareaAutosize
         autoFocus={inputAutoFocus}
         onKeyDown={handleKeyDown}
         value={input}
         onChange={onInputChange}
         className={cssClasses.textArea}
         placeholder={placeholder}
-      />
+      /> */}
       <button
         aria-label="Send Message"
         disabled={!canSendMessage || input.trim().length === 0}

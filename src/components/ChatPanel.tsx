@@ -5,7 +5,7 @@ import {
   MessageBubbleCssClasses,
   MessageBubbleProps,
 } from "./MessageBubble";
-import { ChatInputCssClasses, ChatInputProps } from "./ChatInput";
+import { ChatInput, ChatInputCssClasses, ChatInputProps } from "./ChatInput";
 import { LoadingDots } from "./LoadingDots";
 import { useComposedCssClasses } from "../hooks";
 import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
@@ -121,9 +121,9 @@ export function ChatPanel(props: ChatPanelProps) {
             {loading && <LoadingDots />}
           </div>
         </div>
-        {/* <div className={cssClasses.inputContainer}>
+        <div className={cssClasses.inputContainer}>
           <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
-        </div> */}
+        </div>
       </div>
     </div>
   );
