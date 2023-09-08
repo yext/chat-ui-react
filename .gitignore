@@ -3,6 +3,7 @@ coverage/
 temp/
 dist/
 build/
+lib/
 storybook-static/
 .DS_Store
 .env
