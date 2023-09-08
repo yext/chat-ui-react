@@ -90,6 +90,8 @@ export function MessageBubble({
   customCssClasses,
   formatTimestamp = defaultFormatTimestamp,
 }: MessageBubbleProps) {
+  console.log('MessageBubble!')
+
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const bubbleCssClasses = twMerge(
     cssClasses.bubble,

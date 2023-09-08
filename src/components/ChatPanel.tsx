@@ -76,6 +76,8 @@ export function ChatPanel(props: ChatPanelProps) {
   const defaultHandleApiError = useDefaultHandleApiError();
   const reportAnalyticsEvent = useReportAnalyticsEvent();
 
+  console.log('ChatPanel!')
+
   useEffect(() => {
     reportAnalyticsEvent({
       action: "CHAT_IMPRESSION",

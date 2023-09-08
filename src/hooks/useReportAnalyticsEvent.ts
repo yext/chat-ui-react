@@ -1,7 +1,6 @@
 import { ChatHeadless, useChatActions } from "@yext/chat-headless-react";
-import packageJson from "../../package.json";
+import { version } from "../../package.json";
 import { useCallback } from "react";
-const { version } = packageJson;
 
 /**
  * Returns a function to send requests to Yext Analytics API.
