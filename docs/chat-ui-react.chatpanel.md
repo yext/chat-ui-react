@@ -9,7 +9,7 @@ A component that renders a full panel for chat bot interactions. This includes t
 **Signature:**
 
 ```typescript
-export declare function ChatPanel(props: ChatPanelProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatPanel(props: ChatPanelProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function ChatPanel(props: ChatPanelProps): import("react/jsx-runt
 
 **Returns:**
 
-import("react/jsx-runtime").JSX.Element
+React.JSX.Element
 

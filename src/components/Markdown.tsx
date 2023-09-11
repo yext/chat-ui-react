@@ -5,7 +5,7 @@ import ReactMarkdown, {
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 
 // The Remark and Rehype plugins to use in conjunction with ReactMarkdown.

@@ -1,3 +1,5 @@
+import React from "react";
+
 export function ChatIcon({ className }: { className?: string }): JSX.Element {
   return (
     <svg

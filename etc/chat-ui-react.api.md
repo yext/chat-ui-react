@@ -4,13 +4,11 @@
 
 ```ts
 
-/// <reference types="react" />
-
-import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { Message } from '@yext/chat-headless-react';
+import { default as React_2 } from 'react';
 
 // @public
-export function ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, }: ChatHeaderProps): JSX_2.Element;
+export function ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, }: ChatHeaderProps): React_2.JSX.Element;
 
 // @public
 export interface ChatHeaderCssClasses {
@@ -40,7 +38,7 @@ export interface ChatHeaderProps {
 }
 
 // @public
-export function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, }: ChatInputProps): JSX_2.Element;
+export function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, }: ChatInputProps): React_2.JSX.Element;
 
 // @public
 export interface ChatInputCssClasses {
@@ -63,7 +61,7 @@ export interface ChatInputProps {
 }
 
 // @public
-export function ChatPanel(props: ChatPanelProps): JSX_2.Element;
+export function ChatPanel(props: ChatPanelProps): React_2.JSX.Element;
 
 // @public
 export interface ChatPanelCssClasses {
@@ -88,7 +86,7 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
 }
 
 // @public
-export function ChatPopUp(props: ChatPopUpProps): JSX_2.Element;
+export function ChatPopUp(props: ChatPopUpProps): React_2.JSX.Element;
 
 // @public
 export interface ChatPopUpCssClasses {
@@ -139,7 +137,7 @@ export interface FeedbackButtonsCssClasses {
 }
 
 // @public
-export function MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, }: MessageBubbleProps): JSX_2.Element;
+export function MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, }: MessageBubbleProps): React_2.JSX.Element;
 
 // @public
 export interface MessageBubbleCssClasses {

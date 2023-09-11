@@ -25,14 +25,14 @@ export default defineConfig({
        * set to "auto" to follow TypeScript's esModuleInterop behavior to ensures compatibility
        * of default, namespace, and dynamic imports from external deps (e.g. react-textarea-autosize).
        */
-      interop: "auto"
+      interop: "auto",
     },
     {
       dir: "./lib/commonjs",
       format: "cjs",
       preserveModules: true,
       sourcemap: true,
-      interop: "auto"
+      interop: "auto",
     },
   ],
   plugins: [

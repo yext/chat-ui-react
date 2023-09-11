@@ -9,7 +9,7 @@ A component that allows user to input message and send to Chat API.
 **Signature:**
 
 ```typescript
-export declare function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, }: ChatInputProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, }: ChatInputProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ export declare function ChatInput({ placeholder, stream, inputAutoFocus, handleE
 
 **Returns:**
 
-import("react/jsx-runtime").JSX.Element
+React.JSX.Element
 
 ## Remarks
 
