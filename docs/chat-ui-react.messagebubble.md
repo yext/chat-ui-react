@@ -9,7 +9,7 @@ A component that displays the provided message.
 **Signature:**
 
 ```typescript
-export declare function MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, }: MessageBubbleProps): import("react/jsx-runtime").JSX.Element;
+export declare function MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, }: MessageBubbleProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function MessageBubble({ message, showFeedbackButtons, showTimest
 
 **Returns:**
 
-import("react/jsx-runtime").JSX.Element
+React.JSX.Element
 

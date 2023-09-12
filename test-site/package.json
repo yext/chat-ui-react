@@ -10,16 +10,15 @@
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
-    "@craco/craco": "^7.1.0",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
     "eslint-config-react-app": "file:../node_modules/eslint-config-react-app",
     "tailwindcss": "^3.3.2"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [

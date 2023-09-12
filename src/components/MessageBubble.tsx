@@ -1,3 +1,4 @@
+import React from "react";
 import { Message, MessageSource } from "@yext/chat-headless-react";
 import { useComposedCssClasses } from "../hooks";
 import { twMerge } from "tailwind-merge";

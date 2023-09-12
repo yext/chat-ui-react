@@ -1,15 +1,15 @@
 {
   "name": "@yext/chat-ui-react",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "A library of React Components for powering Yext Chat integrations.",
   "author": "clippy@yext.com",
   "main": "./lib/commonjs/src/index.js",
-  "module": "./lib/esm/src/index.js",
+  "module": "./lib/esm/src/index.mjs",
   "types": "./lib/esm/src/index.d.ts",
   "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./lib/esm/src/index.js",
+      "import": "./lib/esm/src/index.mjs",
       "require": "./lib/commonjs/src/index.js"
     },
     "./bundle.css": "./lib/bundle.css"
@@ -33,15 +33,14 @@
     "lint": "prettier --write . && eslint --fix --max-warnings=0 .",
     "test": "jest --config=jest.config.json",
     "storybook": "storybook dev -p 6006",
-    "dev": "tsc --watch -p tsconfig.esm.json",
+    "dev": "tsc --watch -p tsconfig.json",
     "generate-docs": "api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "postcss": "postcss",
     "tailwindcss": "tailwindcss",
     "build:css": "./scoped-bundle.sh",
-    "build:js": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
-    "update-lib-package": "node ./update-lib-package.js",
-    "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run update-lib-package && npm run generate-docs && npm run generate-notices",
+    "build:js": "rollup --config rollup.config.mjs",
+    "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run generate-docs && npm run generate-notices",
     "build-storybook": "storybook build"
   },
   "devDependencies": {
@@ -51,6 +50,7 @@
     "@babel/preset-typescript": "^7.21.5",
     "@microsoft/api-documenter": "^7.22.8",
     "@microsoft/api-extractor": "^7.35.1",
+    "@rollup/plugin-json": "^6.0.0",
     "@storybook/addon-essentials": "^7.0.18",
     "@storybook/addon-interactions": "^7.0.18",
     "@storybook/addon-links": "^7.0.18",
@@ -65,7 +65,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.5.1",
     "@types/react": "^18.2.7",
-    "@yext/chat-headless-react": "^0.5.6",
+    "@yext/chat-headless-react": "^0.6.1",
     "@yext/eslint-config": "^1.0.0",
     "babel-jest": "^29.5.0",
     "eslint": "^8.39.0",
@@ -80,12 +80,14 @@
     "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rollup": "^3.28.1",
+    "rollup-plugin-typescript2": "^0.35.0",
     "storybook": "^7.0.17",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "@yext/chat-headless-react": "^0.5.4",
+    "@yext/chat-headless-react": "^0.6.1",
     "react": "^16.14 || ^17 || ^18",
     "react-dom": "^16.14 || ^17 || || ^18"
   },

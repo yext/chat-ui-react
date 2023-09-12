@@ -9,7 +9,7 @@ A component that renders the header of a chat bot panel, including the title and
 **Signature:**
 
 ```typescript
-export declare function ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, }: ChatHeaderProps): import("react/jsx-runtime").JSX.Element;
+export declare function ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, }: ChatHeaderProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ export declare function ChatHeader({ title, showRestartButton, restartButtonIcon
 
 **Returns:**
 
-import("react/jsx-runtime").JSX.Element
+React.JSX.Element
 

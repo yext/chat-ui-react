@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useChatActions, useChatState } from "@yext/chat-headless-react";
 import { ArrowIcon } from "../icons/Arrow";
 import { useComposedCssClasses } from "../hooks";

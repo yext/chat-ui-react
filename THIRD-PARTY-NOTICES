@@ -132,7 +132,7 @@ MIT License
 
 The following npm package may be included in this product:
 
- - @yext/analytics@0.6.2
+ - @yext/analytics@0.6.4
 
 This package contains the following license and notice below:
 
@@ -173,9 +173,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following npm packages may be included in this product:
 
- - @yext/chat-core@0.5.3
- - @yext/chat-headless-react@0.5.6
- - @yext/chat-headless@0.5.6
+ - @yext/chat-core@0.7.0
+ - @yext/chat-headless-react@0.6.1
+ - @yext/chat-headless@0.7.1
 
 These packages each contain the following license and notice below:
 
@@ -830,7 +830,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - layerr@2.0.0
+ - layerr@2.0.1
 
 This package contains the following license and notice below:
 
@@ -1299,8 +1299,8 @@ SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - react-redux@8.1.1
- - redux-thunk@2.4.2
+ - react-redux@8.1.2
+ - redux@4.2.1
 
 These packages each contain the following license and notice below:
 
@@ -1359,7 +1359,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - redux@4.2.1
+ - redux-thunk@2.4.2
 
 This package contains the following license and notice below:
 
@@ -1786,7 +1786,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - ulidx@2.0.0
+ - ulidx@2.1.0
 
 This package contains the following license and notice below:
 

@@ -1,6 +1,6 @@
 import { ThumbsDownIcon } from "../icons/ThumbsDown";
 import { ThumbsUpIcon } from "../icons/ThumbsUp";
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ThumbsUpFillIcon } from "../icons/ThumbsUpFill";
 import { ThumbsDownFillIcon } from "../icons/ThumbsDownFill";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";

@@ -1,7 +1,7 @@
 import { useChatActions } from "@yext/chat-headless-react";
 import { DualSyncIcon } from "../icons/DualSync";
 import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
-import { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { CrossIcon } from "../icons/Cross";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
