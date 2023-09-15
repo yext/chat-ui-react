@@ -103,7 +103,7 @@ export function ChatPanel(props: ChatPanelProps) {
   }, [messages]);
 
   return (
-    <div className="yext-chat">
+    <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>

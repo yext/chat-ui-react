@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MessageBubble } from "../../src";
 import { Message, MessageSource } from "@yext/chat-headless-react";
+import { DummyChatHeadlessProvider } from "../__utils__/stories";
 
 const meta: Meta<typeof MessageBubble> = {
   title: "MessageBubble",
@@ -9,7 +10,9 @@ const meta: Meta<typeof MessageBubble> = {
 export default meta;
 
 const Base: StoryObj<typeof meta> = {
-  render: (args) => <MessageBubble {...args} />,
+  render: (args) => <DummyChatHeadlessProvider>
+    <MessageBubble {...args} />
+  </DummyChatHeadlessProvider>,
 };
 
 export const BotMessage: StoryObj<typeof meta> = {
@@ -38,9 +41,11 @@ export const UserMessage: StoryObj<typeof meta> = {
 
 export const MessageWithTimestamp: StoryObj<typeof meta> = {
   render: (args) => (
-    <div className="border border-gray-300 p-4 rounded-md w-96">
-      <MessageBubble {...args} />
-    </div>
+    <DummyChatHeadlessProvider>
+      <div className="border border-gray-300 p-4 rounded-md w-96">
+        <MessageBubble {...args} />
+      </div>
+    </DummyChatHeadlessProvider>
   ),
   args: {
     message: userMessage,
@@ -55,8 +60,10 @@ export const MessageWithTimestamp: StoryObj<typeof meta> = {
 export const MessageWithTimestampLargeScreen: StoryObj<typeof meta> = {
   ...MessageWithTimestamp,
   render: (args) => (
-    <div className="border border-gray-300 p-4 w-full">
-      <MessageBubble {...args} />
-    </div>
+    <DummyChatHeadlessProvider>
+      <div className="border border-gray-300 p-4 w-full">
+        <MessageBubble {...args} />
+      </div>
+    </DummyChatHeadlessProvider>
   ),
 };
