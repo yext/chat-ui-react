@@ -7,13 +7,11 @@
     ],
     "hbsTemplates": []
   },
-  "baseImageTag": "node-14",
   "dependencies": {
     "installDepsCmd": "echo $npm_config_auth && npm install",
-    "requiredFiles": [".nvmrc", "package.json", "package-lock.json"]
+    "requiredFiles": ["package.json", "package-lock.json"]
   },
   "buildArtifacts": {
-    "buildSetupCmd": "npm ci",
     "buildCmd": "npm run build-storybook"
   },
   "livePreview": {
