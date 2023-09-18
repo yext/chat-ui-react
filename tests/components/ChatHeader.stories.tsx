@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ChatHeader } from "../../src";
-import {
-  ChatHeadlessProvider,
-  HeadlessConfig,
-} from "@yext/chat-headless-react";
+import { DummyChatHeadlessProvider } from "../__utils__/stories";
 
 const meta: Meta<typeof ChatHeader> = {
   title: "Header",
@@ -11,16 +8,11 @@ const meta: Meta<typeof ChatHeader> = {
 };
 export default meta;
 
-const config: HeadlessConfig = {
-  botId: "DUMMY_BOT_ID",
-  apiKey: "DUMMY_API_KEY",
-};
-
 export const Primary: StoryObj<typeof meta> = {
   render: (args) => (
-    <ChatHeadlessProvider config={config}>
+    <DummyChatHeadlessProvider>
       <ChatHeader {...args} />
-    </ChatHeadlessProvider>
+    </DummyChatHeadlessProvider>
   ),
   args: {
     title: "Chat Header",

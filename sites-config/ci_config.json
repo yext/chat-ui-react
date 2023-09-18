@@ -1,0 +1,21 @@
+{
+  "artifactStructure": {
+    "assets": [
+      {
+        "root": "storybook-static"
+      }
+    ],
+    "hbsTemplates": []
+  },
+  "baseImageTag": "node-19",
+  "dependencies": {
+    "installDepsCmd": "echo $npm_config_auth && npm install",
+    "requiredFiles": [".nvmrc", "package.json", "package-lock.json"]
+  },
+  "buildArtifacts": {
+    "buildCmd": "npm run build-storybook"
+  },
+  "livePreview": {
+      "serveCmd": "npm run storybook -- -p 8080"
+  }
+}

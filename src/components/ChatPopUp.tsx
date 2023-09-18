@@ -118,7 +118,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
   );
 
   return (
-    <div className="yext-chat">
+    <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
         <div className={panelCssClasses} aria-label="Chat Popup Panel">
           <ChatPanel

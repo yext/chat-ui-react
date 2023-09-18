@@ -12,6 +12,10 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
+  docs: {
+    autodocs: true,
+    defaultName: "Documentation"
+  },
   viteFinal: (config, _options) => {
     if (!config.css) {
       config.css = {};

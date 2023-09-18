@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { within, userEvent } from "@storybook/testing-library";
 import { ChatPopUp } from "../../src";
-import {
-  ChatHeadlessProvider,
-  HeadlessConfig,
-} from "@yext/chat-headless-react";
+import { DummyChatHeadlessProvider } from "../__utils__/stories";
 
 const meta: Meta<typeof ChatPopUp> = {
   title: "ChatPopUp",
@@ -12,16 +9,23 @@ const meta: Meta<typeof ChatPopUp> = {
 };
 export default meta;
 
-const config: HeadlessConfig = {
-  botId: "DUMMY_BOT_ID",
-  apiKey: "DUMMY_API_KEY",
+/**
+ * This is a workaround for storybook's issue with "position: fixed" leaked out of preview container
+ * https://github.com/storybookjs/storybook/issues/8011#issuecomment-557016621
+ * https://github.com/storybookjs/storybook/issues/16774
+ */
+const styles = {
+  transform: 'scale(1)',
+  height: '80vh',
 };
 
 export const PopupButton: StoryObj<typeof meta> = {
   render: (args) => (
-    <ChatHeadlessProvider config={config}>
-      <ChatPopUp {...args} />
-    </ChatHeadlessProvider>
+    <DummyChatHeadlessProvider>
+      <div style={styles}>
+        <ChatPopUp {...args} />
+      </div>
+    </DummyChatHeadlessProvider>
   ),
   args: {
     title: "My Chatbot",
