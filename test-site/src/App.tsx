@@ -18,9 +18,9 @@ const config: HeadlessConfig = {
 
 function App() {
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-red-400">
+    <div>
+      <div className="h-screen w-screen flex justify-center items-center bg-red-400">
       {/* <h1 className="external-element">External Element!</h1> */}
-      {/* <ChatStyleProvider> */}
       <ChatHeadlessProvider config={config}>
         <div className="h-5/6 w-1/2">
           <ChatPanel
@@ -30,11 +30,11 @@ function App() {
           />
         </div>
       </ChatHeadlessProvider>
-      <ChatHeadlessProvider config={config}>
-        <ChatPopUp title="Clippy" />
-      </ChatHeadlessProvider>
-      {/* </ChatStyleProvider> */}
     </div>
+    <ChatHeadlessProvider config={config}>
+      <ChatPopUp title="Clippy" />
+    </ChatHeadlessProvider>
+  </div>
   );
 }
 
