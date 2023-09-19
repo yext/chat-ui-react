@@ -93,10 +93,11 @@ export function ChatPanel(props: ChatPanelProps) {
   }, [chat, props, messages, defaultHandleApiError, canSendMessage]);
 
   const messagesRef = useRef<HTMLDivElement>(null);
+  const messagesContainer = useRef<HTMLDivElement>(null);
 
   // Scroll to the bottom of the chat when the messages change
   useEffect(() => {
-    messagesRef.current?.scroll({
+    messagesContainer.current?.scroll({
       top: messagesRef.current?.scrollHeight,
       behavior: "smooth",
     });
@@ -107,15 +108,25 @@ export function ChatPanel(props: ChatPanelProps) {
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>
-          <div ref={messagesRef} className={cssClasses.messagesContainer}>
-            {messages.map((message, index) => (
-              <MessageBubble
-                {...props}
-                customCssClasses={cssClasses.messageBubbleCssClasses}
-                key={index}
-                message={message}
-              />
-            ))}
+          <div ref={messagesContainer} className={cssClasses.messagesContainer}>
+            <div ref={messagesRef}>
+              {messages.slice(0, -1).map((message, index) => {                
+                return <MessageBubble
+                    {...props}
+                    customCssClasses={cssClasses.messageBubbleCssClasses}
+                    key={index}
+                    message={message}
+                  />
+             })}
+            </div>
+              {messages.length > 0 ? 
+                <MessageBubble
+                    {...props}
+                    customCssClasses={cssClasses.messageBubbleCssClasses}
+                    key={messages.length - 1}
+                    message={messages[messages.length-1]}
+                  /> : null
+              }
             {loading && <LoadingDots />}
           </div>
         </div>
