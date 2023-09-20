@@ -15,8 +15,8 @@ export default meta;
  * https://github.com/storybookjs/storybook/issues/16774
  */
 const styles = {
-  transform: 'scale(1)',
-  height: '80vh',
+  transform: "scale(1)",
+  height: "80vh",
 };
 
 export const PopupButton: StoryObj<typeof meta> = {

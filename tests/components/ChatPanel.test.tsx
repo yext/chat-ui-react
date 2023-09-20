@@ -1,4 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react";
+// issue with testing library + React 18: https://github.com/testing-library/react-testing-library/issues/1216
+/* eslint-disable testing-library/no-unnecessary-act */
+
+import { render, screen, waitFor, act } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { ChatPanel } from "../../src";
 import {
   mockChatActions,
@@ -13,6 +17,12 @@ const dummyMessage: Message = {
   source: "BOT",
   text: "Hello! This is Yext Chat!",
 };
+
+const veryLongMessage = `this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message
+, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message this is a very long message, this is a very long message, 
+, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message
+, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message
+, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message, this is a very long message`
 
 jest.mock("@yext/analytics");
 
@@ -122,3 +132,18 @@ it("display message bubbles based on messages in state", () => {
   render(<ChatPanel />);
   expect(screen.getByText(dummyMessage.text)).toBeInTheDocument();
 });
+
+it("scrolls when a new message is added", async () => {
+  mockChatState({
+    conversation: {
+      messages: [dummyMessage],
+      isLoading: false,
+      canSendMessage: true,
+    },
+  });
+  render(<ChatPanel />);
+  await act(() => userEvent.type(screen.getByRole("textbox"), veryLongMessage));
+  await act(() => userEvent.keyboard("{Enter}"));
+  expect(screen.queryByLabelText("Messages Container")?.clientHeight).toBe(2);
+});
+

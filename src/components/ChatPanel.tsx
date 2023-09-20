@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef} from "react";
 import { useChatState, useChatActions } from "@yext/chat-headless-react";
 import {
   MessageBubble,
@@ -95,33 +95,41 @@ export function ChatPanel(props: ChatPanelProps) {
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
 
-  // Scroll to the bottom of the chat when the messages change
+  // Handle scrolling when messages change
   useEffect(() => {
-    if (messagesRef?.current.length < 2) {
-      return;
-    }
-    const scrollTop = messagesRef.current
+    let scrollTop = 0;
+    messagesRef.current = messagesRef.current.slice(0, messages.length);
+
+    // Sums up scroll heights of all messages except the last one
+    if (messagesRef?.current.length > 1) {
+      scrollTop = messagesRef.current
       .slice(0, -1)
       .map((elem, _) => elem?.scrollHeight ?? 0)
       .reduce((total, height) => total + height);
+    }
+
+    // Scroll to the top of the last message
     messagesContainer.current?.scroll({
       top: scrollTop,
       behavior: "smooth",
     });
   }, [messages]);
 
+  const setMessagesRef = useCallback((index) => {
+    if (!messagesRef?.current) return null;
+    return (message) => messagesRef.current[index] = message
+  }, [])
+
   return (
     <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>
-          <div ref={messagesContainer} className={cssClasses.messagesContainer}>
-            {messages.map((message, index) => {
-              return (
+          <div aria-label="test" ref={messagesContainer} className={cssClasses.messagesContainer}>
+            {messages.map((message, index) => 
                 <div
                   key={index}
-                  // eslint-disable-next-line react-perf/jsx-no-new-function-as-prop
-                  ref={(message) => (messagesRef.current[index] = message)}
+                  ref={setMessagesRef(index)}
                 >
                   <MessageBubble
                     {...props}
@@ -129,8 +137,7 @@ export function ChatPanel(props: ChatPanelProps) {
                     message={message}
                   />
                 </div>
-              );
-            })}
+            )}
             {loading && <LoadingDots />}
           </div>
         </div>
