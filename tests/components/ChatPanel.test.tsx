@@ -7,7 +7,6 @@ import {
   spyOnActions,
 } from "../__utils__/mocks";
 import { Message, MessageSource } from "@yext/chat-headless-react";
-import React from "react";
 
 const dummyMessage: Message = {
   timestamp: "2023-05-31T14:22:19.376Z",
