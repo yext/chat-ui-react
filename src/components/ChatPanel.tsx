@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef} from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useChatState, useChatActions } from "@yext/chat-headless-react";
 import {
   MessageBubble,
@@ -103,9 +103,9 @@ export function ChatPanel(props: ChatPanelProps) {
     // Sums up scroll heights of all messages except the last one
     if (messagesRef?.current.length > 1) {
       scrollTop = messagesRef.current
-      .slice(0, -1)
-      .map((elem, _) => elem?.scrollHeight ?? 0)
-      .reduce((total, height) => total + height);
+        .slice(0, -1)
+        .map((elem, _) => elem?.scrollHeight ?? 0)
+        .reduce((total, height) => total + height);
     }
 
     // Scroll to the top of the last message
@@ -117,27 +117,27 @@ export function ChatPanel(props: ChatPanelProps) {
 
   const setMessagesRef = useCallback((index) => {
     if (!messagesRef?.current) return null;
-    return (message) => messagesRef.current[index] = message
-  }, [])
+    return (message) => (messagesRef.current[index] = message);
+  }, []);
 
   return (
     <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>
-          <div aria-label="test" ref={messagesContainer} className={cssClasses.messagesContainer}>
-            {messages.map((message, index) => 
-                <div
-                  key={index}
-                  ref={setMessagesRef(index)}
-                >
-                  <MessageBubble
-                    {...props}
-                    customCssClasses={cssClasses.messageBubbleCssClasses}
-                    message={message}
-                  />
-                </div>
-            )}
+          <div
+            ref={messagesContainer}
+            className={cssClasses.messagesContainer}
+          >
+            {messages.map((message, index) => (
+              <div key={index} ref={setMessagesRef(index)}>
+                <MessageBubble
+                  {...props}
+                  customCssClasses={cssClasses.messageBubbleCssClasses}
+                  message={message}
+                />
+              </div>
+            ))}
             {loading && <LoadingDots />}
           </div>
         </div>
