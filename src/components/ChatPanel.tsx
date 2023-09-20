@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
 import { useChatState, useChatActions } from "@yext/chat-headless-react";
 import {
   MessageBubble,
@@ -120,6 +120,7 @@ export function ChatPanel(props: ChatPanelProps) {
               return (
                 <div
                   key={index}
+                  // eslint-disable-next-line react-perf/jsx-no-new-function-as-prop
                   ref={(message) => (messagesRef.current[index] = message)}
                 >
                   <MessageBubble
