@@ -1,5 +1,3 @@
-// issue with testing library + React 18: https://github.com/testing-library/react-testing-library/issues/1216
-/* eslint-disable testing-library/no-unnecessary-act */
 import { render, screen, waitFor } from "@testing-library/react";
 import { ChatPanel } from "../../src";
 import {
