@@ -1,11 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ChatIcon } from "../icons/Chat";
 import { ChatPanel, ChatPanelCssClasses, ChatPanelProps } from "./ChatPanel";
-import {
-  ChatHeader,
-  ChatHeaderCssClasses,
-  ChatHeaderProps,
-} from "./ChatHeader";
+import { ChatHeaderCssClasses, ChatHeaderProps } from "./ChatHeader";
 import { twMerge } from "tailwind-merge";
 import { useComposedCssClasses } from "../hooks";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
@@ -64,18 +60,13 @@ const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
  */
 export interface ChatPopUpProps
   extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">,
-    Omit<ChatPanelProps, "header" | "customCssClasses"> {
+    Omit<ChatPanelProps, "customCssClasses"> {
   /** Custom icon for the popup button to open the panel. */
   openPanelButtonIcon?: JSX.Element;
   /**
    * CSS classes for customizing the component styling.
    */
   customCssClasses?: ChatPopUpCssClasses;
-  /**
-   * A footer component to render at the bottom of the panel
-   */
-  footer?: React.ReactNode;
-  customHeader?: React.ReactNode;
 }
 
 /**
@@ -87,15 +78,7 @@ export interface ChatPopUpProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPopUp(props: ChatPopUpProps) {
-  const {
-    openPanelButtonIcon,
-    customCssClasses,
-    showRestartButton = true,
-    onClose: customOnClose,
-    title,
-    footer,
-    customHeader,
-  } = props;
+  const { openPanelButtonIcon, customCssClasses } = props;
   const reportAnalyticsEvent = useReportAnalyticsEvent();
 
   useEffect(() => {
@@ -108,11 +91,6 @@ export function ChatPopUp(props: ChatPopUpProps) {
   const onClick = useCallback(() => {
     setShowChat(!showChat);
   }, [showChat]);
-
-  const onClose = useCallback(() => {
-    setShowChat(false);
-    customOnClose?.();
-  }, [customOnClose]);
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const panelCssClasses = twMerge(
@@ -128,24 +106,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
         <div className={panelCssClasses} aria-label="Chat Popup Panel">
-          <ChatPanel
-            {...props}
-            customCssClasses={cssClasses.panelCssClasses}
-            header={
-              customHeader ? (
-                customHeader
-              ) : (
-                <ChatHeader
-                  title={title}
-                  showRestartButton={showRestartButton}
-                  showCloseButton={true}
-                  onClose={onClose}
-                  customCssClasses={cssClasses.headerCssClasses}
-                />
-              )
-            }
-            footer={footer}
-          />
+          <ChatPanel {...props} customCssClasses={cssClasses.panelCssClasses} />
         </div>
         <button
           aria-label="Chat Popup Button"
