@@ -1,4 +1,7 @@
-import { ChatHeadlessProvider, HeadlessConfig } from "@yext/chat-headless-react";
+import {
+  ChatHeadlessProvider,
+  HeadlessConfig,
+} from "@yext/chat-headless-react";
 
 const config: HeadlessConfig = {
   botId: "DUMMY_BOT_ID",
@@ -6,7 +9,7 @@ const config: HeadlessConfig = {
 };
 
 export function DummyChatHeadlessProvider({ children }) {
-  return <ChatHeadlessProvider config={config}>
-    {children}
-  </ChatHeadlessProvider>
+  return (
+    <ChatHeadlessProvider config={config}>{children}</ChatHeadlessProvider>
+  );
 }

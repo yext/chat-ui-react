@@ -10,9 +10,11 @@ const meta: Meta<typeof MessageBubble> = {
 export default meta;
 
 const Base: StoryObj<typeof meta> = {
-  render: (args) => <DummyChatHeadlessProvider>
-    <MessageBubble {...args} />
-  </DummyChatHeadlessProvider>,
+  render: (args) => (
+    <DummyChatHeadlessProvider>
+      <MessageBubble {...args} />
+    </DummyChatHeadlessProvider>
+  ),
 };
 
 export const BotMessage: StoryObj<typeof meta> = {

@@ -20,21 +20,21 @@ function App() {
   return (
     <div>
       <div className="h-screen w-screen flex justify-center items-center bg-red-400">
-      {/* <h1 className="external-element">External Element!</h1> */}
+        {/* <h1 className="external-element">External Element!</h1> */}
+        <ChatHeadlessProvider config={config}>
+          <div className="h-5/6 w-1/2">
+            <ChatPanel
+              header={
+                <ChatHeader title="Clippy's Chatbot" showRestartButton={true} />
+              }
+            />
+          </div>
+        </ChatHeadlessProvider>
+      </div>
       <ChatHeadlessProvider config={config}>
-        <div className="h-5/6 w-1/2">
-          <ChatPanel
-            header={
-              <ChatHeader title="Clippy's Chatbot" showRestartButton={true} />
-            }
-          />
-        </div>
+        <ChatPopUp title="Clippy" />
       </ChatHeadlessProvider>
     </div>
-    <ChatHeadlessProvider config={config}>
-      <ChatPopUp title="Clippy" />
-    </ChatHeadlessProvider>
-  </div>
   );
 }
 
