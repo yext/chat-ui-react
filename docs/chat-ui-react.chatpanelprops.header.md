@@ -9,5 +9,5 @@ A header to render at the top of the panel.
 **Signature:**
 
 ```typescript
-header?: JSX.Element;
+header?: ReactNode;
 ```
