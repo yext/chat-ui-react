@@ -72,7 +72,7 @@ export interface ChatPopUpProps
    */
   customCssClasses?: ChatPopUpCssClasses;
   /**
-   * A footer to render at the bottom of the panel
+   * A footer text to render at the bottom of the panel
    */
   footerText?: string;
 }

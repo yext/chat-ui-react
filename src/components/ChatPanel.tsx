@@ -51,7 +51,7 @@ export interface ChatPanelProps
   /** A header to render at the top of the panel. */
   header?: JSX.Element;
   /**
-   * A footer to render at the bottom of the panel
+   * A footer text to render at the bottom of the panel
    */
   footerText?: string;
   /**
