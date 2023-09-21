@@ -71,6 +71,10 @@ export interface ChatPopUpProps
    * CSS classes for customizing the component styling.
    */
   customCssClasses?: ChatPopUpCssClasses;
+  /**
+   * A footer to render at the bottom of the panel
+   */
+  footerText?: string;
 }
 
 /**
@@ -88,6 +92,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     showRestartButton = true,
     onClose: customOnClose,
     title,
+    footerText,
   } = props;
   const reportAnalyticsEvent = useReportAnalyticsEvent();
 
@@ -133,6 +138,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
                 customCssClasses={cssClasses.headerCssClasses}
               />
             }
+            footerText={footerText}
           />
         </div>
         <button
