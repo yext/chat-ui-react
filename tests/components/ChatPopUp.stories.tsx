@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { within, userEvent } from "@storybook/testing-library";
-import { ChatHeader, ChatPopUp } from "../../src";
+import { ChatPopUp } from "../../src";
 import { DummyChatHeadlessProvider } from "../__utils__/stories";
 
 const meta: Meta<typeof ChatPopUp> = {
