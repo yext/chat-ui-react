@@ -15,8 +15,8 @@ export default meta;
  * https://github.com/storybookjs/storybook/issues/16774
  */
 const styles = {
-  transform: 'scale(1)',
-  height: '80vh',
+  transform: "scale(1)",
+  height: "80vh",
 };
 
 export const PopupButton: StoryObj<typeof meta> = {
@@ -37,5 +37,17 @@ export const PopupPanel: StoryObj<typeof meta> = {
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     userEvent.click(canvas.getByLabelText("Chat Popup Button"));
+  },
+};
+
+export const PopupPanelWithFooter: StoryObj<typeof meta> = {
+  ...PopupButton,
+  play: ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    userEvent.click(canvas.getByLabelText("Chat Popup Button"));
+  },
+  args: {
+    footerText:
+      "Yext and its affiliates will process your personal data as described in [Yext's Privacy Policy](https://www.yext.com/privacy-policy).",
   },
 };

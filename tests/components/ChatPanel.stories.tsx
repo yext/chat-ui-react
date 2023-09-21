@@ -28,3 +28,13 @@ export const PanelWithHeader: StoryObj<typeof meta> = {
     stream: false,
   },
 };
+
+export const PanelWithFooter: StoryObj<typeof meta> = {
+  ...Primary,
+  args: {
+    header: <ChatHeader title="My Chatbot" showRestartButton={true} />,
+    footerText:
+      "Yext and its affiliates will process your personal data as described in [Yext's Privacy Policy](https://www.yext.com/privacy-policy).",
+    stream: false,
+  },
+};
