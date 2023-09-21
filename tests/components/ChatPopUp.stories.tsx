@@ -59,9 +59,9 @@ const YextLogo = () => {
 
 const CustomHeader = () => {
   return (
-    <div>
+    <div className="flex items-center bg-black p-1 rounded-t-3xl">
       <YextLogo />
-      <ChatHeader title="This is the title" />
+      <h1 className="text-white ps-2">This is a custom header</h1>
     </div>
   );
 };
@@ -95,6 +95,5 @@ export const PopupPanelWithCustomHeader: StoryObj<typeof meta> = {
   },
   args: {
     customHeader: <CustomHeader />,
-    footer: "This is a footer?",
   },
 };
