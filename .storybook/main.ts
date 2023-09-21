@@ -14,7 +14,7 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: true,
-    defaultName: "Documentation"
+    defaultName: "Documentation",
   },
   viteFinal: (config, _options) => {
     if (!config.css) {

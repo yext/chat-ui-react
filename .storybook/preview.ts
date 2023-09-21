@@ -14,8 +14,8 @@ const preview: Preview = {
     docs: {
       story: {
         // https://storybook.js.org/docs/react/api/doc-block-story#autoplay
-        autoplay: true
-      }
+        autoplay: true,
+      },
     },
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
