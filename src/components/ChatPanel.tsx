@@ -1,4 +1,3 @@
-import ReactMarkdown from "react-markdown";
 import React, { useCallback, useEffect, useRef } from "react";
 import { useChatState, useChatActions } from "@yext/chat-headless-react";
 import {
@@ -49,11 +48,11 @@ export interface ChatPanelProps
   extends Omit<MessageBubbleProps, "customCssClasses" | "message">,
     Omit<ChatInputProps, "customCssClasses"> {
   /** A header to render at the top of the panel. */
-  header?: JSX.Element;
+  header?: React.ReactNode;
   /**
-   * A footer text to render at the bottom of the panel
+   * A footer component to render at the bottom of the panel
    */
-  footerText?: string;
+  footer?: React.ReactNode;
   /**
    * CSS classes for customizing the component styling.
    */
@@ -70,7 +69,7 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses, footerText } = props;
+  const { header, customCssClasses, footer } = props;
   const chat = useChatActions();
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
@@ -146,11 +145,7 @@ export function ChatPanel(props: ChatPanelProps) {
         <div className={cssClasses.inputContainer}>
           <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
         </div>
-        {footerText && (
-          <div className="yext-chat__footer text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px]">
-            <ReactMarkdown children={footerText} />
-          </div>
-        )}
+        {footer}
       </div>
     </div>
   );

@@ -8,6 +8,14 @@ const meta: Meta<typeof ChatPanel> = {
 };
 export default meta;
 
+export const Footer = () => {
+  return (
+    <div className="yext-chat__footer text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px]">
+      This is a footer example
+    </div>
+  );
+};
+
 export const Primary: StoryObj<typeof meta> = {
   render: (args) => (
     <DummyChatHeadlessProvider>
@@ -33,8 +41,7 @@ export const PanelWithFooter: StoryObj<typeof meta> = {
   ...Primary,
   args: {
     header: <ChatHeader title="My Chatbot" showRestartButton={true} />,
-    footerText:
-      "Yext and its affiliates will process your personal data as described in [Yext's Privacy Policy](https://www.yext.com/privacy-policy).",
+    footer: <Footer />,
     stream: false,
   },
 };

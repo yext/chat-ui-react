@@ -72,9 +72,10 @@ export interface ChatPopUpProps
    */
   customCssClasses?: ChatPopUpCssClasses;
   /**
-   * A footer text to render at the bottom of the panel
+   * A footer component to render at the bottom of the panel
    */
-  footerText?: string;
+  footer?: React.ReactNode;
+  customHeader?: React.ReactNode;
 }
 
 /**
@@ -92,7 +93,8 @@ export function ChatPopUp(props: ChatPopUpProps) {
     showRestartButton = true,
     onClose: customOnClose,
     title,
-    footerText,
+    footer,
+    customHeader,
   } = props;
   const reportAnalyticsEvent = useReportAnalyticsEvent();
 
@@ -130,15 +132,19 @@ export function ChatPopUp(props: ChatPopUpProps) {
             {...props}
             customCssClasses={cssClasses.panelCssClasses}
             header={
-              <ChatHeader
-                title={title}
-                showRestartButton={showRestartButton}
-                showCloseButton={true}
-                onClose={onClose}
-                customCssClasses={cssClasses.headerCssClasses}
-              />
+              customHeader ? (
+                customHeader
+              ) : (
+                <ChatHeader
+                  title={title}
+                  showRestartButton={showRestartButton}
+                  showCloseButton={true}
+                  onClose={onClose}
+                  customCssClasses={cssClasses.headerCssClasses}
+                />
+              )
             }
-            footerText={footerText}
+            footer={footer}
           />
         </div>
         <button
