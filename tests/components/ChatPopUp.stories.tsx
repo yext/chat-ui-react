@@ -57,12 +57,20 @@ const YextLogo = () => {
   );
 };
 
-const CustomHeader = () => {
+const Header = () => {
   return (
     <div className="flex items-center bg-black p-1 rounded-t-3xl">
       <YextLogo />
       <h1 className="text-white ps-2">This is a custom header</h1>
     </div>
+  );
+};
+
+const Footer = () => {
+  return (
+    <p className="pb-4 text-center text-slate-400 text-[12px]">
+      This is a footer
+    </p>
   );
 };
 
@@ -87,13 +95,14 @@ export const PopupPanel: StoryObj<typeof meta> = {
   },
 };
 
-export const PopupPanelWithCustomHeader: StoryObj<typeof meta> = {
+export const PopupPanelWithCustomHeaderAndFooter: StoryObj<typeof meta> = {
   ...PopupButton,
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     userEvent.click(canvas.getByLabelText("Chat Popup Button"));
   },
   args: {
-    customHeader: <CustomHeader />,
+    header: <Header />,
+    footer: <Footer />,
   },
 };
