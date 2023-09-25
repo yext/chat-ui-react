@@ -1,7 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ChatIcon } from "../icons/Chat";
 import { ChatPanel, ChatPanelCssClasses, ChatPanelProps } from "./ChatPanel";
-import { ChatHeaderCssClasses, ChatHeaderProps } from "./ChatHeader";
+import {
+  ChatHeader,
+  ChatHeaderCssClasses,
+  ChatHeaderProps,
+} from "./ChatHeader";
 import { twMerge } from "tailwind-merge";
 import { useComposedCssClasses } from "../hooks";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
@@ -78,7 +82,15 @@ export interface ChatPopUpProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPopUp(props: ChatPopUpProps) {
-  const { openPanelButtonIcon, customCssClasses } = props;
+  const {
+    openPanelButtonIcon,
+    customCssClasses,
+    showRestartButton = true,
+    onClose: customOnClose,
+    title,
+    footer,
+    header,
+  } = props;
   const reportAnalyticsEvent = useReportAnalyticsEvent();
 
   useEffect(() => {
@@ -91,6 +103,11 @@ export function ChatPopUp(props: ChatPopUpProps) {
   const onClick = useCallback(() => {
     setShowChat(!showChat);
   }, [showChat]);
+
+  const onClose = useCallback(() => {
+    setShowChat(false);
+    customOnClose?.();
+  }, [customOnClose]);
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const panelCssClasses = twMerge(
@@ -106,7 +123,24 @@ export function ChatPopUp(props: ChatPopUpProps) {
     <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
         <div className={panelCssClasses} aria-label="Chat Popup Panel">
-          <ChatPanel {...props} customCssClasses={cssClasses.panelCssClasses} />
+          <ChatPanel
+            {...props}
+            customCssClasses={cssClasses.panelCssClasses}
+            header={
+              header ? (
+                header
+              ) : (
+                <ChatHeader
+                  title={title}
+                  showRestartButton={showRestartButton}
+                  showCloseButton={true}
+                  onClose={onClose}
+                  customCssClasses={cssClasses.headerCssClasses}
+                />
+              )
+            }
+            footer={footer}
+          />
         </div>
         <button
           aria-label="Chat Popup Button"
