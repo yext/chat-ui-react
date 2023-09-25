@@ -64,7 +64,7 @@ const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
  */
 export interface ChatPopUpProps
   extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">,
-    Omit<ChatPanelProps, "header" | "customCssClasses"> {
+    Omit<ChatPanelProps, "customCssClasses"> {
   /** Custom icon for the popup button to open the panel. */
   openPanelButtonIcon?: JSX.Element;
   /**
@@ -88,6 +88,8 @@ export function ChatPopUp(props: ChatPopUpProps) {
     showRestartButton = true,
     onClose: customOnClose,
     title,
+    footer,
+    header,
   } = props;
   const reportAnalyticsEvent = useReportAnalyticsEvent();
 
@@ -125,14 +127,19 @@ export function ChatPopUp(props: ChatPopUpProps) {
             {...props}
             customCssClasses={cssClasses.panelCssClasses}
             header={
-              <ChatHeader
-                title={title}
-                showRestartButton={showRestartButton}
-                showCloseButton={true}
-                onClose={onClose}
-                customCssClasses={cssClasses.headerCssClasses}
-              />
+              header ? (
+                header
+              ) : (
+                <ChatHeader
+                  title={title}
+                  showRestartButton={showRestartButton}
+                  showCloseButton={true}
+                  onClose={onClose}
+                  customCssClasses={cssClasses.headerCssClasses}
+                />
+              )
             }
+            footer={footer}
           />
         </div>
         <button

@@ -82,7 +82,8 @@ export interface ChatPanelCssClasses {
 // @public
 export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClasses" | "message">, Omit<ChatInputProps, "customCssClasses"> {
     customCssClasses?: ChatPanelCssClasses;
-    header?: JSX.Element;
+    footer?: React_2.ReactNode;
+    header?: React_2.ReactNode;
 }
 
 // @public
@@ -113,7 +114,7 @@ export interface ChatPopUpCssClasses {
 }
 
 // @public
-export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "header" | "customCssClasses"> {
+export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "customCssClasses"> {
     customCssClasses?: ChatPopUpCssClasses;
     openPanelButtonIcon?: JSX.Element;
 }

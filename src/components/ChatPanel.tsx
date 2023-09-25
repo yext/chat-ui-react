@@ -48,7 +48,11 @@ export interface ChatPanelProps
   extends Omit<MessageBubbleProps, "customCssClasses" | "message">,
     Omit<ChatInputProps, "customCssClasses"> {
   /** A header to render at the top of the panel. */
-  header?: JSX.Element;
+  header?: React.ReactNode;
+  /**
+   * A footer component to render at the bottom of the panel
+   */
+  footer?: React.ReactNode;
   /**
    * CSS classes for customizing the component styling.
    */
@@ -65,7 +69,7 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses } = props;
+  const { header, customCssClasses, footer } = props;
   const chat = useChatActions();
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
@@ -125,10 +129,7 @@ export function ChatPanel(props: ChatPanelProps) {
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>
-          <div
-            ref={messagesContainer}
-            className={cssClasses.messagesContainer}
-          >
+          <div ref={messagesContainer} className={cssClasses.messagesContainer}>
             {messages.map((message, index) => (
               <div key={index} ref={setMessagesRef(index)}>
                 <MessageBubble
@@ -144,6 +145,7 @@ export function ChatPanel(props: ChatPanelProps) {
         <div className={cssClasses.inputContainer}>
           <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
         </div>
+        {footer}
       </div>
     </div>
   );
