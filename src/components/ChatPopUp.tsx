@@ -124,6 +124,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
           <ChatPanel
             {...props}
             customCssClasses={cssClasses.panelCssClasses}
+            isChatHidden={!showChat}
             header={
               <ChatHeader
                 title={title}

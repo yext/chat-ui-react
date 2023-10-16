@@ -1,4 +1,4 @@
-import { MessageSource, useChatActions } from "@yext/chat-headless-react";
+import { ChatHeadless, MessageSource } from "@yext/chat-headless-react";
 import { useCallback } from "react";
 
 /**
@@ -6,19 +6,19 @@ import { useCallback } from "react";
  * add a default error message to state.
  *
  * @internal
+ *
+ * @param chatHeadless - {@link ChatHeadless}
  */
-export function useDefaultHandleApiError() {
-  const chat = useChatActions();
-
+export function useDefaultHandleApiError(chatHeadless: ChatHeadless) {
   return useCallback(
     (e: unknown) => {
       console.error(e);
-      chat.addMessage({
+      chatHeadless.addMessage({
         text: "Sorry, I'm unable to respond at the moment. Please try again later!",
         source: MessageSource.BOT,
         timestamp: new Date().toISOString(),
       });
     },
-    [chat]
+    [chatHeadless]
   );
 }

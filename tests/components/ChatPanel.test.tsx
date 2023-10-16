@@ -111,7 +111,7 @@ it("does not render loading dots when loading status is false", () => {
   expect(screen.queryByLabelText("Loading Indicator")).not.toBeInTheDocument();
 });
 
-it("display message bubbles based on messages in state", () => {
+it("displays message bubbles based on messages in state", () => {
   mockChatState({
     conversation: {
       messages: [dummyMessage],
@@ -121,4 +121,10 @@ it("display message bubbles based on messages in state", () => {
   });
   render(<ChatPanel />);
   expect(screen.getByText(dummyMessage.text)).toBeInTheDocument();
+});
+
+it("does not get initial message when it is hidden", () => {
+  const actions = spyOnActions();
+  render(<ChatPanel isChatHidden={true} />);
+  expect(actions.getNextMessage).toBeCalledTimes(0);
 });

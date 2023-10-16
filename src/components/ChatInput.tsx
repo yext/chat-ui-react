@@ -82,7 +82,7 @@ export function ChatInput({
   const canSendMessage = useChatState(
     (state) => state.conversation.canSendMessage
   );
-  const defaultHandleApiError = useDefaultHandleApiError();
+  const defaultHandleApiError = useDefaultHandleApiError(chat);
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 

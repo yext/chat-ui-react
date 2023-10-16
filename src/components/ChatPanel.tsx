@@ -53,6 +53,10 @@ export interface ChatPanelProps
    * CSS classes for customizing the component styling.
    */
   customCssClasses?: ChatPanelCssClasses;
+  /**
+   * If chat is hidden, the initial message will not be fetched.
+   */
+  isChatHidden?: boolean;
 }
 
 /**
@@ -65,7 +69,7 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses } = props;
+  const { header, customCssClasses, isChatHidden } = props;
   const chat = useChatActions();
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
@@ -73,7 +77,7 @@ export function ChatPanel(props: ChatPanelProps) {
     (state) => state.conversation.canSendMessage
   );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const defaultHandleApiError = useDefaultHandleApiError();
+  const defaultHandleApiError = useDefaultHandleApiError(chat);
   const reportAnalyticsEvent = useReportAnalyticsEvent();
 
   useEffect(() => {
@@ -84,13 +88,26 @@ export function ChatPanel(props: ChatPanelProps) {
 
   // Fetch the first message on load, if there are no existing messages or a request being processed
   useEffect(() => {
-    if (messages.length !== 0 || !canSendMessage) {
+    if (messages.length !== 0 || !canSendMessage || isChatHidden) {
       return;
     }
+
     const { stream = false, handleError } = props;
-    const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
-    res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
-  }, [chat, props, messages, defaultHandleApiError, canSendMessage]);
+    const messageFetchFunction = stream
+      ? chat.streamNextMessage
+      : chat.getNextMessage;
+
+    messageFetchFunction().catch((e) =>
+      handleError ? handleError(e) : defaultHandleApiError(e)
+    );
+  }, [
+    chat,
+    props,
+    messages,
+    defaultHandleApiError,
+    canSendMessage,
+    isChatHidden,
+  ]);
 
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
