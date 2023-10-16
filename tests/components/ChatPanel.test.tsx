@@ -49,7 +49,7 @@ it("send request to get initial message on load (non-stream)", () => {
 it("logs request error and add an error message to state by default", async () => {
   mockChatActions({
     getNextMessage: jest.fn(() => Promise.reject("API Error")),
-    addMessage: jest.fn(),
+    setMessages: jest.fn(),
     report: jest.fn(),
   });
   const chatActionsSpy = spyOnActions();
@@ -57,11 +57,11 @@ it("logs request error and add an error message to state by default", async () =
   render(<ChatPanel />);
   await waitFor(() => expect(consoleErrorSpy).toBeCalledTimes(1));
   expect(consoleErrorSpy).toBeCalledWith("API Error");
-  expect(chatActionsSpy.addMessage).toBeCalledWith({
+  expect(chatActionsSpy.setMessages).toBeCalledWith([{
     text: "Sorry, I'm unable to respond at the moment. Please try again later!",
     source: MessageSource.BOT,
     timestamp: expect.any(String),
-  });
+  }]);
 });
 
 it("executes custom handleError if provided", async () => {
@@ -121,10 +121,4 @@ it("displays message bubbles based on messages in state", () => {
   });
   render(<ChatPanel />);
   expect(screen.getByText(dummyMessage.text)).toBeInTheDocument();
-});
-
-it("does not get initial message when it is hidden", () => {
-  const actions = spyOnActions();
-  render(<ChatPanel isChatHidden={true} />);
-  expect(actions.getNextMessage).toBeCalledTimes(0);
 });

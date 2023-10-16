@@ -53,3 +53,32 @@ it("toggles display and hide css classes when click on popup button", async () =
     "button-hidden-css"
   );
 });
+
+it("does not render panel until pop up is opened", async () => {
+  render(
+    <ChatHeadlessProvider
+      config={{
+        apiKey: "",
+        botId: "",
+      }}
+    >
+      <ChatPopUp
+        title="Test Popup"
+        stream={false}
+        customCssClasses={{
+          panel__display: "panel-display-css",
+          panel__hidden: "panel-hidden-css",
+          button__display: "button-display-css",
+          button__hidden: "button-hidden-css",
+        }}
+      />
+    </ChatHeadlessProvider>
+  );
+
+  expect(screen.queryByLabelText("Send Message")).toBeNull()
+
+  const popupButton = screen.getByLabelText("Chat Popup Button");
+  await act(() => userEvent.click(popupButton));
+
+  expect(screen.getByLabelText("Send Message")).toBeTruthy()
+});

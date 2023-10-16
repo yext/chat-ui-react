@@ -97,9 +97,11 @@ export function ChatPopUp(props: ChatPopUpProps) {
     });
   }, [reportAnalyticsEvent]);
 
+  const [renderChat, setRenderChat] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const onClick = useCallback(() => {
     setShowChat(!showChat);
+    setRenderChat(true);
   }, [showChat]);
 
   const onClose = useCallback(() => {
@@ -121,10 +123,9 @@ export function ChatPopUp(props: ChatPopUpProps) {
     <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
         <div className={panelCssClasses} aria-label="Chat Popup Panel">
-          <ChatPanel
+         {renderChat && <ChatPanel
             {...props}
             customCssClasses={cssClasses.panelCssClasses}
-            isChatHidden={!showChat}
             header={
               <ChatHeader
                 title={title}
@@ -134,7 +135,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
                 customCssClasses={cssClasses.headerCssClasses}
               />
             }
-          />
+          />}
         </div>
         <button
           aria-label="Chat Popup Button"

@@ -83,7 +83,6 @@ export interface ChatPanelCssClasses {
 export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClasses" | "message">, Omit<ChatInputProps, "customCssClasses"> {
     customCssClasses?: ChatPanelCssClasses;
     header?: JSX.Element;
-    isChatHidden?: boolean;
 }
 
 // @public

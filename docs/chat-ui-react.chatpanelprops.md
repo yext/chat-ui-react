@@ -19,5 +19,4 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
 |  --- | --- | --- | --- |
 |  [customCssClasses?](./chat-ui-react.chatpanelprops.customcssclasses.md) |  | [ChatPanelCssClasses](./chat-ui-react.chatpanelcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 |  [header?](./chat-ui-react.chatpanelprops.header.md) |  | JSX.Element | _(Optional)_ A header to render at the top of the panel. |
-|  [isChatHidden?](./chat-ui-react.chatpanelprops.ischathidden.md) |  | boolean | _(Optional)_ If chat is hidden, the initial message will not be fetched. |
 

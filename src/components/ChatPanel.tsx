@@ -8,7 +8,7 @@ import {
 import { ChatInput, ChatInputCssClasses, ChatInputProps } from "./ChatInput";
 import { LoadingDots } from "./LoadingDots";
 import { useComposedCssClasses } from "../hooks";
-import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
+import { useDefaultInitialMessageError } from "../hooks/useDefaultHandleApiError";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 
@@ -53,10 +53,6 @@ export interface ChatPanelProps
    * CSS classes for customizing the component styling.
    */
   customCssClasses?: ChatPanelCssClasses;
-  /**
-   * If chat is hidden, the initial message will not be fetched.
-   */
-  isChatHidden?: boolean;
 }
 
 /**
@@ -69,7 +65,7 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses, isChatHidden } = props;
+  const { header, customCssClasses } = props;
   const chat = useChatActions();
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
@@ -77,7 +73,7 @@ export function ChatPanel(props: ChatPanelProps) {
     (state) => state.conversation.canSendMessage
   );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const defaultHandleApiError = useDefaultHandleApiError(chat);
+  const initialMessagesError = useDefaultInitialMessageError();
   const reportAnalyticsEvent = useReportAnalyticsEvent();
 
   useEffect(() => {
@@ -88,26 +84,13 @@ export function ChatPanel(props: ChatPanelProps) {
 
   // Fetch the first message on load, if there are no existing messages or a request being processed
   useEffect(() => {
-    if (messages.length !== 0 || !canSendMessage || isChatHidden) {
+    if (messages.length !== 0 || !canSendMessage) {
       return;
     }
-
-    const { stream = false, handleError } = props;
-    const messageFetchFunction = stream
-      ? chat.streamNextMessage
-      : chat.getNextMessage;
-
-    messageFetchFunction().catch((e) =>
-      handleError ? handleError(e) : defaultHandleApiError(e)
-    );
-  }, [
-    chat,
-    props,
-    messages,
-    defaultHandleApiError,
-    canSendMessage,
-    isChatHidden,
-  ]);
+    const { stream = false, handleError} = props;
+    const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
+    res.catch((e) => (handleError ? handleError(e) : initialMessagesError(e)));
+  }, [chat, props, messages, initialMessagesError, canSendMessage]);
 
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
@@ -130,6 +113,7 @@ export function ChatPanel(props: ChatPanelProps) {
       top: scrollTop,
       behavior: "smooth",
     });
+
   }, [messages]);
 
   const setMessagesRef = useCallback((index) => {
