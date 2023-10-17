@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useChatState, useChatActions } from "@yext/chat-headless-react";
 import {
   MessageBubble,
@@ -65,7 +65,7 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses } = props;
+  const { header, customCssClasses, stream, handleError } = props;
   const chat = useChatActions();
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
@@ -75,6 +75,7 @@ export function ChatPanel(props: ChatPanelProps) {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const defaultHandleApiError = useDefaultHandleApiError();
   const reportAnalyticsEvent = useReportAnalyticsEvent();
+  const [fetchInitialMessage, setFetchInitialMessage] = useState(false);
 
   useEffect(() => {
     reportAnalyticsEvent({
@@ -82,15 +83,20 @@ export function ChatPanel(props: ChatPanelProps) {
     });
   }, [reportAnalyticsEvent]);
 
-  // Fetch the first message on load, if there are no existing messages or a request being processed
+  // Request initial message only if there are no existing messages and no ongoing request.
   useEffect(() => {
-    if (messages.length !== 0 || !canSendMessage) {
+    setFetchInitialMessage(messages.length === 0 && canSendMessage);
+  }, [messages.length, canSendMessage]);
+
+  useEffect(() => {
+    if (!fetchInitialMessage) {
       return;
     }
-    const { stream = false, handleError } = props;
+    // Ensures that the fetch for the initial message occurs only once
+    setFetchInitialMessage(false);
     const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
-  }, [chat, props, messages, defaultHandleApiError, canSendMessage]);
+  }, [chat, stream, handleError, defaultHandleApiError, fetchInitialMessage]);
 
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
