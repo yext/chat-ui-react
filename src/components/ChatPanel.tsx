@@ -85,15 +85,15 @@ export function ChatPanel(props: ChatPanelProps) {
 
   // Request initial message only if there are no existing messages and no ongoing request.
   useEffect(() => {
-    setFetchInitialMessage(messages.length === 0 && canSendMessage)
-  }, [messages.length, canSendMessage])
+    setFetchInitialMessage(messages.length === 0 && canSendMessage);
+  }, [messages.length, canSendMessage]);
 
   useEffect(() => {
     if (!fetchInitialMessage) {
       return;
     }
-  // Ensures that the fetch for the initial message occurs only once
-    setFetchInitialMessage(false)
+    // Ensures that the fetch for the initial message occurs only once
+    setFetchInitialMessage(false);
     const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
   }, [chat, stream, handleError, defaultHandleApiError, fetchInitialMessage]);
@@ -131,10 +131,7 @@ export function ChatPanel(props: ChatPanelProps) {
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>
-          <div
-            ref={messagesContainer}
-            className={cssClasses.messagesContainer}
-          >
+          <div ref={messagesContainer} className={cssClasses.messagesContainer}>
             {messages.map((message, index) => (
               <div key={index} ref={setMessagesRef(index)}>
                 <MessageBubble
