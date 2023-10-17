@@ -123,19 +123,21 @@ export function ChatPopUp(props: ChatPopUpProps) {
     <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
         <div className={panelCssClasses} aria-label="Chat Popup Panel">
-         {renderChat && <ChatPanel
-            {...props}
-            customCssClasses={cssClasses.panelCssClasses}
-            header={
-              <ChatHeader
-                title={title}
-                showRestartButton={showRestartButton}
-                showCloseButton={true}
-                onClose={onClose}
-                customCssClasses={cssClasses.headerCssClasses}
-              />
-            }
-          />}
+          {renderChat && (
+            <ChatPanel
+              {...props}
+              customCssClasses={cssClasses.panelCssClasses}
+              header={
+                <ChatHeader
+                  title={title}
+                  showRestartButton={showRestartButton}
+                  showCloseButton={true}
+                  onClose={onClose}
+                  customCssClasses={cssClasses.headerCssClasses}
+                />
+              }
+            />
+          )}
         </div>
         <button
           aria-label="Chat Popup Button"

@@ -8,7 +8,7 @@ import {
 import { ChatInput, ChatInputCssClasses, ChatInputProps } from "./ChatInput";
 import { LoadingDots } from "./LoadingDots";
 import { useComposedCssClasses } from "../hooks";
-import { useDefaultInitialMessageError } from "../hooks/useDefaultHandleApiError";
+import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 
@@ -73,7 +73,7 @@ export function ChatPanel(props: ChatPanelProps) {
     (state) => state.conversation.canSendMessage
   );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const initialMessagesError = useDefaultInitialMessageError();
+  const initialMessagesError = useDefaultHandleApiError();
   const reportAnalyticsEvent = useReportAnalyticsEvent();
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export function ChatPanel(props: ChatPanelProps) {
     if (messages.length !== 0 || !canSendMessage) {
       return;
     }
-    const { stream = false, handleError} = props;
+    const { stream = false, handleError } = props;
     const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
     res.catch((e) => (handleError ? handleError(e) : initialMessagesError(e)));
   }, [chat, props, messages, initialMessagesError, canSendMessage]);
@@ -113,7 +113,6 @@ export function ChatPanel(props: ChatPanelProps) {
       top: scrollTop,
       behavior: "smooth",
     });
-
   }, [messages]);
 
   const setMessagesRef = useCallback((index) => {
@@ -126,10 +125,7 @@ export function ChatPanel(props: ChatPanelProps) {
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>
-          <div
-            ref={messagesContainer}
-            className={cssClasses.messagesContainer}
-          >
+          <div ref={messagesContainer} className={cssClasses.messagesContainer}>
             {messages.map((message, index) => (
               <div key={index} ref={setMessagesRef(index)}>
                 <MessageBubble

@@ -75,10 +75,10 @@ it("does not render panel until pop up is opened", async () => {
     </ChatHeadlessProvider>
   );
 
-  expect(screen.queryByLabelText("Send Message")).toBeNull()
+  expect(screen.queryByLabelText("Send Message")).toBeNull();
 
   const popupButton = screen.getByLabelText("Chat Popup Button");
   await act(() => userEvent.click(popupButton));
 
-  expect(screen.getByLabelText("Send Message")).toBeTruthy()
+  expect(screen.getByLabelText("Send Message")).toBeTruthy();
 });
