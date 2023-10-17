@@ -73,7 +73,7 @@ export function ChatPanel(props: ChatPanelProps) {
     (state) => state.conversation.canSendMessage
   );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const initialMessagesError = useDefaultHandleApiError();
+  const defaultHandleApiError = useDefaultHandleApiError();
   const reportAnalyticsEvent = useReportAnalyticsEvent();
 
   useEffect(() => {
@@ -89,8 +89,8 @@ export function ChatPanel(props: ChatPanelProps) {
     }
     const { stream = false, handleError } = props;
     const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
-    res.catch((e) => (handleError ? handleError(e) : initialMessagesError(e)));
-  }, [chat, props, messages, initialMessagesError, canSendMessage]);
+    res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
+  }, [chat, props, messages, defaultHandleApiError, canSendMessage]);
 
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
