@@ -115,6 +115,7 @@ export interface ChatPopUpCssClasses {
 // @public
 export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "header" | "customCssClasses"> {
     customCssClasses?: ChatPopUpCssClasses;
+    openOnLoad?: boolean;
     openPanelButtonIcon?: JSX.Element;
 }
 

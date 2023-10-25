@@ -18,5 +18,6 @@ export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [customCssClasses?](./chat-ui-react.chatpopupprops.customcssclasses.md) |  | [ChatPopUpCssClasses](./chat-ui-react.chatpopupcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [openOnLoad?](./chat-ui-react.chatpopupprops.openonload.md) |  | boolean | _(Optional)_ Whether to show the panel on load. Defaults to false. |
 |  [openPanelButtonIcon?](./chat-ui-react.chatpopupprops.openpanelbuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for the popup button to open the panel. |
 
