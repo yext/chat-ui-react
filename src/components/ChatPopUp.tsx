@@ -71,6 +71,8 @@ export interface ChatPopUpProps
    * CSS classes for customizing the component styling.
    */
   customCssClasses?: ChatPopUpCssClasses;
+  /** Whether to show the panel on load. Defaults to false. */
+  openOnLoad?: boolean;
 }
 
 /**
@@ -87,6 +89,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     customCssClasses,
     showRestartButton = true,
     onClose: customOnClose,
+    openOnLoad = false,
     title,
   } = props;
   const reportAnalyticsEvent = useReportAnalyticsEvent();
@@ -97,8 +100,20 @@ export function ChatPopUp(props: ChatPopUpProps) {
     });
   }, [reportAnalyticsEvent]);
 
-  const [renderChat, setRenderChat] = useState(false);
+  // control CSS behavior on open/close state of the panel
   const [showChat, setShowChat] = useState(false);
+
+  // control the actual DOM rendering of the panel. Start rendering on first open state
+  // to avoid message requests immediately on load while the popup is still "hidden"
+  const [renderChat, setRenderChat] = useState(false);
+
+  // update in useEffect, instead of having openOnLoad as initial state for show/renderChat,
+  // in order to maintain the fade-in CSS animation when opening the panel on load
+  useEffect(() => {
+    setShowChat(openOnLoad);
+    setRenderChat(openOnLoad);
+  }, [openOnLoad]);
+
   const onClick = useCallback(() => {
     setShowChat(!showChat);
     setRenderChat(true);

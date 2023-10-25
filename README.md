@@ -42,12 +42,14 @@ export default App;
 ### default styling
 
 #### Tailwind
+
 The component library utilizes Tailwind styling by default. Please make sure that your application's tailwind configuration includes the following:
+
 - The `content` field should contain the path to the location of the `@yext/chat-ui-react` library (e.g., `node_modules/@yext/chat-ui-react/lib/**/*.{js,jsx}`)
 - The default theme should be extended with the custom styling used by the components specified [here](https://github.com/yext/chat-ui-react/blob/main/tailwind.config.js).
 
-
 #### CSS bundle
+
 For projects that do not use Tailwind, a css bundle is exported as part of this package. To use it, you can import
 the file `@yext/chat-ui-react/bundle.css` into your normal CSS flow.
 

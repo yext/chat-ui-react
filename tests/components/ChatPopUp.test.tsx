@@ -4,7 +4,10 @@
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ChatPopUp } from "../../src";
-import { ChatHeadlessProvider } from "@yext/chat-headless-react";
+import {
+  ChatHeadlessProvider,
+  HeadlessConfig,
+} from "@yext/chat-headless-react";
 import { mockChatActions } from "../__utils__/mocks";
 
 jest.mock("@yext/analytics");
@@ -17,17 +20,16 @@ beforeEach(() => {
   });
 });
 
+const dummyConfig: HeadlessConfig = {
+  apiKey: "",
+  botId: "",
+};
+
 it("toggles display and hide css classes when click on popup button", async () => {
   render(
-    <ChatHeadlessProvider
-      config={{
-        apiKey: "",
-        botId: "",
-      }}
-    >
+    <ChatHeadlessProvider config={dummyConfig}>
       <ChatPopUp
         title="Test Popup"
-        stream={false}
         customCssClasses={{
           panel__display: "panel-display-css",
           panel__hidden: "panel-hidden-css",
@@ -56,22 +58,8 @@ it("toggles display and hide css classes when click on popup button", async () =
 
 it("does not render panel until pop up is opened", async () => {
   render(
-    <ChatHeadlessProvider
-      config={{
-        apiKey: "",
-        botId: "",
-      }}
-    >
-      <ChatPopUp
-        title="Test Popup"
-        stream={false}
-        customCssClasses={{
-          panel__display: "panel-display-css",
-          panel__hidden: "panel-hidden-css",
-          button__display: "button-display-css",
-          button__hidden: "button-hidden-css",
-        }}
-      />
+    <ChatHeadlessProvider config={dummyConfig}>
+      <ChatPopUp title="Test Popup" />
     </ChatHeadlessProvider>
   );
 
@@ -81,4 +69,22 @@ it("does not render panel until pop up is opened", async () => {
   await act(() => userEvent.click(popupButton));
 
   expect(screen.getByLabelText("Send Message")).toBeTruthy();
+});
+
+it("renders panel on load when openOnLoad is true", async () => {
+  render(
+    <ChatHeadlessProvider config={dummyConfig}>
+      <ChatPopUp title="Test Popup" openOnLoad={true} />
+    </ChatHeadlessProvider>
+  );
+  expect(screen.getByLabelText("Send Message")).toBeTruthy();
+});
+
+it("does not render panel on load when openOnLoad is false", async () => {
+  render(
+    <ChatHeadlessProvider config={dummyConfig}>
+      <ChatPopUp title="Test Popup" openOnLoad={false} />
+    </ChatHeadlessProvider>
+  );
+  expect(screen.queryByLabelText("Send Message")).toBeNull();
 });
