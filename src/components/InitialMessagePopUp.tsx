@@ -31,7 +31,7 @@ interface InitialMessagePopUpProps {
 
 const builtInCssClasses: InitialMessagePopUpCssClasses =
   withStylelessCssClasses("InitialMessagePopUp", {
-    container: "flex gap-x-1",
+    container: "flex gap-x-1 animate-fade-in",
     closeButton: "bg-white w-4 h-4 rounded-full border border-slate-300",
     closeButtonIcon: "",
     message:
