@@ -6,7 +6,7 @@ import { MessageSource, useChatState } from "@yext/chat-headless-react";
 import { useFetchInitialMessage } from "../hooks/useFetchInitialMessage";
 
 /**
- * The CSS class interface for the {@link InitialMessagePopUp} component.
+ * The CSS class interface for the InitialMessagePopUp component.
  *
  * @public
  */

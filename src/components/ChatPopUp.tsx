@@ -79,6 +79,8 @@ export interface ChatPopUpProps
   openOnLoad?: boolean;
   /** Whether to show the initial message popup when the panel is hidden. Defaults to false. */
   showInitialMessagePopUp?: boolean;
+  /** Whether to show a heartbeat animation on the popup button when the panel is hidden. Defaults to false */
+  showHeartBeatAnimation?: boolean;
 }
 
 /**
@@ -97,6 +99,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     onClose: customOnClose,
     openOnLoad = false,
     showInitialMessagePopUp = false,
+    showHeartBeatAnimation = false,
     title,
   } = props;
   const reportAnalyticsEvent = useReportAnalyticsEvent();
@@ -187,7 +190,10 @@ export function ChatPopUp(props: ChatPopUpProps) {
           <button
             aria-label="Chat Popup Button"
             onClick={onClick}
-            className={cssClasses.button}
+            className={
+              cssClasses.button +
+              (showHeartBeatAnimation ? " animate-heartbeat" : "")
+            }
           >
             {openPanelButtonIcon ?? (
               <ChatIcon className={cssClasses.buttonIcon} />

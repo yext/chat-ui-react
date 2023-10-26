@@ -93,15 +93,19 @@ export interface ChatPopUpCssClasses {
     // (undocumented)
     button?: string;
     // (undocumented)
-    button__display?: string;
-    // (undocumented)
-    button__hidden?: string;
-    // (undocumented)
     buttonIcon?: string;
+    // (undocumented)
+    closedPopupContainer?: string;
+    // (undocumented)
+    closedPopupContainer__display?: string;
+    // (undocumented)
+    closedPopupContainer__hidden?: string;
     // (undocumented)
     container?: string;
     // (undocumented)
     headerCssClasses?: ChatHeaderCssClasses;
+    // (undocumented)
+    initialMessagePopUpCssClasses?: InitialMessagePopUpCssClasses;
     // (undocumented)
     panel?: string;
     // (undocumented)
@@ -117,6 +121,8 @@ export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" 
     customCssClasses?: ChatPopUpCssClasses;
     openOnLoad?: boolean;
     openPanelButtonIcon?: JSX.Element;
+    showHeartBeatAnimation?: boolean;
+    showInitialMessagePopUp?: boolean;
 }
 
 // @public
@@ -135,6 +141,18 @@ export interface FeedbackButtonsCssClasses {
     thumbsUpFillIcon?: string;
     // (undocumented)
     thumbsUpIcon?: string;
+}
+
+// @public
+export interface InitialMessagePopUpCssClasses {
+    // (undocumented)
+    closeButton?: string;
+    // (undocumented)
+    closeButtonIcon?: string;
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    message?: string;
 }
 
 // @public
