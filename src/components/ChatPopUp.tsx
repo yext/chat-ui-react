@@ -190,7 +190,10 @@ export function ChatPopUp(props: ChatPopUpProps) {
           <button
             aria-label="Chat Popup Button"
             onClick={onClick}
-            className={cssClasses.button + (showHeartBeatAnimation ? " animate-heartbeat": "")}
+            className={
+              cssClasses.button +
+              (showHeartBeatAnimation ? " animate-heartbeat" : "")
+            }
           >
             {openPanelButtonIcon ?? (
               <ChatIcon className={cssClasses.buttonIcon} />
