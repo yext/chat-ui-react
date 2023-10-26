@@ -3,7 +3,14 @@ module.exports = {
     "@yext/eslint-config/typescript-react",
     "plugin:storybook/recommended",
   ],
-  ignorePatterns: ["**/lib", "**/dist", "**/build", "**/coverage", "*.d.ts"],
+  ignorePatterns: [
+    "**/lib",
+    "**/dist",
+    "**/build",
+    "**/coverage",
+    "*.d.ts",
+    "**/storybook-static",
+  ],
   overrides: [
     {
       files: ["**/*.{test,stories}.*"],
