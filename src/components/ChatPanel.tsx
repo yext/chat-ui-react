@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useChatState, useChatActions } from "@yext/chat-headless-react";
+import React, { useCallback, useEffect, useRef } from "react";
+import { useChatState } from "@yext/chat-headless-react";
 import {
   MessageBubble,
   MessageBubbleCssClasses,
@@ -8,9 +8,9 @@ import {
 import { ChatInput, ChatInputCssClasses, ChatInputProps } from "./ChatInput";
 import { LoadingDots } from "./LoadingDots";
 import { useComposedCssClasses } from "../hooks";
-import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
+import { useFetchInitialMessage } from "../hooks/useFetchInitialMessage";
 
 /**
  * The CSS class interface for the {@link ChatPanel} component.
@@ -66,37 +66,17 @@ export interface ChatPanelProps
  */
 export function ChatPanel(props: ChatPanelProps) {
   const { header, customCssClasses, stream, handleError } = props;
-  const chat = useChatActions();
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
-  const canSendMessage = useChatState(
-    (state) => state.conversation.canSendMessage
-  );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const defaultHandleApiError = useDefaultHandleApiError();
   const reportAnalyticsEvent = useReportAnalyticsEvent();
-  const [fetchInitialMessage, setFetchInitialMessage] = useState(false);
+  useFetchInitialMessage(handleError, stream);
 
   useEffect(() => {
     reportAnalyticsEvent({
       action: "CHAT_IMPRESSION",
     });
   }, [reportAnalyticsEvent]);
-
-  // Request initial message only if there are no existing messages and no ongoing request.
-  useEffect(() => {
-    setFetchInitialMessage(messages.length === 0 && canSendMessage);
-  }, [messages.length, canSendMessage]);
-
-  useEffect(() => {
-    if (!fetchInitialMessage) {
-      return;
-    }
-    // Ensures that the fetch for the initial message occurs only once
-    setFetchInitialMessage(false);
-    const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
-    res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
-  }, [chat, stream, handleError, defaultHandleApiError, fetchInitialMessage]);
 
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
