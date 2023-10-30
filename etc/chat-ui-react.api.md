@@ -103,6 +103,10 @@ export interface ChatPopUpCssClasses {
     // (undocumented)
     container?: string;
     // (undocumented)
+    ctaLabel?: string;
+    // (undocumented)
+    ctaLabelContainer?: string;
+    // (undocumented)
     headerCssClasses?: ChatHeaderCssClasses;
     // (undocumented)
     initialMessagePopUpCssClasses?: InitialMessagePopUpCssClasses;
@@ -118,6 +122,7 @@ export interface ChatPopUpCssClasses {
 
 // @public
 export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "header" | "customCssClasses"> {
+    ctaLabel?: string;
     customCssClasses?: ChatPopUpCssClasses;
     openOnLoad?: boolean;
     openPanelButtonIcon?: JSX.Element;

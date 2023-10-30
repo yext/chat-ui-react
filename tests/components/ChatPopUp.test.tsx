@@ -74,6 +74,18 @@ describe("openOnLoad", () => {
   });
 });
 
+describe("ctaLabel", () => {
+  it("renders CTA label when a label is provided", async () => {
+    renderPopUp({ ctaLabel: "ChatPopUp Test" });
+    expect(screen.getByText("ChatPopUp Test")).toBeTruthy();
+  });
+
+  it("does not render CTA label by default", async () => {
+    renderPopUp();
+    expect(screen.queryByText("ChatPopUp Test")).toBeNull();
+  });
+});
+
 describe("showInitialMessagePopUp", () => {
   beforeEach(() => {
     mockChatState({

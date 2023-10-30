@@ -22,6 +22,8 @@ export interface ChatPopUpCssClasses
 |  [closedPopupContainer\_\_hidden?](./chat-ui-react.chatpopupcssclasses.closedpopupcontainer__hidden.md) |  | string | _(Optional)_ |
 |  [closedPopupContainer?](./chat-ui-react.chatpopupcssclasses.closedpopupcontainer.md) |  | string | _(Optional)_ |
 |  [container?](./chat-ui-react.chatpopupcssclasses.container.md) |  | string | _(Optional)_ |
+|  [ctaLabel?](./chat-ui-react.chatpopupcssclasses.ctalabel.md) |  | string | _(Optional)_ |
+|  [ctaLabelContainer?](./chat-ui-react.chatpopupcssclasses.ctalabelcontainer.md) |  | string | _(Optional)_ |
 |  [headerCssClasses?](./chat-ui-react.chatpopupcssclasses.headercssclasses.md) |  | [ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md) | _(Optional)_ |
 |  [initialMessagePopUpCssClasses?](./chat-ui-react.chatpopupcssclasses.initialmessagepopupcssclasses.md) |  | [InitialMessagePopUpCssClasses](./chat-ui-react.initialmessagepopupcssclasses.md) | _(Optional)_ |
 |  [panel\_\_display?](./chat-ui-react.chatpopupcssclasses.panel__display.md) |  | string | _(Optional)_ |

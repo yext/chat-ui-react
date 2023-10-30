@@ -27,6 +27,8 @@ export interface ChatPopUpCssClasses {
   panel__hidden?: string;
   button?: string;
   buttonIcon?: string;
+  ctaLabelContainer?: string;
+  ctaLabel?: string;
   closedPopupContainer?: string;
   closedPopupContainer__display?: string;
   closedPopupContainer__hidden?: string;
@@ -45,13 +47,18 @@ const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
       "w-80 max-[480px]:right-0 max-[480px]:bottom-0 max-[480px]:w-full max-[480px]:h-full lg:w-96 h-[75vh]",
     panel__display: "duration-300 translate-y-0",
     panel__hidden: "duration-300 translate-y-[20%] opacity-0 invisible",
-    closedPopupContainer: fixedPosition + "flex gap-x-2.5",
+    closedPopupContainer:
+      fixedPosition +
+      "flex gap-x-2.5 items-center hover:-translate-y-2 duration-150",
     closedPopupContainer__display: "duration-300 transform translate-y-0",
     closedPopupContainer__hidden:
       "duration-300 transform translate-y-[20%] opacity-0 invisible",
     button:
-      "p-2 w-12 h-12 lg:w-16 lg:h-16 flex justify-center items-center text-white shadow-xl rounded-full bg-gradient-to-br from-blue-600 to-blue-700 hover:-translate-y-2 duration-150",
+      "p-2 w-12 h-12 lg:w-16 lg:h-16 flex justify-center items-center text-white shadow-xl rounded-full bg-gradient-to-br from-blue-600 to-blue-700",
     buttonIcon: "text-blue-600 w-[28px] h-[28px] lg:w-[40px] lg:h-[40px]",
+    ctaLabelContainer: "max-w-60 -mr-8 line-clamp-1",
+    ctaLabel:
+      "p-3 pr-8 flex items-center whitespace-nowrap animate-expand-left font-bold rounded-l-full bg-white text-blue-700 h-10 lg:h-14 text-sm lg:text-base",
     headerCssClasses: {
       container: "max-[480px]:rounded-none rounded-t-3xl",
     },
@@ -77,10 +84,19 @@ export interface ChatPopUpProps
   customCssClasses?: ChatPopUpCssClasses;
   /** Whether to show the panel on load. Defaults to false. */
   openOnLoad?: boolean;
-  /** Whether to show the initial message popup when the panel is hidden. Defaults to false. */
+  /**
+   * Whether to show the initial message popup when the panel is hidden on load.
+   * Defaults to false.
+   */
   showInitialMessagePopUp?: boolean;
   /** Whether to show a heartbeat animation on the popup button when the panel is hidden. Defaults to false */
   showHeartBeatAnimation?: boolean;
+  /**
+   * The "Call to Action" label to be displayed next to the popup button.
+   * By default, the CTA is not shown.
+   * This prop will override the "showInitialMessagePopUp" prop, if specified.
+   */
+  ctaLabel?: string;
 }
 
 /**
@@ -100,6 +116,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     openOnLoad = false,
     showInitialMessagePopUp = false,
     showHeartBeatAnimation = false,
+    ctaLabel,
     title,
   } = props;
   const reportAnalyticsEvent = useReportAnalyticsEvent();
@@ -111,7 +128,8 @@ export function ChatPopUp(props: ChatPopUpProps) {
   }, [reportAnalyticsEvent]);
 
   const [showInitialMessage, setshowInitialMessage] = useState(
-    showInitialMessagePopUp
+    //only show initial message popup (if specified) when CTA label is not provided
+    !ctaLabel && showInitialMessagePopUp
   );
   const onCloseInitialMessage = useCallback(() => {
     setshowInitialMessage(false);
@@ -186,6 +204,14 @@ export function ChatPopUp(props: ChatPopUpProps) {
               onClose={onCloseInitialMessage}
               customCssClasses={cssClasses.initialMessagePopUpCssClasses}
             />
+          )}
+          {ctaLabel && (
+            // the div container is needed to islate the expand CSS animation
+            <div className={cssClasses.ctaLabelContainer}>
+              <div aria-label="CTA Label" className={cssClasses.ctaLabel}>
+                {ctaLabel}
+              </div>
+            </div>
           )}
           <button
             aria-label="Chat Popup Button"
