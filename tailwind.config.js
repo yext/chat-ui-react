@@ -5,6 +5,7 @@ module.exports = {
       animation: {
         "fade-in": "fade-in 0.4s",
         heartbeat: "heartbeat 2s ease-out infinite",
+        "expand-left": "expand-left 0.5s",
       },
       keyframes: {
         "fade-in": {
@@ -16,6 +17,10 @@ module.exports = {
           "80%": { transform: "scale(1)" },
           "90%": { transform: "scale(1.1)" },
           "100%": { transform: "scale(1)" },
+        },
+        "expand-left": {
+          "0%": { "margin-left": "100%" },
+          "100%": { "margin-left": "0" },
         },
       },
     },

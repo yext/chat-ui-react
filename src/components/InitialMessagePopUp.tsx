@@ -35,7 +35,7 @@ const builtInCssClasses: InitialMessagePopUpCssClasses =
     closeButton: "bg-white w-4 h-4 rounded-full border border-slate-300",
     closeButtonIcon: "",
     message:
-      "line-clamp-2 w-60 h-12 lg:h-16 p-2.5 bg-white rounded-xl shadow-xl text-sm",
+      "line-clamp-2 w-60 p-2.5 bg-white rounded-xl shadow-xl text-sm lg:text-base",
   });
 
 /**

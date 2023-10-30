@@ -4,7 +4,7 @@
 
 ## ChatPopUpProps.showInitialMessagePopUp property
 
-Whether to show the initial message popup when the panel is hidden. Defaults to false.
+Whether to show the initial message popup when the panel is hidden on load. Defaults to false.
 
 **Signature:**
 
