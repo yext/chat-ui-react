@@ -80,6 +80,35 @@ describe("ctaLabel", () => {
     expect(screen.getByText("ChatPopUp Test")).toBeTruthy();
   });
 
+  it("open panel when CTA label is clicked", async () => {
+    renderPopUp({
+      ctaLabel: "ChatPopUp Test",
+      customCssClasses: {
+        panel__display: "panel-display-css",
+        panel__hidden: "panel-hidden-css",
+        closedPopupContainer__display: "closed-popup-elements-display-css",
+        closedPopupContainer__hidden: "closed-popup-elements-hidden-css",
+      },
+    });
+
+    expect(screen.getByText("ChatPopUp Test")).toBeTruthy();
+    expect(screen.getByLabelText("Chat Closed Popup Container")).toHaveClass(
+      "closed-popup-elements-display-css"
+    );
+    expect(screen.getByLabelText("Chat Popup Panel")).toHaveClass(
+      "panel-hidden-css"
+    );
+
+    const ctaButton = screen.getByText("ChatPopUp Test");
+    await act(() => userEvent.click(ctaButton));
+    expect(screen.getByLabelText("Chat Closed Popup Container")).toHaveClass(
+      "closed-popup-elements-hidden-css"
+    );
+    expect(screen.getByLabelText("Chat Popup Panel")).toHaveClass(
+      "panel-display-css"
+    );
+  });
+
   it("does not render CTA label by default", async () => {
     renderPopUp();
     expect(screen.queryByText("ChatPopUp Test")).toBeNull();

@@ -208,9 +208,13 @@ export function ChatPopUp(props: ChatPopUpProps) {
           {ctaLabel && (
             // the div container is needed to islate the expand CSS animation
             <div className={cssClasses.ctaLabelContainer}>
-              <div aria-label="CTA Label" className={cssClasses.ctaLabel}>
+              <button
+                onClick={onClick}
+                aria-label="CTA Label"
+                className={cssClasses.ctaLabel}
+              >
                 {ctaLabel}
-              </div>
+              </button>
             </div>
           )}
           <button
