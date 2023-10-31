@@ -4,7 +4,7 @@
 
 ## ChatPopUpProps.showHeartBeatAnimation property
 
-Whether to show a heartbeat animation on the popup button when the panel is hidden. Defaults to false
+Whether to show a heartbeat animation on the popup button when the panel is hidden. Defaults to false.
 
 **Signature:**
 

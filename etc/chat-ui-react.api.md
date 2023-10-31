@@ -111,6 +111,8 @@ export interface ChatPopUpCssClasses {
     // (undocumented)
     initialMessagePopUpCssClasses?: InitialMessagePopUpCssClasses;
     // (undocumented)
+    notification?: string;
+    // (undocumented)
     panel?: string;
     // (undocumented)
     panel__display?: string;
@@ -128,6 +130,7 @@ export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" 
     openPanelButtonIcon?: JSX.Element;
     showHeartBeatAnimation?: boolean;
     showInitialMessagePopUp?: boolean;
+    showUnreadNotification?: boolean;
 }
 
 // @public
