@@ -10,11 +10,14 @@ import {
   MessageSource,
   useChatActions,
 } from "@yext/chat-headless-react";
-import { mockChatActions, mockChatState } from "../__utils__/mocks";
-
-jest.mock("@yext/analytics");
+import {
+  mockChatActions,
+  mockChatAnalytics,
+  mockChatState,
+} from "../__utils__/mocks";
 
 beforeEach(() => {
+  mockChatAnalytics();
   mockChatActions({
     getNextMessage: jest.fn(() => Promise.resolve()),
     streamNextMessage: jest.fn(() => Promise.resolve()),
@@ -197,6 +200,7 @@ describe("showUnreadNotification", () => {
 
   it("updates the number of unread messages when new messages are added while panel is closed", async () => {
     jest.resetAllMocks(); // remove mocks to trigger state update
+    mockChatAnalytics();
     const TestTrigger = () => {
       const actions = useChatActions();
       return (
