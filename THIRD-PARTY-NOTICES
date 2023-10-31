@@ -173,7 +173,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following npm packages may be included in this product:
 
- - @yext/chat-core@0.7.0
+ - @yext/chat-core@0.7.4
  - @yext/chat-headless-react@0.6.1
  - @yext/chat-headless@0.7.1
 
