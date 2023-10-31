@@ -8,6 +8,7 @@ import {
   ChatHeadlessProvider,
   HeadlessConfig,
   MessageSource,
+  useChatActions,
 } from "@yext/chat-headless-react";
 import { mockChatActions, mockChatState } from "../__utils__/mocks";
 
@@ -130,7 +131,7 @@ describe("showInitialMessagePopUp", () => {
     });
   });
 
-  it("does not initial message popup on load when showInitialMessagePopUp is false", async () => {
+  it("does not render initial message popup on load when showInitialMessagePopUp is false", async () => {
     renderPopUp({ showInitialMessagePopUp: false });
     expect(screen.queryByText("initial message")).toBeNull();
     expect(screen.queryByLabelText("Close Initial Message")).toBeNull();
@@ -153,10 +154,79 @@ describe("showInitialMessagePopUp", () => {
   });
 });
 
-function renderPopUp(props?: Partial<ChatPopUpProps>) {
+describe("showUnreadNotification", () => {
+  beforeEach(() => {
+    mockChatState({
+      conversation: {
+        messages: [
+          {
+            text: "initial message",
+            source: MessageSource.BOT,
+            timestamp: "2023-06-01T15:26:55.362Z",
+          },
+        ],
+      },
+    });
+  });
+
+  it("does not render number of unread messages notification when it is false", async () => {
+    renderPopUp({ showUnreadNotification: false });
+    expect(screen.queryByLabelText("Unread Messages Notification")).toBeNull();
+  });
+
+  it("renders number of unread messages notification it is true", async () => {
+    renderPopUp({ showUnreadNotification: true });
+    expect(screen.getByLabelText("Unread Messages Notification")).toBeTruthy();
+    expect(screen.getByText("1")).toBeTruthy();
+  });
+
+  it("clears the number of unread messages when panel is opened and then closed", async () => {
+    renderPopUp({ showUnreadNotification: true });
+    expect(screen.getByLabelText("Unread Messages Notification")).toBeTruthy();
+    expect(screen.getByText("1")).toBeTruthy();
+
+    const openButton = screen.getByLabelText("Chat Popup Button");
+    await act(() => userEvent.click(openButton));
+
+    const closeButton = screen.getByLabelText("Close Chat");
+    await act(() => userEvent.click(closeButton));
+
+    expect(screen.queryByLabelText("Unread Messages Notification")).toBeNull();
+    expect(screen.queryByText("1")).toBeNull();
+  });
+
+  it("updates the number of unread messages when new messages are added while panel is closed", async () => {
+    jest.resetAllMocks(); // remove mocks to trigger state update
+    const TestTrigger = () => {
+      const actions = useChatActions();
+      return (
+        <button
+          onClick={() =>
+            actions.addMessage({
+              text: "test",
+              source: MessageSource.BOT,
+            })
+          }
+        >
+          Add Test Message
+        </button>
+      );
+    };
+    renderPopUp({ showUnreadNotification: true }, <TestTrigger />);
+    expect(await screen.findByText("1")).toBeTruthy(); // initial message fetch on load
+
+    const addMessageButton = screen.getByText("Add Test Message");
+    await act(() => userEvent.click(addMessageButton));
+
+    expect(await screen.findByText("2")).toBeTruthy();
+  });
+});
+
+function renderPopUp(props?: Partial<ChatPopUpProps>, children?: JSX.Element) {
   render(
     <ChatHeadlessProvider config={dummyConfig}>
       <ChatPopUp {...props} title="Test Popup" />
+      {children}
     </ChatHeadlessProvider>
   );
 }

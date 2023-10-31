@@ -3,7 +3,6 @@ import { CrossIcon } from "../icons/Cross";
 import { useComposedCssClasses } from "../hooks";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 import { MessageSource, useChatState } from "@yext/chat-headless-react";
-import { useFetchInitialMessage } from "../hooks/useFetchInitialMessage";
 
 /**
  * The CSS class interface for the InitialMessagePopUp component.
@@ -52,7 +51,6 @@ export function InitialMessagePopUp({
   const messages = useChatState((s) => s.conversation.messages);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
-  useFetchInitialMessage((e: unknown) => console.error(e));
   const firstBotMessage: string = useMemo(() => {
     return messages.length !== 0 && messages[0].source === MessageSource.BOT
       ? messages[0].text

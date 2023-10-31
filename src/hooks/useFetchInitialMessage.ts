@@ -11,10 +11,12 @@ import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
  * @param handleError - A function which is called when an error occurs while fetching for initial message.
  *                      By default, the error is logged to the console and an error message is added to state.
  * @param stream      - Enable streaming behavior by making a request to Chat Streaming API. Defaults to false.
+ * @param customCondition - additional condition for when to fetch initial message
  */
 export function useFetchInitialMessage(
   handleError?: (e: unknown) => void,
-  stream = false
+  stream = false,
+  customCondition = true
 ) {
   const chat = useChatActions();
   const defaultHandleApiError = useDefaultHandleApiError();
@@ -38,7 +40,7 @@ export function useFetchInitialMessage(
   }, [messages.length, messagesLength]);
 
   useEffect(() => {
-    if (!fetchInitialMessage || !canSendMessage) {
+    if (!fetchInitialMessage || !canSendMessage || !customCondition) {
       return;
     }
     setFetchInitialMessage(false);
@@ -51,5 +53,6 @@ export function useFetchInitialMessage(
     defaultHandleApiError,
     fetchInitialMessage,
     canSendMessage,
+    customCondition,
   ]);
 }

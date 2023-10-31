@@ -14,6 +14,8 @@ import {
   InitialMessagePopUp,
   InitialMessagePopUpCssClasses,
 } from "./InitialMessagePopUp";
+import { useChatState } from "@yext/chat-headless-react";
+import { useFetchInitialMessage } from "../hooks/useFetchInitialMessage";
 
 /**
  * The CSS class interface for the {@link ChatPopUp} component.
@@ -29,6 +31,7 @@ export interface ChatPopUpCssClasses {
   buttonIcon?: string;
   ctaLabelContainer?: string;
   ctaLabel?: string;
+  notification?: string;
   closedPopupContainer?: string;
   closedPopupContainer__display?: string;
   closedPopupContainer__hidden?: string;
@@ -59,6 +62,8 @@ const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
     ctaLabelContainer: "max-w-60 -mr-8 line-clamp-1",
     ctaLabel:
       "p-3 pr-8 flex items-center whitespace-nowrap animate-expand-left font-bold rounded-l-full bg-white text-blue-700 h-10 lg:h-14 text-sm lg:text-base",
+    notification:
+      "fixed animate-fade-in bg-red-700 -right-1 top-0 rounded-full w-5 lg:w-6 h-5 lg:h-6 items-center flex justify-center text-sm lg:text-base text-white",
     headerCssClasses: {
       container: "max-[480px]:rounded-none rounded-t-3xl",
     },
@@ -89,8 +94,16 @@ export interface ChatPopUpProps
    * Defaults to false.
    */
   showInitialMessagePopUp?: boolean;
-  /** Whether to show a heartbeat animation on the popup button when the panel is hidden. Defaults to false */
+  /**
+   * Whether to show a heartbeat animation on the popup button when the panel is hidden.
+   * Defaults to false.
+   */
   showHeartBeatAnimation?: boolean;
+  /**
+   * Whether to show notification showing number of unread messages.
+   * Defaults to false.
+   */
+  showUnreadNotification?: boolean;
   /**
    * The "Call to Action" label to be displayed next to the popup button.
    * By default, the CTA is not shown.
@@ -113,19 +126,31 @@ export function ChatPopUp(props: ChatPopUpProps) {
     customCssClasses,
     showRestartButton = true,
     onClose: customOnClose,
+    handleError,
     openOnLoad = false,
     showInitialMessagePopUp = false,
     showHeartBeatAnimation = false,
+    showUnreadNotification = false,
     ctaLabel,
     title,
   } = props;
-  const reportAnalyticsEvent = useReportAnalyticsEvent();
 
+  const reportAnalyticsEvent = useReportAnalyticsEvent();
   useEffect(() => {
     reportAnalyticsEvent({
       action: "CHAT_IMPRESSION",
     });
   }, [reportAnalyticsEvent]);
+
+  const messages = useChatState((s) => s.conversation.messages);
+  const [numReadMessages, setNumReadMessagesLength] = useState<number>(0);
+  const [numUnreadMessages, setNumUnreadMessagesLength] = useState<number>(0);
+
+  useFetchInitialMessage(
+    showInitialMessagePopUp ? console.error : handleError,
+    false,
+    showUnreadNotification || showInitialMessagePopUp
+  );
 
   const [showInitialMessage, setshowInitialMessage] = useState(
     //only show initial message popup (if specified) when CTA label is not provided
@@ -161,7 +186,14 @@ export function ChatPopUp(props: ChatPopUpProps) {
   const onClose = useCallback(() => {
     setShowChat(false);
     customOnClose?.();
-  }, [customOnClose]);
+    // consider all the messages are read while the panel was open
+    setNumReadMessagesLength(messages.length);
+  }, [customOnClose, messages]);
+
+  useEffect(() => {
+    //update number of unread messages if there are new messages added while the panel is closed
+    setNumUnreadMessagesLength(messages.length - numReadMessages);
+  }, [messages, numReadMessages]);
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const panelCssClasses = twMerge(
@@ -227,6 +259,14 @@ export function ChatPopUp(props: ChatPopUpProps) {
           >
             {openPanelButtonIcon ?? (
               <ChatIcon className={cssClasses.buttonIcon} />
+            )}
+            {showUnreadNotification && !!numUnreadMessages && (
+              <div
+                aria-label="Unread Messages Notification"
+                className={cssClasses.notification}
+              >
+                {numUnreadMessages}
+              </div>
             )}
           </button>
         </div>
