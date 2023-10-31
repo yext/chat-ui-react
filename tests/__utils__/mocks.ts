@@ -6,6 +6,7 @@ import {
   useChatActions,
   useChatState,
 } from "@yext/chat-headless-react";
+import { provideChatAnalytics, ChatAnalyticsService } from "@yext/analytics";
 
 export type RecursivePartial<T> = {
   [P in keyof T]?: T[P] extends undefined
@@ -64,4 +65,17 @@ export function mockChatHooks({
 }) {
   mockedState && mockChatState(mockedState);
   mockedActions && mockChatActions(mockedActions);
+}
+
+export function mockChatAnalytics(
+  customImpl?: typeof provideChatAnalytics
+): jest.SpyInstance<ChatAnalyticsService, unknown[]> {
+  const mockImpl =
+    customImpl ??
+    (() => ({
+      report: jest.fn(),
+    }));
+  return jest
+    .spyOn(require("@yext/analytics"), "provideChatAnalytics")
+    .mockImplementation(mockImpl as (...args: unknown[]) => unknown);
 }
