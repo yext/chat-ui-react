@@ -12,8 +12,14 @@
 |  [ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, })](./chat-ui-react.chatinput.md) | A component that allows user to input message and send to Chat API. |
 |  [ChatPanel(props)](./chat-ui-react.chatpanel.md) | A component that renders a full panel for chat bot interactions. This includes the message bubbles for the conversation, input box with send button, and header (if provided). |
 |  [ChatPopUp(props)](./chat-ui-react.chatpopup.md) | A component that renders a popup button that displays and hides a panel for chat bot interactions. |
+|  [FeedbackButtons({ customCssClasses, responseId, })](./chat-ui-react.feedbackbuttons.md) | Displays feedback buttons (e.g. thumbs up and thumbs down) that will report analytic events on click. |
+|  [Markdown({ content, responseId, className })](./chat-ui-react.markdown.md) | Renders Github-Flavored Markdown from the Knowledge Graph. This Markdown can include arbitrary HTML. Any HTML will be sanitized according to Rehype's default Schema. |
 |  [MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, })](./chat-ui-react.messagebubble.md) | A component that displays the provided message. |
 |  [useComposedCssClasses(builtInClasses, customClasses)](./chat-ui-react.usecomposedcssclasses.md) | useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes. |
+|  [useDefaultHandleApiError()](./chat-ui-react.usedefaulthandleapierror.md) | Returns a default handler function for API errors. It will log the error and add a default error message to state. |
+|  [useFetchInitialMessage(handleError, stream, customCondition)](./chat-ui-react.usefetchinitialmessage.md) | Sends a request to Chat API to fetch the initial message when the conversation first start or when the message history is reset. |
+|  [useReportAnalyticsEvent()](./chat-ui-react.usereportanalyticsevent.md) | Returns a function to send requests to Yext Analytics API. The payload will automatically includes chat-ui-react's package version for "clientSdk" field. |
+|  [useScrollToLastMessage()](./chat-ui-react.usescrolltolastmessage.md) | Scroll the messsages container to the top of the last message whenever there's an update to the messages state. |
 
 ## Interfaces
 
@@ -28,7 +34,9 @@
 |  [ChatPopUpCssClasses](./chat-ui-react.chatpopupcssclasses.md) | The CSS class interface for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component. |
 |  [ChatPopUpProps](./chat-ui-react.chatpopupprops.md) | The props for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component. |
 |  [FeedbackButtonsCssClasses](./chat-ui-react.feedbackbuttonscssclasses.md) | The CSS class interface for the FeedbackButtons component. |
+|  [FeedbackButtonsProps](./chat-ui-react.feedbackbuttonsprops.md) | The props for the FeedbackButtons component. |
 |  [InitialMessagePopUpCssClasses](./chat-ui-react.initialmessagepopupcssclasses.md) | The CSS class interface for the InitialMessagePopUp component. |
+|  [MarkdownProps](./chat-ui-react.markdownprops.md) | The props for the [Markdown()](./chat-ui-react.markdown.md) component. |
 |  [MessageBubbleCssClasses](./chat-ui-react.messagebubblecssclasses.md) | The CSS class interface for the [MessageBubble()](./chat-ui-react.messagebubble.md) component. |
 |  [MessageBubbleProps](./chat-ui-react.messagebubbleprops.md) | The props for the [MessageBubble()](./chat-ui-react.messagebubble.md) component. |
 

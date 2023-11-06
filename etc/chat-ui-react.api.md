@@ -4,6 +4,7 @@
 
 ```ts
 
+import { ChatHeadless } from '@yext/chat-headless-react';
 import { Message } from '@yext/chat-headless-react';
 import { default as React_2 } from 'react';
 
@@ -134,6 +135,9 @@ export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" 
 }
 
 // @public
+export function FeedbackButtons({ customCssClasses, responseId, }: FeedbackButtonsProps): React_2.JSX.Element;
+
+// @public
 export interface FeedbackButtonsCssClasses {
     // (undocumented)
     container?: string;
@@ -152,6 +156,12 @@ export interface FeedbackButtonsCssClasses {
 }
 
 // @public
+export interface FeedbackButtonsProps {
+    customCssClasses?: FeedbackButtonsCssClasses;
+    responseId?: string;
+}
+
+// @public
 export interface InitialMessagePopUpCssClasses {
     // (undocumented)
     closeButton?: string;
@@ -161,6 +171,16 @@ export interface InitialMessagePopUpCssClasses {
     container?: string;
     // (undocumented)
     message?: string;
+}
+
+// @public
+export function Markdown({ content, responseId, className }: MarkdownProps): React_2.JSX.Element;
+
+// @public
+export interface MarkdownProps {
+    className?: string;
+    content: string;
+    responseId?: string;
 }
 
 // @public
@@ -209,6 +229,21 @@ export interface MessageBubbleProps {
 
 // @public
 export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface, string | object>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
+
+// @public
+export function useDefaultHandleApiError(): (e: unknown) => void;
+
+// @public
+export function useFetchInitialMessage(handleError?: (e: unknown) => void, stream?: boolean, customCondition?: boolean): void;
+
+// @public
+export function useReportAnalyticsEvent(): ChatHeadless["report"];
+
+// @public
+export function useScrollToLastMessage(): [
+React_2.RefObject<HTMLDivElement>,
+(index: number) => ((message: HTMLDivElement) => void) | undefined
+];
 
 // (No @packageDocumentation comment for this package)
 

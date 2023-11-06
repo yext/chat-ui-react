@@ -19,6 +19,11 @@ const unifiedPlugins: { remark?: PluggableList; rehype: PluggableList } = {
   ],
 };
 
+/**
+ * The props for the {@link Markdown} component.
+ * 
+ * @public
+ */
 export interface MarkdownProps {
   /** Stringified markdown. */
   content: string;
