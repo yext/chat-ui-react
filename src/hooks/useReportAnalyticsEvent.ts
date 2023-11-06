@@ -7,7 +7,7 @@ import { useCallback } from "react";
  * The payload will automatically includes chat-ui-react's
  * package version for "clientSdk" field.
  *
- * @internal
+ * @public
  */
 export function useReportAnalyticsEvent(): ChatHeadless["report"] {
   const chat = useChatActions();

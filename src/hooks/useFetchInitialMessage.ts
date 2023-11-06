@@ -6,7 +6,7 @@ import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
  * Sends a request to Chat API to fetch the initial message when the
  * conversation first start or when the message history is reset.
  *
- * @internal
+ * @public
  *
  * @param handleError - A function which is called when an error occurs while fetching for initial message.
  *                      By default, the error is logged to the console and an error message is added to state.

@@ -19,7 +19,7 @@ const unifiedPlugins: { remark?: PluggableList; rehype: PluggableList } = {
   ],
 };
 
-interface MarkdownProps {
+export interface MarkdownProps {
   /** Stringified markdown. */
   content: string;
   /** The response ID correlates to the current message. */
@@ -35,7 +35,7 @@ interface MarkdownProps {
  * @remarks
  * A link click will send a CHAT_LINK_CLICK analytics event
  *
- * @internal
+ * @public
  */
 export function Markdown({ content, responseId, className }: MarkdownProps) {
   const reportAnalyticsEvent = useReportAnalyticsEvent();

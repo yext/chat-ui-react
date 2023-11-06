@@ -16,5 +16,10 @@ export type { ChatPanelCssClasses, ChatPanelProps } from "./ChatPanel";
 export { ChatPopUp } from "./ChatPopUp";
 export type { ChatPopUpCssClasses, ChatPopUpProps } from "./ChatPopUp";
 
-export type { FeedbackButtonsCssClasses } from "./FeedbackButtons";
+export { FeedbackButtons } from "./FeedbackButtons";
+export type { FeedbackButtonsCssClasses, FeedbackButtonsProps } from "./FeedbackButtons";
+
+export { Markdown } from "./Markdown";
+export { MarkdownProps } from "./Markdown";
+
 export type { InitialMessagePopUpCssClasses } from "./InitialMessagePopUp";

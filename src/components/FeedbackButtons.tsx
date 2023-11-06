@@ -39,9 +39,9 @@ const builtInCssClasses: FeedbackButtonsCssClasses =
 /**
  * The props for the FeedbackButtons component.
  *
- * @internal
+ * @public
  */
-interface FeedbackButtonsProps {
+export interface FeedbackButtonsProps {
   /** The response ID correlates to the current message to give feedback on. */
   responseId?: string;
   /** CSS classes for customizing the component styling. */
@@ -52,7 +52,7 @@ interface FeedbackButtonsProps {
  * Displays feedback buttons (e.g. thumbs up and thumbs down) that will
  * report analytic events on click.
  *
- * @internal
+ * @public
  */
 export function FeedbackButtons({
   customCssClasses,

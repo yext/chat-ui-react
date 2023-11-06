@@ -5,7 +5,7 @@ import { useCallback } from "react";
  * Returns a default handler function for API errors. It will log the error and
  * add a default error message to state.
  *
- * @internal
+ * @public
  */
 export function useDefaultHandleApiError() {
   const chat = useChatActions();

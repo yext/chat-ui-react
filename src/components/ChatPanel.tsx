@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useChatState } from "@yext/chat-headless-react";
 import {
   MessageBubble,
@@ -7,10 +7,13 @@ import {
 } from "./MessageBubble";
 import { ChatInput, ChatInputCssClasses, ChatInputProps } from "./ChatInput";
 import { LoadingDots } from "./LoadingDots";
-import { useComposedCssClasses } from "../hooks";
+import {
+  useComposedCssClasses,
+  useReportAnalyticsEvent,
+  useFetchInitialMessage,
+  useScrollToLastMessage,
+  } from "../hooks";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
-import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
-import { useFetchInitialMessage } from "../hooks/useFetchInitialMessage";
 
 /**
  * The CSS class interface for the {@link ChatPanel} component.
@@ -71,6 +74,7 @@ export function ChatPanel(props: ChatPanelProps) {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const reportAnalyticsEvent = useReportAnalyticsEvent();
   useFetchInitialMessage(handleError, stream);
+  const [messagesContainerRef, setMessageRef] = useScrollToLastMessage();
 
   useEffect(() => {
     reportAnalyticsEvent({
@@ -78,42 +82,14 @@ export function ChatPanel(props: ChatPanelProps) {
     });
   }, [reportAnalyticsEvent]);
 
-  const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
-  const messagesContainer = useRef<HTMLDivElement>(null);
-
-  // Handle scrolling when messages change
-  useEffect(() => {
-    let scrollTop = 0;
-    messagesRef.current = messagesRef.current.slice(0, messages.length);
-
-    // Sums up scroll heights of all messages except the last one
-    if (messagesRef?.current.length > 1) {
-      scrollTop = messagesRef.current
-        .slice(0, -1)
-        .map((elem, _) => elem?.scrollHeight ?? 0)
-        .reduce((total, height) => total + height);
-    }
-
-    // Scroll to the top of the last message
-    messagesContainer.current?.scroll({
-      top: scrollTop,
-      behavior: "smooth",
-    });
-  }, [messages]);
-
-  const setMessagesRef = useCallback((index) => {
-    if (!messagesRef?.current) return null;
-    return (message) => (messagesRef.current[index] = message);
-  }, []);
-
   return (
     <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>
-          <div ref={messagesContainer} className={cssClasses.messagesContainer}>
+          <div ref={messagesContainerRef} className={cssClasses.messagesContainer}>
             {messages.map((message, index) => (
-              <div key={index} ref={setMessagesRef(index)}>
+              <div key={index} ref={setMessageRef(index)}>
                 <MessageBubble
                   {...props}
                   customCssClasses={cssClasses.messageBubbleCssClasses}
