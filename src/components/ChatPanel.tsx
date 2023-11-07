@@ -50,8 +50,10 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
 export interface ChatPanelProps
   extends Omit<MessageBubbleProps, "customCssClasses" | "message">,
     Omit<ChatInputProps, "customCssClasses"> {
-  /** A header to render at the top of the panel. */
+  /** A custom header component to render at the top of the panel. */
   header?: JSX.Element;
+  /** A custom input component to render at the bottom of the panel. */
+  input?: JSX.Element;
   /**
    * CSS classes for customizing the component styling.
    */
@@ -68,7 +70,7 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses, stream, handleError } = props;
+  const { header, input, customCssClasses, stream, handleError } = props;
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
@@ -101,7 +103,7 @@ export function ChatPanel(props: ChatPanelProps) {
           </div>
         </div>
         <div className={cssClasses.inputContainer}>
-          <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
+          {input ?? <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />}
         </div>
       </div>
     </div>

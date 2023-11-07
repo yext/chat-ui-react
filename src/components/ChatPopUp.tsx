@@ -82,7 +82,7 @@ const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
  */
 export interface ChatPopUpProps
   extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">,
-    Omit<ChatPanelProps, "header" | "customCssClasses"> {
+    Omit<ChatPanelProps, "header" | "input" | "customCssClasses"> {
   /** Custom icon for the popup button to open the panel. */
   openPanelButtonIcon?: JSX.Element;
   /** CSS classes for customizing the component styling. */
