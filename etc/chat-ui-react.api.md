@@ -4,6 +4,7 @@
 
 ```ts
 
+import { ChatHeadless } from '@yext/chat-headless-react';
 import { Message } from '@yext/chat-headless-react';
 import { default as React_2 } from 'react';
 
@@ -209,6 +210,9 @@ export interface MessageBubbleProps {
 
 // @public
 export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface, string | object>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
+
+// @public
+export function useReportAnalyticsEvent(): ChatHeadless["report"];
 
 // (No @packageDocumentation comment for this package)
 
