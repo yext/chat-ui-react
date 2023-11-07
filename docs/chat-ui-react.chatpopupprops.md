@@ -9,9 +9,9 @@ The props for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component.
 **Signature:**
 
 ```typescript
-export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "header" | "customCssClasses"> 
+export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "header" | "input" | "customCssClasses"> 
 ```
-**Extends:** Omit&lt;[ChatHeaderProps](./chat-ui-react.chatheaderprops.md)<!-- -->, "showCloseButton" \| "customCssClasses"&gt;, Omit&lt;[ChatPanelProps](./chat-ui-react.chatpanelprops.md)<!-- -->, "header" \| "customCssClasses"&gt;
+**Extends:** Omit&lt;[ChatHeaderProps](./chat-ui-react.chatheaderprops.md)<!-- -->, "showCloseButton" \| "customCssClasses"&gt;, Omit&lt;[ChatPanelProps](./chat-ui-react.chatpanelprops.md)<!-- -->, "header" \| "input" \| "customCssClasses"&gt;
 
 ## Properties
 

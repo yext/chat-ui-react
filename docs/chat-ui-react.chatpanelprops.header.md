@@ -4,7 +4,7 @@
 
 ## ChatPanelProps.header property
 
-A header to render at the top of the panel.
+A custom header component to render at the top of the panel.
 
 **Signature:**
 

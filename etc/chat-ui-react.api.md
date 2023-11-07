@@ -84,6 +84,7 @@ export interface ChatPanelCssClasses {
 export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClasses" | "message">, Omit<ChatInputProps, "customCssClasses"> {
     customCssClasses?: ChatPanelCssClasses;
     header?: JSX.Element;
+    input?: JSX.Element;
 }
 
 // @public
@@ -124,7 +125,7 @@ export interface ChatPopUpCssClasses {
 }
 
 // @public
-export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "header" | "customCssClasses"> {
+export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "header" | "input" | "customCssClasses"> {
     ctaLabel?: string;
     customCssClasses?: ChatPopUpCssClasses;
     openOnLoad?: boolean;
