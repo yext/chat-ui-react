@@ -14,6 +14,7 @@
 |  [ChatPopUp(props)](./chat-ui-react.chatpopup.md) | A component that renders a popup button that displays and hides a panel for chat bot interactions. |
 |  [MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, })](./chat-ui-react.messagebubble.md) | A component that displays the provided message. |
 |  [useComposedCssClasses(builtInClasses, customClasses)](./chat-ui-react.usecomposedcssclasses.md) | useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes. |
+|  [useReportAnalyticsEvent()](./chat-ui-react.usereportanalyticsevent.md) | Returns a function to send requests to Yext Analytics API. |
 
 ## Interfaces
 
