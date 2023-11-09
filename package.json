@@ -44,6 +44,6 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
-    "core-js-compat": "3.33.2"
+    "storybook": "^7.5.2"
   }
 }
