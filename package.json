@@ -44,6 +44,6 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
-    "storybook": "^7.5.2"
+    "@storybook/addon-essentials": "^7.5.2"
   }
 }
