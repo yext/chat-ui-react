@@ -22,4 +22,5 @@ export interface ChatPanelCssClasses
 |  [messageBubbleCssClasses?](./chat-ui-react.chatpanelcssclasses.messagebubblecssclasses.md) |  | [MessageBubbleCssClasses](./chat-ui-react.messagebubblecssclasses.md) | _(Optional)_ |
 |  [messagesContainer?](./chat-ui-react.chatpanelcssclasses.messagescontainer.md) |  | string | _(Optional)_ |
 |  [messagesScrollContainer?](./chat-ui-react.chatpanelcssclasses.messagesscrollcontainer.md) |  | string | _(Optional)_ |
+|  [messageSuggestionClasses?](./chat-ui-react.chatpanelcssclasses.messagesuggestionclasses.md) |  | [MessageSuggestionCssClasses](./chat-ui-react.messagesuggestioncssclasses.md) | _(Optional)_ |
 

@@ -79,12 +79,15 @@ export interface ChatPanelCssClasses {
     messagesContainer?: string;
     // (undocumented)
     messagesScrollContainer?: string;
+    // (undocumented)
+    messageSuggestionClasses?: MessageSuggestionCssClasses;
 }
 
 // @public
 export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClasses" | "message">, Omit<ChatInputProps, "customCssClasses"> {
     customCssClasses?: ChatPanelCssClasses;
     header?: ReactNode;
+    messageSuggestions?: string[];
 }
 
 // @public
@@ -207,6 +210,22 @@ export interface MessageBubbleProps {
     message: Message;
     showFeedbackButtons?: boolean;
     showTimestamp?: boolean;
+}
+
+// @public
+export interface MessageSuggestionCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    suggestion?: string;
+}
+
+// @public
+export interface MessageSuggestionsProps {
+    // (undocumented)
+    customCssClasses?: MessageSuggestionCssClasses;
+    // (undocumented)
+    suggestions: string[];
 }
 
 // @public

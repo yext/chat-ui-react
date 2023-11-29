@@ -18,3 +18,8 @@ export type { ChatPopUpCssClasses, ChatPopUpProps } from "./ChatPopUp";
 
 export type { FeedbackButtonsCssClasses } from "./FeedbackButtons";
 export type { InitialMessagePopUpCssClasses } from "./InitialMessagePopUp";
+
+export type {
+  MessageSuggestionCssClasses,
+  MessageSuggestionsProps,
+} from "./MessageSuggestions";
