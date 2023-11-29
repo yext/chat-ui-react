@@ -25,7 +25,7 @@ export interface MessageSuggestionsProps {
 }
 
 const defaultClassnames = withStylelessCssClasses("Suggestions", {
-  container: "flex gap-2 mt-4 w-full overflow-x-auto",
+  container: "flex gap-2 mt-4 w-full overflow-x-auto flex-wrap",
   suggestion:
     "hover:cursor-pointer px-2 py-1 bg-white hover:bg-slate-300 rounded-full text-sm text-blue-700 border border-blue-700 hover:underline",
 }) satisfies MessageSuggestionClasses;
