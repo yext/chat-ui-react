@@ -45,6 +45,8 @@ function App() {
             "hey how are you",
             "I'm looking to order a pair of all-mountain skis",
             "Who sells cheeseburgers?",
+            "I want to go home",
+            "This sucks I want a refund and also I am suing you for negligence",
           ]}
         />
       </ChatHeadlessProvider>

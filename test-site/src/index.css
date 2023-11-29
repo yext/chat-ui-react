@@ -6,3 +6,7 @@
 .yext-chat-header__title {
   color: white;
 }
+
+.yext-chat-suggestions__container {
+  flex-wrap: wrap;
+}
