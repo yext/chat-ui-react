@@ -32,4 +32,6 @@
 |  [InitialMessagePopUpCssClasses](./chat-ui-react.initialmessagepopupcssclasses.md) | The CSS class interface for the InitialMessagePopUp component. |
 |  [MessageBubbleCssClasses](./chat-ui-react.messagebubblecssclasses.md) | The CSS class interface for the [MessageBubble()](./chat-ui-react.messagebubble.md) component. |
 |  [MessageBubbleProps](./chat-ui-react.messagebubbleprops.md) | The props for the [MessageBubble()](./chat-ui-react.messagebubble.md) component. |
+|  [MessageSuggestionCssClasses](./chat-ui-react.messagesuggestioncssclasses.md) | The CSS class interface for the MessageSuggestion component. |
+|  [MessageSuggestionsProps](./chat-ui-react.messagesuggestionsprops.md) | The props for the MessageSuggestions component. |
 

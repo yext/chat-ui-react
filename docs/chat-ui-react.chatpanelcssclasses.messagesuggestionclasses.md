@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-messageSuggestionClasses?: MessageSuggestionClasses;
+messageSuggestionClasses?: MessageSuggestionCssClasses;
 ```

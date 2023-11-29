@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import { useChatState, useChatActions } from "@yext/chat-headless-react";
+import { useChatState } from "@yext/chat-headless-react";
 import {
   MessageBubble,
   MessageBubbleCssClasses,
@@ -18,7 +18,7 @@ import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 import { useFetchInitialMessage } from "../hooks/useFetchInitialMessage";
 import {
-  MessageSuggestionClasses,
+  MessageSuggestionCssClasses,
   MessageSuggestions,
 } from "./MessageSuggestions";
 
@@ -34,7 +34,7 @@ export interface ChatPanelCssClasses {
   inputContainer?: string;
   inputCssClasses?: ChatInputCssClasses;
   messageBubbleCssClasses?: MessageBubbleCssClasses;
-  messageSuggestionClasses?: MessageSuggestionClasses;
+  messageSuggestionClasses?: MessageSuggestionCssClasses;
 }
 
 const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
@@ -102,7 +102,7 @@ export function ChatPanel(props: ChatPanelProps) {
     ) {
       return messageSuggestions;
     }
-    // TODO: Chat API will send suggestions in the message notes eventually; add that here.
+    // TODO: Chat API will send suggestions in the message notes eventually; add that here. [CLIP-852]
     return null;
   }, [messages, messageSuggestions]);
 

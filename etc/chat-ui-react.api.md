@@ -79,10 +79,8 @@ export interface ChatPanelCssClasses {
     messagesContainer?: string;
     // (undocumented)
     messagesScrollContainer?: string;
-    // Warning: (ae-forgotten-export) The symbol "MessageSuggestionClasses" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    messageSuggestionClasses?: MessageSuggestionClasses;
+    messageSuggestionClasses?: MessageSuggestionCssClasses;
 }
 
 // @public
@@ -212,6 +210,22 @@ export interface MessageBubbleProps {
     message: Message;
     showFeedbackButtons?: boolean;
     showTimestamp?: boolean;
+}
+
+// @public
+export interface MessageSuggestionCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    suggestion?: string;
+}
+
+// @public
+export interface MessageSuggestionsProps {
+    // (undocumented)
+    customCssClasses?: MessageSuggestionCssClasses;
+    // (undocumented)
+    suggestions: string[];
 }
 
 // @public
