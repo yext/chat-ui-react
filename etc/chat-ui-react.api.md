@@ -4,6 +4,7 @@
 
 ```ts
 
+import { ChatHeadless } from '@yext/chat-headless-react';
 import { Message } from '@yext/chat-headless-react';
 import { default as React_2 } from 'react';
 import { ReactNode } from 'react';
@@ -94,15 +95,25 @@ export interface ChatPopUpCssClasses {
     // (undocumented)
     button?: string;
     // (undocumented)
-    button__display?: string;
-    // (undocumented)
-    button__hidden?: string;
-    // (undocumented)
     buttonIcon?: string;
+    // (undocumented)
+    closedPopupContainer?: string;
+    // (undocumented)
+    closedPopupContainer__display?: string;
+    // (undocumented)
+    closedPopupContainer__hidden?: string;
     // (undocumented)
     container?: string;
     // (undocumented)
+    ctaLabel?: string;
+    // (undocumented)
+    ctaLabelContainer?: string;
+    // (undocumented)
     headerCssClasses?: ChatHeaderCssClasses;
+    // (undocumented)
+    initialMessagePopUpCssClasses?: InitialMessagePopUpCssClasses;
+    // (undocumented)
+    notification?: string;
     // (undocumented)
     panel?: string;
     // (undocumented)
@@ -115,8 +126,13 @@ export interface ChatPopUpCssClasses {
 
 // @public
 export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "header" | "customCssClasses"> {
+    ctaLabel?: string;
     customCssClasses?: ChatPopUpCssClasses;
+    openOnLoad?: boolean;
     openPanelButtonIcon?: JSX.Element;
+    showHeartBeatAnimation?: boolean;
+    showInitialMessagePopUp?: boolean;
+    showUnreadNotification?: boolean;
 }
 
 // @public
@@ -135,6 +151,18 @@ export interface FeedbackButtonsCssClasses {
     thumbsUpFillIcon?: string;
     // (undocumented)
     thumbsUpIcon?: string;
+}
+
+// @public
+export interface InitialMessagePopUpCssClasses {
+    // (undocumented)
+    closeButton?: string;
+    // (undocumented)
+    closeButtonIcon?: string;
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    message?: string;
 }
 
 // @public
@@ -183,6 +211,9 @@ export interface MessageBubbleProps {
 
 // @public
 export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface, string | object>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
+
+// @public
+export function useReportAnalyticsEvent(): ChatHeadless["report"];
 
 // (No @packageDocumentation comment for this package)
 

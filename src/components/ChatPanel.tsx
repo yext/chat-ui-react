@@ -1,5 +1,4 @@
 import React, { ReactNode, useCallback, useEffect, useRef } from "react";
-import { useChatState, useChatActions } from "@yext/chat-headless-react";
 import {
   MessageBubble,
   MessageBubbleCssClasses,
@@ -8,9 +7,9 @@ import {
 import { ChatInput, ChatInputCssClasses, ChatInputProps } from "./ChatInput";
 import { LoadingDots } from "./LoadingDots";
 import { useComposedCssClasses } from "../hooks";
-import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
+import { useFetchInitialMessage } from "../hooks/useFetchInitialMessage";
 
 /**
  * The CSS class interface for the {@link ChatPanel} component.
@@ -65,32 +64,18 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses } = props;
-  const chat = useChatActions();
+  const { header, customCssClasses, stream, handleError } = props;
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
-  const canSendMessage = useChatState(
-    (state) => state.conversation.canSendMessage
-  );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const defaultHandleApiError = useDefaultHandleApiError();
   const reportAnalyticsEvent = useReportAnalyticsEvent();
+  useFetchInitialMessage(handleError, stream);
 
   useEffect(() => {
     reportAnalyticsEvent({
       action: "CHAT_IMPRESSION",
     });
   }, [reportAnalyticsEvent]);
-
-  // Fetch the first message on load, if there are no existing messages or a request being processed
-  useEffect(() => {
-    if (messages.length !== 0 || !canSendMessage) {
-      return;
-    }
-    const { stream = false, handleError } = props;
-    const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
-    res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
-  }, [chat, props, messages, defaultHandleApiError, canSendMessage]);
 
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
@@ -125,10 +110,7 @@ export function ChatPanel(props: ChatPanelProps) {
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>
-          <div
-            ref={messagesContainer}
-            className={cssClasses.messagesContainer}
-          >
+          <div ref={messagesContainer} className={cssClasses.messagesContainer}>
             {messages.map((message, index) => (
               <div key={index} ref={setMessagesRef(index)}>
                 <MessageBubble

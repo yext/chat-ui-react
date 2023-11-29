@@ -16,12 +16,17 @@ export interface ChatPopUpCssClasses
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [button\_\_display?](./chat-ui-react.chatpopupcssclasses.button__display.md) |  | string | _(Optional)_ |
-|  [button\_\_hidden?](./chat-ui-react.chatpopupcssclasses.button__hidden.md) |  | string | _(Optional)_ |
 |  [button?](./chat-ui-react.chatpopupcssclasses.button.md) |  | string | _(Optional)_ |
 |  [buttonIcon?](./chat-ui-react.chatpopupcssclasses.buttonicon.md) |  | string | _(Optional)_ |
+|  [closedPopupContainer\_\_display?](./chat-ui-react.chatpopupcssclasses.closedpopupcontainer__display.md) |  | string | _(Optional)_ |
+|  [closedPopupContainer\_\_hidden?](./chat-ui-react.chatpopupcssclasses.closedpopupcontainer__hidden.md) |  | string | _(Optional)_ |
+|  [closedPopupContainer?](./chat-ui-react.chatpopupcssclasses.closedpopupcontainer.md) |  | string | _(Optional)_ |
 |  [container?](./chat-ui-react.chatpopupcssclasses.container.md) |  | string | _(Optional)_ |
+|  [ctaLabel?](./chat-ui-react.chatpopupcssclasses.ctalabel.md) |  | string | _(Optional)_ |
+|  [ctaLabelContainer?](./chat-ui-react.chatpopupcssclasses.ctalabelcontainer.md) |  | string | _(Optional)_ |
 |  [headerCssClasses?](./chat-ui-react.chatpopupcssclasses.headercssclasses.md) |  | [ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md) | _(Optional)_ |
+|  [initialMessagePopUpCssClasses?](./chat-ui-react.chatpopupcssclasses.initialmessagepopupcssclasses.md) |  | [InitialMessagePopUpCssClasses](./chat-ui-react.initialmessagepopupcssclasses.md) | _(Optional)_ |
+|  [notification?](./chat-ui-react.chatpopupcssclasses.notification.md) |  | string | _(Optional)_ |
 |  [panel\_\_display?](./chat-ui-react.chatpopupcssclasses.panel__display.md) |  | string | _(Optional)_ |
 |  [panel\_\_hidden?](./chat-ui-react.chatpopupcssclasses.panel__hidden.md) |  | string | _(Optional)_ |
 |  [panel?](./chat-ui-react.chatpopupcssclasses.panel.md) |  | string | _(Optional)_ |

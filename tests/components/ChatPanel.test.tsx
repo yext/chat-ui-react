@@ -111,7 +111,7 @@ it("does not render loading dots when loading status is false", () => {
   expect(screen.queryByLabelText("Loading Indicator")).not.toBeInTheDocument();
 });
 
-it("display message bubbles based on messages in state", () => {
+it("displays message bubbles based on messages in state", () => {
   mockChatState({
     conversation: {
       messages: [dummyMessage],

@@ -3,6 +3,7 @@
 **/docs
 **/dist
 **/etc
+**/storybook-static
 .github
 package*.json
 *.d.ts
