@@ -79,12 +79,17 @@ export interface ChatPanelCssClasses {
     messagesContainer?: string;
     // (undocumented)
     messagesScrollContainer?: string;
+    // Warning: (ae-forgotten-export) The symbol "MessageSuggestionClasses" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    messageSuggestionClasses?: MessageSuggestionClasses;
 }
 
 // @public
 export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClasses" | "message">, Omit<ChatInputProps, "customCssClasses"> {
     customCssClasses?: ChatPanelCssClasses;
     header?: ReactNode;
+    messageSuggestions?: string[];
 }
 
 // @public

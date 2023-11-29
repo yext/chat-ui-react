@@ -1,4 +1,10 @@
-import React, { ReactNode, useCallback, useEffect, useRef } from "react";
+import React, {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import { useChatState, useChatActions } from "@yext/chat-headless-react";
 import {
   MessageBubble,
@@ -11,6 +17,10 @@ import { useComposedCssClasses } from "../hooks";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 import { useFetchInitialMessage } from "../hooks/useFetchInitialMessage";
+import {
+  MessageSuggestionClasses,
+  MessageSuggestions,
+} from "./MessageSuggestions";
 
 /**
  * The CSS class interface for the {@link ChatPanel} component.
@@ -24,6 +34,7 @@ export interface ChatPanelCssClasses {
   inputContainer?: string;
   inputCssClasses?: ChatInputCssClasses;
   messageBubbleCssClasses?: MessageBubbleCssClasses;
+  messageSuggestionClasses?: MessageSuggestionClasses;
 }
 
 const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
@@ -53,6 +64,11 @@ export interface ChatPanelProps
    * CSS classes for customizing the component styling.
    */
   customCssClasses?: ChatPanelCssClasses;
+  /**
+   * A set of pre-written initial messages that the user
+   * can click on instead of typing their own.
+   */
+  messageSuggestions?: string[];
 }
 
 /**
@@ -65,7 +81,8 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses, stream, handleError } = props;
+  const { header, customCssClasses, stream, handleError, messageSuggestions } =
+    props;
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
@@ -77,6 +94,17 @@ export function ChatPanel(props: ChatPanelProps) {
       action: "CHAT_IMPRESSION",
     });
   }, [reportAnalyticsEvent]);
+
+  const suggestions = useMemo(() => {
+    if (
+      messages.length === 0 ||
+      (messages.length === 1 && messages[0].source === "BOT")
+    ) {
+      return messageSuggestions;
+    }
+    // TODO: Chat API will send suggestions in the message notes eventually; add that here.
+    return null;
+  }, [messages, messageSuggestions]);
 
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
@@ -122,6 +150,12 @@ export function ChatPanel(props: ChatPanelProps) {
               </div>
             ))}
             {loading && <LoadingDots />}
+            {suggestions && (
+              <MessageSuggestions
+                suggestions={suggestions}
+                customCssClasses={cssClasses.messageSuggestionClasses}
+              />
+            )}
           </div>
         </div>
         <div className={cssClasses.inputContainer}>
