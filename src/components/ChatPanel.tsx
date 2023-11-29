@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useRef } from "react";
-import { useChatState } from "@yext/chat-headless-react";
+import React, { ReactNode, useCallback, useEffect, useRef } from "react";
+import { useChatState, useChatActions } from "@yext/chat-headless-react";
 import {
   MessageBubble,
   MessageBubbleCssClasses,
@@ -48,7 +48,7 @@ export interface ChatPanelProps
   extends Omit<MessageBubbleProps, "customCssClasses" | "message">,
     Omit<ChatInputProps, "customCssClasses"> {
   /** A header to render at the top of the panel. */
-  header?: JSX.Element;
+  header?: ReactNode;
   /**
    * CSS classes for customizing the component styling.
    */

@@ -7,6 +7,7 @@
 import { ChatHeadless } from '@yext/chat-headless-react';
 import { Message } from '@yext/chat-headless-react';
 import { default as React_2 } from 'react';
+import { ReactNode } from 'react';
 
 // @public
 export function ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, }: ChatHeaderProps): React_2.JSX.Element;
@@ -83,7 +84,7 @@ export interface ChatPanelCssClasses {
 // @public
 export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClasses" | "message">, Omit<ChatInputProps, "customCssClasses"> {
     customCssClasses?: ChatPanelCssClasses;
-    header?: JSX.Element;
+    header?: ReactNode;
 }
 
 // @public
