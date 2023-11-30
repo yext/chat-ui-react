@@ -1,16 +1,21 @@
 {
   "name": "@yext/chat-ui-react",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "A library of React Components for powering Yext Chat integrations.",
   "author": "clippy@yext.com",
   "main": "./lib/commonjs/src/index.js",
   "module": "./lib/esm/src/index.mjs",
-  "types": "./lib/esm/src/index.d.ts",
   "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./lib/esm/src/index.mjs",
-      "require": "./lib/commonjs/src/index.js"
+      "import": {
+        "types": "./lib/esm/index.d.ts",
+        "default": "./lib/esm/src/index.mjs"
+      },
+      "require": {
+        "types": "./lib/commonjs/src/index.d.ts",
+        "default": "./lib/commonjs/src/index.js"
+      }
     },
     "./bundle.css": "./lib/bundle.css"
   },
