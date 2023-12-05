@@ -19,7 +19,7 @@ const config: HeadlessConfig = {
 function App() {
   return (
     <div>
-      <div className="h-screen w-screen flex justify-center items-center bg-red-400">
+      <div className="h-screen w-screen flex justify-center items-center bg-slate-700">
         {/* <h1 className="external-element">External Element!</h1> */}
         <ChatHeadlessProvider config={config}>
           <div className="h-5/6 w-1/2">
@@ -27,12 +27,28 @@ function App() {
               header={
                 <ChatHeader title="Clippy's Chatbot" showRestartButton={true} />
               }
+              messageSuggestions={[
+                "Hello",
+                "How are you?",
+                "Goodbye",
+                "What is your name?",
+                "This is a longer message to test how it scales with more text",
+              ]}
             />
           </div>
         </ChatHeadlessProvider>
       </div>
       <ChatHeadlessProvider config={config}>
-        <ChatPopUp title="Clippy" />
+        <ChatPopUp
+          title="Clippy"
+          messageSuggestions={[
+            "hey how are you",
+            "I'm looking to order a pair of all-mountain skis",
+            "Who sells cheeseburgers?",
+            "I want to go home",
+            "This sucks I want a refund and also I am suing you for negligence",
+          ]}
+        />
       </ChatHeadlessProvider>
     </div>
   );

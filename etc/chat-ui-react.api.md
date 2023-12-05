@@ -4,8 +4,10 @@
 
 ```ts
 
+import { ChatHeadless } from '@yext/chat-headless-react';
 import { Message } from '@yext/chat-headless-react';
 import { default as React_2 } from 'react';
+import { ReactNode } from 'react';
 
 // @public
 export function ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, }: ChatHeaderProps): React_2.JSX.Element;
@@ -77,12 +79,15 @@ export interface ChatPanelCssClasses {
     messagesContainer?: string;
     // (undocumented)
     messagesScrollContainer?: string;
+    // (undocumented)
+    messageSuggestionClasses?: MessageSuggestionCssClasses;
 }
 
 // @public
 export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClasses" | "message">, Omit<ChatInputProps, "customCssClasses"> {
     customCssClasses?: ChatPanelCssClasses;
-    header?: JSX.Element;
+    header?: ReactNode;
+    messageSuggestions?: string[];
 }
 
 // @public
@@ -208,7 +213,26 @@ export interface MessageBubbleProps {
 }
 
 // @public
+export interface MessageSuggestionCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    suggestion?: string;
+}
+
+// @public
+export interface MessageSuggestionsProps {
+    // (undocumented)
+    customCssClasses?: MessageSuggestionCssClasses;
+    // (undocumented)
+    suggestions: string[];
+}
+
+// @public
 export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface, string | object>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
+
+// @public
+export function useReportAnalyticsEvent(): ChatHeadless["report"];
 
 // (No @packageDocumentation comment for this package)
 
