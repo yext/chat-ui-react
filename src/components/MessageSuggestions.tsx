@@ -61,6 +61,7 @@ export const MessageSuggestions: React.FC<MessageSuggestionsProps> = ({
         <button
           key={index}
           className={classes.suggestion}
+          // eslint-disable-next-line react-perf/jsx-no-new-function-as-prop
           onClick={() => sendMsg(suggestion)}
         >
           {suggestion}
