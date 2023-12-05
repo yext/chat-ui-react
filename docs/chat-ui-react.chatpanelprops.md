@@ -4,7 +4,7 @@
 
 ## ChatPanelProps interface
 
-The props for the [ChatPanel()](./chat-ui-react.chatpanel.md) component.
+The props for the [ChatPanel()](./chat-ui-react.chatpanel.md) component. Test
 
 **Signature:**
 

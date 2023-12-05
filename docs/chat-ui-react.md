@@ -25,7 +25,7 @@
 |  [ChatInputCssClasses](./chat-ui-react.chatinputcssclasses.md) | The CSS class interface for the [ChatInput()](./chat-ui-react.chatinput.md) component. |
 |  [ChatInputProps](./chat-ui-react.chatinputprops.md) | The props for the [ChatInput()](./chat-ui-react.chatinput.md) component. |
 |  [ChatPanelCssClasses](./chat-ui-react.chatpanelcssclasses.md) | The CSS class interface for the [ChatPanel()](./chat-ui-react.chatpanel.md) component. |
-|  [ChatPanelProps](./chat-ui-react.chatpanelprops.md) | The props for the [ChatPanel()](./chat-ui-react.chatpanel.md) component. |
+|  [ChatPanelProps](./chat-ui-react.chatpanelprops.md) | The props for the [ChatPanel()](./chat-ui-react.chatpanel.md) component. Test |
 |  [ChatPopUpCssClasses](./chat-ui-react.chatpopupcssclasses.md) | The CSS class interface for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component. |
 |  [ChatPopUpProps](./chat-ui-react.chatpopupprops.md) | The props for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component. |
 |  [FeedbackButtonsCssClasses](./chat-ui-react.feedbackbuttonscssclasses.md) | The CSS class interface for the FeedbackButtons component. |
