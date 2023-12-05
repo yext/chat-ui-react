@@ -51,7 +51,7 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
 );
 
 /**
- * The props for the {@link ChatPanel} component. Test
+ * The props for the {@link ChatPanel} component.
  *
  * @public
  */
