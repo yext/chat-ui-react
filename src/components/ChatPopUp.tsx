@@ -254,7 +254,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
             onClick={onClick}
             className={
               cssClasses.button +
-              (showHeartBeatAnimation ? " animate-heartbeat" : "")
+              (showHeartBeatAnimation && !!numUnreadMessages ? " animate-heartbeat" : "")
             }
           >
             {openPanelButtonIcon ?? (

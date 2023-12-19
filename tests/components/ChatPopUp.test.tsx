@@ -183,10 +183,13 @@ describe("showUnreadNotification", () => {
     expect(screen.getByText("1")).toBeTruthy();
   });
 
-  it("clears the number of unread messages when panel is opened and then closed", async () => {
-    renderPopUp({ showUnreadNotification: true });
+  it("clears the number of unread messages and stops animation when panel is opened and then closed", async () => {
+    renderPopUp({ showHeartBeatAnimation: true, showUnreadNotification: true });
     expect(screen.getByLabelText("Unread Messages Notification")).toBeTruthy();
     expect(screen.getByText("1")).toBeTruthy();
+    expect(screen.getByLabelText("Chat Popup Button")).toHaveClass(
+      "animate-heartbeat"
+    );
 
     const openButton = screen.getByLabelText("Chat Popup Button");
     await act(() => userEvent.click(openButton));
@@ -196,6 +199,9 @@ describe("showUnreadNotification", () => {
 
     expect(screen.queryByLabelText("Unread Messages Notification")).toBeNull();
     expect(screen.queryByText("1")).toBeNull();
+    expect(screen.queryByLabelText("Chat Popup Button")).not.toHaveClass(
+      "animate-heartbeat"
+    );
   });
 
   it("updates the number of unread messages when new messages are added while panel is closed", async () => {
