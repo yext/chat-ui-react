@@ -85,6 +85,9 @@ export function ChatPanel(props: ChatPanelProps) {
     props;
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
+  const suggestedReplies = useChatState(
+    (state) => state.conversation.notes?.suggestedReplies
+  );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const reportAnalyticsEvent = useReportAnalyticsEvent();
   useFetchInitialMessage(handleError, stream);
@@ -102,9 +105,8 @@ export function ChatPanel(props: ChatPanelProps) {
     ) {
       return messageSuggestions;
     }
-    // TODO: Chat API will send suggestions in the message notes eventually; add that here. [CLIP-852]
-    return null;
-  }, [messages, messageSuggestions]);
+    return suggestedReplies;
+  }, [messages, suggestedReplies, messageSuggestions]);
 
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
@@ -150,15 +152,15 @@ export function ChatPanel(props: ChatPanelProps) {
               </div>
             ))}
             {loading && <LoadingDots />}
-            {suggestions && (
-              <MessageSuggestions
-                suggestions={suggestions}
-                customCssClasses={cssClasses.messageSuggestionClasses}
-              />
-            )}
           </div>
         </div>
         <div className={cssClasses.inputContainer}>
+          {suggestions && (
+            <MessageSuggestions
+              suggestions={suggestions}
+              customCssClasses={cssClasses.messageSuggestionClasses}
+            />
+          )}
           <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
         </div>
       </div>
