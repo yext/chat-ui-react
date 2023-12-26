@@ -21,6 +21,7 @@ import {
   MessageSuggestionCssClasses,
   MessageSuggestions,
 } from "./MessageSuggestions";
+import ReactMarkdown from "react-markdown";
 
 /**
  * The CSS class interface for the {@link ChatPanel} component.
@@ -35,7 +36,7 @@ export interface ChatPanelCssClasses {
   inputCssClasses?: ChatInputCssClasses;
   messageBubbleCssClasses?: MessageBubbleCssClasses;
   messageSuggestionClasses?: MessageSuggestionCssClasses;
-  footer?: string;
+  footerCssClasses?: string;
 }
 
 const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
@@ -48,7 +49,7 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
     messageBubbleCssClasses: {
       topContainer: "first:mt-4",
     },
-    footer: "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px]",
+    footerCssClasses: "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px]",
   }
 );
 
@@ -63,7 +64,7 @@ export interface ChatPanelProps
   /** A header to render at the top of the panel. */
   header?: ReactNode;
   /** A footer to render at the bottom of the panel. */
-  footer?: ReactNode;
+  footer?: string;
   /**
    * CSS classes for customizing the component styling.
    */
@@ -166,10 +167,18 @@ export function ChatPanel(props: ChatPanelProps) {
           <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
         </div>
         {footer && (
-            <div className={cssClasses.footer}>
-              {footer}
-            </div>
-          )}
+          <ReactMarkdown 
+            children={footer}
+            className={cssClasses.footerCssClasses}
+            components={{
+              // Style <a/> tags with blue color.
+              a(props) {
+                const {node, ...rest} = props
+                return <a style={{color: 'blue'}} {...rest} />
+              }
+            }}
+          />
+        )}
       </div>
     </div>
   );

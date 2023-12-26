@@ -18,7 +18,7 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [customCssClasses?](./chat-ui-react.chatpanelprops.customcssclasses.md) |  | [ChatPanelCssClasses](./chat-ui-react.chatpanelcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [footer?](./chat-ui-react.chatpanelprops.footer.md) |  | ReactNode | _(Optional)_ A footer to render at the bottom of the panel. |
+|  [footer?](./chat-ui-react.chatpanelprops.footer.md) |  | string | _(Optional)_ A footer to render at the bottom of the panel. |
 |  [header?](./chat-ui-react.chatpanelprops.header.md) |  | ReactNode | _(Optional)_ A header to render at the top of the panel. |
 |  [messageSuggestions?](./chat-ui-react.chatpanelprops.messagesuggestions.md) |  | string\[\] | _(Optional)_ A set of pre-written initial messages that the user can click on instead of typing their own. |
 

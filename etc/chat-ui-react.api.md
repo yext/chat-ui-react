@@ -70,7 +70,7 @@ export interface ChatPanelCssClasses {
     // (undocumented)
     container?: string;
     // (undocumented)
-    footer?: string;
+    footerCssClasses?: string;
     // (undocumented)
     inputContainer?: string;
     // (undocumented)
@@ -88,7 +88,7 @@ export interface ChatPanelCssClasses {
 // @public
 export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClasses" | "message">, Omit<ChatInputProps, "customCssClasses"> {
     customCssClasses?: ChatPanelCssClasses;
-    footer?: ReactNode;
+    footer?: string;
     header?: ReactNode;
     messageSuggestions?: string[];
 }

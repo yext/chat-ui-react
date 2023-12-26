@@ -34,9 +34,7 @@ function App() {
                 "What is your name?",
                 "This is a longer message to test how it scales with more text",
               ]}
-              footer={<div>
-               This is a test <a href="https://yext.com">footer</a> example
-             </div>}
+              footer="This is a test footer with [link](https://yext.com) and [another link](https://yext.com)"
             />
           </div>
         </ChatHeadlessProvider>

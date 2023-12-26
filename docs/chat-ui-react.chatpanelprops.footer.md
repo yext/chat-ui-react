@@ -9,5 +9,5 @@ A footer to render at the bottom of the panel.
 **Signature:**
 
 ```typescript
-footer?: ReactNode;
+footer?: string;
 ```
