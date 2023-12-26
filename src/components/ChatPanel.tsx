@@ -35,6 +35,7 @@ export interface ChatPanelCssClasses {
   inputCssClasses?: ChatInputCssClasses;
   messageBubbleCssClasses?: MessageBubbleCssClasses;
   messageSuggestionClasses?: MessageSuggestionCssClasses;
+  footer?: string;
 }
 
 const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
@@ -47,6 +48,7 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
     messageBubbleCssClasses: {
       topContainer: "first:mt-4",
     },
+    footer: "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px]",
   }
 );
 
@@ -60,6 +62,8 @@ export interface ChatPanelProps
     Omit<ChatInputProps, "customCssClasses"> {
   /** A header to render at the top of the panel. */
   header?: ReactNode;
+  /** A footer to render at the bottom of the panel. */
+  footer?: ReactNode;
   /**
    * CSS classes for customizing the component styling.
    */
@@ -81,7 +85,7 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses, stream, handleError, messageSuggestions } =
+  const { header, footer, customCssClasses, stream, handleError, messageSuggestions } =
     props;
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
@@ -161,6 +165,11 @@ export function ChatPanel(props: ChatPanelProps) {
         <div className={cssClasses.inputContainer}>
           <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
         </div>
+        {footer && (
+            <div className={cssClasses.footer}>
+              {footer}
+            </div>
+          )}
       </div>
     </div>
   );
