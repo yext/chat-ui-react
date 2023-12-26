@@ -28,11 +28,8 @@ function App() {
                 <ChatHeader title="Clippy's Chatbot" showRestartButton={true} />
               }
               messageSuggestions={[
-                "Hello",
-                "How are you?",
-                "Goodbye",
-                "What is your name?",
-                "This is a longer message to test how it scales with more text",
+                "What locations are nearby?",
+                "I'd like to learn more about a location in Arlington",
               ]}
             />
           </div>
