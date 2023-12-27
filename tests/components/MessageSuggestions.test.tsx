@@ -17,6 +17,7 @@ beforeEach(() => {
     mockedActions: {
       streamNextMessage: jest.fn(() => Promise.resolve()),
       getNextMessage: jest.fn(() => Promise.resolve()),
+      setMessageNotes: jest.fn(),
     },
   });
 });
@@ -28,4 +29,16 @@ it("sends message when pill is clicked", async () => {
   expect(button).toHaveTextContent("test msg");
   await act(() => userEvent.click(button));
   expect(actions.getNextMessage).toHaveBeenCalledTimes(1);
+});
+
+it("clears note replies when pill is clicked", async () => {
+  render(<MessageSuggestions suggestions={["test msg"]} />);
+  const actions = spyOnActions();
+  const button = screen.getByRole("button");
+  expect(button).toHaveTextContent("test msg");
+  await act(() => userEvent.click(button));
+  expect(actions.setMessageNotes).toHaveBeenCalledTimes(1);
+  expect(actions.setMessageNotes).toHaveBeenCalledWith({
+    suggestedReplies: undefined,
+  });
 });
