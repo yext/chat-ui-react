@@ -4,7 +4,7 @@
 
 ## ChatPanelProps.footer property
 
-A footer to render at the bottom of the panel.
+A footer markdown string to render at the bottom of the panel.
 
 **Signature:**
 

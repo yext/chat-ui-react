@@ -63,7 +63,7 @@ export interface ChatPanelProps
     Omit<ChatInputProps, "customCssClasses"> {
   /** A header to render at the top of the panel. */
   header?: ReactNode;
-  /** A footer to render at the bottom of the panel. */
+  /** A footer markdown string to render at the bottom of the panel. */
   footer?: string;
   /**
    * CSS classes for customizing the component styling.
@@ -173,7 +173,7 @@ export function ChatPanel(props: ChatPanelProps) {
             components={{
               // Style <a/> tags with blue color.
               a(props) {
-                const {node, ...rest} = props
+                const {...rest} = props
                 return <a style={{color: 'blue'}} {...rest} />
               }
             }}
