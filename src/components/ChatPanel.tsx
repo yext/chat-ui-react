@@ -49,7 +49,8 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
     messageBubbleCssClasses: {
       topContainer: "first:mt-4",
     },
-    footerCssClasses: "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px]",
+    footerCssClasses:
+      "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px] [&>*>a]:text-blue-600",
   }
 );
 
@@ -86,8 +87,14 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, footer, customCssClasses, stream, handleError, messageSuggestions } =
-    props;
+  const {
+    header,
+    footer,
+    customCssClasses,
+    stream,
+    handleError,
+    messageSuggestions,
+  } = props;
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
@@ -167,16 +174,9 @@ export function ChatPanel(props: ChatPanelProps) {
           <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
         </div>
         {footer && (
-          <ReactMarkdown 
+          <ReactMarkdown
             children={footer}
             className={cssClasses.footerCssClasses}
-            components={{
-              // Style <a/> tags with blue color.
-              a(props) {
-                const {...rest} = props
-                return <a style={{color: 'blue'}} {...rest} />
-              }
-            }}
           />
         )}
       </div>
