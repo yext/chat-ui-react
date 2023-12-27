@@ -133,6 +133,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     showUnreadNotification = false,
     ctaLabel,
     title,
+    footer,
   } = props;
 
   const reportAnalyticsEvent = useReportAnalyticsEvent();
@@ -224,6 +225,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
                   customCssClasses={cssClasses.headerCssClasses}
                 />
               }
+              footer={footer}
             />
           )}
         </div>

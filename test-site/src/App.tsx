@@ -31,6 +31,7 @@ function App() {
                 "What locations are nearby?",
                 "I'd like to learn more about a location in Arlington",
               ]}
+              footer="This is a test footer with [link](https://yext.com) and [another link](https://yext.com)"
             />
           </div>
         </ChatHeadlessProvider>

@@ -21,6 +21,7 @@ import {
   MessageSuggestionCssClasses,
   MessageSuggestions,
 } from "./MessageSuggestions";
+import ReactMarkdown from "react-markdown";
 
 /**
  * The CSS class interface for the {@link ChatPanel} component.
@@ -35,6 +36,7 @@ export interface ChatPanelCssClasses {
   inputCssClasses?: ChatInputCssClasses;
   messageBubbleCssClasses?: MessageBubbleCssClasses;
   messageSuggestionClasses?: MessageSuggestionCssClasses;
+  footerCssClasses?: string;
 }
 
 const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
@@ -47,6 +49,8 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
     messageBubbleCssClasses: {
       topContainer: "first:mt-4",
     },
+    footerCssClasses:
+      "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px] [&>*>a]:text-blue-600",
   }
 );
 
@@ -60,6 +64,8 @@ export interface ChatPanelProps
     Omit<ChatInputProps, "customCssClasses"> {
   /** A header to render at the top of the panel. */
   header?: ReactNode;
+  /** A footer markdown string to render at the bottom of the panel. */
+  footer?: string;
   /**
    * CSS classes for customizing the component styling.
    */
@@ -81,8 +87,14 @@ export interface ChatPanelProps
  * @param props - {@link ChatPanelProps}
  */
 export function ChatPanel(props: ChatPanelProps) {
-  const { header, customCssClasses, stream, handleError, messageSuggestions } =
-    props;
+  const {
+    header,
+    footer,
+    customCssClasses,
+    stream,
+    handleError,
+    messageSuggestions,
+  } = props;
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
   const suggestedReplies = useChatState(
@@ -163,6 +175,12 @@ export function ChatPanel(props: ChatPanelProps) {
           )}
           <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
         </div>
+        {footer && (
+          <ReactMarkdown
+            children={footer}
+            className={cssClasses.footerCssClasses}
+          />
+        )}
       </div>
     </div>
   );
