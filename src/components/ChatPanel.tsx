@@ -21,7 +21,7 @@ import {
   MessageSuggestionCssClasses,
   MessageSuggestions,
 } from "./MessageSuggestions";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { ReactMarkdownOptions } from "react-markdown";
 
 /**
  * The CSS class interface for the {@link ChatPanel} component.
@@ -50,7 +50,7 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
       topContainer: "first:mt-4",
     },
     footerCssClasses:
-      "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px] [&>*>a]:text-blue-600",
+      "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px]",
   }
 );
 
@@ -176,12 +176,42 @@ export function ChatPanel(props: ChatPanelProps) {
           <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
         </div>
         {footer && (
-          <ReactMarkdown
-            children={footer}
-            className={cssClasses.footerCssClasses}
-          />
+          <Footer footer={footer} className={cssClasses.footerCssClasses} />
         )}
       </div>
     </div>
   );
 }
+
+const Footer = ({
+  footer,
+  className,
+}: {
+  footer: string;
+  className?: string;
+}) => {
+  const components: ReactMarkdownOptions["components"] = useMemo(() => {
+    return {
+      a: ({ node: _, children, ...props }) => {
+        return (
+          <a
+            {...props}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer hover:underline text-blue-600"
+          >
+            {children}
+          </a>
+        );
+      },
+    };
+  }, []);
+
+  return (
+    <ReactMarkdown
+      children={footer}
+      className={className}
+      components={components}
+    />
+  );
+};
