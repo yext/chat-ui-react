@@ -56,6 +56,8 @@ export interface ChatInputProps {
   sendButtonIcon?: JSX.Element;
   /** CSS classes for customizing the component styling. */
   customCssClasses?: ChatInputCssClasses;
+  /** A callback which is called when user sends a message. */
+  onSend?: (message: string) => void;
 }
 
 /**
@@ -76,6 +78,7 @@ export function ChatInput({
   handleError,
   sendButtonIcon = <ArrowIcon />,
   customCssClasses,
+  onSend,
 }: ChatInputProps) {
   const chat = useChatActions();
   const [input, setInput] = useState("");
@@ -91,6 +94,7 @@ export function ChatInput({
       ? chat.streamNextMessage(input)
       : chat.getNextMessage(input);
     setInput("");
+    if (onSend) res.then(() => {onSend(input)});
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
   }, [chat, input, handleError, defaultHandleApiError, stream]);
 

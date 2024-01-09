@@ -40,7 +40,7 @@ export interface ChatHeaderProps {
 }
 
 // @public
-export function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, }: ChatInputProps): React_2.JSX.Element;
+export function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, }: ChatInputProps): React_2.JSX.Element;
 
 // @public
 export interface ChatInputCssClasses {
@@ -57,6 +57,7 @@ export interface ChatInputProps {
     customCssClasses?: ChatInputCssClasses;
     handleError?: (e: unknown) => void;
     inputAutoFocus?: boolean;
+    onSend?: (message: string) => void;
     placeholder?: string;
     sendButtonIcon?: JSX.Element;
     stream?: boolean;
