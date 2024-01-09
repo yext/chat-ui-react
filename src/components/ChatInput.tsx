@@ -96,7 +96,7 @@ export function ChatInput({
     setInput("");
     if (onSend) res.then(() => {onSend(input)});
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
-  }, [chat, input, handleError, defaultHandleApiError, stream]);
+  }, [chat, input, handleError, defaultHandleApiError, stream, onSend]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
