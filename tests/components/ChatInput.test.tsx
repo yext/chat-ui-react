@@ -205,3 +205,12 @@ it("executes custom handleError if provided", async () => {
   expect(customHandleError).toBeCalledTimes(1);
   expect(customHandleError).toBeCalledWith("API Error");
 });
+
+it("executes onSend if provided", async () => {
+  const onSendCb = jest.fn();
+  render(<ChatInput onSend={message => onSendCb(message)} />);
+  await act(() => userEvent.type(screen.getByRole("textbox"), "test"));
+  const sendButton = screen.getByRole("button");
+  await act(() => userEvent.click(sendButton));
+  expect(onSendCb).toBeCalledWith("test");
+});

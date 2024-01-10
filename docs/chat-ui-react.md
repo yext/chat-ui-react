@@ -9,7 +9,7 @@
 |  Function | Description |
 |  --- | --- |
 |  [ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, })](./chat-ui-react.chatheader.md) | A component that renders the header of a chat bot panel, including the title and a button to reset the conversation. |
-|  [ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, })](./chat-ui-react.chatinput.md) | A component that allows user to input message and send to Chat API. |
+|  [ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, })](./chat-ui-react.chatinput.md) | A component that allows user to input message and send to Chat API. |
 |  [ChatPanel(props)](./chat-ui-react.chatpanel.md) | A component that renders a full panel for chat bot interactions. This includes the message bubbles for the conversation, input box with send button, and header (if provided). |
 |  [ChatPopUp(props)](./chat-ui-react.chatpopup.md) | A component that renders a popup button that displays and hides a panel for chat bot interactions. |
 |  [MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, })](./chat-ui-react.messagebubble.md) | A component that displays the provided message. |
