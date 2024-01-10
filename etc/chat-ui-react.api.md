@@ -71,7 +71,7 @@ export interface ChatPanelCssClasses {
     // (undocumented)
     container?: string;
     // (undocumented)
-    footerCssClasses?: string;
+    footer?: string;
     // (undocumented)
     inputContainer?: string;
     // (undocumented)

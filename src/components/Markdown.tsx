@@ -7,6 +7,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import React, { useMemo } from "react";
 import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
+import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
 
 // The Remark and Rehype plugins to use in conjunction with ReactMarkdown.
 const unifiedPlugins: { remark?: PluggableList; rehype: PluggableList } = {
@@ -19,13 +20,32 @@ const unifiedPlugins: { remark?: PluggableList; rehype: PluggableList } = {
   ],
 };
 
+/**
+ * The CSS class interface for the Markdown component.
+ *
+ * @internal
+ */
+export interface MarkdownCssClasses {
+  container?: string;
+  link?: string;
+}
+
+const builtInCssClasses: MarkdownCssClasses = {
+  link: "cursor-pointer",
+};
+
 interface MarkdownProps {
   /** Stringified markdown. */
   content: string;
   /** The response ID correlates to the current message. */
   responseId?: string;
-  /** Classnames for the container. */
-  className?: string;
+  /** CSS classes for customizing the component styling. */
+  customCssClasses?: MarkdownCssClasses;
+  /**
+   * Action to report for analytics event when a link is clicked.
+   * Defaults to 'CHAT_LINK_CLICK'.
+   */
+  linkClickEvent?: "WEBSITE" | "CHAT_LINK_CLICK";
 }
 
 /**
@@ -37,13 +57,19 @@ interface MarkdownProps {
  *
  * @internal
  */
-export function Markdown({ content, responseId, className }: MarkdownProps) {
+export function Markdown({
+  content,
+  responseId,
+  customCssClasses,
+  linkClickEvent = "CHAT_LINK_CLICK",
+}: MarkdownProps) {
   const reportAnalyticsEvent = useReportAnalyticsEvent();
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const components: ReactMarkdownOptions["components"] = useMemo(() => {
     const createClickHandlerFn = (href?: string) => () => {
       reportAnalyticsEvent({
-        action: "CHAT_LINK_CLICK",
+        action: linkClickEvent,
         destinationUrl: href,
         chat: {
           responseId,
@@ -58,18 +84,18 @@ export function Markdown({ content, responseId, className }: MarkdownProps) {
             onClick={createClickHandlerFn(props.href)}
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-pointer"
+            className={cssClasses.link}
           >
             {children}
           </a>
         );
       },
     };
-  }, [reportAnalyticsEvent, responseId]);
+  }, [reportAnalyticsEvent, linkClickEvent, responseId, cssClasses]);
 
   return (
     <ReactMarkdown
-      className={className}
+      className={cssClasses.container}
       children={content}
       remarkPlugins={unifiedPlugins.remark}
       rehypePlugins={unifiedPlugins.rehype}

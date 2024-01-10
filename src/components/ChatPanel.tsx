@@ -21,7 +21,7 @@ import {
   MessageSuggestionCssClasses,
   MessageSuggestions,
 } from "./MessageSuggestions";
-import ReactMarkdown, { ReactMarkdownOptions } from "react-markdown";
+import { Markdown, MarkdownCssClasses } from "./Markdown";
 
 /**
  * The CSS class interface for the {@link ChatPanel} component.
@@ -36,7 +36,7 @@ export interface ChatPanelCssClasses {
   inputCssClasses?: ChatInputCssClasses;
   messageBubbleCssClasses?: MessageBubbleCssClasses;
   messageSuggestionClasses?: MessageSuggestionCssClasses;
-  footerCssClasses?: string;
+  footer?: string;
 }
 
 const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
@@ -49,8 +49,7 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
     messageBubbleCssClasses: {
       topContainer: "first:mt-4",
     },
-    footerCssClasses:
-      "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px]",
+    footer: "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px]",
   }
 );
 
@@ -148,6 +147,14 @@ export function ChatPanel(props: ChatPanelProps) {
     return (message) => (messagesRef.current[index] = message);
   }, []);
 
+  const footerCssClasses: MarkdownCssClasses = useMemo(
+    () => ({
+      container: cssClasses.footer,
+      link: "cursor-pointer hover:underline text-blue-600",
+    }),
+    [cssClasses]
+  );
+
   return (
     <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
@@ -176,42 +183,13 @@ export function ChatPanel(props: ChatPanelProps) {
           <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
         </div>
         {footer && (
-          <Footer footer={footer} className={cssClasses.footerCssClasses} />
+          <Markdown
+            content={footer}
+            linkClickEvent="WEBSITE"
+            customCssClasses={footerCssClasses}
+          />
         )}
       </div>
     </div>
   );
 }
-
-const Footer = ({
-  footer,
-  className,
-}: {
-  footer: string;
-  className?: string;
-}) => {
-  const components: ReactMarkdownOptions["components"] = useMemo(() => {
-    return {
-      a: ({ node: _, children, ...props }) => {
-        return (
-          <a
-            {...props}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cursor-pointer hover:underline text-blue-600"
-          >
-            {children}
-          </a>
-        );
-      },
-    };
-  }, []);
-
-  return (
-    <ReactMarkdown
-      children={footer}
-      className={className}
-      components={components}
-    />
-  );
-};
