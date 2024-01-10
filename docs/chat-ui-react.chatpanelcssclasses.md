@@ -17,7 +17,7 @@ export interface ChatPanelCssClasses
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [container?](./chat-ui-react.chatpanelcssclasses.container.md) |  | string | _(Optional)_ |
-|  [footerCssClasses?](./chat-ui-react.chatpanelcssclasses.footercssclasses.md) |  | string | _(Optional)_ |
+|  [footer?](./chat-ui-react.chatpanelcssclasses.footer.md) |  | string | _(Optional)_ |
 |  [inputContainer?](./chat-ui-react.chatpanelcssclasses.inputcontainer.md) |  | string | _(Optional)_ |
 |  [inputCssClasses?](./chat-ui-react.chatpanelcssclasses.inputcssclasses.md) |  | [ChatInputCssClasses](./chat-ui-react.chatinputcssclasses.md) | _(Optional)_ |
 |  [messageBubbleCssClasses?](./chat-ui-react.chatpanelcssclasses.messagebubblecssclasses.md) |  | [MessageBubbleCssClasses](./chat-ui-react.messagebubblecssclasses.md) | _(Optional)_ |

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Message, MessageSource } from "@yext/chat-headless-react";
 import { useComposedCssClasses } from "../hooks";
 import { twMerge } from "tailwind-merge";
-import { Markdown } from "./Markdown";
+import { Markdown, MarkdownCssClasses } from "./Markdown";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 import { FeedbackButtons, FeedbackButtonsCssClasses } from "./FeedbackButtons";
 
@@ -117,6 +117,13 @@ export function MessageBubble({
       : cssClasses.timestamp__bot
   );
 
+  const markdownCssClasses: MarkdownCssClasses = useMemo(
+    () => ({
+      container: textCssClasses,
+    }),
+    [textCssClasses]
+  );
+
   return (
     <div className={cssClasses.topContainer}>
       <div className={subContainerCssClasses}>
@@ -130,7 +137,7 @@ export function MessageBubble({
           <Markdown
             content={message.text}
             responseId={message.responseId}
-            className={textCssClasses}
+            customCssClasses={markdownCssClasses}
           />
         </div>
         {/* fallback on empty space here to perserve the height for timestamp div */}
