@@ -75,6 +75,8 @@ export interface MessageBubbleProps {
   formatTimestamp?: (timestamp: string) => string;
   /** CSS classes for customizing the component styling. */
   customCssClasses?: MessageBubbleCssClasses;
+  /** A callback which is called when user clicks a link. */
+  onLinkClick?: (href?: string) => void;
 }
 
 /**
@@ -90,6 +92,7 @@ export function MessageBubble({
   showTimestamp = true,
   customCssClasses,
   formatTimestamp = defaultFormatTimestamp,
+  onLinkClick,
 }: MessageBubbleProps) {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const bubbleCssClasses = twMerge(
@@ -138,6 +141,7 @@ export function MessageBubble({
             content={message.text}
             responseId={message.responseId}
             customCssClasses={markdownCssClasses}
+            onLinkClick={onLinkClick}
           />
         </div>
         {/* fallback on empty space here to perserve the height for timestamp div */}

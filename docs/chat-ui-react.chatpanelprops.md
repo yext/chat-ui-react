@@ -21,5 +21,5 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
 |  [footer?](./chat-ui-react.chatpanelprops.footer.md) |  | string | _(Optional)_ A footer markdown string to render at the bottom of the panel. |
 |  [header?](./chat-ui-react.chatpanelprops.header.md) |  | ReactNode | _(Optional)_ A header to render at the top of the panel. |
 |  [messageSuggestions?](./chat-ui-react.chatpanelprops.messagesuggestions.md) |  | string\[\] | _(Optional)_ A set of pre-written initial messages that the user can click on instead of typing their own. |
-|  [onLinkClick?](./chat-ui-react.chatpanelprops.onlinkclick.md) |  | (href?: string) =&gt; void | _(Optional)_ A callback which is called when user clicks a footer link. |
+|  [onLinkClick?](./chat-ui-react.chatpanelprops.onlinkclick.md) |  | (href?: string) =&gt; void | _(Optional)_ A callback which is called when user clicks a link. |
 

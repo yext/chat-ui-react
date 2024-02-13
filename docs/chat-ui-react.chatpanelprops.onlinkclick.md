@@ -4,7 +4,7 @@
 
 ## ChatPanelProps.onLinkClick property
 
-A callback which is called when user clicks a footer link.
+A callback which is called when user clicks a link.
 
 **Signature:**
 

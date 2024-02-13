@@ -74,7 +74,7 @@ export interface ChatPanelProps
    * can click on instead of typing their own.
    */
   messageSuggestions?: string[];
-  /** A callback which is called when user clicks a footer link. */
+  /** A callback which is called when user clicks a link. */
   onLinkClick?: (href?: string) => void;
 }
 
@@ -170,6 +170,7 @@ export function ChatPanel(props: ChatPanelProps) {
                   {...props}
                   customCssClasses={cssClasses.messageBubbleCssClasses}
                   message={message}
+                  onLinkClick={onLinkClick}
                 />
               </div>
             ))}
