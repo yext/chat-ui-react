@@ -95,7 +95,7 @@ export function Markdown({
         );
       },
     };
-  }, [reportAnalyticsEvent, linkClickEvent, responseId, cssClasses]);
+  }, [reportAnalyticsEvent, linkClickEvent, responseId, cssClasses, onLinkClick]);
 
   return (
     <ReactMarkdown
