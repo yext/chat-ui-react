@@ -92,6 +92,7 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
     footer?: string;
     header?: ReactNode;
     messageSuggestions?: string[];
+    onLinkClick?: (href?: string) => void;
 }
 
 // @public

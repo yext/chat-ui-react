@@ -46,6 +46,8 @@ interface MarkdownProps {
    * Defaults to 'CHAT_LINK_CLICK'.
    */
   linkClickEvent?: "WEBSITE" | "CHAT_LINK_CLICK";
+  /** A callback which is called when a link is clicked. */
+  onLinkClick?: (href?: string) => void;
 }
 
 /**
@@ -62,6 +64,7 @@ export function Markdown({
   responseId,
   customCssClasses,
   linkClickEvent = "CHAT_LINK_CLICK",
+  onLinkClick,
 }: MarkdownProps) {
   const reportAnalyticsEvent = useReportAnalyticsEvent();
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
@@ -75,6 +78,7 @@ export function Markdown({
           responseId,
         },
       });
+      onLinkClick?.(href)
     };
     return {
       a: ({ node: _, children, ...props }) => {

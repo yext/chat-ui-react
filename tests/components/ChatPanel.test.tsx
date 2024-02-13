@@ -1,4 +1,5 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { ChatPanel } from "../../src";
 import {
   mockChatActions,
@@ -121,4 +122,13 @@ it("displays message bubbles based on messages in state", () => {
   });
   render(<ChatPanel />);
   expect(screen.getByText(dummyMessage.text)).toBeInTheDocument();
+});
+
+it("executes onLinkClick if provided", async () => {
+  const onLinkClickCb = jest.fn();
+  render(<ChatPanel 
+    footer="Test footer [link](https://yext.com)"
+    onLinkClick={href => onLinkClickCb(href)} />);
+  await act(() => userEvent.click(screen.getByRole("link")));
+  expect(onLinkClickCb).toBeCalledWith("https://yext.com");
 });
