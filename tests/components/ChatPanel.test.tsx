@@ -1,4 +1,6 @@
-import { render, screen, waitFor } from "@testing-library/react";
+/* eslint-disable testing-library/no-unnecessary-act */
+import { act, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { ChatPanel } from "../../src";
 import {
   mockChatActions,
@@ -121,4 +123,22 @@ it("displays message bubbles based on messages in state", () => {
   });
   render(<ChatPanel />);
   expect(screen.getByText(dummyMessage.text)).toBeInTheDocument();
+});
+
+it("executes onLinkClick if provided", async () => {
+  const onLinkClickCb = jest.fn();
+  mockChatState({
+    conversation: {
+      messages: [{text: "Test [msg link](msglink)"}],
+      isLoading: false,
+      canSendMessage: true,
+    },
+  });
+  render(<ChatPanel 
+    footer="Test [footer link](footerlink)"
+    onLinkClick={href => onLinkClickCb(href)} />);
+  await act(() => userEvent.click(screen.getByRole("link", { name: "footer link"})));
+  expect(onLinkClickCb).toBeCalledWith("footerlink");
+  await act(() => userEvent.click(screen.getByRole("link", { name: "msg link" })));
+  expect(onLinkClickCb).toBeCalledWith("msglink");
 });

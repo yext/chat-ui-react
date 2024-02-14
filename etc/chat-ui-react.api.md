@@ -92,6 +92,7 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
     footer?: string;
     header?: ReactNode;
     messageSuggestions?: string[];
+    onLinkClick?: (href?: string) => void;
 }
 
 // @public
@@ -173,7 +174,7 @@ export interface InitialMessagePopUpCssClasses {
 }
 
 // @public
-export function MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, }: MessageBubbleProps): React_2.JSX.Element;
+export function MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, onLinkClick, }: MessageBubbleProps): React_2.JSX.Element;
 
 // @public
 export interface MessageBubbleCssClasses {
@@ -212,6 +213,7 @@ export interface MessageBubbleProps {
     customCssClasses?: MessageBubbleCssClasses;
     formatTimestamp?: (timestamp: string) => string;
     message: Message;
+    onLinkClick?: (href?: string) => void;
     showFeedbackButtons?: boolean;
     showTimestamp?: boolean;
 }
