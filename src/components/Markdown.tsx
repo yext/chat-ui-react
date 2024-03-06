@@ -78,7 +78,7 @@ export function Markdown({
           responseId,
         },
       });
-      onLinkClick?.(href)
+      onLinkClick?.(href);
     };
     return {
       a: ({ node: _, children, ...props }) => {
@@ -95,7 +95,13 @@ export function Markdown({
         );
       },
     };
-  }, [reportAnalyticsEvent, linkClickEvent, responseId, cssClasses, onLinkClick]);
+  }, [
+    reportAnalyticsEvent,
+    linkClickEvent,
+    responseId,
+    cssClasses,
+    onLinkClick,
+  ]);
 
   return (
     <ReactMarkdown

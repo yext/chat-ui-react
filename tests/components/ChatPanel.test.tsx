@@ -129,16 +129,23 @@ it("executes onLinkClick if provided", async () => {
   const onLinkClickCb = jest.fn();
   mockChatState({
     conversation: {
-      messages: [{text: "Test [msg link](msglink)"}],
+      messages: [{ text: "Test [msg link](msglink)" }],
       isLoading: false,
       canSendMessage: true,
     },
   });
-  render(<ChatPanel 
-    footer="Test [footer link](footerlink)"
-    onLinkClick={href => onLinkClickCb(href)} />);
-  await act(() => userEvent.click(screen.getByRole("link", { name: "footer link"})));
+  render(
+    <ChatPanel
+      footer="Test [footer link](footerlink)"
+      onLinkClick={(href) => onLinkClickCb(href)}
+    />
+  );
+  await act(() =>
+    userEvent.click(screen.getByRole("link", { name: "footer link" }))
+  );
   expect(onLinkClickCb).toBeCalledWith("footerlink");
-  await act(() => userEvent.click(screen.getByRole("link", { name: "msg link" })));
+  await act(() =>
+    userEvent.click(screen.getByRole("link", { name: "msg link" }))
+  );
   expect(onLinkClickCb).toBeCalledWith("msglink");
 });

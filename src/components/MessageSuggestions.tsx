@@ -24,7 +24,11 @@ export interface MessageSuggestionCssClasses {
  * @public
  */
 export interface MessageSuggestionsProps {
+  /** List of clickable message suggestions to render. */
   suggestions: string[];
+  /** {@inheritdoc ChatInputProps.handleError} */
+  handleError?: (e: unknown) => void;
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: MessageSuggestionCssClasses;
 }
 
@@ -44,6 +48,7 @@ const defaultClassnames: MessageSuggestionCssClasses = withStylelessCssClasses(
  * @internal
  */
 export const MessageSuggestions: React.FC<MessageSuggestionsProps> = ({
+  handleError,
   suggestions,
   customCssClasses,
 }) => {
@@ -58,9 +63,9 @@ export const MessageSuggestions: React.FC<MessageSuggestionsProps> = ({
       } satisfies MessageNotes;
       actions.setMessageNotes(newNotes);
       const res = actions.getNextMessage(msg);
-      res.catch(defaultHandleApiError);
+      res.catch(handleError ?? defaultHandleApiError);
     },
-    [actions, notes, defaultHandleApiError]
+    [actions, notes, handleError, defaultHandleApiError]
   );
 
   const classes = useComposedCssClasses(defaultClassnames, customCssClasses);
