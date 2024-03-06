@@ -228,9 +228,8 @@ export interface MessageSuggestionCssClasses {
 
 // @public
 export interface MessageSuggestionsProps {
-    // (undocumented)
     customCssClasses?: MessageSuggestionCssClasses;
-    // (undocumented)
+    handleError?: (e: unknown) => void;
     suggestions: string[];
 }
 

@@ -94,9 +94,11 @@ export function ChatInput({
       ? chat.streamNextMessage(input)
       : chat.getNextMessage(input);
     setInput("");
-    res.then(() => {
-      onSend?.(input)
-    }).catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
+    res
+      .then(() => {
+        onSend?.(input);
+      })
+      .catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
   }, [chat, input, handleError, defaultHandleApiError, stream, onSend]);
 
   const handleKeyDown = useCallback(

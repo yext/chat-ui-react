@@ -208,7 +208,7 @@ it("executes custom handleError if provided", async () => {
 
 it("executes onSend if provided", async () => {
   const onSendCb = jest.fn();
-  render(<ChatInput onSend={message => onSendCb(message)} />);
+  render(<ChatInput onSend={(message) => onSendCb(message)} />);
   await act(() => userEvent.type(screen.getByRole("textbox"), "test"));
   const sendButton = screen.getByRole("button");
   await act(() => userEvent.click(sendButton));

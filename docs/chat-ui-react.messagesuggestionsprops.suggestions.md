@@ -4,6 +4,8 @@
 
 ## MessageSuggestionsProps.suggestions property
 
+List of clickable message suggestions to render.
+
 **Signature:**
 
 ```typescript

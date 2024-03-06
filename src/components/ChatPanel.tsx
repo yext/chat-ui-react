@@ -180,6 +180,7 @@ export function ChatPanel(props: ChatPanelProps) {
         <div className={cssClasses.inputContainer}>
           {suggestions && (
             <MessageSuggestions
+              handleError={handleError}
               suggestions={suggestions}
               customCssClasses={cssClasses.messageSuggestionClasses}
             />

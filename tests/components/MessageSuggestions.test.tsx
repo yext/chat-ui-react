@@ -3,7 +3,11 @@
 
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { mockChatHooks, spyOnActions } from "../__utils__/mocks";
+import {
+  mockChatActions,
+  mockChatHooks,
+  spyOnActions,
+} from "../__utils__/mocks";
 import { MessageSuggestions } from "../../src/components/MessageSuggestions";
 
 beforeEach(() => {
@@ -41,4 +45,23 @@ it("clears note replies when pill is clicked", async () => {
   expect(actions.setMessageNotes).toHaveBeenCalledWith({
     suggestedReplies: undefined,
   });
+});
+
+it("executes custom handleError if provided", async () => {
+  mockChatActions({
+    getNextMessage: jest.fn(() => Promise.reject("API Error")),
+    report: jest.fn(),
+    setMessageNotes: jest.fn(),
+  });
+  const customHandleError = jest.fn();
+  render(
+    <MessageSuggestions
+      handleError={customHandleError}
+      suggestions={["test msg"]}
+    />
+  );
+  const button = screen.getByRole("button");
+  expect(button).toHaveTextContent("test msg");
+  await act(() => userEvent.click(button));
+  expect(customHandleError).toBeCalledWith("API Error");
 });

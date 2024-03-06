@@ -16,6 +16,7 @@ export interface MessageSuggestionsProps
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [customCssClasses?](./chat-ui-react.messagesuggestionsprops.customcssclasses.md) |  | [MessageSuggestionCssClasses](./chat-ui-react.messagesuggestioncssclasses.md) | _(Optional)_ |
-|  [suggestions](./chat-ui-react.messagesuggestionsprops.suggestions.md) |  | string\[\] |  |
+|  [customCssClasses?](./chat-ui-react.messagesuggestionsprops.customcssclasses.md) |  | [MessageSuggestionCssClasses](./chat-ui-react.messagesuggestioncssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [handleError?](./chat-ui-react.messagesuggestionsprops.handleerror.md) |  | (e: unknown) =&gt; void | _(Optional)_ A function which is called when an error occurs from Chat API while processing the user's message. By default, the error is logged to the console and an error message is added to state. |
+|  [suggestions](./chat-ui-react.messagesuggestionsprops.suggestions.md) |  | string\[\] | List of clickable message suggestions to render. |
 
