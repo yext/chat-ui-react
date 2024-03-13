@@ -30,7 +30,7 @@ const builtInCssClasses: ChatInputCssClasses = withStylelessCssClasses(
 
 /**
  * The props for the {@link ChatInput} component.
- *
+ *...
  * @public
  */
 export interface ChatInputProps {
