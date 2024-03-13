@@ -4,7 +4,9 @@
 
 ## ChatInputProps interface
 
-The props for the [ChatInput()](./chat-ui-react.chatinput.md) component.
+The props for the [ChatInput()](./chat-ui-react.chatinput.md) component. .......... alkdjalkdjaklsdj
+
+sldjflsjfslkdfj
 
 **Signature:**
 

@@ -23,7 +23,7 @@
 |  [ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md) | The CSS class interface for the [ChatHeader()](./chat-ui-react.chatheader.md) component. |
 |  [ChatHeaderProps](./chat-ui-react.chatheaderprops.md) | The props for the [ChatHeader()](./chat-ui-react.chatheader.md) component. |
 |  [ChatInputCssClasses](./chat-ui-react.chatinputcssclasses.md) | The CSS class interface for the [ChatInput()](./chat-ui-react.chatinput.md) component. |
-|  [ChatInputProps](./chat-ui-react.chatinputprops.md) | The props for the [ChatInput()](./chat-ui-react.chatinput.md) component. |
+|  [ChatInputProps](./chat-ui-react.chatinputprops.md) | <p>The props for the [ChatInput()](./chat-ui-react.chatinput.md) component. .......... alkdjalkdjaklsdj</p><p>sldjflsjfslkdfj</p> |
 |  [ChatPanelCssClasses](./chat-ui-react.chatpanelcssclasses.md) | The CSS class interface for the [ChatPanel()](./chat-ui-react.chatpanel.md) component. |
 |  [ChatPanelProps](./chat-ui-react.chatpanelprops.md) | The props for the [ChatPanel()](./chat-ui-react.chatpanel.md) component. |
 |  [ChatPopUpCssClasses](./chat-ui-react.chatpopupcssclasses.md) | The CSS class interface for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component. |
