@@ -19,6 +19,7 @@ export interface ChatInputProps
 |  [customCssClasses?](./chat-ui-react.chatinputprops.customcssclasses.md) |  | [ChatInputCssClasses](./chat-ui-react.chatinputcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 |  [handleError?](./chat-ui-react.chatinputprops.handleerror.md) |  | (e: unknown) =&gt; void | _(Optional)_ A function which is called when an error occurs from Chat API while processing the user's message. By default, the error is logged to the console and an error message is added to state. |
 |  [inputAutoFocus?](./chat-ui-react.chatinputprops.inputautofocus.md) |  | boolean | _(Optional)_ Enable auto focus for the input box. Defaults to false. |
+|  [onRetry?](./chat-ui-react.chatinputprops.onretry.md) |  | (e: unknown) =&gt; void | _(Optional)_ A function which is called when a retryable error occurs from Chat API while processing the user's message. |
 |  [onSend?](./chat-ui-react.chatinputprops.onsend.md) |  | (message: string) =&gt; void | _(Optional)_ A callback which is called when user sends a message. |
 |  [placeholder?](./chat-ui-react.chatinputprops.placeholder.md) |  | string | _(Optional)_ The input's placeholder text when no text has been entered by the user. Defaults to "Type a message...". |
 |  [sendButtonIcon?](./chat-ui-react.chatinputprops.sendbuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for the send button. |

@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import { useChatState } from "@yext/chat-headless-react";
 import {
@@ -76,6 +77,11 @@ export interface ChatPanelProps
   messageSuggestions?: string[];
   /** A callback which is called when user clicks a link. */
   onLinkClick?: (href?: string) => void;
+  /**
+   * Text to display when retrying.
+   * Defaults to "Error occurred. Retrying".
+   */
+  retryText?: string;
 }
 
 /**
@@ -96,6 +102,9 @@ export function ChatPanel(props: ChatPanelProps) {
     handleError,
     messageSuggestions,
     onLinkClick,
+    onSend:onSendProp,
+    onRetry:onRetryProp,
+    retryText = "Error occurred. Retrying",
   } = props;
   const messages = useChatState((state) => state.conversation.messages);
   const loading = useChatState((state) => state.conversation.isLoading);
@@ -105,6 +114,17 @@ export function ChatPanel(props: ChatPanelProps) {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const reportAnalyticsEvent = useReportAnalyticsEvent();
   useFetchInitialMessage(handleError, stream);
+
+  const [retry, setRetry] = useState(false);
+  const onSend = useCallback((message: string) => {
+    onSendProp?.(message);
+    setRetry(false)
+  }, [onSendProp])
+
+  const onRetry = useCallback((e: unknown) => {
+    onRetryProp?.(e);
+    setRetry(true)
+  }, [onRetryProp])
 
   useEffect(() => {
     reportAnalyticsEvent({
@@ -174,18 +194,29 @@ export function ChatPanel(props: ChatPanelProps) {
                 />
               </div>
             ))}
-            {loading && <LoadingDots />}
+            {loading && <div className="flex">
+              <LoadingDots />
+              {retry && <p className="text-slate-500 text-[13px] font-bold">{retryText}</p>}  
+            </div>}
           </div>
         </div>
         <div className={cssClasses.inputContainer}>
           {suggestions && (
             <MessageSuggestions
+              stream={stream}
+              onSend={onSend}
+              onRetry={onRetry}
               handleError={handleError}
               suggestions={suggestions}
               customCssClasses={cssClasses.messageSuggestionClasses}
             />
           )}
-          <ChatInput {...props} customCssClasses={cssClasses.inputCssClasses} />
+          <ChatInput
+            {...props}
+            onSend={onSend}
+            onRetry={onRetry}
+            customCssClasses={cssClasses.inputCssClasses}
+          />
         </div>
         {footer && (
           <Markdown

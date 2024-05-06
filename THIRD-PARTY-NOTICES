@@ -31,7 +31,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - @reduxjs/toolkit@1.9.5
+ - @reduxjs/toolkit@1.9.7
 
 This package contains the following license and notice below:
 
@@ -62,6 +62,7 @@ SOFTWARE.
 The following NPM packages may be included in this product:
 
  - @types/hast@2.3.4
+ - @types/hoist-non-react-statics@3.3.5
  - @types/mdast@3.0.11
  - @types/parse5@5.0.3
  - @types/prop-types@15.7.5
@@ -99,37 +100,7 @@ MIT License
 
 The following NPM package may be included in this product:
 
- - @types/hoist-non-react-statics@3.3.1
-
-This package contains the following license and notice below:
-
-MIT License
-
-    Copyright (c) Microsoft Corporation. All rights reserved.
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE
-
------------
-
-The following NPM package may be included in this product:
-
- - @yext/analytics@0.6.4
+ - @yext/analytics@0.6.6
 
 This package contains the following license and notice below:
 
@@ -170,9 +141,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM packages may be included in this product:
 
- - @yext/chat-core@0.7.6
- - @yext/chat-headless-react@0.6.1
- - @yext/chat-headless@0.7.1
+ - @yext/chat-core@0.8.0
+ - @yext/chat-headless-react@0.7.0
+ - @yext/chat-headless@0.8.0
 
 These packages each contain the following license and notice below:
 
@@ -827,7 +798,7 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - layerr@2.0.1
+ - layerr@2.1.0
 
 This package contains the following license and notice below:
 
@@ -1236,7 +1207,7 @@ The following NPM packages may be included in this product:
  - react-is@18.2.0
  - react@18.2.0
  - scheduler@0.23.0
- - use-sync-external-store@1.2.0
+ - use-sync-external-store@1.2.2
 
 These packages each contain the following license and notice below:
 
@@ -1296,8 +1267,8 @@ SOFTWARE.
 
 The following NPM packages may be included in this product:
 
- - react-redux@8.1.2
- - redux@4.2.1
+ - react-redux@8.1.3
+ - redux-thunk@2.4.2
 
 These packages each contain the following license and notice below:
 
@@ -1356,7 +1327,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - redux-thunk@2.4.2
+ - redux@4.2.1
 
 This package contains the following license and notice below:
 
@@ -1783,7 +1754,7 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - ulidx@2.1.0
+ - ulidx@2.3.0
 
 This package contains the following license and notice below:
 
