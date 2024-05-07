@@ -9,14 +9,14 @@ A component that allows user to input message and send to Chat API.
 **Signature:**
 
 ```typescript
-export declare function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, }: ChatInputProps): React.JSX.Element;
+export declare function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, onRetry, }: ChatInputProps): React.JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, } | [ChatInputProps](./chat-ui-react.chatinputprops.md) |  |
+|  { placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, onRetry, } | [ChatInputProps](./chat-ui-react.chatinputprops.md) |  |
 
 **Returns:**
 

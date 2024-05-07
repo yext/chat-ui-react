@@ -7,6 +7,7 @@ import {
 import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
 import { useComposedCssClasses } from "../hooks";
+import { useSendMessageWithRetries } from "../hooks/useSendMessageWithRetries";
 
 /**
  * The CSS class interface for the MessageSuggestion component.
@@ -30,6 +31,12 @@ export interface MessageSuggestionsProps {
   handleError?: (e: unknown) => void;
   /** CSS classes for customizing the component styling. */
   customCssClasses?: MessageSuggestionCssClasses;
+  /** {@inheritdoc ChatInputProps.stream} */
+  stream?: boolean;
+  /** {@inheritdoc ChatInputProps.onSend} */
+  onSend?: (message: string) => void;
+  /** {@inheritdoc ChatInputProps.onRetry} */
+  onRetry?: (e: unknown) => void
 }
 
 const defaultClassnames: MessageSuggestionCssClasses = withStylelessCssClasses(
@@ -51,10 +58,14 @@ export const MessageSuggestions: React.FC<MessageSuggestionsProps> = ({
   handleError,
   suggestions,
   customCssClasses,
+  stream = false,
+  onSend,
+  onRetry,
 }) => {
   const actions = useChatActions();
   const notes = useChatState((state) => state.conversation.notes);
   const defaultHandleApiError = useDefaultHandleApiError();
+  const sendMessageWithRetries =  useSendMessageWithRetries(stream, 1, onRetry)
   const sendMsg = useCallback(
     (msg: string) => {
       const newNotes = {
@@ -62,10 +73,13 @@ export const MessageSuggestions: React.FC<MessageSuggestionsProps> = ({
         suggestedReplies: undefined,
       } satisfies MessageNotes;
       actions.setMessageNotes(newNotes);
-      const res = actions.getNextMessage(msg);
-      res.catch(handleError ?? defaultHandleApiError);
+      sendMessageWithRetries(msg)
+        .catch(handleError ?? defaultHandleApiError)
+        .finally(() => {
+          onSend?.(msg)
+        })
     },
-    [actions, notes, handleError, defaultHandleApiError]
+    [notes, actions, sendMessageWithRetries, handleError, defaultHandleApiError, onSend]
   );
 
   const classes = useComposedCssClasses(defaultClassnames, customCssClasses);

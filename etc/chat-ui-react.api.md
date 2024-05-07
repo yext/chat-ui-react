@@ -40,7 +40,7 @@ export interface ChatHeaderProps {
 }
 
 // @public
-export function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, }: ChatInputProps): React_2.JSX.Element;
+export function ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, onRetry, }: ChatInputProps): React_2.JSX.Element;
 
 // @public
 export interface ChatInputCssClasses {
@@ -57,6 +57,7 @@ export interface ChatInputProps {
     customCssClasses?: ChatInputCssClasses;
     handleError?: (e: unknown) => void;
     inputAutoFocus?: boolean;
+    onRetry?: (e: unknown) => void;
     onSend?: (message: string) => void;
     placeholder?: string;
     sendButtonIcon?: JSX.Element;
@@ -93,6 +94,7 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
     header?: ReactNode;
     messageSuggestions?: string[];
     onLinkClick?: (href?: string) => void;
+    retryText?: string;
 }
 
 // @public
@@ -230,6 +232,9 @@ export interface MessageSuggestionCssClasses {
 export interface MessageSuggestionsProps {
     customCssClasses?: MessageSuggestionCssClasses;
     handleError?: (e: unknown) => void;
+    onRetry?: (e: unknown) => void;
+    onSend?: (message: string) => void;
+    stream?: boolean;
     suggestions: string[];
 }
 

@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from "react";
-import { useChatActions, useChatState } from "@yext/chat-headless-react";
+import { useChatState } from "@yext/chat-headless-react";
 import { ArrowIcon } from "../icons/Arrow";
 import { useComposedCssClasses } from "../hooks";
 import TextareaAutosize from "react-textarea-autosize";
 import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 import { withStylelessCssClasses } from "../utils/withStylelessCssClasses";
+import { useSendMessageWithRetries } from "../hooks/useSendMessageWithRetries";
 
 /**
  * The CSS class interface for the {@link ChatInput} component.
@@ -58,6 +59,11 @@ export interface ChatInputProps {
   customCssClasses?: ChatInputCssClasses;
   /** A callback which is called when user sends a message. */
   onSend?: (message: string) => void;
+  /**
+   * A function which is called when a retryable error occurs from
+   * Chat API while processing the user's message.
+   */
+  onRetry?: (e: unknown) => void
 }
 
 /**
@@ -79,27 +85,24 @@ export function ChatInput({
   sendButtonIcon = <ArrowIcon />,
   customCssClasses,
   onSend,
+  onRetry,
 }: ChatInputProps) {
-  const chat = useChatActions();
   const [input, setInput] = useState("");
   const canSendMessage = useChatState(
     (state) => state.conversation.canSendMessage
   );
   const defaultHandleApiError = useDefaultHandleApiError();
-
+  const sendMessageWithRetries =  useSendMessageWithRetries(stream, 1, onRetry)
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const sendMessage = useCallback(async () => {
-    const res = stream
-      ? chat.streamNextMessage(input)
-      : chat.getNextMessage(input);
     setInput("");
-    res
-      .then(() => {
-        onSend?.(input);
+    sendMessageWithRetries(input)
+      .catch(handleError ?? defaultHandleApiError)
+      .finally(() => {
+        onSend?.(input)
       })
-      .catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
-  }, [chat, input, handleError, defaultHandleApiError, stream, onSend]);
+  }, [sendMessageWithRetries, input, handleError, defaultHandleApiError, onSend]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
