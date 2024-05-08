@@ -1,4 +1,4 @@
-import { ChatPopUp } from "@yext/chat-ui-react";
+import { ChatHeader, ChatPanel, ChatPopUp } from "@yext/chat-ui-react";
 import {
   ChatHeadlessProvider,
   HeadlessConfig,
@@ -19,6 +19,23 @@ const config: HeadlessConfig = {
 function App() {
   return (
     <div>
+      <div className="h-screen w-screen flex justify-center items-center bg-slate-700">
+        {/* <h1 className="external-element">External Element!</h1> */}
+        <ChatHeadlessProvider config={config}>
+          <div className="h-5/6 w-1/2">
+            <ChatPanel
+              header={
+                <ChatHeader title="Clippy's Chatbot" showRestartButton={true} />
+              }
+              messageSuggestions={[
+                "What locations are nearby?",
+                "I'd like to learn more about a location in Arlington",
+              ]}
+              footer="This is a test footer with [link](https://yext.com) and [another link](https://yext.com)"
+            />
+          </div>
+        </ChatHeadlessProvider>
+      </div>
       <ChatHeadlessProvider config={config}>
         <ChatPopUp
           title="Clippy"
