@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useChatState, useChatActions } from "@yext/chat-headless-react";
 import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 
@@ -16,43 +16,20 @@ import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 export function useFetchInitialMessage(
   handleError?: (e: unknown) => void,
   stream = false,
-  customCondition = true
+  customCondition = true,
 ) {
   const chat = useChatActions();
   const defaultHandleApiError = useDefaultHandleApiError();
   const messages = useChatState((state) => state.conversation.messages);
-  const [fetchInitialMessage, setFetchInitialMessage] = useState(
-    messages.length === 0
-  );
-  const [messagesLength, setMessagesLength] = useState(messages.length);
   const canSendMessage = useChatState(
     (state) => state.conversation.canSendMessage
   );
-
-  //handle message history resets
+  
   useEffect(() => {
-    const newMessagesLength = messages.length;
-    // Fetch data only when the conversation messages changes from non-zero to zero
-    if (messagesLength > 0 && newMessagesLength === 0) {
-      setFetchInitialMessage(true);
-    }
-    setMessagesLength(newMessagesLength);
-  }, [messages.length, messagesLength]);
-
-  useEffect(() => {
-    if (!fetchInitialMessage || !canSendMessage || !customCondition) {
+    if (messages.length !== 0 || !canSendMessage || !customCondition) {
       return;
     }
-    setFetchInitialMessage(false);
     const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
-  }, [
-    chat,
-    stream,
-    handleError,
-    defaultHandleApiError,
-    fetchInitialMessage,
-    canSendMessage,
-    customCondition,
-  ]);
+  }, [chat, stream, handleError, defaultHandleApiError, canSendMessage, customCondition, messages.length]);
 }

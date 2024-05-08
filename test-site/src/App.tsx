@@ -39,6 +39,10 @@ function App() {
       <ChatHeadlessProvider config={config}>
         <ChatPopUp
           title="Clippy"
+          openOnLoad={true}
+          showInitialMessagePopUp={true}
+          showHeartBeatAnimation={true}
+          showUnreadNotification={true}
           messageSuggestions={[
             "hey how are you",
             "I'm looking to order a pair of all-mountain skis",
