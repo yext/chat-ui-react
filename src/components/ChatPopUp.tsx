@@ -147,12 +147,6 @@ export function ChatPopUp(props: ChatPopUpProps) {
   const [numReadMessages, setNumReadMessagesLength] = useState<number>(0);
   const [numUnreadMessages, setNumUnreadMessagesLength] = useState<number>(0);
 
-  useFetchInitialMessage(
-    showInitialMessagePopUp ? console.error : handleError,
-    false,
-    showUnreadNotification || showInitialMessagePopUp
-  );
-
   const [showInitialMessage, setshowInitialMessage] = useState(
     //only show initial message popup (if specified) when CTA label is not provided
     !ctaLabel && showInitialMessagePopUp
@@ -167,6 +161,14 @@ export function ChatPopUp(props: ChatPopUpProps) {
   // control the actual DOM rendering of the panel. Start rendering on first open state
   // to avoid message requests immediately on load while the popup is still "hidden"
   const [renderChat, setRenderChat] = useState(false);
+
+
+  // only fetch initial message when ChatPanel is closed on load (otherwise, it will be fetched in ChatPanel)
+  useFetchInitialMessage(
+    showInitialMessagePopUp ? console.error : handleError,
+    false,
+    (showUnreadNotification || showInitialMessagePopUp) && !renderChat && !openOnLoad,
+  );
 
   // update in useEffect, instead of having openOnLoad as initial state for show/renderChat,
   // in order to maintain the fade-in CSS animation when opening the panel on load
@@ -192,7 +194,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
   }, [customOnClose, messages]);
 
   useEffect(() => {
-    //update number of unread messages if there are new messages added while the panel is closed
+    // update number of unread messages if there are new messages added while the panel is closed
     setNumUnreadMessagesLength(messages.length - numReadMessages);
   }, [messages, numReadMessages]);
 
