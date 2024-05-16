@@ -106,7 +106,12 @@ export function ChatInput({
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-      if (!e.shiftKey && e.key === "Enter") {
+      if (!e.shiftKey && e.key === "Enter" && 
+        // The Japanese Keyboard uses "Enter" key to convert from Hiragana to Kanji.
+        // "isComposing" is a flag that indicates whether the event is part of an ongoing composition session.
+        // Safari does not support `isComposing` with the Japanese IME event,
+        // so we have to additionally check for the keyCode to handle that edge case.
+        !(e.nativeEvent.isComposing || e.keyCode === 229)) {
         e.preventDefault();
         if (canSendMessage && input.trim().length !== 0) {
           sendMessage();
