@@ -155,7 +155,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     setshowInitialMessage(false);
   }, []);
 
-  // control CSS behavior on open/close state of the panel
+  // control CSS behavior (fade-in/out animation) on open/close state of the panel.
   const [showChat, setShowChat] = useState(false);
 
   // control the actual DOM rendering of the panel. Start rendering on first open state
@@ -170,21 +170,20 @@ export function ChatPopUp(props: ChatPopUpProps) {
     (showUnreadNotification || showInitialMessagePopUp) && !renderChat && !openOnLoad,
   );
 
-  // update in useEffect, instead of having openOnLoad as initial state for show/renderChat,
-  // in order to maintain the fade-in CSS animation when opening the panel on load
   useEffect(() => {
-    if (openOnLoad) {
+    // Open panel on load if openOnLoad prop is true or there are messages in state (from browser storage)
+    if (!renderChat && (openOnLoad || messages.length > 1)) {
       setShowChat(true);
       setRenderChat(true);
       setshowInitialMessage(false);
     }
-  }, [openOnLoad]);
+  }, [messages.length, openOnLoad, renderChat]);
 
   const onClick = useCallback(() => {
-    setShowChat(!showChat);
+    setShowChat(prev => !prev);
     setRenderChat(true);
     setshowInitialMessage(false);
-  }, [showChat]);
+  }, []);
 
   const onClose = useCallback(() => {
     setShowChat(false);
