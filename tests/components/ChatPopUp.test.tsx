@@ -27,7 +27,7 @@ beforeEach(() => {
 
 const dummyConfig: HeadlessConfig = {
   apiKey: "",
-  botId: "",
+  botId: "DUMMY_BOT_ID",
 };
 
 it("toggles display and hide css classes when click on popup button", async () => {
@@ -74,6 +74,35 @@ describe("openOnLoad", () => {
 
   it("does not render panel on load when openOnLoad is false", async () => {
     renderPopUp({ openOnLoad: false });
+    expect(screen.queryByLabelText("Send Message")).toBeNull();
+  });
+});
+
+describe("open on load with state from browser storage", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+  it("renders panel on load when there are non-initial messages in state", async () => {
+    localStorage.setItem(`yext_chat_state__localhost__${dummyConfig.botId}`, JSON.stringify({
+      messages: [
+        {
+          text: "How can I help you?",
+          source: MessageSource.BOT,
+          timestamp: new Date().toISOString(),
+        },
+        {
+          text: "Hello!",
+          source: MessageSource.USER,
+          timestamp: new Date().toISOString(),
+        }
+      ]
+    }));
+    renderPopUp({}, undefined, { ...dummyConfig, saveToLocalStorage: true });
+    expect(screen.getByLabelText("Send Message")).toBeTruthy();
+  });
+
+  it("does not render panel on load when are no non-initial messages in state", async () => {
+    renderPopUp();
     expect(screen.queryByLabelText("Send Message")).toBeNull();
   });
 });
@@ -232,9 +261,9 @@ describe("showUnreadNotification", () => {
   });
 });
 
-function renderPopUp(props?: Partial<ChatPopUpProps>, children?: JSX.Element) {
+function renderPopUp(props?: Partial<ChatPopUpProps>, children?: JSX.Element, config = dummyConfig) {
   render(
-    <ChatHeadlessProvider config={dummyConfig}>
+    <ChatHeadlessProvider config={config}>
       <ChatPopUp {...props} title="Test Popup" />
       {children}
     </ChatHeadlessProvider>
