@@ -1,12 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import {ChatPanel, MessageBubble} from "../../src";
+import {MessageBubble} from "../../src";
 import {
   ChatHeadlessProvider,
   HeadlessConfig,
   Message,
   MessageSource,
 } from "@yext/chat-headless-react";
-import {mockChatState} from "../__utils__/mocks";
 
 jest.mock("@yext/analytics");
 
