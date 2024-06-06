@@ -103,6 +103,7 @@ export function Markdown({
     linkClickEvent,
     responseId,
     cssClasses,
+    linkTarget,
     onLinkClick,
   ]);
 
