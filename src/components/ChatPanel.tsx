@@ -75,6 +75,8 @@ export interface ChatPanelProps
    * can click on instead of typing their own.
    */
   messageSuggestions?: string[];
+  /** Link target open behavior on click. */
+  linkTarget? : string;
   /** A callback which is called when user clicks a link. */
   onLinkClick?: (href?: string) => void;
   /**
@@ -101,6 +103,7 @@ export function ChatPanel(props: ChatPanelProps) {
     stream,
     handleError,
     messageSuggestions,
+    linkTarget= "_blank",
     onLinkClick,
     onSend:onSendProp,
     onRetry:onRetryProp,
@@ -190,6 +193,7 @@ export function ChatPanel(props: ChatPanelProps) {
                   {...props}
                   customCssClasses={cssClasses.messageBubbleCssClasses}
                   message={message}
+                  linkTarget={linkTarget}
                   onLinkClick={onLinkClick}
                 />
               </div>
@@ -222,6 +226,7 @@ export function ChatPanel(props: ChatPanelProps) {
           <Markdown
             content={footer}
             linkClickEvent="WEBSITE"
+            linkTarget={linkTarget}
             onLinkClick={onLinkClick}
             customCssClasses={footerCssClasses}
           />
