@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import {MessageBubble} from "../../src";
+import { MessageBubble } from "../../src";
 import {
   ChatHeadlessProvider,
   HeadlessConfig,
@@ -73,9 +73,9 @@ it("applies link target setting (parent)", async () => {
 
   render(
     <ChatHeadlessProvider config={dummyConfig}>
-      <MessageBubble message={linkMessage} linkTarget={"_parent"} />
+      <MessageBubble message={linkMessage} linkTarget="_parent" />
     </ChatHeadlessProvider>
   );
 
-  expect(screen.getByText('msg link')).toHaveAttribute('target', "_parent");
+  expect(screen.getByText("msg link")).toHaveAttribute("target", "_parent");
 });

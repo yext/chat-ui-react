@@ -63,7 +63,7 @@ export interface ChatInputProps {
    * A function which is called when a retryable error occurs from
    * Chat API while processing the user's message.
    */
-  onRetry?: (e: unknown) => void
+  onRetry?: (e: unknown) => void;
 }
 
 /**
@@ -92,7 +92,7 @@ export function ChatInput({
     (state) => state.conversation.canSendMessage
   );
   const defaultHandleApiError = useDefaultHandleApiError();
-  const sendMessageWithRetries =  useSendMessageWithRetries(stream, 1, onRetry)
+  const sendMessageWithRetries = useSendMessageWithRetries(stream, 1, onRetry);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const sendMessage = useCallback(async () => {
@@ -100,18 +100,27 @@ export function ChatInput({
     sendMessageWithRetries(input)
       .catch(handleError ?? defaultHandleApiError)
       .finally(() => {
-        onSend?.(input)
-      })
-  }, [sendMessageWithRetries, input, handleError, defaultHandleApiError, onSend]);
+        onSend?.(input);
+      });
+  }, [
+    sendMessageWithRetries,
+    input,
+    handleError,
+    defaultHandleApiError,
+    onSend,
+  ]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-      if (!e.shiftKey && e.key === "Enter" && 
+      if (
+        !e.shiftKey &&
+        e.key === "Enter" &&
         // The Japanese Keyboard uses "Enter" key to convert from Hiragana to Kanji.
         // "isComposing" is a flag that indicates whether the event is part of an ongoing composition session.
         // Safari does not support `isComposing` with the Japanese IME event,
         // so we have to additionally check for the keyCode to handle that edge case.
-        !(e.nativeEvent.isComposing || e.keyCode === 229)) {
+        !(e.nativeEvent.isComposing || e.keyCode === 229)
+      ) {
         e.preventDefault();
         if (canSendMessage && input.trim().length !== 0) {
           sendMessage();

@@ -36,7 +36,7 @@ export interface MessageSuggestionsProps {
   /** {@inheritdoc ChatInputProps.onSend} */
   onSend?: (message: string) => void;
   /** {@inheritdoc ChatInputProps.onRetry} */
-  onRetry?: (e: unknown) => void
+  onRetry?: (e: unknown) => void;
 }
 
 const defaultClassnames: MessageSuggestionCssClasses = withStylelessCssClasses(
@@ -65,7 +65,7 @@ export const MessageSuggestions: React.FC<MessageSuggestionsProps> = ({
   const actions = useChatActions();
   const notes = useChatState((state) => state.conversation.notes);
   const defaultHandleApiError = useDefaultHandleApiError();
-  const sendMessageWithRetries =  useSendMessageWithRetries(stream, 1, onRetry)
+  const sendMessageWithRetries = useSendMessageWithRetries(stream, 1, onRetry);
   const sendMsg = useCallback(
     (msg: string) => {
       const newNotes = {
@@ -76,10 +76,17 @@ export const MessageSuggestions: React.FC<MessageSuggestionsProps> = ({
       sendMessageWithRetries(msg)
         .catch(handleError ?? defaultHandleApiError)
         .finally(() => {
-          onSend?.(msg)
-        })
+          onSend?.(msg);
+        });
     },
-    [notes, actions, sendMessageWithRetries, handleError, defaultHandleApiError, onSend]
+    [
+      notes,
+      actions,
+      sendMessageWithRetries,
+      handleError,
+      defaultHandleApiError,
+      onSend,
+    ]
   );
 
   const classes = useComposedCssClasses(defaultClassnames, customCssClasses);

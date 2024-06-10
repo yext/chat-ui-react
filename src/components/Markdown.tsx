@@ -47,7 +47,7 @@ interface MarkdownProps {
    */
   linkClickEvent?: "WEBSITE" | "CHAT_LINK_CLICK";
   /** Link target open behavior on click. */
-  linkTarget? : string;
+  linkTarget?: string;
   /** A callback which is called when a link is clicked. */
   onLinkClick?: (href?: string) => void;
 }

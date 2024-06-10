@@ -76,7 +76,7 @@ export interface MessageBubbleProps {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: MessageBubbleCssClasses;
   /** Link target open behavior on click. */
-  linkTarget? : string;
+  linkTarget?: string;
   /** A callback which is called when user clicks a link. */
   onLinkClick?: (href?: string) => void;
 }

@@ -16,7 +16,7 @@ import { useDefaultHandleApiError } from "../hooks/useDefaultHandleApiError";
 export function useFetchInitialMessage(
   handleError?: (e: unknown) => void,
   stream = false,
-  customCondition = true,
+  customCondition = true
 ) {
   const chat = useChatActions();
   const defaultHandleApiError = useDefaultHandleApiError();
@@ -24,12 +24,20 @@ export function useFetchInitialMessage(
   const canSendMessage = useChatState(
     (state) => state.conversation.canSendMessage
   );
-  
+
   useEffect(() => {
     if (messages.length !== 0 || !canSendMessage || !customCondition) {
       return;
     }
     const res = stream ? chat.streamNextMessage() : chat.getNextMessage();
     res.catch((e) => (handleError ? handleError(e) : defaultHandleApiError(e)));
-  }, [chat, stream, handleError, defaultHandleApiError, canSendMessage, customCondition, messages.length]);
+  }, [
+    chat,
+    stream,
+    handleError,
+    defaultHandleApiError,
+    canSendMessage,
+    customCondition,
+    messages.length,
+  ]);
 }

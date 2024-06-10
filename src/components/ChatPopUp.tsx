@@ -162,12 +162,13 @@ export function ChatPopUp(props: ChatPopUpProps) {
   // to avoid message requests immediately on load while the popup is still "hidden"
   const [renderChat, setRenderChat] = useState(false);
 
-
   // only fetch initial message when ChatPanel is closed on load (otherwise, it will be fetched in ChatPanel)
   useFetchInitialMessage(
     showInitialMessagePopUp ? console.error : handleError,
     false,
-    (showUnreadNotification || showInitialMessagePopUp) && !renderChat && !openOnLoad,
+    (showUnreadNotification || showInitialMessagePopUp) &&
+      !renderChat &&
+      !openOnLoad
   );
 
   useEffect(() => {
@@ -180,7 +181,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
   }, [messages.length, openOnLoad, renderChat]);
 
   const onClick = useCallback(() => {
-    setShowChat(prev => !prev);
+    setShowChat((prev) => !prev);
     setRenderChat(true);
     setshowInitialMessage(false);
   }, []);
