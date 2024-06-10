@@ -4,7 +4,7 @@
 
 ## ChatPanelProps.linkTarget property
 
-Link target open behavior on click.
+Link target open behavior on click. Defaults to "\_blank".
 
 **Signature:**
 
