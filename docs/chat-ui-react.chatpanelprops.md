@@ -20,6 +20,7 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
 |  [customCssClasses?](./chat-ui-react.chatpanelprops.customcssclasses.md) |  | [ChatPanelCssClasses](./chat-ui-react.chatpanelcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 |  [footer?](./chat-ui-react.chatpanelprops.footer.md) |  | string | _(Optional)_ A footer markdown string to render at the bottom of the panel. |
 |  [header?](./chat-ui-react.chatpanelprops.header.md) |  | ReactNode | _(Optional)_ A header to render at the top of the panel. |
+|  [linkTarget?](./chat-ui-react.chatpanelprops.linktarget.md) |  | string | _(Optional)_ Link target open behavior on click. Defaults to "\_blank". |
 |  [messageSuggestions?](./chat-ui-react.chatpanelprops.messagesuggestions.md) |  | string\[\] | _(Optional)_ A set of pre-written initial messages that the user can click on instead of typing their own. |
 |  [onLinkClick?](./chat-ui-react.chatpanelprops.onlinkclick.md) |  | (href?: string) =&gt; void | _(Optional)_ A callback which is called when user clicks a link. |
 |  [retryText?](./chat-ui-react.chatpanelprops.retrytext.md) |  | string | _(Optional)_ Text to display when retrying. Defaults to "Error occurred. Retrying". |

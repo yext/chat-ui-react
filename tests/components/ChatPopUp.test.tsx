@@ -83,20 +83,23 @@ describe("open on load with state from browser storage", () => {
     localStorage.clear();
   });
   it("renders panel on load when there are non-initial messages in state", async () => {
-    localStorage.setItem(`yext_chat_state__localhost__${dummyConfig.botId}`, JSON.stringify({
-      messages: [
-        {
-          text: "How can I help you?",
-          source: MessageSource.BOT,
-          timestamp: new Date().toISOString(),
-        },
-        {
-          text: "Hello!",
-          source: MessageSource.USER,
-          timestamp: new Date().toISOString(),
-        }
-      ]
-    }));
+    localStorage.setItem(
+      `yext_chat_state__localhost__${dummyConfig.botId}`,
+      JSON.stringify({
+        messages: [
+          {
+            text: "How can I help you?",
+            source: MessageSource.BOT,
+            timestamp: new Date().toISOString(),
+          },
+          {
+            text: "Hello!",
+            source: MessageSource.USER,
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      })
+    );
     renderPopUp({}, undefined, { ...dummyConfig, saveToLocalStorage: true });
     expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
@@ -261,7 +264,11 @@ describe("showUnreadNotification", () => {
   });
 });
 
-function renderPopUp(props?: Partial<ChatPopUpProps>, children?: JSX.Element, config = dummyConfig) {
+function renderPopUp(
+  props?: Partial<ChatPopUpProps>,
+  children?: JSX.Element,
+  config = dummyConfig
+) {
   render(
     <ChatHeadlessProvider config={config}>
       <ChatPopUp {...props} title="Test Popup" />

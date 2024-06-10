@@ -46,6 +46,8 @@ interface MarkdownProps {
    * Defaults to 'CHAT_LINK_CLICK'.
    */
   linkClickEvent?: "WEBSITE" | "CHAT_LINK_CLICK";
+  /** Link target open behavior on click. */
+  linkTarget?: string;
   /** A callback which is called when a link is clicked. */
   onLinkClick?: (href?: string) => void;
 }
@@ -64,6 +66,7 @@ export function Markdown({
   responseId,
   customCssClasses,
   linkClickEvent = "CHAT_LINK_CLICK",
+  linkTarget,
   onLinkClick,
 }: MarkdownProps) {
   const reportAnalyticsEvent = useReportAnalyticsEvent();
@@ -86,7 +89,7 @@ export function Markdown({
           <a
             {...props}
             onClick={createClickHandlerFn(props.href)}
-            target="_blank"
+            target={linkTarget}
             rel="noopener noreferrer"
             className={cssClasses.link}
           >
@@ -100,6 +103,7 @@ export function Markdown({
     linkClickEvent,
     responseId,
     cssClasses,
+    linkTarget,
     onLinkClick,
   ]);
 

@@ -75,6 +75,10 @@ export interface ChatPanelProps
    * can click on instead of typing their own.
    */
   messageSuggestions?: string[];
+  /** Link target open behavior on click.
+   *  Defaults to "_blank".
+   */
+  linkTarget?: string;
   /** A callback which is called when user clicks a link. */
   onLinkClick?: (href?: string) => void;
   /**
@@ -101,9 +105,10 @@ export function ChatPanel(props: ChatPanelProps) {
     stream,
     handleError,
     messageSuggestions,
+    linkTarget = "_blank",
     onLinkClick,
-    onSend:onSendProp,
-    onRetry:onRetryProp,
+    onSend: onSendProp,
+    onRetry: onRetryProp,
     retryText = "Error occurred. Retrying",
   } = props;
   const messages = useChatState((state) => state.conversation.messages);
@@ -116,15 +121,21 @@ export function ChatPanel(props: ChatPanelProps) {
   useFetchInitialMessage(handleError, stream);
 
   const [retry, setRetry] = useState(false);
-  const onSend = useCallback((message: string) => {
-    onSendProp?.(message);
-    setRetry(false)
-  }, [onSendProp])
+  const onSend = useCallback(
+    (message: string) => {
+      onSendProp?.(message);
+      setRetry(false);
+    },
+    [onSendProp]
+  );
 
-  const onRetry = useCallback((e: unknown) => {
-    onRetryProp?.(e);
-    setRetry(true)
-  }, [onRetryProp])
+  const onRetry = useCallback(
+    (e: unknown) => {
+      onRetryProp?.(e);
+      setRetry(true);
+    },
+    [onRetryProp]
+  );
 
   useEffect(() => {
     reportAnalyticsEvent({
@@ -190,14 +201,21 @@ export function ChatPanel(props: ChatPanelProps) {
                   {...props}
                   customCssClasses={cssClasses.messageBubbleCssClasses}
                   message={message}
+                  linkTarget={linkTarget}
                   onLinkClick={onLinkClick}
                 />
               </div>
             ))}
-            {loading && <div className="flex">
-              <LoadingDots />
-              {retry && <p className="text-slate-500 text-[13px] font-bold">{retryText}</p>}  
-            </div>}
+            {loading && (
+              <div className="flex">
+                <LoadingDots />
+                {retry && (
+                  <p className="text-slate-500 text-[13px] font-bold">
+                    {retryText}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         </div>
         <div className={cssClasses.inputContainer}>
@@ -222,6 +240,7 @@ export function ChatPanel(props: ChatPanelProps) {
           <Markdown
             content={footer}
             linkClickEvent="WEBSITE"
+            linkTarget={linkTarget}
             onLinkClick={onLinkClick}
             customCssClasses={footerCssClasses}
           />

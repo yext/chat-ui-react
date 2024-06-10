@@ -75,6 +75,8 @@ export interface MessageBubbleProps {
   formatTimestamp?: (timestamp: string) => string;
   /** CSS classes for customizing the component styling. */
   customCssClasses?: MessageBubbleCssClasses;
+  /** Link target open behavior on click. */
+  linkTarget?: string;
   /** A callback which is called when user clicks a link. */
   onLinkClick?: (href?: string) => void;
 }
@@ -92,6 +94,7 @@ export function MessageBubble({
   showTimestamp = true,
   customCssClasses,
   formatTimestamp = defaultFormatTimestamp,
+  linkTarget,
   onLinkClick,
 }: MessageBubbleProps) {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
@@ -141,6 +144,7 @@ export function MessageBubble({
             content={message.text}
             responseId={message.responseId}
             customCssClasses={markdownCssClasses}
+            linkTarget={linkTarget}
             onLinkClick={onLinkClick}
           />
         </div>

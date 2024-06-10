@@ -63,3 +63,19 @@ it("omits timestamp when showTimestamp field is false", () => {
   );
   expect(screen.queryByText(timestampRegex)).not.toBeInTheDocument();
 });
+
+it("applies link target setting (parent)", async () => {
+  const linkMessage: Message = {
+    text: "Test [msg link](msglink)",
+    timestamp: "2023-06-01T15:26:55.362Z",
+    source: MessageSource.USER,
+  };
+
+  render(
+    <ChatHeadlessProvider config={dummyConfig}>
+      <MessageBubble message={linkMessage} linkTarget="_parent" />
+    </ChatHeadlessProvider>
+  );
+
+  expect(screen.getByText("msg link")).toHaveAttribute("target", "_parent");
+});

@@ -149,3 +149,42 @@ it("executes onLinkClick if provided", async () => {
   );
   expect(onLinkClickCb).toBeCalledWith("msglink");
 });
+
+it("applies link target setting (parent)", async () => {
+  mockChatState({
+    conversation: {
+      messages: [{ text: "Test [msg link](msglink)" }],
+      isLoading: false,
+      canSendMessage: true,
+    },
+  });
+
+  render(<ChatPanel linkTarget="_parent" />);
+  expect(screen.getByText("msg link")).toHaveAttribute("target", "_parent");
+});
+
+it("applies link target setting (blank)", async () => {
+  mockChatState({
+    conversation: {
+      messages: [{ text: "Test [msg link](msglink)" }],
+      isLoading: false,
+      canSendMessage: true,
+    },
+  });
+
+  render(<ChatPanel linkTarget="_blank" />);
+  expect(screen.getByText("msg link")).toHaveAttribute("target", "_blank");
+});
+
+it("applies link target setting (default blank)", async () => {
+  mockChatState({
+    conversation: {
+      messages: [{ text: "Test [msg link](msglink)" }],
+      isLoading: false,
+      canSendMessage: true,
+    },
+  });
+
+  render(<ChatPanel />);
+  expect(screen.getByText("msg link")).toHaveAttribute("target", "_blank");
+});
