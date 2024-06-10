@@ -32,6 +32,7 @@ function App() {
                 "I'd like to learn more about a location in Arlington",
               ]}
               footer="This is a test footer with [link](https://yext.com) and [another link](https://yext.com)"
+              linkTarget="_parent"
             />
           </div>
         </ChatHeadlessProvider>

@@ -75,7 +75,9 @@ export interface ChatPanelProps
    * can click on instead of typing their own.
    */
   messageSuggestions?: string[];
-  /** Link target open behavior on click. */
+  /** Link target open behavior on click.
+   *  Defaults to "_blank".
+   */
   linkTarget? : string;
   /** A callback which is called when user clicks a link. */
   onLinkClick?: (href?: string) => void;
