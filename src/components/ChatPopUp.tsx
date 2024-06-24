@@ -93,6 +93,10 @@ export interface ChatPopUpProps
    * Whether to show the initial message popup when the panel is hidden on load.
    * Defaults to false.
    */
+
+  /** The bot id of the current bot. Defaults to the placeholder "BOT_ID_HERE" */
+  botId?: string;
+
   showInitialMessagePopUp?: boolean;
   /**
    * Whether to show a heartbeat animation on the popup button when the panel is hidden.
@@ -128,6 +132,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     onClose: customOnClose,
     handleError,
     openOnLoad = false,
+    botId = "BOT_ID_HERE",
     showInitialMessagePopUp = false,
     showHeartBeatAnimation = false,
     showUnreadNotification = false,
@@ -162,6 +167,10 @@ export function ChatPopUp(props: ChatPopUpProps) {
   // to avoid message requests immediately on load while the popup is still "hidden"
   const [renderChat, setRenderChat] = useState(false);
 
+  // The stored value of the openOnLoad associated with the given bot id in local storage. Null if saveToLocalStorage is false
+  const botIdKey = `${botId}.openOnLoad`
+  const openOnLoadLocalStorage = window.localStorage.getItem(botIdKey)
+
   // only fetch initial message when ChatPanel is closed on load (otherwise, it will be fetched in ChatPanel)
   useFetchInitialMessage(
     showInitialMessagePopUp ? console.error : handleError,
@@ -172,18 +181,23 @@ export function ChatPopUp(props: ChatPopUpProps) {
   );
 
   useEffect(() => {
-    // Open panel on load if openOnLoad prop is true or there are messages in state (from browser storage)
-    if (!renderChat && (openOnLoad || messages.length > 1)) {
+    /* Open panel on load if: 
+      - openOnLoad prop is true or there are messages in state (from browser storage), and local storage flag not set 
+      - local storage flag openOnLoadLocalStorage is set and is true */
+    if (!renderChat && ((openOnLoadLocalStorage === null && (messages.length > 1 || openOnLoad)) || openOnLoadLocalStorage === "true")) {
       setShowChat(true);
       setRenderChat(true);
       setshowInitialMessage(false);
     }
-  }, [messages.length, openOnLoad, renderChat]);
+  }, [openOnLoad, renderChat, openOnLoadLocalStorage]);
 
   const onClick = useCallback(() => {
     setShowChat((prev) => !prev);
     setRenderChat(true);
     setshowInitialMessage(false);
+    if (openOnLoadLocalStorage !== null) {
+      window.localStorage.setItem(botIdKey, "true")
+    }
   }, []);
 
   const onClose = useCallback(() => {
@@ -191,6 +205,10 @@ export function ChatPopUp(props: ChatPopUpProps) {
     customOnClose?.();
     // consider all the messages are read while the panel was open
     setNumReadMessagesLength(messages.length);
+    if (openOnLoadLocalStorage !== null) {
+      window.localStorage.setItem(botIdKey, "false")
+    }
+    console.log(window.localStorage.getItem(botIdKey))
   }, [customOnClose, messages]);
 
   useEffect(() => {

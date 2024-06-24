@@ -14,9 +14,14 @@ const config: HeadlessConfig = {
   analyticsConfig: {
     endpoint: "https://www.dev.us.yextevents.com/accounts/me/events",
   },
+  saveToLocalStorage: true,
 };
 
 function App() {
+  const botIdKey = `${config.botId}.openOnLoad`
+  if (config.saveToLocalStorage && window.localStorage.getItem(botIdKey) === null) {
+    window.localStorage.setItem(botIdKey, "false");
+  }
   return (
     <div>
       <div className="h-screen w-screen flex justify-center items-center bg-slate-700">
@@ -40,7 +45,8 @@ function App() {
       <ChatHeadlessProvider config={config}>
         <ChatPopUp
           title="Clippy"
-          openOnLoad={true}
+          botId={config.botId}
+          openOnLoad={false}
           showInitialMessagePopUp={true}
           showHeartBeatAnimation={true}
           showUnreadNotification={true}

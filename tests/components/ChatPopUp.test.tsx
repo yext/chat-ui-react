@@ -15,6 +15,7 @@ import {
   mockChatAnalytics,
   mockChatState,
 } from "../__utils__/mocks";
+import { q } from "msw/lib/glossary-de6278a9";
 
 beforeEach(() => {
   mockChatAnalytics();
@@ -107,6 +108,71 @@ describe("open on load with state from browser storage", () => {
   it("does not render panel on load when are no non-initial messages in state", async () => {
     renderPopUp();
     expect(screen.queryByLabelText("Send Message")).toBeNull();
+  });
+});
+
+describe("does not open on load with saveToLocalStorage = false", () => {
+  beforeEach(() => {
+    localStorage.setItem(`${dummyConfig.botId}.openOnLoad`, "false");
+  });
+
+  it("should not open on initial page load", async () => {
+    renderPopUp({botId: dummyConfig.botId})
+    expect(screen.queryByLabelText("Send Message")).toBeNull();
+  });
+
+  it("should not open on load even if there are messages", async () => {
+    localStorage.setItem(
+      `yext_chat_state__localhost__${dummyConfig.botId}`,
+      JSON.stringify({
+        messages: [
+          {
+            text: "How can I help you?",
+            source: MessageSource.BOT,
+            timestamp: new Date().toISOString(),
+          },
+          {
+            text: "Hello!",
+            source: MessageSource.USER,
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      })
+    );
+    expect(screen.queryByLabelText("Send Message")).toBeNull();
+  });
+});
+
+describe("does open on load with saveToLocalStorage = true", () => {
+  beforeEach(() => {
+    localStorage.setItem(`${dummyConfig.botId}.openOnLoad`, "true");
+  });
+
+  it("should open on initial page load", async () => {
+    renderPopUp({botId: dummyConfig.botId})
+    expect(screen.queryByLabelText("Send Message")).toBeTruthy();
+  });
+
+  it("should open on load when there are messages", async () => {
+    localStorage.setItem(
+      `yext_chat_state__localhost__${dummyConfig.botId}`,
+      JSON.stringify({
+        messages: [
+          {
+            text: "How can I help you?",
+            source: MessageSource.BOT,
+            timestamp: new Date().toISOString(),
+          },
+          {
+            text: "Hello!",
+            source: MessageSource.USER,
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      })
+    );
+    renderPopUp({botId: dummyConfig.botId})
+    expect(screen.queryByLabelText("Send Message")).toBeTruthy();
   });
 });
 
