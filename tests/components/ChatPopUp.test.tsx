@@ -116,7 +116,7 @@ describe("does not open on load with saveToLocalStorage = false", () => {
   });
 
   it("should not open on initial page load", async () => {
-    renderPopUp({botId: dummyConfig.botId})
+    renderPopUp({ botId: dummyConfig.botId });
     expect(screen.queryByLabelText("Send Message")).toBeNull();
   });
 
@@ -148,7 +148,7 @@ describe("does open on load with saveToLocalStorage = true", () => {
   });
 
   it("should open on initial page load", async () => {
-    renderPopUp({botId: dummyConfig.botId})
+    renderPopUp({ botId: dummyConfig.botId });
     expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
 
@@ -170,7 +170,7 @@ describe("does open on load with saveToLocalStorage = true", () => {
         ],
       })
     );
-    renderPopUp({botId: dummyConfig.botId})
+    renderPopUp({ botId: dummyConfig.botId });
     expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
 });

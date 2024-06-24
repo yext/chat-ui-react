@@ -18,8 +18,11 @@ const config: HeadlessConfig = {
 };
 
 function App() {
-  const botIdKey = `${config.botId}.openOnLoad`
-  if (config.saveToLocalStorage && window.localStorage.getItem(botIdKey) === null) {
+  const botIdKey = `${config.botId}.openOnLoad`;
+  if (
+    config.saveToLocalStorage &&
+    window.localStorage.getItem(botIdKey) === null
+  ) {
     window.localStorage.setItem(botIdKey, "false");
   }
   return (

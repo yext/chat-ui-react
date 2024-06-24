@@ -168,8 +168,8 @@ export function ChatPopUp(props: ChatPopUpProps) {
   const [renderChat, setRenderChat] = useState(false);
 
   // The stored value of the openOnLoad associated with the given bot id in local storage. Null if saveToLocalStorage is false
-  const botIdKey = `${botId}.openOnLoad`
-  const openOnLoadLocalStorage = window.localStorage.getItem(botIdKey)
+  const botIdKey = `${botId}.openOnLoad`;
+  const openOnLoadLocalStorage = window.localStorage.getItem(botIdKey);
 
   // only fetch initial message when ChatPanel is closed on load (otherwise, it will be fetched in ChatPanel)
   useFetchInitialMessage(
@@ -184,19 +184,24 @@ export function ChatPopUp(props: ChatPopUpProps) {
     /* Open panel on load if: 
       - openOnLoad prop is true or there are messages in state (from browser storage), and local storage flag not set 
       - local storage flag openOnLoadLocalStorage is set and is true */
-    if (!renderChat && ((openOnLoadLocalStorage === null && (messages.length > 1 || openOnLoad)) || openOnLoadLocalStorage === "true")) {
+    if (
+      !renderChat &&
+      ((openOnLoadLocalStorage === null &&
+        (messages.length > 1 || openOnLoad)) ||
+        openOnLoadLocalStorage === "true")
+    ) {
       setShowChat(true);
       setRenderChat(true);
       setshowInitialMessage(false);
     }
-  }, [openOnLoad, renderChat, openOnLoadLocalStorage]);
+  }, [openOnLoad, renderChat, messages.length, openOnLoadLocalStorage]);
 
   const onClick = useCallback(() => {
     setShowChat((prev) => !prev);
     setRenderChat(true);
     setshowInitialMessage(false);
     if (openOnLoadLocalStorage !== null) {
-      window.localStorage.setItem(botIdKey, "true")
+      window.localStorage.setItem(botIdKey, "true");
     }
   }, [botIdKey, openOnLoadLocalStorage]);
 
@@ -206,9 +211,9 @@ export function ChatPopUp(props: ChatPopUpProps) {
     // consider all the messages are read while the panel was open
     setNumReadMessagesLength(messages.length);
     if (openOnLoadLocalStorage !== null) {
-      window.localStorage.setItem(botIdKey, "false")
+      window.localStorage.setItem(botIdKey, "false");
     }
-  }, [customOnClose, messages, openOnLoadLocalStorage, botIdKey]);
+  }, [customOnClose, messages.length, openOnLoadLocalStorage, botIdKey]);
 
   useEffect(() => {
     // update number of unread messages if there are new messages added while the panel is closed
