@@ -198,7 +198,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     if (openOnLoadLocalStorage !== null) {
       window.localStorage.setItem(botIdKey, "true")
     }
-  }, [botIdKey]);
+  }, [botIdKey, openOnLoadLocalStorage]);
 
   const onClose = useCallback(() => {
     setShowChat(false);
@@ -213,7 +213,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
   useEffect(() => {
     // update number of unread messages if there are new messages added while the panel is closed
     setNumUnreadMessagesLength(messages.length - numReadMessages);
-  }, [messages, numReadMessages]);
+  }, [messages.length, numReadMessages]);
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const panelCssClasses = twMerge(
