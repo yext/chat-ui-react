@@ -198,7 +198,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     if (openOnLoadLocalStorage !== null) {
       window.localStorage.setItem(botIdKey, "true")
     }
-  }, []);
+  }, [botIdKey]);
 
   const onClose = useCallback(() => {
     setShowChat(false);
@@ -208,7 +208,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     if (openOnLoadLocalStorage !== null) {
       window.localStorage.setItem(botIdKey, "false")
     }
-  }, [customOnClose, messages, openOnLoadLocalStorage]);
+  }, [customOnClose, messages, openOnLoadLocalStorage, botIdKey]);
 
   useEffect(() => {
     // update number of unread messages if there are new messages added while the panel is closed

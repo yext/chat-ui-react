@@ -15,7 +15,6 @@ import {
   mockChatAnalytics,
   mockChatState,
 } from "../__utils__/mocks";
-import { q } from "msw/lib/glossary-de6278a9";
 
 beforeEach(() => {
   mockChatAnalytics();
@@ -150,7 +149,7 @@ describe("does open on load with saveToLocalStorage = true", () => {
 
   it("should open on initial page load", async () => {
     renderPopUp({botId: dummyConfig.botId})
-    expect(screen.queryByLabelText("Send Message")).toBeTruthy();
+    expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
 
   it("should open on load when there are messages", async () => {
@@ -172,14 +171,14 @@ describe("does open on load with saveToLocalStorage = true", () => {
       })
     );
     renderPopUp({botId: dummyConfig.botId})
-    expect(screen.queryByLabelText("Send Message")).toBeTruthy();
+    expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
 });
 
 describe("ctaLabel", () => {
   it("renders CTA label when a label is provided", async () => {
     renderPopUp({ ctaLabel: "ChatPopUp Test" });
-    expect(screen.getByText("ChatPopUp Test")).toBeTruthy();
+    expect(screen.queryByText("ChatPopUp Test")).toBeTruthy();
   });
 
   it("open panel when CTA label is clicked", async () => {
