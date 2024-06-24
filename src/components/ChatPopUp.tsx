@@ -89,6 +89,10 @@ export interface ChatPopUpProps
   customCssClasses?: ChatPopUpCssClasses;
   /** Whether to show the panel on load. Defaults to false. */
   openOnLoad?: boolean;
+
+  /** Whether or not to save the popup window's status to local storage. Defaults to false. */
+  useLocalStorage?: boolean; 
+
   /**
    * Whether to show the initial message popup when the panel is hidden on load.
    * Defaults to false.
@@ -128,6 +132,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     onClose: customOnClose,
     handleError,
     openOnLoad = false,
+    useLocalStorage = false,
     showInitialMessagePopUp = false,
     showHeartBeatAnimation = false,
     showUnreadNotification = false,
@@ -151,6 +156,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     //only show initial message popup (if specified) when CTA label is not provided
     !ctaLabel && showInitialMessagePopUp
   );
+
   const onCloseInitialMessage = useCallback(() => {
     setshowInitialMessage(false);
   }, []);
@@ -162,8 +168,14 @@ export function ChatPopUp(props: ChatPopUpProps) {
   // to avoid message requests immediately on load while the popup is still "hidden"
   const [renderChat, setRenderChat] = useState(false);
 
-  // The stored value of the openOnLoad associated with the given bot id in local storage. Null if saveToLocalStorage is false
+  // The stored value of the openOnLoad associated with the given bot id in local storage. Null if useLocalStorage is false
   const popupLocalStorageKey = "yextChatPopupOpenOnLoad";
+  if (
+    useLocalStorage &&
+    window.localStorage.getItem(popupLocalStorageKey) === null
+  ) {
+    window.localStorage.setItem(popupLocalStorageKey, "false");
+  }
   const openOnLoadLocalStorage =
     window.localStorage.getItem(popupLocalStorageKey);
 
@@ -191,7 +203,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
       setRenderChat(true);
       setshowInitialMessage(false);
     }
-  }, [openOnLoad, renderChat, messages.length, openOnLoadLocalStorage]);
+  });
 
   const onClick = useCallback(() => {
     setShowChat((prev) => !prev);

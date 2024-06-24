@@ -18,12 +18,6 @@ const config: HeadlessConfig = {
 };
 
 function App() {
-  if (
-    config.saveToLocalStorage &&
-    window.localStorage.getItem("yextChatPopupOpenOnLoad") === null
-  ) {
-    window.localStorage.setItem("yextChatPopupOpenOnLoad", "false");
-  }
   return (
     <div>
       <div className="h-screen w-screen flex justify-center items-center bg-slate-700">
@@ -48,6 +42,7 @@ function App() {
         <ChatPopUp
           title="Clippy"
           openOnLoad={false}
+          useLocalStorage={config.saveToLocalStorage}
           showInitialMessagePopUp={true}
           showHeartBeatAnimation={true}
           showUnreadNotification={true}

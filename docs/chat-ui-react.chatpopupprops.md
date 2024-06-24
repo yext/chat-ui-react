@@ -24,4 +24,5 @@ export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" 
 |  [showHeartBeatAnimation?](./chat-ui-react.chatpopupprops.showheartbeatanimation.md) |  | boolean | _(Optional)_ Whether to show a heartbeat animation on the popup button when the panel is hidden. Defaults to false. |
 |  [showInitialMessagePopUp?](./chat-ui-react.chatpopupprops.showinitialmessagepopup.md) |  | boolean | _(Optional)_ Whether to show the initial message popup when the panel is hidden on load. Defaults to false. |
 |  [showUnreadNotification?](./chat-ui-react.chatpopupprops.showunreadnotification.md) |  | boolean | _(Optional)_ Whether to show notification showing number of unread messages. Defaults to false. |
+|  [useLocalStorage?](./chat-ui-react.chatpopupprops.uselocalstorage.md) |  | boolean | _(Optional)_ Whether or not to save the popup window's status to local storage. Defaults to false. |
 

@@ -170,7 +170,7 @@ describe("does open on load with saveToLocalStorage = true", () => {
         ],
       })
     );
-    renderPopUp({});
+    renderPopUp({ });
     expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
 });
