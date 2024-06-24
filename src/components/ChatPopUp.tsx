@@ -173,7 +173,8 @@ export function ChatPopUp(props: ChatPopUpProps) {
     false,
     (showUnreadNotification || showInitialMessagePopUp) &&
       !renderChat &&
-      ((!openOnLoad && openOnLoadLocalStorage === null) || openOnLoadLocalStorage === "false")
+      ((!openOnLoad && openOnLoadLocalStorage === null) ||
+        openOnLoadLocalStorage === "false")
   );
 
   useEffect(() => {

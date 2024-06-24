@@ -177,8 +177,8 @@ describe("does open on load with saveToLocalStorage = true", () => {
 
 describe("ctaLabel", () => {
   beforeEach(() => {
-    localStorage.clear()
-  })
+    localStorage.clear();
+  });
   it("renders CTA label when a label is provided", async () => {
     renderPopUp({ ctaLabel: "ChatPopUp Test" });
     expect(screen.getByText("ChatPopUp Test")).toBeTruthy();
