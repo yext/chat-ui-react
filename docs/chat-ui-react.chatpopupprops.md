@@ -17,12 +17,11 @@ export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" 
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [botId?](./chat-ui-react.chatpopupprops.botid.md) |  | string | _(Optional)_ The bot id of the current bot. Defaults to the placeholder "BOT\_ID\_HERE" |
 |  [ctaLabel?](./chat-ui-react.chatpopupprops.ctalabel.md) |  | string | _(Optional)_ The "Call to Action" label to be displayed next to the popup button. By default, the CTA is not shown. This prop will override the "showInitialMessagePopUp" prop, if specified. |
 |  [customCssClasses?](./chat-ui-react.chatpopupprops.customcssclasses.md) |  | [ChatPopUpCssClasses](./chat-ui-react.chatpopupcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 |  [openOnLoad?](./chat-ui-react.chatpopupprops.openonload.md) |  | boolean | _(Optional)_ Whether to show the panel on load. Defaults to false. |
 |  [openPanelButtonIcon?](./chat-ui-react.chatpopupprops.openpanelbuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for the popup button to open the panel. |
 |  [showHeartBeatAnimation?](./chat-ui-react.chatpopupprops.showheartbeatanimation.md) |  | boolean | _(Optional)_ Whether to show a heartbeat animation on the popup button when the panel is hidden. Defaults to false. |
-|  [showInitialMessagePopUp?](./chat-ui-react.chatpopupprops.showinitialmessagepopup.md) |  | boolean | _(Optional)_ |
+|  [showInitialMessagePopUp?](./chat-ui-react.chatpopupprops.showinitialmessagepopup.md) |  | boolean | _(Optional)_ Whether to show the initial message popup when the panel is hidden on load. Defaults to false. |
 |  [showUnreadNotification?](./chat-ui-react.chatpopupprops.showunreadnotification.md) |  | boolean | _(Optional)_ Whether to show notification showing number of unread messages. Defaults to false. |
 

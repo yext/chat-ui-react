@@ -112,11 +112,11 @@ describe("open on load with state from browser storage", () => {
 
 describe("does not open on load with saveToLocalStorage = false", () => {
   beforeEach(() => {
-    localStorage.setItem(`${dummyConfig.botId}.openOnLoad`, "false");
+    localStorage.setItem(`yextChatPopupOpenOnLoad`, "false");
   });
 
   it("should not open on initial page load", async () => {
-    renderPopUp({ botId: dummyConfig.botId });
+    renderPopUp({});
     expect(screen.queryByLabelText("Send Message")).toBeNull();
   });
 
@@ -144,11 +144,11 @@ describe("does not open on load with saveToLocalStorage = false", () => {
 
 describe("does open on load with saveToLocalStorage = true", () => {
   beforeEach(() => {
-    localStorage.setItem(`${dummyConfig.botId}.openOnLoad`, "true");
+    localStorage.setItem(`yextChatPopupOpenOnLoad`, "true");
   });
 
   it("should open on initial page load", async () => {
-    renderPopUp({ botId: dummyConfig.botId });
+    renderPopUp({});
     expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
 
@@ -170,12 +170,15 @@ describe("does open on load with saveToLocalStorage = true", () => {
         ],
       })
     );
-    renderPopUp({ botId: dummyConfig.botId });
+    renderPopUp({});
     expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
 });
 
 describe("ctaLabel", () => {
+  beforeEach(() => {
+    localStorage.clear()
+  })
   it("renders CTA label when a label is provided", async () => {
     renderPopUp({ ctaLabel: "ChatPopUp Test" });
     expect(screen.getByText("ChatPopUp Test")).toBeTruthy();
@@ -218,6 +221,7 @@ describe("ctaLabel", () => {
 
 describe("showInitialMessagePopUp", () => {
   beforeEach(() => {
+    localStorage.clear();
     mockChatState({
       conversation: {
         messages: [

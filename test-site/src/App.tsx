@@ -18,12 +18,11 @@ const config: HeadlessConfig = {
 };
 
 function App() {
-  const botIdKey = `${config.botId}.openOnLoad`;
   if (
     config.saveToLocalStorage &&
-    window.localStorage.getItem(botIdKey) === null
+    window.localStorage.getItem("yextChatPopupOpenOnLoad") === null
   ) {
-    window.localStorage.setItem(botIdKey, "false");
+    window.localStorage.setItem("yextChatPopupOpenOnLoad", "false");
   }
   return (
     <div>
@@ -48,7 +47,6 @@ function App() {
       <ChatHeadlessProvider config={config}>
         <ChatPopUp
           title="Clippy"
-          botId={config.botId}
           openOnLoad={false}
           showInitialMessagePopUp={true}
           showHeartBeatAnimation={true}

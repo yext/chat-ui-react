@@ -137,13 +137,11 @@ export interface ChatPopUpCssClasses {
 
 // @public
 export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" | "customCssClasses">, Omit<ChatPanelProps, "header" | "customCssClasses"> {
-    botId?: string;
     ctaLabel?: string;
     customCssClasses?: ChatPopUpCssClasses;
     openOnLoad?: boolean;
     openPanelButtonIcon?: JSX.Element;
     showHeartBeatAnimation?: boolean;
-    // (undocumented)
     showInitialMessagePopUp?: boolean;
     showUnreadNotification?: boolean;
 }
