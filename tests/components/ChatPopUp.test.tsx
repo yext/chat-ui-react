@@ -82,7 +82,7 @@ describe("open on load with state from browser storage", () => {
   beforeEach(() => {
     localStorage.clear();
   });
-  it("renders panel on load when there are non-initial messages in state", async () => {
+  it("renders panel on load when there are non-initial messages in state and panel wasn't previously closed", async () => {
     localStorage.setItem(
       `yext_chat_state__localhost__${dummyConfig.botId}`,
       JSON.stringify({
@@ -100,6 +100,7 @@ describe("open on load with state from browser storage", () => {
         ],
       })
     );
+    localStorage.setItem("yextChatPopupOpenOnLoad", "true");
     renderPopUp({}, undefined, { ...dummyConfig, saveToLocalStorage: true });
     expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
@@ -142,43 +143,7 @@ describe("does not open on load with saveToLocalStorage = false", () => {
   });
 });
 
-describe("does open on load with saveToLocalStorage = true", () => {
-  beforeEach(() => {
-    localStorage.setItem(`yextChatPopupOpenOnLoad`, "true");
-  });
-
-  it("should open on initial page load", async () => {
-    renderPopUp({});
-    expect(screen.getByLabelText("Send Message")).toBeTruthy();
-  });
-
-  it("should open on load when there are messages", async () => {
-    localStorage.setItem(
-      `yext_chat_state__localhost__${dummyConfig.botId}`,
-      JSON.stringify({
-        messages: [
-          {
-            text: "How can I help you?",
-            source: MessageSource.BOT,
-            timestamp: new Date().toISOString(),
-          },
-          {
-            text: "Hello!",
-            source: MessageSource.USER,
-            timestamp: new Date().toISOString(),
-          },
-        ],
-      })
-    );
-    renderPopUp({ });
-    expect(screen.getByLabelText("Send Message")).toBeTruthy();
-  });
-});
-
 describe("ctaLabel", () => {
-  beforeEach(() => {
-    localStorage.clear();
-  });
   it("renders CTA label when a label is provided", async () => {
     renderPopUp({ ctaLabel: "ChatPopUp Test" });
     expect(screen.getByText("ChatPopUp Test")).toBeTruthy();
@@ -221,7 +186,6 @@ describe("ctaLabel", () => {
 
 describe("showInitialMessagePopUp", () => {
   beforeEach(() => {
-    localStorage.clear();
     mockChatState({
       conversation: {
         messages: [

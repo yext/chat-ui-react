@@ -90,9 +90,6 @@ export interface ChatPopUpProps
   /** Whether to show the panel on load. Defaults to false. */
   openOnLoad?: boolean;
 
-  /** Whether or not to save the popup window's status to local storage. Defaults to false. */
-  useLocalStorage?: boolean; 
-
   /**
    * Whether to show the initial message popup when the panel is hidden on load.
    * Defaults to false.
@@ -132,7 +129,6 @@ export function ChatPopUp(props: ChatPopUpProps) {
     onClose: customOnClose,
     handleError,
     openOnLoad = false,
-    useLocalStorage = false,
     showInitialMessagePopUp = false,
     showHeartBeatAnimation = false,
     showUnreadNotification = false,
@@ -168,13 +164,13 @@ export function ChatPopUp(props: ChatPopUpProps) {
   // to avoid message requests immediately on load while the popup is still "hidden"
   const [renderChat, setRenderChat] = useState(false);
 
-  // The stored value of the openOnLoad associated with the given bot id in local storage. Null if useLocalStorage is false
+  // Set the initial value of the local storage flag for opening on load only if it doesn't already exist
   const popupLocalStorageKey = "yextChatPopupOpenOnLoad";
-  if (
-    useLocalStorage &&
-    window.localStorage.getItem(popupLocalStorageKey) === null
-  ) {
-    window.localStorage.setItem(popupLocalStorageKey, "false");
+  if (window.localStorage.getItem(popupLocalStorageKey) === null) {
+    window.localStorage.setItem(
+      popupLocalStorageKey,
+      openOnLoad ? "true" : "false"
+    );
   }
   const openOnLoadLocalStorage =
     window.localStorage.getItem(popupLocalStorageKey);
@@ -185,8 +181,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     false,
     (showUnreadNotification || showInitialMessagePopUp) &&
       !renderChat &&
-      ((!openOnLoad && openOnLoadLocalStorage === null) ||
-        openOnLoadLocalStorage === "false")
+      (!openOnLoad || openOnLoadLocalStorage === "false")
   );
 
   useEffect(() => {
@@ -195,39 +190,28 @@ export function ChatPopUp(props: ChatPopUpProps) {
       - local storage flag openOnLoadLocalStorage is set and is true */
     if (
       !renderChat &&
-      ((openOnLoadLocalStorage === null &&
-        (messages.length > 1 || openOnLoad)) ||
-        openOnLoadLocalStorage === "true")
+      ((messages.length > 1 && openOnLoadLocalStorage === "true") || openOnLoad)
     ) {
       setShowChat(true);
       setRenderChat(true);
       setshowInitialMessage(false);
     }
-  });
+  }, [renderChat, openOnLoadLocalStorage, messages.length, openOnLoad]);
 
   const onClick = useCallback(() => {
     setShowChat((prev) => !prev);
     setRenderChat(true);
     setshowInitialMessage(false);
-    if (openOnLoadLocalStorage !== null) {
-      window.localStorage.setItem(popupLocalStorageKey, "true");
-    }
-  }, [popupLocalStorageKey, openOnLoadLocalStorage]);
+    window.localStorage.setItem(popupLocalStorageKey, "true");
+  }, [popupLocalStorageKey]);
 
   const onClose = useCallback(() => {
     setShowChat(false);
     customOnClose?.();
     // consider all the messages are read while the panel was open
     setNumReadMessagesLength(messages.length);
-    if (openOnLoadLocalStorage !== null) {
-      window.localStorage.setItem(popupLocalStorageKey, "false");
-    }
-  }, [
-    customOnClose,
-    messages.length,
-    openOnLoadLocalStorage,
-    popupLocalStorageKey,
-  ]);
+    window.localStorage.setItem(popupLocalStorageKey, "false");
+  }, [customOnClose, messages.length, popupLocalStorageKey]);
 
   useEffect(() => {
     // update number of unread messages if there are new messages added while the panel is closed

@@ -144,7 +144,6 @@ export interface ChatPopUpProps extends Omit<ChatHeaderProps, "showCloseButton" 
     showHeartBeatAnimation?: boolean;
     showInitialMessagePopUp?: boolean;
     showUnreadNotification?: boolean;
-    useLocalStorage?: boolean;
 }
 
 // @public

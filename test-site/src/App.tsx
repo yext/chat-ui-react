@@ -42,7 +42,6 @@ function App() {
         <ChatPopUp
           title="Clippy"
           openOnLoad={false}
-          useLocalStorage={config.saveToLocalStorage}
           showInitialMessagePopUp={true}
           showHeartBeatAnimation={true}
           showUnreadNotification={true}
