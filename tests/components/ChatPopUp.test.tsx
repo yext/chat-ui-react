@@ -100,7 +100,7 @@ describe("open on load with state from browser storage", () => {
         ],
       })
     );
-    localStorage.setItem("yextChatPopupOpenOnLoad", "true");
+    localStorage.setItem("YEXT_CHAT_OPEN_ON_LOAD", "true");
     renderPopUp({}, undefined, { ...dummyConfig, saveToLocalStorage: true });
     expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
@@ -113,7 +113,7 @@ describe("open on load with state from browser storage", () => {
 
 describe("does not open on load with saveToLocalStorage = false", () => {
   beforeEach(() => {
-    localStorage.setItem(`yextChatPopupOpenOnLoad`, "false");
+    localStorage.setItem("YEXT_CHAT_OPEN_ON_LOAD", "false");
   });
 
   it("should not open on initial page load", async () => {

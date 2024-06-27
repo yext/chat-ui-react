@@ -14,7 +14,6 @@ const config: HeadlessConfig = {
   analyticsConfig: {
     endpoint: "https://www.dev.us.yextevents.com/accounts/me/events",
   },
-  saveToLocalStorage: true,
 };
 
 function App() {
