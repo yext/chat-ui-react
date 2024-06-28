@@ -82,7 +82,7 @@ describe("open on load with state from browser storage", () => {
   beforeEach(() => {
     localStorage.clear();
   });
-  it("renders panel on load when there are non-initial messages in state", async () => {
+  it("renders panel on load when there are non-initial messages in state and panel wasn't previously closed", async () => {
     localStorage.setItem(
       `yext_chat_state__localhost__${dummyConfig.botId}`,
       JSON.stringify({
@@ -100,12 +100,45 @@ describe("open on load with state from browser storage", () => {
         ],
       })
     );
+    localStorage.setItem("YEXT_CHAT_OPEN_ON_LOAD", "true");
     renderPopUp({}, undefined, { ...dummyConfig, saveToLocalStorage: true });
     expect(screen.getByLabelText("Send Message")).toBeTruthy();
   });
 
   it("does not render panel on load when are no non-initial messages in state", async () => {
     renderPopUp();
+    expect(screen.queryByLabelText("Send Message")).toBeNull();
+  });
+});
+
+describe("does not open on load with saveToLocalStorage = false", () => {
+  beforeEach(() => {
+    localStorage.setItem("YEXT_CHAT_OPEN_ON_LOAD", "false");
+  });
+
+  it("should not open on initial page load", async () => {
+    renderPopUp({});
+    expect(screen.queryByLabelText("Send Message")).toBeNull();
+  });
+
+  it("should not open on load even if there are messages", async () => {
+    localStorage.setItem(
+      `yext_chat_state__localhost__${dummyConfig.botId}`,
+      JSON.stringify({
+        messages: [
+          {
+            text: "How can I help you?",
+            source: MessageSource.BOT,
+            timestamp: new Date().toISOString(),
+          },
+          {
+            text: "Hello!",
+            source: MessageSource.USER,
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      })
+    );
     expect(screen.queryByLabelText("Send Message")).toBeNull();
   });
 });

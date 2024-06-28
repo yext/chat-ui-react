@@ -74,6 +74,7 @@ const builtInCssClasses: ChatPopUpCssClasses = withStylelessCssClasses(
     },
   }
 );
+const popupLocalStorageKey = "YEXT_CHAT_OPEN_ON_LOAD";
 
 /**
  * The props for the {@link ChatPopUp} component.
@@ -151,6 +152,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     //only show initial message popup (if specified) when CTA label is not provided
     !ctaLabel && showInitialMessagePopUp
   );
+
   const onCloseInitialMessage = useCallback(() => {
     setshowInitialMessage(false);
   }, []);
@@ -162,28 +164,44 @@ export function ChatPopUp(props: ChatPopUpProps) {
   // to avoid message requests immediately on load while the popup is still "hidden"
   const [renderChat, setRenderChat] = useState(false);
 
+  // Set the initial value of the local storage flag for opening on load only if it doesn't already exist
+
+  if (window.localStorage.getItem(popupLocalStorageKey) === null) {
+    window.localStorage.setItem(
+      popupLocalStorageKey,
+      openOnLoad ? "true" : "false"
+    );
+  }
+  const openOnLoadLocalStorage =
+    window.localStorage.getItem(popupLocalStorageKey);
+
+  /* Open panel on load if: 
+  - openOnLoad prop is true or there are messages in state (from browser storage), and local storage flag is true */
+  const isOpenOnLoad =
+    (messages.length > 1 && openOnLoadLocalStorage === "true") || openOnLoad;
+
   // only fetch initial message when ChatPanel is closed on load (otherwise, it will be fetched in ChatPanel)
   useFetchInitialMessage(
     showInitialMessagePopUp ? console.error : handleError,
     false,
     (showUnreadNotification || showInitialMessagePopUp) &&
       !renderChat &&
-      !openOnLoad
+      !isOpenOnLoad
   );
 
   useEffect(() => {
-    // Open panel on load if openOnLoad prop is true or there are messages in state (from browser storage)
-    if (!renderChat && (openOnLoad || messages.length > 1)) {
+    if (!renderChat && isOpenOnLoad) {
       setShowChat(true);
       setRenderChat(true);
       setshowInitialMessage(false);
     }
-  }, [messages.length, openOnLoad, renderChat]);
+  }, [renderChat, messages.length, isOpenOnLoad]);
 
   const onClick = useCallback(() => {
     setShowChat((prev) => !prev);
     setRenderChat(true);
     setshowInitialMessage(false);
+    window.localStorage.setItem(popupLocalStorageKey, "true");
   }, []);
 
   const onClose = useCallback(() => {
@@ -191,12 +209,13 @@ export function ChatPopUp(props: ChatPopUpProps) {
     customOnClose?.();
     // consider all the messages are read while the panel was open
     setNumReadMessagesLength(messages.length);
-  }, [customOnClose, messages]);
+    window.localStorage.setItem(popupLocalStorageKey, "false");
+  }, [customOnClose, messages.length]);
 
   useEffect(() => {
     // update number of unread messages if there are new messages added while the panel is closed
     setNumUnreadMessagesLength(messages.length - numReadMessages);
-  }, [messages, numReadMessages]);
+  }, [messages.length, numReadMessages]);
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const panelCssClasses = twMerge(

@@ -40,7 +40,7 @@ function App() {
       <ChatHeadlessProvider config={config}>
         <ChatPopUp
           title="Clippy"
-          openOnLoad={true}
+          openOnLoad={false}
           showInitialMessagePopUp={true}
           showHeartBeatAnimation={true}
           showUnreadNotification={true}
