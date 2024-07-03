@@ -43,7 +43,7 @@ const builtInCssClasses: MessageBubbleCssClasses =
     text__bot: "text-slate-900",
     text__user: "text-white break-words",
     timestamp:
-      "w-fit my-0.5 ml-4 @lg:ml-0 text-slate-400 text-[10px] @[480px]:text-[13px] opacity-0 peer-hover:opacity-100 duration-200 whitespace-pre-wrap",
+      "w-fit ml-4 @lg:ml-0 text-slate-400 text-[10px] @[480px]:text-[13px] opacity-0 peer-hover:opacity-100 duration-200 whitespace-pre-wrap",
     timestamp__bot: "",
     timestamp__user: "ml-auto",
     feedbackButtonsCssClasses: {},

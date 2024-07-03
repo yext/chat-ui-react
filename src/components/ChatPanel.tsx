@@ -45,10 +45,10 @@ const builtInCssClasses: ChatPanelCssClasses = withStylelessCssClasses(
   {
     container: "h-full w-full flex flex-col relative shadow-2xl bg-white",
     messagesScrollContainer: "flex flex-col mt-auto overflow-hidden",
-    messagesContainer: "flex flex-col gap-y-1 px-4 overflow-auto",
+    messagesContainer: "flex flex-col gap-y-1 px-4 overflow-auto [&>*:first-child]:mt-3",
     inputContainer: "w-full p-4",
     messageBubbleCssClasses: {
-      topContainer: "first:mt-4",
+      topContainer: "mt-1",
     },
     footer: "text-center text-slate-400 rounded-b-3xl px-4 pb-4 text-[12px]",
   }
