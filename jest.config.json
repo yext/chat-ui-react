@@ -12,7 +12,8 @@
   "clearMocks": true,
   "testMatch": ["<rootDir>/tests/**/*.(test).ts(x)?"],
   "moduleNameMapper": {
-    "\\.(css|scss|less)$": "<rootDir>/tests/__utils__/style-mock.ts"
+    "\\.(css|scss|less)$": "<rootDir>/tests/__utils__/style-mock.ts",
+    "react-markdown": "<rootDir>/node_modules/react-markdown/react-markdown.min.js"
   },
   "setupFilesAfterEnv": ["<rootDir>/tests/__setup__/setup.js"]
 }
