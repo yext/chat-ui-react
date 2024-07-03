@@ -1,6 +1,6 @@
 {
   "name": "@yext/chat-ui-react",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "A library of React Components for powering Yext Chat integrations.",
   "author": "clippy@yext.com",
   "main": "./lib/commonjs/src/index.js",
