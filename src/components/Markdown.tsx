@@ -1,5 +1,4 @@
 import ReactMarkdown, { Options } from "react-markdown";
-import { PluggableList } from "unified";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
@@ -8,7 +7,7 @@ import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
 
 // The Remark and Rehype plugins to use in conjunction with ReactMarkdown.
-const unifiedPlugins: { remark?: PluggableList; rehype: PluggableList } = {
+const unifiedPlugins: { remark?: Options['remarkPlugins']; rehype: Options['rehypePlugins'] } = {
   remark: [
     remarkGfm, //renders Github-Flavored Markdown
   ],
