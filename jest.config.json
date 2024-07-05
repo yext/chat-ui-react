@@ -13,7 +13,7 @@
   "testMatch": ["<rootDir>/tests/**/*.(test).ts(x)?"],
   "moduleNameMapper": {
     "\\.(css|scss|less)$": "<rootDir>/tests/__utils__/style-mock.ts",
-    "$comment": "react-markdown throws syntax errors (ESM-related). This imports the .js file directory without issue",
+    // react-markdown throws syntax errors (ESM-related). This helps import the .js file directory without issue
     "react-markdown": "<rootDir>/node_modules/react-markdown/react-markdown.min.js"
   },
   "setupFilesAfterEnv": ["<rootDir>/tests/__setup__/setup.js"]
