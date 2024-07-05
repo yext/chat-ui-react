@@ -7,7 +7,6 @@
     "@yext/chat-ui-react": "file:..",
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
-    "react-markdown": "^6.0.3",
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
