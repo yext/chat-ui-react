@@ -1,7 +1,4 @@
-import ReactMarkdown, {
-  PluggableList,
-  ReactMarkdownOptions,
-} from "react-markdown";
+import ReactMarkdown, { Options } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
@@ -10,7 +7,7 @@ import { useReportAnalyticsEvent } from "../hooks/useReportAnalyticsEvent";
 import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
 
 // The Remark and Rehype plugins to use in conjunction with ReactMarkdown.
-const unifiedPlugins: { remark?: PluggableList; rehype: PluggableList } = {
+const unifiedPlugins: { remark?: Options['remarkPlugins']; rehype: Options['rehypePlugins'] } = {
   remark: [
     remarkGfm, //renders Github-Flavored Markdown
   ],
@@ -72,7 +69,7 @@ export function Markdown({
   const reportAnalyticsEvent = useReportAnalyticsEvent();
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
-  const components: ReactMarkdownOptions["components"] = useMemo(() => {
+  const components: Options["components"] = useMemo(() => {
     const createClickHandlerFn = (href?: string) => () => {
       reportAnalyticsEvent({
         action: linkClickEvent,
