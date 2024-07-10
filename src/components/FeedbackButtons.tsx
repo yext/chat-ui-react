@@ -25,7 +25,7 @@ export interface FeedbackButtonsCssClasses {
 const builtInCssClasses: FeedbackButtonsCssClasses =
   withStylelessCssClasses<FeedbackButtonsCssClasses>("FeedbackButtons", {
     container:
-      "flex gap-x-1 absolute -right-1 -top-3 opacity-0 group-hover:opacity-100 duration-200",
+      "flex gap-x-1 absolute -right-1 -top-3 [@media(hover:hover)]:opacity-0 group-hover:opacity-100 duration-200",
     thumbsUpButton:
       "w-6 h-6 bg-gray-700 rounded-md flex justify-center items-center",
     thumbsUpIcon: "text-white w-[22px] h-[22px] stroke-[0.2]",
