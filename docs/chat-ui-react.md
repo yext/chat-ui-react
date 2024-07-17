@@ -11,7 +11,7 @@
 |  [ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, })](./chat-ui-react.chatheader.md) | A component that renders the header of a chat bot panel, including the title and a button to reset the conversation. |
 |  [ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, onRetry, })](./chat-ui-react.chatinput.md) | A component that allows user to input message and send to Chat API. |
 |  [ChatPanel(props)](./chat-ui-react.chatpanel.md) | A component that renders a full panel for chat bot interactions. This includes the message bubbles for the conversation, input box with send button, and header (if provided). |
-|  [ChatPopUp(props)](./chat-ui-react.chatpopup.md) | A component that renders a popup button that displays and hides a panel for chat bot interactions. |
+|  [ChatPopUp(props)](./chat-ui-react.chatpopup.md) | A component that renders a popup button that displays and hides a panel for chat bot interactions. test |
 |  [MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, linkTarget, onLinkClick, })](./chat-ui-react.messagebubble.md) | A component that displays the provided message. |
 |  [useComposedCssClasses(builtInClasses, customClasses)](./chat-ui-react.usecomposedcssclasses.md) | useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes. |
 |  [useReportAnalyticsEvent()](./chat-ui-react.usereportanalyticsevent.md) | Returns a function to send requests to Yext Analytics API. |

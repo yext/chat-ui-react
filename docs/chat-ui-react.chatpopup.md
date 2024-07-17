@@ -4,7 +4,7 @@
 
 ## ChatPopUp() function
 
-A component that renders a popup button that displays and hides a panel for chat bot interactions.
+A component that renders a popup button that displays and hides a panel for chat bot interactions. test
 
 **Signature:**
 
