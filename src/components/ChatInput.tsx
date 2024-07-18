@@ -80,7 +80,7 @@ export interface ChatInputProps {
 export function ChatInput({
   placeholder = "Type a message...",
   stream = false,
-  inputAutoFocus = false,
+  inputAutoFocus = true,
   handleError,
   sendButtonIcon = <ArrowIcon />,
   customCssClasses,
