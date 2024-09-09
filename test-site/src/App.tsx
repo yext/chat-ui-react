@@ -64,7 +64,10 @@ function ControlledPopup(props: ChatPopUpProps) {
 
   return (
     <div>
-      <button className="bg-emerald-300 rounded-sm p-2" onClick={() => setOpen(true)}>
+      <button
+        className="bg-emerald-300 rounded-sm p-2"
+        onClick={() => setOpen(true)}
+      >
         Open Chat
       </button>
       <ChatPopUp {...props} isOpen={open} onClose={() => setOpen(false)} />
