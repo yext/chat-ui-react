@@ -110,6 +110,12 @@ export interface ChatPopUpProps
    * This prop will override the "showInitialMessagePopUp" prop, if specified.
    */
   ctaLabel?: string;
+  /**
+   * A controlled prop to open or close the panel. If provided, the prop
+   * will override the openOnLoad prop and the panel will be controlled
+   * by the parent component.
+   */
+  isOpen?: boolean;
 }
 
 /**
@@ -134,6 +140,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
     ctaLabel,
     title,
     footer,
+    isOpen,
   } = props;
 
   const reportAnalyticsEvent = useReportAnalyticsEvent();
@@ -146,24 +153,6 @@ export function ChatPopUp(props: ChatPopUpProps) {
   const messages = useChatState((s) => s.conversation.messages);
   const [numReadMessages, setNumReadMessagesLength] = useState<number>(0);
   const [numUnreadMessages, setNumUnreadMessagesLength] = useState<number>(0);
-
-  const [showInitialMessage, setshowInitialMessage] = useState(
-    //only show initial message popup (if specified) when CTA label is not provided
-    !ctaLabel && showInitialMessagePopUp
-  );
-
-  const onCloseInitialMessage = useCallback(() => {
-    setshowInitialMessage(false);
-  }, []);
-
-  // control CSS behavior (fade-in/out animation) on open/close state of the panel.
-  const [showChat, setShowChat] = useState(false);
-
-  // control the actual DOM rendering of the panel. Start rendering on first open state
-  // to avoid message requests immediately on load while the popup is still "hidden"
-  const [renderChat, setRenderChat] = useState(false);
-
-  // Set the initial value of the local storage flag for opening on load only if it doesn't already exist
 
   if (window.localStorage.getItem(popupLocalStorageKey) === null) {
     window.localStorage.setItem(
@@ -179,6 +168,16 @@ export function ChatPopUp(props: ChatPopUpProps) {
   const isOpenOnLoad =
     (messages.length > 1 && openOnLoadLocalStorage === "true") || openOnLoad;
 
+  // Set the initial value of the local storage flag for opening on load only if it doesn't already exist
+  const {
+    renderChat,
+    showChat,
+    showInitialMessage,
+    toggleChat,
+    closeChat,
+    closeInitialMessage,
+  } = usePanelState(isOpen, isOpenOnLoad, !ctaLabel && showInitialMessagePopUp);
+
   // only fetch initial message when ChatPanel is closed on load (otherwise, it will be fetched in ChatPanel)
   useFetchInitialMessage(
     showInitialMessagePopUp ? console.error : handleError,
@@ -188,28 +187,18 @@ export function ChatPopUp(props: ChatPopUpProps) {
       !isOpenOnLoad
   );
 
-  useEffect(() => {
-    if (!renderChat && isOpenOnLoad) {
-      setShowChat(true);
-      setRenderChat(true);
-      setshowInitialMessage(false);
-    }
-  }, [renderChat, messages.length, isOpenOnLoad]);
-
   const onClick = useCallback(() => {
-    setShowChat((prev) => !prev);
-    setRenderChat(true);
-    setshowInitialMessage(false);
+    toggleChat();
     window.localStorage.setItem(popupLocalStorageKey, "true");
-  }, []);
+  }, [toggleChat]);
 
   const onClose = useCallback(() => {
-    setShowChat(false);
+    closeChat();
     customOnClose?.();
     // consider all the messages are read while the panel was open
     setNumReadMessagesLength(messages.length);
     window.localStorage.setItem(popupLocalStorageKey, "false");
-  }, [customOnClose, messages.length]);
+  }, [closeChat, customOnClose, messages.length]);
 
   useEffect(() => {
     // update number of unread messages if there are new messages added while the panel is closed
@@ -255,7 +244,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
         >
           {showInitialMessage && (
             <InitialMessagePopUp
-              onClose={onCloseInitialMessage}
+              onClose={closeInitialMessage}
               customCssClasses={cssClasses.initialMessagePopUpCssClasses}
             />
           )}
@@ -297,4 +286,63 @@ export function ChatPopUp(props: ChatPopUpProps) {
       </div>
     </div>
   );
+}
+
+function usePanelState(
+  isOpen: boolean | undefined,
+  isOpenOnLoad: boolean | undefined,
+  initialMessageVisible: boolean | undefined
+) {
+  // control CSS behavior (fade-in/out animation) on open/close state of the panel.
+  const [showChat, setShowChat] = useState(false);
+  // control the actual DOM rendering of the panel. Start rendering on first open state
+  // to avoid message requests immediately on load while the popup is still "hidden"
+  const [renderChat, setRenderChat] = useState(false);
+  const [showInitialMessage, setshowInitialMessage] = useState(
+    initialMessageVisible
+  );
+
+  useEffect(() => {
+    if (isOpen !== undefined) {
+      setShowChat(isOpen);
+      setRenderChat(isOpen);
+    }
+  }, [renderChat, isOpen]);
+
+  useEffect(() => {
+    if (!renderChat && isOpenOnLoad && isOpen === undefined) {
+      setShowChat(true);
+      setRenderChat(true);
+      setshowInitialMessage(false);
+    }
+  }, [renderChat, isOpen, isOpenOnLoad]);
+
+  const toggleChat = useCallback(() => {
+    if (isOpen !== undefined) {
+      return;
+    }
+    setShowChat((prev) => !prev);
+    setRenderChat(true);
+    setshowInitialMessage(false);
+  }, [isOpen]);
+
+  const closeChat = useCallback(() => {
+    if (isOpen !== undefined) {
+      return;
+    }
+    setShowChat(false);
+  }, [isOpen]);
+
+  const closeInitialMessage = useCallback(() => {
+    setshowInitialMessage(false);
+  }, []);
+
+  return {
+    showChat,
+    renderChat,
+    showInitialMessage,
+    toggleChat,
+    closeChat,
+    closeInitialMessage,
+  };
 }

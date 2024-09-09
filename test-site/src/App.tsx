@@ -1,8 +1,10 @@
 import { ChatHeader, ChatPanel, ChatPopUp } from "@yext/chat-ui-react";
+import { ChatPopUpProps } from "../../lib/esm/src/components/ChatPopUp";
 import {
   ChatHeadlessProvider,
   HeadlessConfig,
 } from "@yext/chat-headless-react";
+import { useState } from "react";
 
 const config: HeadlessConfig = {
   botId: process.env.REACT_APP_TEST_BOT_ID || "BOT_ID_HERE",
@@ -14,6 +16,7 @@ const config: HeadlessConfig = {
   analyticsConfig: {
     endpoint: "https://www.dev.us.yextevents.com/accounts/me/events",
   },
+  saveToLocalStorage: true,
 };
 
 function App() {
@@ -35,24 +38,36 @@ function App() {
               linkTarget="_parent"
             />
           </div>
+          <ControlledPopup
+            title="Clippy"
+            openOnLoad={false}
+            showInitialMessagePopUp={true}
+            showHeartBeatAnimation={true}
+            showUnreadNotification={true}
+            messageSuggestions={[
+              "hey how are you",
+              "I'm looking to order a pair of all-mountain skis",
+              "Who sells cheeseburgers?",
+              "I want to go home",
+              "This sucks I want a refund and also I am suing you for negligence",
+            ]}
+          />
         </ChatHeadlessProvider>
       </div>
-      <ChatHeadlessProvider config={config}>
-        <ChatPopUp
-          title="Clippy"
-          openOnLoad={false}
-          showInitialMessagePopUp={true}
-          showHeartBeatAnimation={true}
-          showUnreadNotification={true}
-          messageSuggestions={[
-            "hey how are you",
-            "I'm looking to order a pair of all-mountain skis",
-            "Who sells cheeseburgers?",
-            "I want to go home",
-            "This sucks I want a refund and also I am suing you for negligence",
-          ]}
-        />
-      </ChatHeadlessProvider>
+      <ChatHeadlessProvider config={config}></ChatHeadlessProvider>
+    </div>
+  );
+}
+
+function ControlledPopup(props: ChatPopUpProps) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <button className="bg-emerald-300 rounded-sm p-2" onClick={() => setOpen(true)}>
+        Open Chat
+      </button>
+      <ChatPopUp {...props} isOpen={open} onClose={() => setOpen(false)} />
     </div>
   );
 }
