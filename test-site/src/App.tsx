@@ -1,5 +1,4 @@
-import { ChatHeader, ChatPanel, ChatPopUp } from "@yext/chat-ui-react";
-import { ChatPopUpProps } from "../../lib/esm/src/components/ChatPopUp";
+import { ChatHeader, ChatPanel, ChatPopUp, ChatPopUpProps } from "@yext/chat-ui-react";
 import {
   ChatHeadlessProvider,
   HeadlessConfig,

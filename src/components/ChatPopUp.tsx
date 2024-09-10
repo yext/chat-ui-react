@@ -154,6 +154,7 @@ export function ChatPopUp(props: ChatPopUpProps) {
   const [numReadMessages, setNumReadMessagesLength] = useState<number>(0);
   const [numUnreadMessages, setNumUnreadMessagesLength] = useState<number>(0);
 
+  // Set the initial value of the local storage flag for opening on load only if it doesn't already exist
   if (window.localStorage.getItem(popupLocalStorageKey) === null) {
     window.localStorage.setItem(
       popupLocalStorageKey,
@@ -168,7 +169,6 @@ export function ChatPopUp(props: ChatPopUpProps) {
   const isOpenOnLoad =
     (messages.length > 1 && openOnLoadLocalStorage === "true") || openOnLoad;
 
-  // Set the initial value of the local storage flag for opening on load only if it doesn't already exist
   const {
     renderChat,
     showChat,
@@ -307,7 +307,7 @@ function usePanelState(
       setShowChat(isOpen);
       setRenderChat(isOpen);
     }
-  }, [renderChat, isOpen]);
+  }, [isOpen]);
 
   useEffect(() => {
     if (!renderChat && isOpenOnLoad && isOpen === undefined) {
