@@ -117,6 +117,9 @@ export function ChatPanel(props: ChatPanelProps) {
   const suggestedReplies = useChatState(
     (state) => state.conversation.notes?.suggestedReplies
   );
+  const conversationId = useChatState(
+    (state) => state.conversation.conversationId
+  );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const reportAnalyticsEvent = useReportAnalyticsEvent();
   useFetchInitialMessage(handleError, stream);
@@ -157,8 +160,30 @@ export function ChatPanel(props: ChatPanelProps) {
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
 
+  // State to help detect initial messages rendering
+  const [initialMessagesLength] = useState(messages.length);
+
+  const savedPanelState = useMemo(() => {
+    if (!conversationId || !messages.length) {
+      return {};
+    }
+    return loadSessionState(
+      conversationId,
+      messages[messages.length - 1].timestamp
+    );
+  }, [conversationId, messages]);
+
   // Handle scrolling when messages change
   useEffect(() => {
+    const isInitialRender = messages.length === initialMessagesLength;
+    if (isInitialRender && savedPanelState.scrollPosition !== undefined) {
+      messagesContainer.current?.scroll({
+        top: savedPanelState?.scrollPosition,
+        behavior: "auto",
+      });
+      return;
+    }
+
     let scrollTop = 0;
     messagesRef.current = messagesRef.current.slice(0, messages.length);
 
@@ -175,7 +200,7 @@ export function ChatPanel(props: ChatPanelProps) {
       top: scrollTop,
       behavior: "smooth",
     });
-  }, [messages]);
+  }, [messages, initialMessagesLength, savedPanelState.scrollPosition]);
 
   const setMessagesRef = useCallback((index) => {
     if (!messagesRef?.current) return null;
@@ -189,6 +214,18 @@ export function ChatPanel(props: ChatPanelProps) {
     }),
     [cssClasses]
   );
+
+  useEffect(() => {
+    const curr = messagesContainer.current;
+    curr?.addEventListener("scroll", () => {
+      if (!conversationId) {
+        return;
+      }
+      saveSessionState(conversationId, {
+        scrollPosition: curr.scrollTop,
+      });
+    });
+  }, [messagesContainer, conversationId]);
 
   return (
     <div className="yext-chat w-full h-full">
@@ -250,3 +287,81 @@ export function ChatPanel(props: ChatPanelProps) {
     </div>
   );
 }
+
+const BASE_STATE_LOCAL_STORAGE_KEY = "yext_chat_panel_state";
+
+export function getStateLocalStorageKey(
+  hostname: string,
+  conversationId: string
+): string {
+  return `${BASE_STATE_LOCAL_STORAGE_KEY}__${hostname}__${conversationId}`;
+}
+
+/**
+ * Maintains the panel state of the session.
+ */
+export interface PanelState {
+  /** The scroll position of the panel. */
+  scrollPosition?: number;
+}
+
+/**
+ * Loads the {@link PanelState} from local storage.
+ */
+export const loadSessionState = (
+  conversationId: string,
+  lastTimestamp?: string
+): PanelState => {
+  const hostname = window?.location?.hostname;
+  if (!localStorage || !hostname) {
+    return {};
+  }
+  const savedState = localStorage.getItem(
+    getStateLocalStorageKey(hostname, conversationId)
+  );
+
+  if (savedState) {
+    try {
+      const parsedState: PanelState = JSON.parse(savedState);
+      const currentDate = new Date();
+      const lastDate = new Date(lastTimestamp || 0);
+      const diff = currentDate.getTime() - lastDate.getTime();
+      // If the last message was sent within the last day, we consider the session to be active
+      if (diff < 24 * 60 * 60 * 1000) {
+        return parsedState;
+      }
+      localStorage.removeItem(
+        getStateLocalStorageKey(hostname, conversationId)
+      );
+    } catch (e) {
+      console.warn("Unabled to load saved panel state: error parsing state.");
+      localStorage.removeItem(
+        getStateLocalStorageKey(hostname, conversationId)
+      );
+    }
+  }
+
+  return {};
+};
+
+export const saveSessionState = (conversationId: string, state: PanelState) => {
+  const hostname = window?.location?.hostname;
+  if (!localStorage || !hostname) {
+    return;
+  }
+  const previousState = localStorage.getItem(
+    getStateLocalStorageKey(hostname, conversationId)
+  );
+
+  if (previousState) {
+    try {
+      state = { ...JSON.parse(previousState), ...state };
+    } catch (e) {
+      console.warn("Unabled to load saved panel state: error parsing state.");
+    }
+  }
+  localStorage.setItem(
+    getStateLocalStorageKey(hostname, conversationId),
+    JSON.stringify(state)
+  );
+};
