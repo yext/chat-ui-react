@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useRef,
   useState,
+  useLayoutEffect,
 } from "react";
 import { useChatState } from "@yext/chat-headless-react";
 import {
@@ -215,7 +216,7 @@ export function ChatPanel(props: ChatPanelProps) {
     [cssClasses]
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const curr = messagesContainer.current;
     curr?.addEventListener("scroll", () => {
       if (!conversationId) {
