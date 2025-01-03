@@ -211,14 +211,18 @@ export function ChatPanel(props: ChatPanelProps) {
 
   useLayoutEffect(() => {
     const curr = messagesContainer.current;
-    curr?.addEventListener("scroll", () => {
+    const onScroll = () => {
       if (!conversationId) {
         return;
       }
       saveSessionState(conversationId, {
-        scrollPosition: curr.scrollTop,
+        scrollPosition: curr?.scrollTop,
       });
-    });
+    }
+    curr?.addEventListener("scroll", onScroll);
+    return () => {
+      curr?.removeEventListener("scroll", onScroll);
+    };
   }, [messagesContainer, conversationId]);
 
   return (
