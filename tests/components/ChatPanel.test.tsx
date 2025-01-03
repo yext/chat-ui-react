@@ -214,12 +214,6 @@ describe("loadSessionState works as expected", () => {
       messages: [{ ...dummyMessage, timestamp: new Date().toISOString() }],
     },
   };
-  const mockOldConvoState = {
-    conversation: {
-      conversationId: mockConvoId,
-      messages: [dummyMessage],
-    },
-  };
 
   it("saves panel state to local storage", () => {
     mockChatState(mockConvoState);
@@ -295,18 +289,6 @@ describe("loadSessionState works as expected", () => {
     expect(consoleWarnSpy).toBeCalledWith(
       "Unabled to load saved panel state: error parsing state."
     );
-  });
-
-  it("ignores and removes state when loading saved state older than 24 hours", () => {
-    mockChatState(mockOldConvoState);
-    localStorage.setItem(mockKey, JSON.stringify(mockPanelState));
-    const storageGetSpy = jest.spyOn(Storage.prototype, "getItem");
-    const storageRemoveSpy = jest.spyOn(Storage.prototype, "removeItem");
-
-    render(<ChatPanel />);
-    expect(storageGetSpy).toHaveBeenCalledWith(mockKey);
-    expect(storageRemoveSpy).toHaveBeenCalledWith(mockKey);
-    expect(localStorage.getItem(mockKey)).toBeNull();
   });
 });
 

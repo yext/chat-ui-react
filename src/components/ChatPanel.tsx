@@ -168,37 +168,30 @@ export function ChatPanel(props: ChatPanelProps) {
     if (!conversationId || !messages.length) {
       return {};
     }
-    return loadSessionState(
-      conversationId,
-      messages[messages.length - 1].timestamp
-    );
+    return loadSessionState(conversationId);
   }, [conversationId, messages]);
 
   // Handle scrolling when messages change
   useEffect(() => {
     const isInitialRender = messages.length === initialMessagesLength;
+    let scrollPos = 0;
     if (isInitialRender && savedPanelState.scrollPosition !== undefined) {
-      messagesContainer.current?.scroll({
-        top: savedPanelState?.scrollPosition,
-        behavior: "auto",
-      });
-      return;
+      // memorized position
+      scrollPos = savedPanelState?.scrollPosition;
+    } else {
+      messagesRef.current = messagesRef.current.slice(0, messages.length);
+      // Sums up scroll heights of all messages except the last one
+      if (messagesRef?.current.length > 1) {
+        // position of the top of the last message
+        scrollPos = messagesRef.current
+          .slice(0, -1)
+          .map((elem, _) => elem?.scrollHeight ?? 0)
+          .reduce((total, height) => total + height);
+      }
     }
 
-    let scrollTop = 0;
-    messagesRef.current = messagesRef.current.slice(0, messages.length);
-
-    // Sums up scroll heights of all messages except the last one
-    if (messagesRef?.current.length > 1) {
-      scrollTop = messagesRef.current
-        .slice(0, -1)
-        .map((elem, _) => elem?.scrollHeight ?? 0)
-        .reduce((total, height) => total + height);
-    }
-
-    // Scroll to the top of the last message
     messagesContainer.current?.scroll({
-      top: scrollTop,
+      top: scrollPos,
       behavior: "smooth",
     });
   }, [messages, initialMessagesLength, savedPanelState.scrollPosition]);
@@ -309,10 +302,7 @@ export interface PanelState {
 /**
  * Loads the {@link PanelState} from local storage.
  */
-export const loadSessionState = (
-  conversationId: string,
-  lastTimestamp?: string
-): PanelState => {
+export const loadSessionState = (conversationId: string): PanelState => {
   const hostname = window?.location?.hostname;
   if (!localStorage || !hostname) {
     return {};
@@ -324,16 +314,7 @@ export const loadSessionState = (
   if (savedState) {
     try {
       const parsedState: PanelState = JSON.parse(savedState);
-      const currentDate = new Date();
-      const lastDate = new Date(lastTimestamp || 0);
-      const diff = currentDate.getTime() - lastDate.getTime();
-      // If the last message was sent within the last day, we consider the session to be active
-      if (diff < 24 * 60 * 60 * 1000) {
-        return parsedState;
-      }
-      localStorage.removeItem(
-        getStateLocalStorageKey(hostname, conversationId)
-      );
+      return parsedState;
     } catch (e) {
       console.warn("Unabled to load saved panel state: error parsing state.");
       localStorage.removeItem(
