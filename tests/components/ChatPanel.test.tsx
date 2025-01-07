@@ -1,5 +1,4 @@
 /* eslint-disable testing-library/no-unnecessary-act */
-/* eslint-disable testing-library/no-node-access */
 import {
   act,
   render,
@@ -219,8 +218,8 @@ describe("loadSessionState works as expected", () => {
     mockChatState(mockConvoState);
     const storageSetSpy = jest.spyOn(Storage.prototype, "setItem");
 
-    const { container } = render(<ChatPanel />);
-    const scrollDiv = getChatPanelScrollDiv(container);
+    render(<ChatPanel />);
+    const scrollDiv = screen.getByLabelText("Chat Panel Messages Container");
 
     fireEvent.scroll(scrollDiv, {
       target: { scrollTop: mockPanelState.scrollPosition },
@@ -247,32 +246,6 @@ describe("loadSessionState works as expected", () => {
     );
   });
 
-  it("handles invalid state in local storage when saving new state", () => {
-    mockChatState(mockConvoState);
-    localStorage.setItem(mockKey, "hello world");
-    const storageSetSpy = jest.spyOn(Storage.prototype, "setItem");
-    const consoleWarnSpy = jest.spyOn(console, "warn").mockImplementation();
-    const { container } = render(<ChatPanel />);
-    const scrollDiv = getChatPanelScrollDiv(container);
-
-    fireEvent.scroll(scrollDiv, {
-      target: { scrollTop: mockPanelState.scrollPosition },
-    });
-
-    expect(storageSetSpy).toHaveBeenCalledWith(
-      mockKey,
-      JSON.stringify(mockPanelState)
-    );
-    expect(localStorage.getItem(mockKey)).toEqual(
-      JSON.stringify(mockPanelState)
-    );
-
-    expect(consoleWarnSpy).toBeCalledTimes(1);
-    expect(consoleWarnSpy).toBeCalledWith(
-      "Unabled to load saved panel state: error parsing state."
-    );
-  });
-
   it("handles invalid state in local storage when loading saved state", () => {
     mockChatState(mockConvoState);
     localStorage.setItem(mockKey, "hello world");
@@ -291,9 +264,3 @@ describe("loadSessionState works as expected", () => {
     );
   });
 });
-
-const getChatPanelScrollDiv = (chatPanelContainer: HTMLElement) => {
-  return chatPanelContainer.getElementsByClassName(
-    "yext-chat-panel__messages-container"
-  )[0];
-};

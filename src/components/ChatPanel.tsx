@@ -165,11 +165,11 @@ export function ChatPanel(props: ChatPanelProps) {
   const [initialMessagesLength] = useState(messages.length);
 
   const savedPanelState = useMemo(() => {
-    if (!conversationId || !messages.length) {
+    if (!conversationId) {
       return {};
     }
     return loadSessionState(conversationId);
-  }, [conversationId, messages]);
+  }, [conversationId]);
 
   // Handle scrolling when messages change
   useEffect(() => {
@@ -218,7 +218,7 @@ export function ChatPanel(props: ChatPanelProps) {
       saveSessionState(conversationId, {
         scrollPosition: curr?.scrollTop,
       });
-    }
+    };
     curr?.addEventListener("scroll", onScroll);
     return () => {
       curr?.removeEventListener("scroll", onScroll);
@@ -230,7 +230,11 @@ export function ChatPanel(props: ChatPanelProps) {
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>
-          <div ref={messagesContainer} className={cssClasses.messagesContainer}>
+          <div
+            ref={messagesContainer}
+            className={cssClasses.messagesContainer}
+            aria-label="Chat Panel Messages Container"
+          >
             {messages.map((message, index) => (
               <div key={index} ref={setMessagesRef(index)}>
                 <MessageBubble
@@ -334,17 +338,6 @@ export const saveSessionState = (conversationId: string, state: PanelState) => {
   const hostname = window?.location?.hostname;
   if (!localStorage || !hostname) {
     return;
-  }
-  const previousState = localStorage.getItem(
-    getStateLocalStorageKey(hostname, conversationId)
-  );
-
-  if (previousState) {
-    try {
-      state = { ...JSON.parse(previousState), ...state };
-    } catch (e) {
-      console.warn("Unabled to load saved panel state: error parsing state.");
-    }
   }
   localStorage.setItem(
     getStateLocalStorageKey(hostname, conversationId),
