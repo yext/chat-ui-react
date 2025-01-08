@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useRef,
   useState,
+  useLayoutEffect,
 } from "react";
 import { useChatState } from "@yext/chat-headless-react";
 import {
@@ -117,6 +118,9 @@ export function ChatPanel(props: ChatPanelProps) {
   const suggestedReplies = useChatState(
     (state) => state.conversation.notes?.suggestedReplies
   );
+  const conversationId = useChatState(
+    (state) => state.conversation.conversationId
+  );
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const reportAnalyticsEvent = useReportAnalyticsEvent();
   useFetchInitialMessage(handleError, stream);
@@ -157,25 +161,40 @@ export function ChatPanel(props: ChatPanelProps) {
   const messagesRef = useRef<Array<HTMLDivElement | null>>([]);
   const messagesContainer = useRef<HTMLDivElement>(null);
 
+  // State to help detect initial messages rendering
+  const [initialMessagesLength] = useState(messages.length);
+
+  const savedPanelState = useMemo(() => {
+    if (!conversationId) {
+      return {};
+    }
+    return loadSessionState(conversationId);
+  }, [conversationId]);
+
   // Handle scrolling when messages change
   useEffect(() => {
-    let scrollTop = 0;
-    messagesRef.current = messagesRef.current.slice(0, messages.length);
-
-    // Sums up scroll heights of all messages except the last one
-    if (messagesRef?.current.length > 1) {
-      scrollTop = messagesRef.current
-        .slice(0, -1)
-        .map((elem, _) => elem?.scrollHeight ?? 0)
-        .reduce((total, height) => total + height);
+    const isInitialRender = messages.length === initialMessagesLength;
+    let scrollPos = 0;
+    if (isInitialRender && savedPanelState.scrollPosition !== undefined) {
+      // memorized position
+      scrollPos = savedPanelState?.scrollPosition;
+    } else {
+      messagesRef.current = messagesRef.current.slice(0, messages.length);
+      // Sums up scroll heights of all messages except the last one
+      if (messagesRef?.current.length > 1) {
+        // position of the top of the last message
+        scrollPos = messagesRef.current
+          .slice(0, -1)
+          .map((elem, _) => elem?.scrollHeight ?? 0)
+          .reduce((total, height) => total + height);
+      }
     }
 
-    // Scroll to the top of the last message
     messagesContainer.current?.scroll({
-      top: scrollTop,
+      top: scrollPos,
       behavior: "smooth",
     });
-  }, [messages]);
+  }, [messages, initialMessagesLength, savedPanelState.scrollPosition]);
 
   const setMessagesRef = useCallback((index) => {
     if (!messagesRef?.current) return null;
@@ -190,12 +209,32 @@ export function ChatPanel(props: ChatPanelProps) {
     [cssClasses]
   );
 
+  useLayoutEffect(() => {
+    const curr = messagesContainer.current;
+    const onScroll = () => {
+      if (!conversationId) {
+        return;
+      }
+      saveSessionState(conversationId, {
+        scrollPosition: curr?.scrollTop,
+      });
+    };
+    curr?.addEventListener("scroll", onScroll);
+    return () => {
+      curr?.removeEventListener("scroll", onScroll);
+    };
+  }, [messagesContainer, conversationId]);
+
   return (
     <div className="yext-chat w-full h-full">
       <div className={cssClasses.container}>
         {header}
         <div className={cssClasses.messagesScrollContainer}>
-          <div ref={messagesContainer} className={cssClasses.messagesContainer}>
+          <div
+            ref={messagesContainer}
+            className={cssClasses.messagesContainer}
+            aria-label="Chat Panel Messages Container"
+          >
             {messages.map((message, index) => (
               <div key={index} ref={setMessagesRef(index)}>
                 <MessageBubble
@@ -250,3 +289,58 @@ export function ChatPanel(props: ChatPanelProps) {
     </div>
   );
 }
+
+const BASE_STATE_LOCAL_STORAGE_KEY = "yext_chat_panel_state";
+
+export function getStateLocalStorageKey(
+  hostname: string,
+  conversationId: string
+): string {
+  return `${BASE_STATE_LOCAL_STORAGE_KEY}__${hostname}__${conversationId}`;
+}
+
+/**
+ * Maintains the panel state of the session.
+ */
+export interface PanelState {
+  /** The scroll position of the panel. */
+  scrollPosition?: number;
+}
+
+/**
+ * Loads the {@link PanelState} from local storage.
+ */
+export const loadSessionState = (conversationId: string): PanelState => {
+  const hostname = window?.location?.hostname;
+  if (!localStorage || !hostname) {
+    return {};
+  }
+  const savedState = localStorage.getItem(
+    getStateLocalStorageKey(hostname, conversationId)
+  );
+
+  if (savedState) {
+    try {
+      const parsedState: PanelState = JSON.parse(savedState);
+      return parsedState;
+    } catch (e) {
+      console.warn("Unabled to load saved panel state: error parsing state.");
+      localStorage.removeItem(
+        getStateLocalStorageKey(hostname, conversationId)
+      );
+    }
+  }
+
+  return {};
+};
+
+export const saveSessionState = (conversationId: string, state: PanelState) => {
+  const hostname = window?.location?.hostname;
+  if (!localStorage || !hostname) {
+    return;
+  }
+  localStorage.setItem(
+    getStateLocalStorageKey(hostname, conversationId),
+    JSON.stringify(state)
+  );
+};

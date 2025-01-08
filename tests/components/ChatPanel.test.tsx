@@ -1,5 +1,11 @@
 /* eslint-disable testing-library/no-unnecessary-act */
-import { act, render, screen, waitFor } from "@testing-library/react";
+import {
+  act,
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ChatPanel } from "../../src";
 import {
@@ -9,6 +15,10 @@ import {
   spyOnActions,
 } from "../__utils__/mocks";
 import { Message, MessageSource } from "@yext/chat-headless-react";
+import {
+  PanelState,
+  getStateLocalStorageKey,
+} from "../../src/components/ChatPanel";
 
 const dummyMessage: Message = {
   timestamp: "2023-05-31T14:22:19.376Z",
@@ -187,4 +197,70 @@ it("applies link target setting (default blank)", async () => {
 
   render(<ChatPanel />);
   expect(screen.getByText("msg link")).toHaveAttribute("target", "_blank");
+});
+
+describe("loadSessionState works as expected", () => {
+  const jestHostname = "localhost";
+  window.location.hostname = jestHostname;
+  const mockConvoId = "dummy-id";
+  const mockKey = getStateLocalStorageKey(jestHostname, mockConvoId);
+  const mockPanelState: PanelState = {
+    scrollPosition: 23,
+  };
+  const mockConvoState = {
+    conversation: {
+      conversationId: mockConvoId,
+      messages: [{ ...dummyMessage, timestamp: new Date().toISOString() }],
+    },
+  };
+
+  it("saves panel state to local storage", () => {
+    mockChatState(mockConvoState);
+    const storageSetSpy = jest.spyOn(Storage.prototype, "setItem");
+
+    render(<ChatPanel />);
+    const scrollDiv = screen.getByLabelText("Chat Panel Messages Container");
+
+    fireEvent.scroll(scrollDiv, {
+      target: { scrollTop: mockPanelState.scrollPosition },
+    });
+
+    expect(storageSetSpy).toHaveBeenCalledWith(
+      mockKey,
+      JSON.stringify(mockPanelState)
+    );
+    expect(localStorage.getItem(mockKey)).toEqual(
+      JSON.stringify(mockPanelState)
+    );
+  });
+
+  it("loads panel from local storage", () => {
+    mockChatState(mockConvoState);
+    localStorage.setItem(mockKey, JSON.stringify(mockPanelState));
+    const storageGetSpy = jest.spyOn(Storage.prototype, "getItem");
+
+    render(<ChatPanel />);
+    expect(storageGetSpy).toHaveBeenCalledWith(mockKey);
+    expect(localStorage.getItem(mockKey)).toEqual(
+      JSON.stringify(mockPanelState)
+    );
+  });
+
+  it("handles invalid state in local storage when loading saved state", () => {
+    mockChatState(mockConvoState);
+    localStorage.setItem(mockKey, "hello world");
+    const storageGetSpy = jest.spyOn(Storage.prototype, "getItem");
+    const storageRemoveSpy = jest.spyOn(Storage.prototype, "removeItem");
+    const consoleWarnSpy = jest.spyOn(console, "warn").mockImplementation();
+    render(<ChatPanel />);
+
+    expect(storageGetSpy).toHaveBeenCalledWith(mockKey);
+    expect(storageRemoveSpy).toHaveBeenCalledWith(mockKey);
+    expect(localStorage.getItem(mockKey)).toBeNull();
+
+    expect(consoleWarnSpy).toBeCalledTimes(1);
+    expect(consoleWarnSpy).toBeCalledWith(
+      "Unabled to load saved panel state: error parsing state."
+    );
+  });
 });
