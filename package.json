@@ -70,7 +70,7 @@
     "@types/jest": "^29.5.1",
     "@types/react": "^18.2.7",
     "@yext/chat-headless-react": "^0.9.1",
-    "@yext/eslint-config": "^1.0.0",
+    "@yext/eslint-config": "^1.0.2",
     "babel-jest": "^29.5.0",
     "eslint": "^8.39.0",
     "eslint-plugin-storybook": "^0.6.12",
