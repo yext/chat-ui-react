@@ -76,6 +76,6 @@ export function mockChatAnalytics(
       report: jest.fn(),
     }));
   return jest
-    .spyOn(require("@yext/analytics"), "provideChatAnalytics")
+    .spyOn(require("@yext/analytics"), "analytics")
     .mockImplementation(mockImpl as (...args: unknown[]) => unknown);
 }
