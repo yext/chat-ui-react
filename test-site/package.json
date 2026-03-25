@@ -20,6 +20,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test"
   },
+  "overrides": {
+    "svgo": "^2.8.1"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
