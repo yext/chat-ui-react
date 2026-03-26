@@ -1,6 +1,6 @@
 {
   "name": "@yext/chat-ui-react",
-  "version": "0.12.2",
+  "version": "0.12.1",
   "description": "A library of React Components for powering Yext Chat integrations.",
   "author": "clippy@yext.com",
   "main": "./lib/commonjs/src/index.js",
@@ -48,6 +48,14 @@
     "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run generate-docs && npm run generate-notices",
     "build-storybook": "storybook build"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yext/chat-ui-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yext/chat-ui-react/issues"
+  },
+  "homepage": "https://github.com/yext/chat-ui-react#readme",
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.21.5",
