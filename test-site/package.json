@@ -21,7 +21,8 @@
     "test": "react-scripts test"
   },
   "overrides": {
-    "svgo": "^2.8.1"
+    "svgo": "^2.8.1",
+    "rollup": "^3.30.0"
   },
   "browserslist": {
     "production": [
