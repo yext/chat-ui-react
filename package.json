@@ -58,7 +58,7 @@
   "homepage": "https://github.com/yext/chat-ui-react#readme",
   "devDependencies": {
     "@babel/core": "^7.21.8",
-    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-env": "^7.29.5",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.5",
     "@microsoft/api-documenter": "^7.22.8",
