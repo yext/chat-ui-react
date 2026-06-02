@@ -21,6 +21,7 @@ export interface MessageBubbleProps
 |  [linkTarget?](./chat-ui-react.messagebubbleprops.linktarget.md) |  | string | _(Optional)_ Link target open behavior on click. |
 |  [message](./chat-ui-react.messagebubbleprops.message.md) |  | Message | The message to display. |
 |  [onLinkClick?](./chat-ui-react.messagebubbleprops.onlinkclick.md) |  | (href?: string) =&gt; void | _(Optional)_ A callback which is called when user clicks a link. |
+|  [renderMarkdown?](./chat-ui-react.messagebubbleprops.rendermarkdown.md) |  | boolean | _(Optional)_ Whether to render the message text as markdown. Defaults to true. |
 |  [showFeedbackButtons?](./chat-ui-react.messagebubbleprops.showfeedbackbuttons.md) |  | boolean | _(Optional)_ Whether to show the feedback buttons on the message bubble. Defaults to true. |
 |  [showTimestamp?](./chat-ui-react.messagebubbleprops.showtimestamp.md) |  | boolean | _(Optional)_ Whether to show the timestamp of the message with the message bubble. Defaults to true. |
 

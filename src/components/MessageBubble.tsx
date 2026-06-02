@@ -79,6 +79,11 @@ export interface MessageBubbleProps {
   linkTarget?: string;
   /** A callback which is called when user clicks a link. */
   onLinkClick?: (href?: string) => void;
+  /**
+   * Whether to render the message text as markdown.
+   * Defaults to true.
+   */
+  renderMarkdown?: boolean;
 }
 
 /**
@@ -96,6 +101,7 @@ export function MessageBubble({
   formatTimestamp = defaultFormatTimestamp,
   linkTarget,
   onLinkClick,
+  renderMarkdown = true,
 }: MessageBubbleProps) {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const bubbleCssClasses = twMerge(
@@ -140,13 +146,17 @@ export function MessageBubble({
               responseId={message.responseId}
             />
           )}
-          <Markdown
-            content={message.text}
-            responseId={message.responseId}
-            customCssClasses={markdownCssClasses}
-            linkTarget={linkTarget}
-            onLinkClick={onLinkClick}
-          />
+          {renderMarkdown ? (
+            <Markdown
+              content={message.text}
+              responseId={message.responseId}
+              customCssClasses={markdownCssClasses}
+              linkTarget={linkTarget}
+              onLinkClick={onLinkClick}
+            />
+          ) : (
+            <div className={textCssClasses}>{message.text}</div>
+          )}
         </div>
         {/* fallback on empty space here to perserve the height for timestamp div */}
         {showTimestamp && (
