@@ -79,3 +79,53 @@ it("applies link target setting (parent)", async () => {
 
   expect(screen.getByText("msg link")).toHaveAttribute("target", "_parent");
 });
+
+it("renders markdown by default", () => {
+  const linkMessage: Message = {
+    text: "Test [msg link](msglink)",
+    timestamp: "2023-06-01T15:26:55.362Z",
+    source: MessageSource.USER,
+  };
+
+  render(
+    <ChatHeadlessProvider config={dummyConfig}>
+      <MessageBubble message={linkMessage} />
+    </ChatHeadlessProvider>
+  );
+
+  expect(screen.getByText("msg link")).toHaveAttribute("href", "msglink");
+});
+
+it("renders raw message text when renderMarkdown is false", () => {
+  const linkMessage: Message = {
+    text: "Test [msg link](msglink)",
+    timestamp: "2023-06-01T15:26:55.362Z",
+    source: MessageSource.USER,
+  };
+
+  render(
+    <ChatHeadlessProvider config={dummyConfig}>
+      <MessageBubble message={linkMessage} renderMarkdown={false} />
+    </ChatHeadlessProvider>
+  );
+
+  expect(screen.getByText(linkMessage.text)).toBeInTheDocument();
+  expect(screen.queryByRole("link")).not.toBeInTheDocument();
+});
+
+it("escapes html when renderMarkdown is false", () => {
+  const htmlMessage: Message = {
+    text: "<strong>Test</strong>",
+    timestamp: "2023-06-01T15:26:55.362Z",
+    source: MessageSource.USER,
+  };
+
+  render(
+    <ChatHeadlessProvider config={dummyConfig}>
+      <MessageBubble message={htmlMessage} renderMarkdown={false} />
+    </ChatHeadlessProvider>
+  );
+
+  expect(screen.getByText(htmlMessage.text)).toBeInTheDocument();
+  expect(screen.queryByText("Test")).not.toBeInTheDocument();
+});

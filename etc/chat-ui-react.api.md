@@ -178,7 +178,7 @@ export interface InitialMessagePopUpCssClasses {
 }
 
 // @public
-export function MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, linkTarget, onLinkClick, }: MessageBubbleProps): React_2.JSX.Element;
+export function MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, linkTarget, onLinkClick, renderMarkdown, }: MessageBubbleProps): React_2.JSX.Element;
 
 // @public
 export interface MessageBubbleCssClasses {
@@ -219,6 +219,7 @@ export interface MessageBubbleProps {
     linkTarget?: string;
     message: Message;
     onLinkClick?: (href?: string) => void;
+    renderMarkdown?: boolean;
     showFeedbackButtons?: boolean;
     showTimestamp?: boolean;
 }
