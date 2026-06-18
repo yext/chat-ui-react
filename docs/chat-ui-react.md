@@ -8,7 +8,8 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, })](./chat-ui-react.chatheader.md) | A component that renders the header of a chat bot panel, including the title and a button to reset the conversation. |
+|  [AISignpostIcon({ className, })](./chat-ui-react.aisignposticon.md) | Default icon for the AI signpost. |
+|  [ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, hideAISignpost, aiSignpostProps, onClose, customCssClasses, })](./chat-ui-react.chatheader.md) | A component that renders the header of a chat bot panel, including the title and a button to reset the conversation. |
 |  [ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, onRetry, })](./chat-ui-react.chatinput.md) | A component that allows user to input message and send to Chat API. |
 |  [ChatPanel(props)](./chat-ui-react.chatpanel.md) | A component that renders a full panel for chat bot interactions. This includes the message bubbles for the conversation, input box with send button, and header (if provided). |
 |  [ChatPopUp(props)](./chat-ui-react.chatpopup.md) | A component that renders a popup button that displays and hides a panel for chat bot interactions. |
@@ -20,6 +21,7 @@
 
 |  Interface | Description |
 |  --- | --- |
+|  [AISignpostProps](./chat-ui-react.aisignpostprops.md) | Props for the built-in AI signpost component. |
 |  [ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md) | The CSS class interface for the [ChatHeader()](./chat-ui-react.chatheader.md) component. |
 |  [ChatHeaderProps](./chat-ui-react.chatheaderprops.md) | The props for the [ChatHeader()](./chat-ui-react.chatheader.md) component. |
 |  [ChatInputCssClasses](./chat-ui-react.chatinputcssclasses.md) | The CSS class interface for the [ChatInput()](./chat-ui-react.chatinput.md) component. |

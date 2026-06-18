@@ -10,7 +10,20 @@ import { default as React_2 } from 'react';
 import { ReactNode } from 'react';
 
 // @public
-export function ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, onClose, customCssClasses, }: ChatHeaderProps): React_2.JSX.Element;
+export function AISignpostIcon({ className, }: {
+    className?: string;
+}): React_2.JSX.Element;
+
+// @public
+export interface AISignpostProps {
+    icon?: React_2.JSX.Element;
+    label?: string;
+    popoverBody?: string;
+    popoverHeader?: string;
+}
+
+// @public
+export function ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, hideAISignpost, aiSignpostProps, onClose, customCssClasses, }: ChatHeaderProps): React_2.JSX.Element;
 
 // @public
 export interface ChatHeaderCssClasses {
@@ -30,8 +43,10 @@ export interface ChatHeaderCssClasses {
 
 // @public
 export interface ChatHeaderProps {
+    aiSignpostProps?: AISignpostProps;
     closeButtonIcon?: JSX.Element;
     customCssClasses?: ChatHeaderCssClasses;
+    hideAISignpost?: boolean;
     onClose?: () => void;
     restartButtonIcon?: JSX.Element;
     showCloseButton?: boolean;
