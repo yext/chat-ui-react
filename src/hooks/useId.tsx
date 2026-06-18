@@ -17,7 +17,7 @@ function genId(baseName: string): string {
 
 // Workaround for https://github.com/webpack/webpack/issues/14814
 // https://github.com/eps1lon/material-ui/blob/8d5f135b4d7a58253a99ab56dce4ac8de61f5dc1/packages/mui-utils/src/useId.ts#L21
-const maybeReactUseId: undefined | (() => string) = (React as any)[
+const maybeReactUseId: undefined | (() => string) = (React as never)[
     'useId'.toString()
     ];
 
