@@ -31,3 +31,26 @@ export const HeaderWithButtons: StoryObj<typeof meta> = {
     customCssClasses: {},
   },
 };
+
+export const HeaderWithCustomSignpost: StoryObj<typeof meta> = {
+  ...Primary,
+  args: {
+    title: "Chat Header",
+    aiSignpostProps: {
+      label: "AI-Assisted",
+      popoverHeader: "AI-Assisted Content",
+      popoverBody:
+        "This response may contain AI-assisted content. Review important details before relying on it.",
+    },
+    customCssClasses: {},
+  },
+};
+
+export const HeaderWithoutSignpost: StoryObj<typeof meta> = {
+  ...Primary,
+  args: {
+    title: "Chat Header",
+    hideAISignpost: true,
+    customCssClasses: {},
+  },
+};

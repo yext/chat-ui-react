@@ -16,8 +16,10 @@ export interface ChatHeaderProps
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
+|  [aiSignpostProps?](./chat-ui-react.chatheaderprops.aisignpostprops.md) |  | [AISignpostProps](./chat-ui-react.aisignpostprops.md) | _(Optional)_ The props to pass to the built-in AI signpost component. |
 |  [closeButtonIcon?](./chat-ui-react.chatheaderprops.closebuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for for close button. |
 |  [customCssClasses?](./chat-ui-react.chatheaderprops.customcssclasses.md) |  | [ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [hideAISignpost?](./chat-ui-react.chatheaderprops.hideaisignpost.md) |  | boolean | _(Optional)_ Whether to hide the AI signpost. Defaults to false. |
 |  [onClose?](./chat-ui-react.chatheaderprops.onclose.md) |  | () =&gt; void | _(Optional)_ A function which is called when the close button is clicked. |
 |  [restartButtonIcon?](./chat-ui-react.chatheaderprops.restartbuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for for restart button. |
 |  [showCloseButton?](./chat-ui-react.chatheaderprops.showclosebutton.md) |  | boolean | _(Optional)_ Displays a close button which will invoke [ChatHeaderProps.onClose](./chat-ui-react.chatheaderprops.onclose.md) on click. Default to false. |

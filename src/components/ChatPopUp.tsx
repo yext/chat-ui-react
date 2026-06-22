@@ -141,6 +141,8 @@ export function ChatPopUp(props: ChatPopUpProps) {
     title,
     footer,
     isOpen,
+    hideAISignpost,
+    aiSignpostProps,
   } = props;
 
   const reportAnalyticsEvent = useReportAnalyticsEvent();
@@ -230,6 +232,8 @@ export function ChatPopUp(props: ChatPopUpProps) {
                   title={title}
                   showRestartButton={showRestartButton}
                   showCloseButton={true}
+                  hideAISignpost={hideAISignpost}
+                  aiSignpostProps={aiSignpostProps}
                   onClose={onClose}
                   customCssClasses={cssClasses.headerCssClasses}
                 />
