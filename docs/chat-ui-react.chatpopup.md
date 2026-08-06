@@ -14,9 +14,39 @@ export declare function ChatPopUp(props: ChatPopUpProps): React.JSX.Element;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  props | [ChatPopUpProps](./chat-ui-react.chatpopupprops.md) | [ChatPanelProps](./chat-ui-react.chatpanelprops.md) |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+props
+
+
+</td><td>
+
+[ChatPopUpProps](./chat-ui-react.chatpopupprops.md)
+
+
+</td><td>
+
+[ChatPanelProps](./chat-ui-react.chatpanelprops.md)
+
+
+</td></tr>
+</tbody></table>
 
 **Returns:**
 

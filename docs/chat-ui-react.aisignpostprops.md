@@ -14,10 +14,102 @@ export interface AISignpostProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [icon?](./chat-ui-react.aisignpostprops.icon.md) |  | React.JSX.Element | _(Optional)_ Icon displayed before the signpost label. Defaults to the SDK's AI signpost icon. |
-|  [label?](./chat-ui-react.aisignpostprops.label.md) |  | string | _(Optional)_ Label displayed in the signpost button. Defaults to "AI-Powered". |
-|  [popoverBody?](./chat-ui-react.aisignpostprops.popoverbody.md) |  | string | _(Optional)_ Body displayed in the signpost popover. |
-|  [popoverHeader?](./chat-ui-react.aisignpostprops.popoverheader.md) |  | string | _(Optional)_ Header displayed in the signpost popover. Defaults to "AI-Generated Content". |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[icon?](./chat-ui-react.aisignpostprops.icon.md)
+
+
+</td><td>
+
+
+</td><td>
+
+React.JSX.Element
+
+
+</td><td>
+
+_(Optional)_ Icon displayed before the signpost label. Defaults to the SDK's AI signpost icon.
+
+
+</td></tr>
+<tr><td>
+
+[label?](./chat-ui-react.aisignpostprops.label.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ Label displayed in the signpost button. Defaults to "AI-Powered".
+
+
+</td></tr>
+<tr><td>
+
+[popoverBody?](./chat-ui-react.aisignpostprops.popoverbody.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ Body displayed in the signpost popover.
+
+
+</td></tr>
+<tr><td>
+
+[popoverHeader?](./chat-ui-react.aisignpostprops.popoverheader.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ Header displayed in the signpost popover. Defaults to "AI-Generated Content".
+
+
+</td></tr>
+</tbody></table>
 

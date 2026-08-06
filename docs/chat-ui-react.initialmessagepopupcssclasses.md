@@ -14,10 +14,102 @@ export interface InitialMessagePopUpCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [closeButton?](./chat-ui-react.initialmessagepopupcssclasses.closebutton.md) |  | string | _(Optional)_ |
-|  [closeButtonIcon?](./chat-ui-react.initialmessagepopupcssclasses.closebuttonicon.md) |  | string | _(Optional)_ |
-|  [container?](./chat-ui-react.initialmessagepopupcssclasses.container.md) |  | string | _(Optional)_ |
-|  [message?](./chat-ui-react.initialmessagepopupcssclasses.message.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[closeButton?](./chat-ui-react.initialmessagepopupcssclasses.closebutton.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[closeButtonIcon?](./chat-ui-react.initialmessagepopupcssclasses.closebuttonicon.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[container?](./chat-ui-react.initialmessagepopupcssclasses.container.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[message?](./chat-ui-react.initialmessagepopupcssclasses.message.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>
 

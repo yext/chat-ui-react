@@ -14,14 +14,178 @@ export interface MessageBubbleProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./chat-ui-react.messagebubbleprops.customcssclasses.md) |  | [MessageBubbleCssClasses](./chat-ui-react.messagebubblecssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [formatTimestamp?](./chat-ui-react.messagebubbleprops.formattimestamp.md) |  | (timestamp: string) =&gt; string | _(Optional)_ A function which is called to format the message's timestamp given in ISO format (e.g. "2023-05-18T19:33:34.553Z"). Defaults to "HH:MM A" (e.g. "7:33 PM"). |
-|  [linkTarget?](./chat-ui-react.messagebubbleprops.linktarget.md) |  | string | _(Optional)_ Link target open behavior on click. |
-|  [message](./chat-ui-react.messagebubbleprops.message.md) |  | Message | The message to display. |
-|  [onLinkClick?](./chat-ui-react.messagebubbleprops.onlinkclick.md) |  | (href?: string) =&gt; void | _(Optional)_ A callback which is called when user clicks a link. |
-|  [renderMarkdown?](./chat-ui-react.messagebubbleprops.rendermarkdown.md) |  | boolean | _(Optional)_ Whether to render the message text as markdown. Defaults to true. |
-|  [showFeedbackButtons?](./chat-ui-react.messagebubbleprops.showfeedbackbuttons.md) |  | boolean | _(Optional)_ Whether to show the feedback buttons on the message bubble. Defaults to true. |
-|  [showTimestamp?](./chat-ui-react.messagebubbleprops.showtimestamp.md) |  | boolean | _(Optional)_ Whether to show the timestamp of the message with the message bubble. Defaults to true. |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./chat-ui-react.messagebubbleprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[MessageBubbleCssClasses](./chat-ui-react.messagebubblecssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[formatTimestamp?](./chat-ui-react.messagebubbleprops.formattimestamp.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(timestamp: string) =&gt; string
+
+
+</td><td>
+
+_(Optional)_ A function which is called to format the message's timestamp given in ISO format (e.g. "2023-05-18T19:33:34.553Z"). Defaults to "HH:MM A" (e.g. "7:33 PM").
+
+
+</td></tr>
+<tr><td>
+
+[linkTarget?](./chat-ui-react.messagebubbleprops.linktarget.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ Link target open behavior on click.
+
+
+</td></tr>
+<tr><td>
+
+[message](./chat-ui-react.messagebubbleprops.message.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Message
+
+
+</td><td>
+
+The message to display.
+
+
+</td></tr>
+<tr><td>
+
+[onLinkClick?](./chat-ui-react.messagebubbleprops.onlinkclick.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(href?: string) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A callback which is called when user clicks a link.
+
+
+</td></tr>
+<tr><td>
+
+[renderMarkdown?](./chat-ui-react.messagebubbleprops.rendermarkdown.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to render the message text as markdown. Defaults to true.
+
+
+</td></tr>
+<tr><td>
+
+[showFeedbackButtons?](./chat-ui-react.messagebubbleprops.showfeedbackbuttons.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to show the feedback buttons on the message bubble. Defaults to true.
+
+
+</td></tr>
+<tr><td>
+
+[showTimestamp?](./chat-ui-react.messagebubbleprops.showtimestamp.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to show the timestamp of the message with the message bubble. Defaults to true.
+
+
+</td></tr>
+</tbody></table>
 

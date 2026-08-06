@@ -14,9 +14,37 @@ export declare function MessageBubble({ message, showFeedbackButtons, showTimest
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, linkTarget, onLinkClick, renderMarkdown, } | [MessageBubbleProps](./chat-ui-react.messagebubbleprops.md) |  |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, linkTarget, onLinkClick, renderMarkdown, }
+
+
+</td><td>
+
+[MessageBubbleProps](./chat-ui-react.messagebubbleprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 
 **Returns:**
 

@@ -15,13 +15,159 @@ export interface ChatPanelProps extends Omit<MessageBubbleProps, "customCssClass
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./chat-ui-react.chatpanelprops.customcssclasses.md) |  | [ChatPanelCssClasses](./chat-ui-react.chatpanelcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [footer?](./chat-ui-react.chatpanelprops.footer.md) |  | string | _(Optional)_ A footer markdown string to render at the bottom of the panel. |
-|  [header?](./chat-ui-react.chatpanelprops.header.md) |  | ReactNode | _(Optional)_ A header to render at the top of the panel. |
-|  [linkTarget?](./chat-ui-react.chatpanelprops.linktarget.md) |  | string | _(Optional)_ Link target open behavior on click. Defaults to "\_blank". |
-|  [messageSuggestions?](./chat-ui-react.chatpanelprops.messagesuggestions.md) |  | string\[\] | _(Optional)_ A set of pre-written initial messages that the user can click on instead of typing their own. |
-|  [onLinkClick?](./chat-ui-react.chatpanelprops.onlinkclick.md) |  | (href?: string) =&gt; void | _(Optional)_ A callback which is called when user clicks a link. |
-|  [retryText?](./chat-ui-react.chatpanelprops.retrytext.md) |  | string | _(Optional)_ Text to display when retrying. Defaults to "Error occurred. Retrying". |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./chat-ui-react.chatpanelprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[ChatPanelCssClasses](./chat-ui-react.chatpanelcssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[footer?](./chat-ui-react.chatpanelprops.footer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ A footer markdown string to render at the bottom of the panel.
+
+
+</td></tr>
+<tr><td>
+
+[header?](./chat-ui-react.chatpanelprops.header.md)
+
+
+</td><td>
+
+
+</td><td>
+
+ReactNode
+
+
+</td><td>
+
+_(Optional)_ A header to render at the top of the panel.
+
+
+</td></tr>
+<tr><td>
+
+[linkTarget?](./chat-ui-react.chatpanelprops.linktarget.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ Link target open behavior on click. Defaults to "\_blank".
+
+
+</td></tr>
+<tr><td>
+
+[messageSuggestions?](./chat-ui-react.chatpanelprops.messagesuggestions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ A set of pre-written initial messages that the user can click on instead of typing their own.
+
+
+</td></tr>
+<tr><td>
+
+[onLinkClick?](./chat-ui-react.chatpanelprops.onlinkclick.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(href?: string) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A callback which is called when user clicks a link.
+
+
+</td></tr>
+<tr><td>
+
+[retryText?](./chat-ui-react.chatpanelprops.retrytext.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ Text to display when retrying. Defaults to "Error occurred. Retrying".
+
+
+</td></tr>
+</tbody></table>
 

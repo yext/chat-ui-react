@@ -14,9 +14,39 @@ export declare function ChatPanel(props: ChatPanelProps): React.JSX.Element;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  props | [ChatPanelProps](./chat-ui-react.chatpanelprops.md) | [ChatPanelProps](./chat-ui-react.chatpanelprops.md) |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+props
+
+
+</td><td>
+
+[ChatPanelProps](./chat-ui-react.chatpanelprops.md)
+
+
+</td><td>
+
+[ChatPanelProps](./chat-ui-react.chatpanelprops.md)
+
+
+</td></tr>
+</tbody></table>
 
 **Returns:**
 

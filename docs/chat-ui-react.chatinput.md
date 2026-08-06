@@ -14,9 +14,37 @@ export declare function ChatInput({ placeholder, stream, inputAutoFocus, handleE
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, onRetry, } | [ChatInputProps](./chat-ui-react.chatinputprops.md) |  |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, onRetry, }
+
+
+</td><td>
+
+[ChatInputProps](./chat-ui-react.chatinputprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 
 **Returns:**
 
