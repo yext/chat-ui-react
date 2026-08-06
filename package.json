@@ -46,6 +46,7 @@
     "build:css": "./scoped-bundle.sh",
     "build:js": "rollup --config rollup.config.mjs",
     "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run generate-docs && npm run generate-notices",
+    "prepack": "npm run build",
     "build-storybook": "storybook build"
   },
   "repository": {
