@@ -14,8 +14,64 @@ export interface MessageSuggestionCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [container?](./chat-ui-react.messagesuggestioncssclasses.container.md) |  | string | _(Optional)_ |
-|  [suggestion?](./chat-ui-react.messagesuggestioncssclasses.suggestion.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[container?](./chat-ui-react.messagesuggestioncssclasses.container.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[suggestion?](./chat-ui-react.messagesuggestioncssclasses.suggestion.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>
 

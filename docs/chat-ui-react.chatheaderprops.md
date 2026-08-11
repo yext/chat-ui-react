@@ -14,15 +14,197 @@ export interface ChatHeaderProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [aiSignpostProps?](./chat-ui-react.chatheaderprops.aisignpostprops.md) |  | [AISignpostProps](./chat-ui-react.aisignpostprops.md) | _(Optional)_ The props to pass to the built-in AI signpost component. |
-|  [closeButtonIcon?](./chat-ui-react.chatheaderprops.closebuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for for close button. |
-|  [customCssClasses?](./chat-ui-react.chatheaderprops.customcssclasses.md) |  | [ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [hideAISignpost?](./chat-ui-react.chatheaderprops.hideaisignpost.md) |  | boolean | _(Optional)_ Whether to hide the AI signpost. Defaults to false. |
-|  [onClose?](./chat-ui-react.chatheaderprops.onclose.md) |  | () =&gt; void | _(Optional)_ A function which is called when the close button is clicked. |
-|  [restartButtonIcon?](./chat-ui-react.chatheaderprops.restartbuttonicon.md) |  | JSX.Element | _(Optional)_ Custom icon for for restart button. |
-|  [showCloseButton?](./chat-ui-react.chatheaderprops.showclosebutton.md) |  | boolean | _(Optional)_ Displays a close button which will invoke [ChatHeaderProps.onClose](./chat-ui-react.chatheaderprops.onclose.md) on click. Default to false. |
-|  [showRestartButton?](./chat-ui-react.chatheaderprops.showrestartbutton.md) |  | boolean | _(Optional)_ Displays a restart button which allows the user to restart the conversation. Defaults to false. |
-|  [title](./chat-ui-react.chatheaderprops.title.md) |  | string | The headers's title text, essentially how the chat window identifies itself to the user. |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[aiSignpostProps?](./chat-ui-react.chatheaderprops.aisignpostprops.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[AISignpostProps](./chat-ui-react.aisignpostprops.md)
+
+
+</td><td>
+
+_(Optional)_ The props to pass to the built-in AI signpost component.
+
+
+</td></tr>
+<tr><td>
+
+[closeButtonIcon?](./chat-ui-react.chatheaderprops.closebuttonicon.md)
+
+
+</td><td>
+
+
+</td><td>
+
+JSX.Element
+
+
+</td><td>
+
+_(Optional)_ Custom icon for for close button.
+
+
+</td></tr>
+<tr><td>
+
+[customCssClasses?](./chat-ui-react.chatheaderprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[hideAISignpost?](./chat-ui-react.chatheaderprops.hideaisignpost.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to hide the AI signpost. Defaults to false.
+
+
+</td></tr>
+<tr><td>
+
+[onClose?](./chat-ui-react.chatheaderprops.onclose.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function which is called when the close button is clicked.
+
+
+</td></tr>
+<tr><td>
+
+[restartButtonIcon?](./chat-ui-react.chatheaderprops.restartbuttonicon.md)
+
+
+</td><td>
+
+
+</td><td>
+
+JSX.Element
+
+
+</td><td>
+
+_(Optional)_ Custom icon for for restart button.
+
+
+</td></tr>
+<tr><td>
+
+[showCloseButton?](./chat-ui-react.chatheaderprops.showclosebutton.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Displays a close button which will invoke [ChatHeaderProps.onClose](./chat-ui-react.chatheaderprops.onclose.md) on click. Default to false.
+
+
+</td></tr>
+<tr><td>
+
+[showRestartButton?](./chat-ui-react.chatheaderprops.showrestartbutton.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Displays a restart button which allows the user to restart the conversation. Defaults to false.
+
+
+</td></tr>
+<tr><td>
+
+[title](./chat-ui-react.chatheaderprops.title.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The headers's title text, essentially how the chat window identifies itself to the user.
+
+
+</td></tr>
+</tbody></table>
 

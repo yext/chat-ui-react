@@ -6,34 +6,284 @@
 
 ## Functions
 
-|  Function | Description |
-|  --- | --- |
-|  [AISignpostIcon({ className, })](./chat-ui-react.aisignposticon.md) | Default icon for the AI signpost. |
-|  [ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, hideAISignpost, aiSignpostProps, onClose, customCssClasses, })](./chat-ui-react.chatheader.md) | A component that renders the header of a chat bot panel, including the title and a button to reset the conversation. |
-|  [ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, onRetry, })](./chat-ui-react.chatinput.md) | A component that allows user to input message and send to Chat API. |
-|  [ChatPanel(props)](./chat-ui-react.chatpanel.md) | A component that renders a full panel for chat bot interactions. This includes the message bubbles for the conversation, input box with send button, and header (if provided). |
-|  [ChatPopUp(props)](./chat-ui-react.chatpopup.md) | A component that renders a popup button that displays and hides a panel for chat bot interactions. |
-|  [MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, linkTarget, onLinkClick, renderMarkdown, })](./chat-ui-react.messagebubble.md) | A component that displays the provided message. |
-|  [useComposedCssClasses(builtInClasses, customClasses)](./chat-ui-react.usecomposedcssclasses.md) | useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes. |
-|  [useReportAnalyticsEvent()](./chat-ui-react.usereportanalyticsevent.md) | Returns a function to send requests to Yext Analytics API. |
+<table><thead><tr><th>
+
+Function
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[AISignpostIcon({ className, })](./chat-ui-react.aisignposticon.md)
+
+
+</td><td>
+
+Default icon for the AI signpost.
+
+
+</td></tr>
+<tr><td>
+
+[ChatHeader({ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, hideAISignpost, aiSignpostProps, onClose, customCssClasses, })](./chat-ui-react.chatheader.md)
+
+
+</td><td>
+
+A component that renders the header of a chat bot panel, including the title and a button to reset the conversation.
+
+
+</td></tr>
+<tr><td>
+
+[ChatInput({ placeholder, stream, inputAutoFocus, handleError, sendButtonIcon, customCssClasses, onSend, onRetry, })](./chat-ui-react.chatinput.md)
+
+
+</td><td>
+
+A component that allows user to input message and send to Chat API.
+
+
+</td></tr>
+<tr><td>
+
+[ChatPanel(props)](./chat-ui-react.chatpanel.md)
+
+
+</td><td>
+
+A component that renders a full panel for chat bot interactions. This includes the message bubbles for the conversation, input box with send button, and header (if provided).
+
+
+</td></tr>
+<tr><td>
+
+[ChatPopUp(props)](./chat-ui-react.chatpopup.md)
+
+
+</td><td>
+
+A component that renders a popup button that displays and hides a panel for chat bot interactions.
+
+
+</td></tr>
+<tr><td>
+
+[MessageBubble({ message, showFeedbackButtons, showTimestamp, customCssClasses, formatTimestamp, linkTarget, onLinkClick, renderMarkdown, })](./chat-ui-react.messagebubble.md)
+
+
+</td><td>
+
+A component that displays the provided message.
+
+
+</td></tr>
+<tr><td>
+
+[useComposedCssClasses(builtInClasses, customClasses)](./chat-ui-react.usecomposedcssclasses.md)
+
+
+</td><td>
+
+useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes.
+
+
+</td></tr>
+<tr><td>
+
+[useReportAnalyticsEvent()](./chat-ui-react.usereportanalyticsevent.md)
+
+
+</td><td>
+
+Returns a function to send requests to Yext Analytics API.
+
+
+</td></tr>
+</tbody></table>
 
 ## Interfaces
 
-|  Interface | Description |
-|  --- | --- |
-|  [AISignpostProps](./chat-ui-react.aisignpostprops.md) | Props for the built-in AI signpost component. |
-|  [ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md) | The CSS class interface for the [ChatHeader()](./chat-ui-react.chatheader.md) component. |
-|  [ChatHeaderProps](./chat-ui-react.chatheaderprops.md) | The props for the [ChatHeader()](./chat-ui-react.chatheader.md) component. |
-|  [ChatInputCssClasses](./chat-ui-react.chatinputcssclasses.md) | The CSS class interface for the [ChatInput()](./chat-ui-react.chatinput.md) component. |
-|  [ChatInputProps](./chat-ui-react.chatinputprops.md) | The props for the [ChatInput()](./chat-ui-react.chatinput.md) component. |
-|  [ChatPanelCssClasses](./chat-ui-react.chatpanelcssclasses.md) | The CSS class interface for the [ChatPanel()](./chat-ui-react.chatpanel.md) component. |
-|  [ChatPanelProps](./chat-ui-react.chatpanelprops.md) | The props for the [ChatPanel()](./chat-ui-react.chatpanel.md) component. |
-|  [ChatPopUpCssClasses](./chat-ui-react.chatpopupcssclasses.md) | The CSS class interface for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component. |
-|  [ChatPopUpProps](./chat-ui-react.chatpopupprops.md) | The props for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component. |
-|  [FeedbackButtonsCssClasses](./chat-ui-react.feedbackbuttonscssclasses.md) | The CSS class interface for the FeedbackButtons component. |
-|  [InitialMessagePopUpCssClasses](./chat-ui-react.initialmessagepopupcssclasses.md) | The CSS class interface for the InitialMessagePopUp component. |
-|  [MessageBubbleCssClasses](./chat-ui-react.messagebubblecssclasses.md) | The CSS class interface for the [MessageBubble()](./chat-ui-react.messagebubble.md) component. |
-|  [MessageBubbleProps](./chat-ui-react.messagebubbleprops.md) | The props for the [MessageBubble()](./chat-ui-react.messagebubble.md) component. |
-|  [MessageSuggestionCssClasses](./chat-ui-react.messagesuggestioncssclasses.md) | The CSS class interface for the MessageSuggestion component. |
-|  [MessageSuggestionsProps](./chat-ui-react.messagesuggestionsprops.md) | The props for the MessageSuggestions component. |
+<table><thead><tr><th>
+
+Interface
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[AISignpostProps](./chat-ui-react.aisignpostprops.md)
+
+
+</td><td>
+
+Props for the built-in AI signpost component.
+
+
+</td></tr>
+<tr><td>
+
+[ChatHeaderCssClasses](./chat-ui-react.chatheadercssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the [ChatHeader()](./chat-ui-react.chatheader.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[ChatHeaderProps](./chat-ui-react.chatheaderprops.md)
+
+
+</td><td>
+
+The props for the [ChatHeader()](./chat-ui-react.chatheader.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[ChatInputCssClasses](./chat-ui-react.chatinputcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the [ChatInput()](./chat-ui-react.chatinput.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[ChatInputProps](./chat-ui-react.chatinputprops.md)
+
+
+</td><td>
+
+The props for the [ChatInput()](./chat-ui-react.chatinput.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[ChatPanelCssClasses](./chat-ui-react.chatpanelcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the [ChatPanel()](./chat-ui-react.chatpanel.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[ChatPanelProps](./chat-ui-react.chatpanelprops.md)
+
+
+</td><td>
+
+The props for the [ChatPanel()](./chat-ui-react.chatpanel.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[ChatPopUpCssClasses](./chat-ui-react.chatpopupcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[ChatPopUpProps](./chat-ui-react.chatpopupprops.md)
+
+
+</td><td>
+
+The props for the [ChatPopUp()](./chat-ui-react.chatpopup.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[FeedbackButtonsCssClasses](./chat-ui-react.feedbackbuttonscssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the FeedbackButtons component.
+
+
+</td></tr>
+<tr><td>
+
+[InitialMessagePopUpCssClasses](./chat-ui-react.initialmessagepopupcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the InitialMessagePopUp component.
+
+
+</td></tr>
+<tr><td>
+
+[MessageBubbleCssClasses](./chat-ui-react.messagebubblecssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the [MessageBubble()](./chat-ui-react.messagebubble.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[MessageBubbleProps](./chat-ui-react.messagebubbleprops.md)
+
+
+</td><td>
+
+The props for the [MessageBubble()](./chat-ui-react.messagebubble.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[MessageSuggestionCssClasses](./chat-ui-react.messagesuggestioncssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the MessageSuggestion component.
+
+
+</td></tr>
+<tr><td>
+
+[MessageSuggestionsProps](./chat-ui-react.messagesuggestionsprops.md)
+
+
+</td><td>
+
+The props for the MessageSuggestions component.
+
+
+</td></tr>
+</tbody></table>
 

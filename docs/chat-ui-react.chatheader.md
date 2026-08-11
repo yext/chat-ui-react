@@ -14,9 +14,37 @@ export declare function ChatHeader({ title, showRestartButton, restartButtonIcon
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, hideAISignpost, aiSignpostProps, onClose, customCssClasses, } | [ChatHeaderProps](./chat-ui-react.chatheaderprops.md) |  |
+<table><thead><tr><th>
+
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ title, showRestartButton, restartButtonIcon, showCloseButton, closeButtonIcon, hideAISignpost, aiSignpostProps, onClose, customCssClasses, }
+
+
+</td><td>
+
+[ChatHeaderProps](./chat-ui-react.chatheaderprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 
 **Returns:**
 

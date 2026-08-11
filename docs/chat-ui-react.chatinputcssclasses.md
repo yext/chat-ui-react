@@ -14,9 +14,83 @@ export interface ChatInputCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [container?](./chat-ui-react.chatinputcssclasses.container.md) |  | string | _(Optional)_ |
-|  [sendButton?](./chat-ui-react.chatinputcssclasses.sendbutton.md) |  | string | _(Optional)_ |
-|  [textArea?](./chat-ui-react.chatinputcssclasses.textarea.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[container?](./chat-ui-react.chatinputcssclasses.container.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[sendButton?](./chat-ui-react.chatinputcssclasses.sendbutton.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[textArea?](./chat-ui-react.chatinputcssclasses.textarea.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>
 

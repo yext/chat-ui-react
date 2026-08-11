@@ -14,12 +14,140 @@ export interface MessageSuggestionsProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./chat-ui-react.messagesuggestionsprops.customcssclasses.md) |  | [MessageSuggestionCssClasses](./chat-ui-react.messagesuggestioncssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [handleError?](./chat-ui-react.messagesuggestionsprops.handleerror.md) |  | (e: unknown) =&gt; void | _(Optional)_ A function which is called when an error occurs from Chat API while processing the user's message. By default, the error is logged to the console and an error message is added to state. |
-|  [onRetry?](./chat-ui-react.messagesuggestionsprops.onretry.md) |  | (e: unknown) =&gt; void | _(Optional)_ A function which is called when a retryable error occurs from Chat API while processing the user's message. |
-|  [onSend?](./chat-ui-react.messagesuggestionsprops.onsend.md) |  | (message: string) =&gt; void | _(Optional)_ A callback which is called when user sends a message. |
-|  [stream?](./chat-ui-react.messagesuggestionsprops.stream.md) |  | boolean | _(Optional)_ Enable streaming behavior by making a request to Chat Streaming API. This feature is experimental, and is subject to change. Defaults to false. |
-|  [suggestions](./chat-ui-react.messagesuggestionsprops.suggestions.md) |  | string\[\] | List of clickable message suggestions to render. |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./chat-ui-react.messagesuggestionsprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[MessageSuggestionCssClasses](./chat-ui-react.messagesuggestioncssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[handleError?](./chat-ui-react.messagesuggestionsprops.handleerror.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(e: unknown) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function which is called when an error occurs from Chat API while processing the user's message. By default, the error is logged to the console and an error message is added to state.
+
+
+</td></tr>
+<tr><td>
+
+[onRetry?](./chat-ui-react.messagesuggestionsprops.onretry.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(e: unknown) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function which is called when a retryable error occurs from Chat API while processing the user's message.
+
+
+</td></tr>
+<tr><td>
+
+[onSend?](./chat-ui-react.messagesuggestionsprops.onsend.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(message: string) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A callback which is called when user sends a message.
+
+
+</td></tr>
+<tr><td>
+
+[stream?](./chat-ui-react.messagesuggestionsprops.stream.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Enable streaming behavior by making a request to Chat Streaming API. This feature is experimental, and is subject to change. Defaults to false.
+
+
+</td></tr>
+<tr><td>
+
+[suggestions](./chat-ui-react.messagesuggestionsprops.suggestions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+List of clickable message suggestions to render.
+
+
+</td></tr>
+</tbody></table>
 

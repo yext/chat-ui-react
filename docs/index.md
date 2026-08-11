@@ -6,7 +6,25 @@
 
 ## Packages
 
-|  Package | Description |
-|  --- | --- |
-|  [@yext/chat-ui-react](./chat-ui-react.md) |  |
+<table><thead><tr><th>
+
+Package
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[@yext/chat-ui-react](./chat-ui-react.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 
