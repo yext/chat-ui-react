@@ -26,7 +26,8 @@
     "js-yaml": "^4.3.2",
     "@istanbuljs/load-nyc-config": {
       "js-yaml": "^3.15.2"
-    }
+    },
+    "webpack-dev-middleware": "7.4.6"
   },
   "browserslist": {
     "production": [
